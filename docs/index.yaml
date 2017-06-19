@@ -1,0 +1,12 @@
+apiVersion: v1
+entries:
+  jupyter:
+  - apiVersion: v1
+    created: 2017-06-19T13:56:37.215054001+02:00
+    description: Jupyter notebook with Dataporten integration
+    digest: 3758ec26823ae82eaaa3c5543198fa17341767fc8d9f25683ed2644bf14caf54
+    name: jupyter
+    urls:
+    - https://UNINETT.github.com/helm-charts/jupyter-0.1.0.tgz
+    version: 0.1.0
+generated: 2017-06-19T13:56:37.213883931+02:00
