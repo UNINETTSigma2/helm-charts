@@ -1,3 +1,7 @@
+
+Thanks for installing Jupyter notebook with Dataporten integration.
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
 1. Get the application URL by running these commands:
 {{- if .Values.ingress.hostname }}
   http://{{- .Values.ingress.hostname }}

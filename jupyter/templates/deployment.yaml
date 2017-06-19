@@ -12,12 +12,12 @@ spec:
         app: {{ template "fullname" . }}
     spec:
       volumes:
-        - name: jupyter-proxy-config
+        - name: oidcconfig
           secret:
-            secretName: jupyter-proxy-config
+            secretName: {{ template "fullname" . }}
       containers:
       - name: auth-proxy
-        image: registry.uninett.no/public/goidc-proxy:latest
+        image: quay.io/uninett/goidc-proxy:latest
         imagePullPolicy: Always
         env:
           - name: DATAPORTEN_CLIENTID
@@ -39,11 +39,11 @@ spec:
           initialDelaySeconds: 30
           timeoutSeconds: 30
         volumeMounts:
-          - name: jupyter-proxy-config
+          - name: oidcconfig
             mountPath: /conf
         workingDir: /conf
       - name: jupyter
-        image: registry.uninett.no/public/rlab-jupyter:latest
+        image: quay.io/uninett/jupyter:latest
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         ports:

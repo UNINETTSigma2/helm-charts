@@ -14,3 +14,43 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- $name := default .Chart.Name .Values.nameOverride -}}
 {{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
+
+{{- define "oidcconfig" -}}
+{
+  "proxy": {
+    "target": "http://localhost:8888"
+  },
+  "engine": {
+    "client_id": "{{ .Values.secrets.dataporten.client_id }}",
+    "client_secret": "{{ .Values.secrets.dataporten.client_secret }}",
+    "issuer_url": "https://auth.dataporten.no",
+    "redirect_url": "https://{{ .Values.ingress.host }}/oauth2/callback",
+    "scopes": "{{ .Values.secrets.dataporten.scopes }}",
+    "signkey": "{{ randAlphaNum 60 }}",
+    "token_type": "",
+    "jwt_token_issuer": "",
+    "xhr_endpoints": "",
+    "authorized_principals": "",
+    "twofactor": {
+      "all": false,
+      "principals": "",
+      "acr_values": "",
+      "backend": ""
+    },
+    "logging": {
+      "level": "info"
+    }
+  },
+  "server": {
+    "port": 80,
+    "health_port": 1337,
+    "cert": "cert.pem",
+    "key": "key.pem",
+    "readtimeout": 10,
+    "writetimeout": 20,
+    "idletimeout": 120,
+    "ssl": false,
+    "secure_cookie": false
+  }
+}
+{{- end -}}
