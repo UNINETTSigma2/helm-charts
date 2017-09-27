@@ -21,11 +21,11 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
     "target": "http://localhost:8888"
   },
   "engine": {
-    "client_id": "{{ .Values.secrets.dataporten.client_id }}",
-    "client_secret": "{{ .Values.secrets.dataporten.client_secret }}",
+    "client_id": "{{ .Values.appstore_generated_data.dataporten.id }}",
+    "client_secret": "{{ .Values.appstore_generated_data.dataporten.client_secret }}",
     "issuer_url": "https://auth.dataporten.no",
     "redirect_url": "https://{{ .Values.ingress.host }}/oauth2/callback",
-    "scopes": "{{ .Values.secrets.dataporten.scopes }}",
+    "scopes": "{{ .Values.appstore_generated_data.dataporten.scopes }}",
     "signkey": "{{ randAlphaNum 60 }}",
     "token_type": "",
     "jwt_token_issuer": "",

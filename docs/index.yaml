@@ -7,6 +7,6 @@ entries:
     digest: 3758ec26823ae82eaaa3c5543198fa17341767fc8d9f25683ed2644bf14caf54
     name: jupyter
     urls:
-    - https://uninett.github.io/helm-charts/jupyter-0.1.0.tgz
-    version: 0.1.0
+    - https://uninett.github.io/helm-charts/jupyter-0.2.0.tgz
+    version: 0.2.0
 generated: 2017-06-19T14:06:51.385711137+02:00
