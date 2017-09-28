@@ -28,7 +28,7 @@ helm delete DEPLOYMENT
 
 ```
 helm package jupyter
-mv jupyter-0.1.0.tgz docs/
+mv jupyter-0.2.0.tgz docs/
 helm repo index docs --url https://UNINETT.github.com/helm-charts
 
 ```

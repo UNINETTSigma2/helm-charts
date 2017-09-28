@@ -29,8 +29,7 @@ resources:
   requests:
     cpu: 100m
     memory: 128Mi
-secrets:
+appstore_generated_data:
   dataporten:
-    client_id: foo
-    client_secret: blah
-    scopes: userid,groups
+    id: ""
+    client_secret: ""
