@@ -1,0 +1,4 @@
+apiVersion: v1
+description: Dokuwiki with oauth support
+name: dokuwiki
+version: 0.1.0
