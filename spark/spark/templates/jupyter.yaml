@@ -1,0 +1,91 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}-jupyter-notebook
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ template "fullname" . }}-jupyter-notebook
+        appGroup: {{ template "fullname" . }}-jupyter
+        group: {{ template "fullname" . }}-spark
+    spec:
+      volumes:
+        - name: oidcconfig-jupyter
+          secret:
+            secretName: {{ template "fullname" . }}-jupyter
+      containers:
+      - name: auth-proxy
+        image: quay.io/uninett/goidc-proxy:latest
+        imagePullPolicy: Always
+        env:
+          - name: DATAPORTEN_CLIENTID
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "fullname" . }}-jupyter
+                key: dataporten_client_id
+          - name: DATAPORTEN_CLIENTSECRET
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "fullname" . }}-jupyter
+                key: dataporten_client_secret
+        ports:
+          - containerPort: 80
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+        volumeMounts:
+          - name: oidcconfig-jupyter
+            mountPath: /conf
+        workingDir: /conf
+      - name: jupyter-notebook
+        image: paalka/spark-jupyter-notebook:latest
+        imagePullPolicy: Always
+        ports:
+           - containerPort: 8888
+        env:
+          - name: SPARK_MASTER_SERVICE_HOST
+            value: {{ template "fullname" . }}-spark-master
+        resources:
+          requests:
+            cpu: {{ .Values.jupyter.resources.requests.cpu }}
+            memory: {{ .Values.jupyter.resources.requests.memory }}
+          limits:
+            cpu: {{ .Values.jupyter.resources.limits.cpu }}
+            memory: {{ .Values.jupyter.resources.limits.memory }}
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ template "fullname" . }}-jupyter-notebook
+  labels:
+    appGroup: {{ template "fullname" . }}-jupyter
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: {{ template "fullname" . }}-jupyter-notebook
+
+---
+apiVersion: extensions/v1beta1
+kind: NetworkPolicy
+metadata:
+  name: {{ template "fullname" . }}-jupyter-notebook-ui
+spec:
+  podSelector:
+    matchLabels:
+      appGroup: {{ template "fullname" . }}-jupyter
+  ingress:
+    - from:
+      - namespaceSelector:
+          matchLabels:
+            name: kube-ingress
+      ports:
+        - protocol: TCP
+          port: 80

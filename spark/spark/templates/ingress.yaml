@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "fullname" . }}
+  annotations:
+     kubernetes.io/ingress.class: "nginx"
+     kubernetes.io/tls-acme: "true"
+  labels:
+    group: {{ template "fullname" . }}-spark
+    appGroup: {{ template "fullname" . }}-jupyter
+spec:
+  tls:
+    - hosts:
+      - {{ .Values.ingress.host }}
+      secretName: {{ template "fullname" . }}-tls
+  rules:
+  - host: {{ .Values.ingress.host }}
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: {{ template "fullname" . }}-jupyter-notebook
+          servicePort: 80

@@ -1,0 +1,87 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}-spark-master
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ template "fullname" . }}-spark-master
+        group: {{ template "fullname" . }}-spark
+    spec:
+      volumes:
+        - name: oidcconfig-spark
+          secret:
+            secretName: {{ template "fullname" . }}-spark
+      containers:
+        - name: auth-proxy
+          image: quay.io/uninett/goidc-proxy:latest
+          imagePullPolicy: Always
+          env:
+            - name: DATAPORTEN_CLIENTID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "fullname" . }}-spark
+                  key: dataporten_client_id
+            - name: DATAPORTEN_CLIENTSECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "fullname" . }}-spark
+                  key: dataporten_client_secret
+          ports:
+            - containerPort: 80
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 30
+            timeoutSeconds: 30
+          volumeMounts:
+            - name: oidcconfig-spark
+              mountPath: /conf
+          workingDir: /conf
+        - name: spark-master
+          image: paalka/spark-master
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 7077
+            - containerPort: 8080
+          resources:
+            requests:
+                cpu: {{ .Values.master.resources.requests.cpu }}
+                memory: {{ .Values.master.resources.requests.memory }}
+            limits:
+                cpu: {{ .Values.master.resources.limits.cpu }}
+                memory: {{ .Values.master.resources.limits.memory }}
+          env:
+            - name: SPARK_PUBLIC_DNS
+              value: {{ .Values.ingress.host }}
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ template "fullname" . }}-spark-master
+  labels:
+    group: {{ template "fullname" . }}-spark
+spec:
+  ports:
+    - port: 7077
+      targetPort: 7077
+  selector:
+    app: {{ template "fullname" . }}-spark-master
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ template "fullname" . }}-spark-master-ui
+  labels:
+    group: {{ template "fullname" . }}-spark
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: {{ template "fullname" . }}-spark-master
