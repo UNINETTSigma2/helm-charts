@@ -2,7 +2,7 @@ apiVersion: v1
 entries:
   dokuwiki:
   - apiVersion: v1
-    created: 2017-10-23T17:39:18.178807777+02:00
+    created: 2017-10-24T23:21:33.817352426+02:00
     description: Dokuwiki with oauth support
     digest: 04148adb8400c592357f5ae7606c33193b431ef6ec0db407a0231b9589185f7c
     name: dokuwiki
@@ -11,7 +11,7 @@ entries:
     version: 0.1.2
   jupyter:
   - apiVersion: v1
-    created: 2017-10-23T17:39:18.179305652+02:00
+    created: 2017-10-24T23:21:33.817983995+02:00
     description: Jupyter notebook with Dataporten integration
     digest: 829e1f1c674610bd581aa4bef2d18365aa4aa8fef400cb0546ed03310f50bbc4
     name: jupyter
@@ -19,7 +19,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/jupyter-0.2.2.tgz
     version: 0.2.2
   - apiVersion: v1
-    created: 2017-10-23T17:39:18.179067448+02:00
+    created: 2017-10-24T23:21:33.817709885+02:00
     description: Jupyter notebook with Dataporten integration
     digest: 5e413e56437c6b123ae3b46d50882b3d21521e3cfb6629bee04338c54eb590f0
     name: jupyter
@@ -28,7 +28,7 @@ entries:
     version: 0.2.1
   spark:
   - apiVersion: v1
-    created: 2017-10-23T17:39:18.17954034+02:00
+    created: 2017-10-24T23:21:33.818316852+02:00
     description: Apache Spark is a fast and general engine for big data processing,
       with built-in modules for streaming, SQL, machine learning and graph processing.
       This chart also installs a Jupyter notebook which can be used to access Spark.
@@ -37,4 +37,4 @@ entries:
     urls:
     - https://UNINETT.github.com/helm-charts/spark-0.1.0.tgz
     version: 0.1.0
-generated: 2017-10-23T17:39:18.178464503+02:00
+generated: 2017-10-24T23:21:33.816893802+02:00

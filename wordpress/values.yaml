@@ -1,0 +1,17 @@
+replicaCount: 1
+ingress:
+  enabled: true
+  host: "example.com"
+  tls:
+    enabled: true
+resources:
+  requests:
+    cpu: 100m
+    memory: 512Mi
+  limits:
+    cpu: 300m
+    memory: 1Gi
+appstore_generated_data:
+  dataporten:
+    id: ""
+    client_secret: ""

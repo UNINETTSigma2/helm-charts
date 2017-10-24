@@ -1,0 +1,60 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "fullname" . }}
+    spec:
+      volumes:
+        - name: oidcconfig
+          secret:
+            secretName: {{ template "fullname" . }}
+      containers:
+      - name: mysql
+        image: mysql/mysql-server:latest
+        env:
+          - name: MYSQL_ROOT_HOST
+            value: "%"
+          - name: MYSQL_ALLOW_EMPTY_PASSWORD
+            value: "1"
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+        ports:
+        - containerPort: 3306
+      - name: wordpress
+        image: quay.io/uninett/wordpress:latest
+        env:
+          - name: DBHOST
+            value: "127.0.0.1"
+          - name: DBNAME
+            value: wordpress
+          - name: DBUSER
+            value: root
+          - name: DBPASS
+            value:
+          - name: DATAPORTEN_CLIENTID
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "fullname" . }}
+                key: dataporten_client_id
+          - name: DATAPORTEN_CLIENTSECRET
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "fullname" . }}
+                key: dataporten_client_secret
+          - name: DATAPORTEN_SCOPES
+            value: groups,userid,profile,userid-feide,email
+          - name: BASEURL
+            value: https://{{ .Values.ingress.host }}
+          - name: BEHIND_HTTPS_PROXY
+            value: 'true'
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+        ports:
+        - containerPort: 6080
