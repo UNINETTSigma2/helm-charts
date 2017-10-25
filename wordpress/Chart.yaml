@@ -4,3 +4,5 @@ name: wordpress
 version: 1.0.1
 home: https://github.com/UNINETT/appstore-app-wordpress
 icon: https://bitnami.com/assets/stacks/wordpress/img/wordpress-stack-220x234.png
+sources:
+  - https://quay.io/uninett/wordpress:latest

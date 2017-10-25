@@ -3,4 +3,7 @@ description: Jupyter notebook with Dataporten integration
 name: jupyter
 version: 0.2.3
 home: https://github.com/UNINETT/helm-charts/tree/master/jupyter
-icon: http://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
+icon: https://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
+sources:
+  - https://quay.io/uninett/goidc-proxy:latest
+  - https://quay.io/uninett/jupyter:latest
