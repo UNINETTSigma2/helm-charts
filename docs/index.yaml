@@ -2,16 +2,16 @@ apiVersion: v1
 entries:
   dokuwiki:
   - apiVersion: v1
-    created: 2017-10-25T10:43:26.668519036+02:00
+    created: 2017-10-25T10:48:10.729667674+02:00
     description: Dokuwiki with oauth support
-    digest: 9095eb87ddfb340712b95a4401de69ed8b4a8459ed478ec336787123b476d691
+    digest: bcbfc891db43a8addeb1accf0a0c2f3dceab541eb5e41885b6eab9668e88902f
     icon: https://bitnami.com/assets/stacks/dokuwiki/img/dokuwiki-stack-110x117.png
     name: dokuwiki
     urls:
     - https://UNINETT.github.com/helm-charts/dokuwiki-0.1.3.tgz
     version: 0.1.3
   - apiVersion: v1
-    created: 2017-10-25T10:43:26.668297357+02:00
+    created: 2017-10-25T10:48:10.729432458+02:00
     description: Dokuwiki with oauth support
     digest: 58a4fc9b17d32c2b88b23426f5240b63881ecfd66a35fc8fbd4ac7eedc546b2c
     icon: https://bitnami.com/assets/stacks/dokuwiki/img/dokuwiki-stack-110x117.png
@@ -21,16 +21,16 @@ entries:
     version: 0.1.2
   jupyter:
   - apiVersion: v1
-    created: 2017-10-25T10:43:26.669204849+02:00
+    created: 2017-10-25T10:48:10.730396104+02:00
     description: Jupyter notebook with Dataporten integration
-    digest: 43e4458c02f58ba0c393a89b261fa7ff9d7107424d479788c03ecc8fcb572742
+    digest: c0a3a83bd2cb626dc23d7ec18a030c05708c4f0c4ab42c75bc213dc43ff8eba8
     icon: http://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
     name: jupyter
     urls:
     - https://UNINETT.github.com/helm-charts/jupyter-0.2.3.tgz
     version: 0.2.3
   - apiVersion: v1
-    created: 2017-10-25T10:43:26.668984252+02:00
+    created: 2017-10-25T10:48:10.730148001+02:00
     description: Jupyter notebook with Dataporten integration
     digest: 639e51b88a408c68b78445700fd9259893fbacda557d23813ec239e31d490deb
     icon: http://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
@@ -39,7 +39,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/jupyter-0.2.2.tgz
     version: 0.2.2
   - apiVersion: v1
-    created: 2017-10-25T10:43:26.668756872+02:00
+    created: 2017-10-25T10:48:10.729908908+02:00
     description: Jupyter notebook with Dataporten integration
     digest: 5e413e56437c6b123ae3b46d50882b3d21521e3cfb6629bee04338c54eb590f0
     name: jupyter
@@ -48,7 +48,7 @@ entries:
     version: 0.2.1
   spark:
   - apiVersion: v1
-    created: 2017-10-25T10:43:26.66969106+02:00
+    created: 2017-10-25T10:48:10.730923982+02:00
     description: Apache Spark is a fast and general engine for big data processing,
       with built-in modules for streaming, SQL, machine learning and graph processing.
       This chart also installs a Jupyter notebook which can be used to access Spark.
@@ -59,7 +59,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/spark-0.1.1.tgz
     version: 0.1.1
   - apiVersion: v1
-    created: 2017-10-25T10:43:26.669448469+02:00
+    created: 2017-10-25T10:48:10.730680378+02:00
     description: Apache Spark is a fast and general engine for big data processing,
       with built-in modules for streaming, SQL, machine learning and graph processing.
       This chart also installs a Jupyter notebook which can be used to access Spark.
@@ -71,16 +71,16 @@ entries:
     version: 0.1.0
   wordpress:
   - apiVersion: v1
-    created: 2017-10-25T10:43:26.67024923+02:00
+    created: 2017-10-25T10:48:10.73150803+02:00
     description: Quick 'n dirty Dataporten + Wordpress
-    digest: 0ff6972a9e51696798d8319926f7b3b2e53c5f88d770bb23a948d91d508f5e1f
+    digest: 43caaddac53d7ce168c2f94ac6e43559c666723d93f4c1e2d8274b84ab2f87cf
     icon: https://bitnami.com/assets/stacks/wordpress/img/wordpress-stack-220x234.png
     name: wordpress
     urls:
     - https://UNINETT.github.com/helm-charts/wordpress-1.0.1.tgz
     version: 1.0.1
   - apiVersion: v1
-    created: 2017-10-25T10:43:26.669965074+02:00
+    created: 2017-10-25T10:48:10.731227391+02:00
     description: Quick 'n dirty Dataporten + Wordpress
     digest: 95310d5ca0370f5c3e057caa2351decdf484dea45f4ff630f29708fe246e42eb
     icon: https://bitnami.com/assets/stacks/wordpress/img/wordpress-stack-220x234.png
@@ -88,4 +88,4 @@ entries:
     urls:
     - https://UNINETT.github.com/helm-charts/wordpress-1.0.0.tgz
     version: 1.0.0
-generated: 2017-10-25T10:43:26.667929085+02:00
+generated: 2017-10-25T10:48:10.72908203+02:00
