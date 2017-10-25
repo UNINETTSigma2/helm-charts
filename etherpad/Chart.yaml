@@ -1,5 +1,5 @@
 apiVersion: v1
-description: Quick 'n dirty Dataporten + Etherpad
+description: Etherpad + Dataporten
 name: etherpad
 version: 1.0.0
 logo: http://etherpad.org/img/brand.png
