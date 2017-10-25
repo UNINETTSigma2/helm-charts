@@ -1,0 +1,10 @@
+dataporten:
+  Options:
+    ScopesRequested:
+      - groups
+      - userid
+      - profile
+      - userid-feide
+      - email
+    RedirectURI:
+      - /dataporten/callback

@@ -1,0 +1,41 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "fullname" . }}
+    spec:
+      volumes:
+        - name: oidcconfig
+          secret:
+            secretName: {{ template "fullname" . }}
+      containers:
+      - name: etherpad
+        image: quay.io/uninett/etherpad:latest
+        env:
+          - name: DATAPORTEN_CLIENTID
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "fullname" . }}
+                key: dataporten_client_id
+          - name: DATAPORTEN_CLIENTSECRET
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "fullname" . }}
+                key: dataporten_client_secret
+          - name: DATAPORTEN_SCOPES
+            value: groups,userid,profile,userid-feide,email
+          - name: TLS
+            value: "true"
+          - name: HOST
+            value: {{ .Values.ingress.host }}
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+        ports:
+        - containerPort: 9001

@@ -1,0 +1,8 @@
+apiVersion: v1
+description: Quick 'n dirty Dataporten + Etherpad
+name: etherpad
+version: 1.0.0
+logo: http://etherpad.org/img/brand.png
+home: https://github.com/UNINETT/appstore-app-etherpad
+sources:
+  - https://quay.io/uninett/etherpad:latest
