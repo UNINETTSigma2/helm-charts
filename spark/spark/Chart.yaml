@@ -2,3 +2,4 @@ apiVersion: v1
 description: Apache Spark is a fast and general engine for big data processing, with built-in modules for streaming, SQL, machine learning and graph processing. This chart also installs a Jupyter notebook which can be used to access Spark. 
 name: spark
 version: 0.1.0
+icon: http://spark.apache.org/images/spark-logo-trademark.png

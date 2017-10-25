@@ -2,4 +2,4 @@ apiVersion: v1
 description: Jupyter notebook with Dataporten integration
 name: jupyter
 version: 0.2.2
-icon: https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Apache_Spark_logo.svg/200px-Apache_Spark_logo.svg.png
+icon: http://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
