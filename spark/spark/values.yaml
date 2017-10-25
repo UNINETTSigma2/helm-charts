@@ -27,13 +27,9 @@ jupyter:
         memory: 2G
   
 ingress:
-  host: "paal-test.appstore-dep.ioudaas.no"
+  host: "spark.example.com"
 
 appstore_generated_data:
   dataporten:
     id: "abc"
     client_secret: "cba"
-
-dataporten:
-  name: "Test application"
-  hostname: "example.com"

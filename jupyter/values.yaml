@@ -1,9 +1,5 @@
-replicaCount: 1
 ingress:
-  enabled: true
-  host: "local-chart.example"
-  tls:
-    enabled: false
+  host: "local-chart.example.com"
 resources:
   requests:
     cpu: 100m

@@ -2,7 +2,7 @@ apiVersion: v1
 entries:
   dokuwiki:
   - apiVersion: v1
-    created: 2017-10-25T10:30:07.948559196+02:00
+    created: 2017-10-25T10:38:04.010288004+02:00
     description: Dokuwiki with oauth support
     digest: 58a4fc9b17d32c2b88b23426f5240b63881ecfd66a35fc8fbd4ac7eedc546b2c
     icon: https://bitnami.com/assets/stacks/dokuwiki/img/dokuwiki-stack-110x117.png
@@ -12,7 +12,7 @@ entries:
     version: 0.1.2
   jupyter:
   - apiVersion: v1
-    created: 2017-10-25T10:30:07.952112405+02:00
+    created: 2017-10-25T10:38:04.011044099+02:00
     description: Jupyter notebook with Dataporten integration
     digest: 639e51b88a408c68b78445700fd9259893fbacda557d23813ec239e31d490deb
     icon: http://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
@@ -21,7 +21,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/jupyter-0.2.2.tgz
     version: 0.2.2
   - apiVersion: v1
-    created: 2017-10-25T10:30:07.951760278+02:00
+    created: 2017-10-25T10:38:04.010783904+02:00
     description: Jupyter notebook with Dataporten integration
     digest: 5e413e56437c6b123ae3b46d50882b3d21521e3cfb6629bee04338c54eb590f0
     name: jupyter
@@ -30,7 +30,7 @@ entries:
     version: 0.2.1
   spark:
   - apiVersion: v1
-    created: 2017-10-25T10:30:07.952449193+02:00
+    created: 2017-10-25T10:38:04.011303018+02:00
     description: Apache Spark is a fast and general engine for big data processing,
       with built-in modules for streaming, SQL, machine learning and graph processing.
       This chart also installs a Jupyter notebook which can be used to access Spark.
@@ -42,7 +42,7 @@ entries:
     version: 0.1.0
   wordpress:
   - apiVersion: v1
-    created: 2017-10-25T10:30:07.952792724+02:00
+    created: 2017-10-25T10:38:04.011626518+02:00
     description: Quick 'n dirty Dataporten + Wordpress
     digest: 95310d5ca0370f5c3e057caa2351decdf484dea45f4ff630f29708fe246e42eb
     icon: https://bitnami.com/assets/stacks/wordpress/img/wordpress-stack-220x234.png
@@ -50,4 +50,4 @@ entries:
     urls:
     - https://UNINETT.github.com/helm-charts/wordpress-1.0.0.tgz
     version: 1.0.0
-generated: 2017-10-25T10:30:07.948190484+02:00
+generated: 2017-10-25T10:38:04.009646688+02:00
