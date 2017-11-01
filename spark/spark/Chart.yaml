@@ -1,11 +1,10 @@
 apiVersion: v1
 description: Apache Spark is a fast and general engine for big data processing.
 name: spark
-version: 0.1.1
+version: 0.2.1
 home: https://github.com/UNINETT/helm-charts/tree/master/spark
 icon: http://spark.apache.org/images/spark-logo-trademark.png
 sources:
   - https://hub.docker.com/r/paalka/spark-worker/#latest
   - https://hub.docker.com/r/paalka/spark-master/#latest
   - https://hub.docker.com/r/paalka/spark-base/#latest
-  - https://hub.docker.com/r/paalka/spark-jupyter-notebook/#latest

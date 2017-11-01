@@ -27,9 +27,9 @@ jupyter:
         memory: 2G
   
 ingress:
-  host: "spark.example.com"
+  host: "host.example.com"
 
 appstore_generated_data:
   dataporten:
-    id: "abc"
-    client_secret: "cba"
+    id: ""
+    client_secret: ""
