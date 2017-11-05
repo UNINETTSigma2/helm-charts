@@ -25,10 +25,9 @@ helm delete DEPLOYMENT
 
 
 ## Maintaining charts
+When adding a new chart, make sure to update the script.
 
 ```
-helm package jupyter
-mv jupyter-0.2.0.tgz docs/
-helm repo index docs --url https://UNINETT.github.com/helm-charts
+./update-chart-repo.sh
 
 ```
