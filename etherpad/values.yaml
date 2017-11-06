@@ -1,4 +1,3 @@
-replicaCount: 1
 ingress:
   host: "chart.example.com"
 resources:

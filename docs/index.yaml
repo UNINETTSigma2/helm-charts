@@ -2,9 +2,9 @@ apiVersion: v1
 entries:
   dokuwiki:
   - apiVersion: v1
-    created: 2017-11-06T10:14:41.439212533+01:00
+    created: 2017-11-06T12:20:26.945644262+01:00
     description: Dokuwiki with oauth support
-    digest: f2df2ac197ff3a7d78956f62f2233246884d846295320975e562d7d608bc93a2
+    digest: 3a6749e90aaf2278737400315bd5027595ab6e701d66ab781ace07d6a7ed90a8
     home: https://github.com/UNINETT/appstore-app-dokuwiki
     icon: https://bitnami.com/assets/stacks/dokuwiki/img/dokuwiki-stack-110x117.png
     name: dokuwiki
@@ -16,9 +16,9 @@ entries:
     version: 0.1.3
   etherpad:
   - apiVersion: v1
-    created: 2017-11-06T10:14:41.439453478+01:00
+    created: 2017-11-06T12:20:26.945885694+01:00
     description: Etherpad + Dataporten
-    digest: 476ad2185691b3c5c4f28012ea3daa202e24bec081cc5c7a43af0a3127865af4
+    digest: 75e75e66a435aa33b8595d97d4b66cacdf8df9eaa6109352f0c9c06a1d2260e8
     home: https://github.com/UNINETT/appstore-app-etherpad
     name: etherpad
     sources:
@@ -28,9 +28,9 @@ entries:
     version: 1.0.0
   jupyter:
   - apiVersion: v1
-    created: 2017-11-06T10:14:41.439688917+01:00
+    created: 2017-11-06T12:20:26.946129651+01:00
     description: Jupyter notebook with Dataporten integration
-    digest: b83e8b59ed28661de413398b40d42731a7b27792109403cc4d9f0b11333aa446
+    digest: 07255f9c906dc2ab906020eda673fc8c7ea3502542105416d19c6375a7b9bafd
     home: https://github.com/UNINETT/helm-charts/tree/master/jupyter
     icon: https://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
     name: jupyter
@@ -42,7 +42,7 @@ entries:
     version: 0.2.3
   spark:
   - apiVersion: v1
-    created: 2017-11-06T10:14:41.439942863+01:00
+    created: 2017-11-06T12:20:26.946357874+01:00
     description: Apache Spark is a fast and general engine for big data processing.
     digest: fe5404e34b0632d551bf0867c75a0c109fe4355f692063bfe53db5c0cf17f759
     home: https://github.com/UNINETT/helm-charts/tree/master/spark
@@ -57,9 +57,9 @@ entries:
     version: 0.2.3
   wordpress:
   - apiVersion: v1
-    created: 2017-11-06T10:14:41.44023075+01:00
+    created: 2017-11-06T12:20:26.946598782+01:00
     description: Quick 'n dirty Dataporten + Wordpress
-    digest: 3ce5a304de89124746e65a4d155edd545317de76786690448b7836d07e8784ae
+    digest: 85282b29ad5021eb476c93b011b731ba636635660fdd792b07fd4be7e2800bee
     home: https://github.com/UNINETT/appstore-app-wordpress
     icon: https://bitnami.com/assets/stacks/wordpress/img/wordpress-stack-220x234.png
     name: wordpress
@@ -68,4 +68,4 @@ entries:
     urls:
     - https://UNINETT.github.com/helm-charts/wordpress-1.0.1.tgz
     version: 1.0.1
-generated: 2017-11-06T10:14:41.438848711+01:00
+generated: 2017-11-06T12:20:26.94527984+01:00
