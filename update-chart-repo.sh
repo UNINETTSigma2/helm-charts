@@ -5,7 +5,7 @@ charts=( "dokuwiki" "spark/spark" "wordpress" "etherpad" "jupyter" )
 for chart in "${charts[@]}"
 do
     echo "Linting $chart..."
-    helm lint $chart
+    helm lint --strict $chart
     echo
 done
 
