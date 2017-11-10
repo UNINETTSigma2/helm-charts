@@ -7,6 +7,7 @@ resources:
   limits:
     cpu: 300m
     memory: 1Gi
+dockerImage: quay.io/uninett/jupyter:latest
 appstore_generated_data:
   dataporten:
     id: ""
