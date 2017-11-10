@@ -5,5 +5,5 @@ version: 1.0.1
 maintainers:
   - name: Pål Karlsrud @ UNINETT
     email: paal@128.no
-icon: http://etherpad.org/img/brand.png
+icon: https://translatewiki.net/images/thumb/6/6f/Etherpad_lite.svg/200px-Etherpad_lite.svg.png
 home: https://github.com/UNINETT/appstore-app-etherpad
