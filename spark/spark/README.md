@@ -4,6 +4,5 @@
 
 ### Advanced
 This application creates a [Apache Spark](https://github.com/UNINETT/helm-charts/tree/master/spark) using the following Docker images:
-  - https://hub.docker.com/r/paalka/spark-worker/#latest
-  - https://hub.docker.com/r/paalka/spark-master/#latest
-  - https://hub.docker.com/r/paalka/spark-base/#latest
+  - [paalka/spark-worker](https://hub.docker.com/r/paalka/spark-worker/#latest)
+  - [paalka/spark-master](https://hub.docker.com/r/paalka/spark-master/#latest)

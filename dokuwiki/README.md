@@ -4,5 +4,5 @@
 
 ### Advanced
 This application creates a [DokuWiki](https://github.com/UNINETT/appstore-app-dokuwiki) instance using the following Docker images:
-  - https://quay.io/uninett/goidc-proxy:latest
-  - https://quay.io/uninett/dokuwiki:latest
+  - [quay.io/UNINETT/goidc-proxy](https://quay.io/uninett/goidc-proxy:latest)
+  - [quay.io/UNINETT/dokuwiki:latest](https://quay.io/uninett/dokuwiki:latest)

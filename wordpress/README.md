@@ -4,4 +4,4 @@
 
 ### Advanced
 This application creates a [WordPress](https://github.com/UNINETT/appstore-app-wordpress) instance using the following Docker images:
-  - https://quay.io/uninett/wordpress:latest
+  - [quay.io/UNINETT/wordpress:latest](https://quay.io/uninett/wordpress:latest)

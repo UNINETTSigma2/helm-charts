@@ -4,5 +4,5 @@
 
 ### Advanced
 This application creates a [Jupyter Notebook](https://github.com/UNINETT/helm-charts/tree/master/jupyter) instance using the following Docker images:
-  - https://quay.io/uninett/goidc-proxy:latest
-  - https://quay.io/uninett/jupyter:latest
+  - [quay.io/UNINETT/goidc-proxy:latest](https://quay.io/uninett/goidc-proxy:latest)
+  - [quay.io/UNINETT/jupyter:latest](https://quay.io/uninett/jupyter:latest)

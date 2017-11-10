@@ -4,4 +4,4 @@
 
 ### Advanced
 This application creates a [Etherpad](https://github.com/UNINETT/appstore-app-etherpad) instance using the following Docker images:
-  - https://quay.io/uninett/etherpad:latest
+  - [quay.io/UNINETT/etherpad:latest](https://quay.io/uninett/etherpad:latest)
