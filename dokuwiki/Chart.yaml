@@ -7,6 +7,3 @@ maintainers:
 version: 0.1.3
 home: https://github.com/UNINETT/appstore-app-dokuwiki
 icon: https://bitnami.com/assets/stacks/dokuwiki/img/dokuwiki-stack-110x117.png
-sources:
-  - https://quay.io/uninett/goidc-proxy:latest
-  - https://quay.io/uninett/dokuwiki:latest

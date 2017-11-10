@@ -7,6 +7,3 @@ maintainers:
     email: paal@128.no
 home: https://github.com/UNINETT/helm-charts/tree/master/jupyter
 icon: https://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
-sources:
-  - https://quay.io/uninett/goidc-proxy:latest
-  - https://quay.io/uninett/jupyter:latest
