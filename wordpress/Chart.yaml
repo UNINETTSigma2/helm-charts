@@ -3,7 +3,7 @@ description: Quick 'n dirty Dataporten + Wordpress
 name: wordpress
 version: 1.0.1
 maintainers:
-  - name: Pål Karlsrud
+  - name: Pål Karlsrud @ UNINETT
     email: paal@128.no
 home: https://github.com/UNINETT/appstore-app-wordpress
 icon: https://bitnami.com/assets/stacks/wordpress/img/wordpress-stack-220x234.png

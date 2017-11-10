@@ -3,7 +3,7 @@ description: Jupyter notebook with Dataporten integration
 name: jupyter
 version: 0.2.4
 maintainers:
-  - name: Pål Karlsrud
+  - name: Pål Karlsrud @ UNINETT
     email: paal@128.no
 home: https://github.com/UNINETT/helm-charts/tree/master/jupyter
 icon: https://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
