@@ -2,7 +2,20 @@ apiVersion: v1
 entries:
   dokuwiki:
   - apiVersion: v1
-    created: 2017-11-10T18:17:33.319731244+01:00
+    created: 2017-11-11T12:35:33.83957582+01:00
+    description: Dokuwiki with oauth support
+    digest: ad7ec9727931fe9f614ea93f6fcc88e24e45885045a9b9b82d90fffa869d8a3b
+    home: https://github.com/UNINETT/appstore-app-dokuwiki
+    icon: https://bitnami.com/assets/stacks/dokuwiki/img/dokuwiki-stack-110x117.png
+    maintainers:
+    - email: paal@128.no
+      name: Pål Karlsrud @ UNINETT
+    name: dokuwiki
+    urls:
+    - https://UNINETT.github.com/helm-charts/dokuwiki-0.2.3.tgz
+    version: 0.2.3
+  - apiVersion: v1
+    created: 2017-11-11T12:35:33.839292242+01:00
     description: Dokuwiki with oauth support
     digest: 6fe21fceab3bc8de6f25b80b5f5c33e4af9883958fc65967169062363245114a
     home: https://github.com/UNINETT/appstore-app-dokuwiki
@@ -16,7 +29,7 @@ entries:
     version: 0.1.3
   etherpad:
   - apiVersion: v1
-    created: 2017-11-10T18:17:33.320326765+01:00
+    created: 2017-11-11T12:35:33.840106818+01:00
     description: Etherpad + Dataporten
     digest: 9ff72d1295189ef510ea0f7a470ea0b31dfa46a80a9271af556df50fa1f6fb8a
     home: https://github.com/UNINETT/appstore-app-etherpad
@@ -29,7 +42,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/etherpad-1.0.1.tgz
     version: 1.0.1
   - apiVersion: v1
-    created: 2017-11-10T18:17:33.320030945+01:00
+    created: 2017-11-11T12:35:33.839852975+01:00
     description: Etherpad + Dataporten
     digest: 8633290e6c3cfc4ee6b149d85039a4f17af15d146dcbaef8d5be20c3d32740c3
     home: https://github.com/UNINETT/appstore-app-etherpad
@@ -44,7 +57,7 @@ entries:
     version: 1.0.0
   jupyter:
   - apiVersion: v1
-    created: 2017-11-10T18:17:33.320883475+01:00
+    created: 2017-11-11T12:35:33.840657948+01:00
     description: Jupyter notebook with Dataporten integration
     digest: 519713768d3262526893d8230304ecb60274bd90f0ffa8c5053e4efb5e77da9b
     home: https://github.com/UNINETT/helm-charts/tree/master/jupyter
@@ -57,7 +70,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/jupyter-0.2.4.tgz
     version: 0.2.4
   - apiVersion: v1
-    created: 2017-11-10T18:17:33.320617479+01:00
+    created: 2017-11-11T12:35:33.840364566+01:00
     description: Jupyter notebook with Dataporten integration
     digest: fcd80907c71f038f43c92451d5f0b86e41406233dc50b64faf042611103a0aa3
     home: https://github.com/UNINETT/helm-charts/tree/master/jupyter
@@ -71,7 +84,7 @@ entries:
     version: 0.2.3
   spark:
   - apiVersion: v1
-    created: 2017-11-10T18:17:33.321155649+01:00
+    created: 2017-11-11T12:35:33.840908673+01:00
     description: Apache Spark is a fast and general engine for big data processing.
     digest: c0bef84c5c6d457621cf47ee249457ca5d9372f8cba8744862badbac67bdd801
     home: https://github.com/UNINETT/helm-charts/tree/master/spark
@@ -85,7 +98,7 @@ entries:
     version: 0.2.3
   wordpress:
   - apiVersion: v1
-    created: 2017-11-10T18:17:33.321425333+01:00
+    created: 2017-11-11T12:35:33.841156701+01:00
     description: Quick 'n dirty Dataporten + Wordpress
     digest: 160c917fc4925a5b276cc0f2ad1e21e08d4856a159cd150c0c1eefd343e2c6a4
     home: https://github.com/UNINETT/appstore-app-wordpress
@@ -97,4 +110,4 @@ entries:
     urls:
     - https://UNINETT.github.com/helm-charts/wordpress-1.0.1.tgz
     version: 1.0.1
-generated: 2017-11-10T18:17:33.319281764+01:00
+generated: 2017-11-11T12:35:33.838883095+01:00
