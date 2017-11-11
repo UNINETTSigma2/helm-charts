@@ -43,8 +43,11 @@ spec:
             mountPath: /conf
         workingDir: /conf
       - name: dokuwiki
-        image: quay.io/uninett/dokuwiki:latest
+        image: paalka/dokuwiki:latest
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         ports:
         - containerPort: 8888
+        env:
+          - name: DOKUWIKI_BASE_URL
+            value: "https://{{ .Values.ingress.host }}"
