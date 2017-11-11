@@ -10,7 +10,7 @@ spec:
     - from:
       - namespaceSelector:
           matchLabels:
-            name: appstore-dep
+            name: {{ .Release.Namespace }}
       ports:
         - protocol: TCP
 
