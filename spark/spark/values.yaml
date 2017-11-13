@@ -17,15 +17,6 @@ master:
         cpu: 200m
         memory: 1500Mi
 
-jupyter:
-  resources:
-    requests:
-        cpu: 100m
-        memory: 1500Mi
-    limits:
-        cpu: 200m
-        memory: 2G
-  
 ingress:
   host: "host.example.com"
 
