@@ -7,6 +7,9 @@ resources:
   limits:
     cpu: 300m
     memory: 1Gi
+persistentStorage:
+  enabled: false
+  existingClaim: ""
 dockerImage: quay.io/uninett/jupyter:latest
 appstore_generated_data:
   dataporten:

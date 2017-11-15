@@ -15,6 +15,11 @@ spec:
         - name: oidcconfig
           secret:
             secretName: {{ template "fullname" . }}
+        {{ if .Values.persistentStorage.enabled }}
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistentStorage.existingClaim }}
+        {{ end }}
       containers:
       - name: auth-proxy
         image: quay.io/uninett/goidc-proxy:latest
@@ -48,3 +53,8 @@ spec:
 {{ toYaml .Values.resources | indent 10 }}
         ports:
         - containerPort: 8888
+        {{- if .Values.persistentStorage.enabled }}
+        volumeMounts:
+        - name: data
+          mountPath: /jupyter/data
+        {{- end -}}
