@@ -7,4 +7,5 @@ dataporten:
       - userid-feide
       - email
     RedirectURI:
+      - ""
       - /dataporten/callback
