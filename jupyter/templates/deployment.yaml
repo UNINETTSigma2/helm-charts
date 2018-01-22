@@ -49,6 +49,8 @@ spec:
         workingDir: /conf
       - name: jupyter
         image: {{ .Values.dockerImage }}
+        command: ["start-notebook.sh"]
+        args: ["--ip", "127.0.0.1", "--port", "8888"]
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         ports:
