@@ -4,7 +4,7 @@
 set -euo pipefail
 
 echo "spark.deploy.recoveryDirectory ${SPARK_RECOVERY_DIR}" >> $SPARK_HOME/conf/spark-defaults.conf
-echo "spark.ui.reverseProxyUrl  ${SPARK_PUBLIC_DNS}" >> $SPARK_HOME/conf/spark-defaults.conf
+echo "spark.ui.reverseProxyUrl  https://${SPARK_PUBLIC_DNS}" >> $SPARK_HOME/conf/spark-defaults.conf
 
 echo "SPARK_PUBLIC_DNS=${SPARK_PUBLIC_DNS}" > $SPARK_HOME/conf/spark-env.sh
 
