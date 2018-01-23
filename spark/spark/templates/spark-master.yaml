@@ -14,7 +14,18 @@ spec:
         - name: oidcconfig-spark
           secret:
             secretName: {{ template "fullname" . }}-spark
+        - name: {{ template "fullname" . }}-rewrite-config-vol
+          configMap:
+            name: {{ template "fullname" . }}-rewrite-config
       containers:
+        - name: proxy-rewriter
+          image: paalka/nginx-alpine
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9001
+          volumeMounts:
+            - name: {{ template "fullname" . }}-rewrite-config-vol
+              mountPath: /etc/nginx/conf.d
         - name: auth-proxy
           image: quay.io/uninett/goidc-proxy:latest
           imagePullPolicy: Always
@@ -85,3 +96,28 @@ spec:
       targetPort: 80
   selector:
     app: {{ template "fullname" . }}-spark-master
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "fullname" . }}-rewrite-config
+data:
+  default.conf: |
+    upstream node {
+      server localhost:8080;
+    }
+
+    server {
+        server_name             _;
+        listen                  9001;
+
+        location / {
+            proxy_set_header X-Real-IP \$remote_addr;
+            proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+            proxy_set_header Host {{ .Values.ingress.host }};
+            proxy_pass http://node;
+            proxy_redirect off;
+            port_in_redirect off;
+        }
+        }
