@@ -2,7 +2,7 @@ apiVersion: v1
 entries:
   dokuwiki:
   - apiVersion: v1
-    created: 2018-01-25T13:01:12.837439514+01:00
+    created: 2018-01-25T13:22:46.595184648+01:00
     description: Dokuwiki with oauth support
     digest: 8aabf7d3e4289d4b29a7e6bada1478045398a2212a5eade53272e79f2bf996f2
     home: https://github.com/UNINETT/appstore-app-dokuwiki
@@ -16,7 +16,7 @@ entries:
     version: 0.2.3
   etherpad:
   - apiVersion: v1
-    created: 2018-01-25T13:01:12.837692794+01:00
+    created: 2018-01-25T13:22:46.595459387+01:00
     description: Etherpad + Dataporten
     digest: 7497e4bcb133a1640e8763fd641b2e97bbcff2fe3ad5c25b56f21afe2c4d7cc9
     home: https://github.com/UNINETT/appstore-app-etherpad
@@ -30,9 +30,9 @@ entries:
     version: 1.0.1
   jupyter:
   - apiVersion: v1
-    created: 2018-01-25T13:01:12.838213849+01:00
+    created: 2018-01-25T13:22:46.596045114+01:00
     description: Jupyter notebook with Dataporten integration
-    digest: 94fc12d459736ed50b5751a1fab87f163bdadf6d538b93d2532c8c2f6b865638
+    digest: f34e9c669d2b049a40b73f2e69d1484a2fb09976b132790ce6c3383f15f91890
     home: https://github.com/UNINETT/helm-charts/tree/master/jupyter
     icon: https://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
     maintainers:
@@ -43,7 +43,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/jupyter-0.3.2.tgz
     version: 0.3.2
   - apiVersion: v1
-    created: 2018-01-25T13:01:12.837942278+01:00
+    created: 2018-01-25T13:22:46.59575498+01:00
     description: Jupyter notebook with Dataporten integration
     digest: 8e620658b046e8d14c2f62e0d088603564e631cbf87a927a5acfe09b95746356
     home: https://github.com/UNINETT/helm-charts/tree/master/jupyter
@@ -57,7 +57,20 @@ entries:
     version: 0.3.1
   spark:
   - apiVersion: v1
-    created: 2018-01-25T13:01:12.83848372+01:00
+    created: 2018-01-25T13:22:46.596577238+01:00
+    description: Apache Spark is a fast and general engine for big data processing.
+    digest: c7777492c96b87600cdedd349b93d532c623b5670f00f46a3adbf312ce58897d
+    home: https://github.com/UNINETT/helm-charts/tree/master/spark
+    icon: http://spark.apache.org/images/spark-logo-trademark.png
+    maintainers:
+    - email: paal@128.no
+      name: Pål Karlsrud @ UNINETT
+    name: spark
+    urls:
+    - https://UNINETT.github.com/helm-charts/spark-0.3.8.tgz
+    version: 0.3.8
+  - apiVersion: v1
+    created: 2018-01-25T13:22:46.59630974+01:00
     description: Apache Spark is a fast and general engine for big data processing.
     digest: fc4e391bb0911da24fb07a23d21e7cf25d825aec862b92a8d855f3e4483b8b82
     home: https://github.com/UNINETT/helm-charts/tree/master/spark
@@ -71,7 +84,7 @@ entries:
     version: 0.3.7
   wordpress:
   - apiVersion: v1
-    created: 2018-01-25T13:01:12.838751883+01:00
+    created: 2018-01-25T13:22:46.596846026+01:00
     description: Dataporten + Wordpress
     digest: 38a92b56c9affc75246336bcf5d90a6bd666df02e4cff67bf940b6a000bc6ea2
     home: https://github.com/UNINETT/appstore-app-wordpress
@@ -83,4 +96,4 @@ entries:
     urls:
     - https://UNINETT.github.com/helm-charts/wordpress-1.0.2.tgz
     version: 1.0.2
-generated: 2018-01-25T13:01:12.837049674+01:00
+generated: 2018-01-25T13:22:46.594655474+01:00
