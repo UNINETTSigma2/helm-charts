@@ -50,7 +50,7 @@ spec:
       - name: jupyter
         image: {{ .Values.dockerImage }}
         env:
-          - name: SPARK_MASTER_SERVICE_HOST
+          - name: SPARK_MASTER_SERVICE
             value: {{ .Values.env.sparkMasterUrl }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}

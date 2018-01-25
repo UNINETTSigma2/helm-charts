@@ -11,7 +11,7 @@ persistentStorage:
   enabled: false
   existingClaim: ""
 env:
-  sparkMasterUrl: ""
+  sparkMasterUrl: "spark://example-master-url:7077"
 dockerImage: paalka/spark-jupyter-notebook
 appstore_generated_data:
   dataporten:
