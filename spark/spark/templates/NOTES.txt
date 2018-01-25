@@ -1,0 +1,7 @@
+-- [ How to connect this to other applications
+
+   In order to connect this to other applications, such as a Jupyter notebook, specify
+
+     {{ template "fullname" . }}-spark-master
+
+   as the master URL.
