@@ -1,6 +1,6 @@
 -- [ Using Spark with other applications
 
-In order to connect this to other applications, such as a Jupyter notebook, specify
+In order to connect Spark to other applications, such as a Jupyter notebook, specify
 
     {{ template "fullname" . }}-spark-master
 
