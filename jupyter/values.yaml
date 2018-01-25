@@ -10,7 +10,9 @@ resources:
 persistentStorage:
   enabled: false
   existingClaim: ""
-dockerImage: quay.io/uninett/jupyter:latest
+env:
+  sparkMasterUrl: ""
+dockerImage: paalka/spark-jupyter-notebook
 appstore_generated_data:
   dataporten:
     id: ""

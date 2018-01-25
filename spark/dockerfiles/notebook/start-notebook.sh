@@ -14,4 +14,4 @@ echo "spark.driver.memory ${SPARK_DRIVER_MEMORY:-1g}" >> $SPARK_HOME/conf/spark-
 echo "spark.driver.cores ${SPARK_DRIVER_CORES:-1}" >> $SPARK_HOME/conf/spark-defaults.conf
 echo "spark.local.dir ${SPARK_LOCAL_DIRS:-/tmp}" >> $SPARK_HOME/conf/spark-defaults.conf
 
-jupyter notebook --config $NOTEBOOKS_CONFIG_DIR/jupyter_notebook_config.py
+jupyter notebook --config $NOTEBOOKS_CONFIG_DIR/jupyter_notebook_config.py --ip 127.0.0.1 --port 8888
