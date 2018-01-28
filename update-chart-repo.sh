@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-charts=( "dokuwiki" "spark/spark" "wordpress" "etherpad" "jupyter" )
+charts=( "dokuwiki" "spark/spark" "wordpress" "etherpad" "jupyter" "jupyter-tensorflow" )
 
 for chart in "${charts[@]}"
 do

@@ -1,0 +1,16 @@
+ingress:
+  host: "local-chart.example.com"
+resources:
+  requests:
+    cpu: 100m
+    memory: 512Mi
+  limits:
+    cpu: 300m
+    memory: 1Gi
+persistentStorage:
+  enabled: false
+  existingClaim: ""
+appstore_generated_data:
+  dataporten:
+    id: ""
+    client_secret: ""
