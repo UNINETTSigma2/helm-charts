@@ -4,9 +4,11 @@ resources:
   requests:
     cpu: 100m
     memory: 512Mi
+    alpha.kubernetes.io/nvidia-gpu: 1
   limits:
     cpu: 300m
     memory: 1Gi
+    alpha.kubernetes.io/nvidia-gpu: 1
 persistentStorage:
   enabled: false
   existingClaim: ""
