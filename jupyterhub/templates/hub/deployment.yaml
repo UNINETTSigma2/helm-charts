@@ -8,7 +8,6 @@ spec:
     metadata:
       labels:
         name: {{ .Release.Name }}-hub
-        app: jupyterhub
         group: {{ .Release.Name }}-jupyterhub
         component: hub
         release: {{ .Release.Name }}

@@ -154,32 +154,8 @@ singleuser:
   cmd: jupyterhub-singleuser
   defaultUrl:
 
-prePuller:
-  hook:
-    enabled: true
-    extraEnv: {}
-    image:
-      name: jupyterhub/k8s-pre-puller
-      tag: v0.6
-  continuous:
-    enabled: false
-  pause:
-    image:
-      name: gcr.io/google_containers/pause
-      tag: '3.0'
-
 ingress:
-  enabled: false
-  annotations: {}
-  hosts: []
   host: "paaltest.appstore-dep.ioudaas.no"
-  tls:
-
-cull:
-  enabled: false
-  users: false
-  timeout: 3600
-  every: 600
 
 appstore_generated_data:
   dataporten:
