@@ -1,8 +1,7 @@
-{{ if .Values.rbac.enabled -}}
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1beta1
 metadata:
-  name: hub
+  name: {{ .Release.Name }}-hub
 rules:
 - apiGroups: [""] # "" indicates the core API group
   resources: ["pods", "persistentvolumeclaims"]
@@ -11,18 +10,17 @@ rules:
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1beta1
 metadata:
-  name: hub
+  name: {{ .Release.Name }}-hub
 subjects:
 - kind: ServiceAccount
   namespace: {{ .Release.Namespace }}
-  name: hub
+  name: {{ .Release.Name }}-hub
 roleRef:
   kind: Role
-  name: hub
+  name: {{ .Release.Name }}-hub
   apiGroup: rbac.authorization.k8s.io
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: hub
-{{- end }}
+  name: {{ .Release.Name }}-hub

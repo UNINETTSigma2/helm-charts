@@ -137,6 +137,4 @@ spec:
           - containerPort: 8081
             name: hub
 
-      {{- if .Values.rbac.enabled }}
-      serviceAccountName: hub
-      {{- end }}
+      serviceAccountName: {{ .Release.Name }}-hub
