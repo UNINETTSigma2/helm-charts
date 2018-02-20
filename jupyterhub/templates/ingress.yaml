@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-jupyterhub
+  labels:
+    group: {{ .Release.Name }}-jupyterhub
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme-staging: "true"
+spec:
+  rules:
+    - host: {{ .Values.ingress.host }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: {{ .Release.Name }}-proxy-http
+              servicePort: 8000
+  tls:
+    - secretName: {{ .Release.Name }}-jupyterhub-tls
+      hosts:
+         - {{ .Values.ingress.host }}

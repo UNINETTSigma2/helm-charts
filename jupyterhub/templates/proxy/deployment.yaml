@@ -1,0 +1,76 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: proxy
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+  name: {{ .Release.Name }}-proxy
+spec:
+  replicas: 1
+  strategy:
+      rollingUpdate:
+          # There's no PVCs attached here, so is ok to set maxUnavailable to 1
+          # This means new pod will be spun up and traffic transferred to it
+          # before old pod is shut down.
+          maxUnavailable: 1
+  template:
+    metadata:
+      annotations:
+        # This lets us autorestart when the secret changes!
+        checksum/hub-secret: {{ include (print $.Template.BasePath "/hub/secret.yaml") . | sha256sum }}
+        hub.jupyter.org/https-type: {{ .Values.proxy.https.type }}
+      labels:
+        name: proxy
+        component: proxy
+        group: {{ .Release.Name }}-jupyterhub
+        release: {{ .Release.Name }}
+        heritage: {{ .Release.Service }}
+        {{- if eq .Values.proxy.https.type "letsencrypt" }}
+        # required for kube-lego to work
+        app: kube-lego
+        {{- end }}
+    spec:
+      nodeSelector: {{ toJson .Values.proxy.nodeSelector }}
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              podAffinityTerm:
+                topologyKey: kubernetes.io/hostname
+                labelSelector:
+                  matchExpressions:
+                    - key: component
+                      operator: In
+                      values: ['hub']
+                    - key: release
+                      operator: In
+                      values: [ {{ .Release.Name | quote }} ]
+      containers:
+        - name: chp
+          image: {{ .Values.proxy.chp.image.name }}:{{ .Values.proxy.chp.image.tag }}
+          command:
+            - "configurable-http-proxy"
+            - "--ip=0.0.0.0"
+            - "--port=8000"
+            - "--api-ip=0.0.0.0"
+            - "--api-port=8001"
+            - "--default-target=http://$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST):$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT)"
+            - "--error-target=http://$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST):$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT)"
+            - "--log-level=debug"
+          resources:
+{{ toYaml .Values.proxy.chp.resources | indent 12 }}
+          env:
+            - name: CONFIGPROXY_AUTH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-hub-secret
+                  key: proxy.token
+          imagePullPolicy: {{ .Values.proxy.chp.image.pullPolicy }}
+          ports:
+            - containerPort: 8000
+              name: proxy-public
+            - containerPort: 8001
+              name: api
+      terminationGracePeriodSeconds: 60
