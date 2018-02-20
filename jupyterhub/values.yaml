@@ -22,16 +22,7 @@ hub:
       storageClassName:
     url:
   labels: {}
-  extraConfig: |
-    c.JupyterHub.authenticator_class =  'oauthenticator.generic.GenericOAuthenticator'
-    c.OAuthenticator.client_id = ''
-    c.OAuthenticator.login_service = 'Dataporten'
-    c.OAuthenticator.client_secret = ''
-    c.GenericOAuthenticator.token_url = 'https://auth.dataporten.no/oauth/token'
-    c.GenericOAuthenticator.oauth_callback_url = 'https://paaltest.appstore-dep.ioudaas.no/hub/oauth_callback'
-    c.GenericOAuthenticator.userdata_url  = 'https://auth.dataporten.no/openid/userinfo'
-    c.GenericOAuthenticator.userdata_method = 'GET'
-    c.GenericOAuthenticator.username_key = 'sub'
+  extraConfig: ""
   extraConfigMap: {}
   extraEnv:
     OAUTH2_TOKEN_URL: "https://auth.dataporten.no/oauth/token"
@@ -189,3 +180,8 @@ cull:
   users: false
   timeout: 3600
   every: 600
+
+appstore_generated_data:
+  dataporten:
+    id: ""
+    client_secret: ""

@@ -112,6 +112,12 @@ spec:
           value: {{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE
         - name: HUB_SERVICE_NAME
           value: {{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE
+        - name: OAUTH_CLIENT_ID
+          value: "{{ .Values.appstore_generated_data.dataporten.id }}"
+        - name: OAUTH_CLIENT_SECRET
+          value: "{{ .Values.appstore_generated_data.dataporten.client_secret }}"
+        - name: OAUTH_CALLBACK_URL
+          value: "https://{{ .Values.ingress.host }}/hub/oauth_callback"
         - name: CONFIGPROXY_AUTH_TOKEN
           valueFrom:
             secretKeyRef:
