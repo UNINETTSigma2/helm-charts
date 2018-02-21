@@ -3,64 +3,7 @@ apiVersion: v1
 metadata:
   name: {{ .Release.Name }}-hub-config
 data:
-  auth.type: {{ .Values.auth.type | quote }}
-  {{ if eq .Values.auth.type "hmac" -}}
-  auth.hmac.secret-key: {{ .Values.auth.hmac.secretKey | quote }}
-  {{- end }}
-  {{ if eq .Values.auth.type "google" -}}
-  auth.google.client-id: {{.Values.auth.google.clientId | quote}}
-  auth.google.client-secret: {{.Values.auth.google.clientSecret | quote}}
-  auth.google.hosted-domain: {{.Values.auth.google.hostedDomain | quote}}
-  auth.google.login-service: {{.Values.auth.google.loginService | quote}}
-  auth.google.callback-url: {{.Values.auth.google.callbackUrl | quote}}
-  {{- end }}
-  {{ if eq .Values.auth.type "github" -}}
-  auth.github.client-id: {{.Values.auth.github.clientId | quote}}
-  auth.github.client-secret: {{.Values.auth.github.clientSecret | quote}}
-  auth.github.callback-url: {{.Values.auth.github.callbackUrl | quote}}
-  {{- end }}
-  {{ if eq .Values.auth.type "cilogon" -}}
-  auth.cilogon.client-id: {{.Values.auth.cilogon.clientId | quote}}
-  auth.cilogon.client-secret: {{.Values.auth.cilogon.clientSecret | quote}}
-  auth.cilogon.callback-url: {{.Values.auth.cilogon.callbackUrl | quote}}
-  {{- end }}
-  {{ if eq .Values.auth.type "gitlab" -}}
-  auth.gitlab.client-id: {{.Values.auth.gitlab.clientId | quote}}
-  auth.gitlab.client-secret: {{.Values.auth.gitlab.clientSecret | quote}}
-  auth.gitlab.callback-url: {{.Values.auth.gitlab.callbackUrl | quote}}
-  {{- end }}
-  {{ if eq .Values.auth.type "mediawiki" -}}
-  auth.mediawiki.client-id: {{.Values.auth.mediawiki.clientId | quote}}
-  auth.mediawiki.client-secret: {{.Values.auth.mediawiki.clientSecret | quote}}
-  auth.mediawiki.index-url: {{.Values.auth.mediawiki.indexUrl | quote}}
-  {{- end }}
-  {{ if eq .Values.auth.type "globus" -}}
-  auth.globus.client-id: {{.Values.auth.globus.clientId | quote}}
-  auth.globus.client-secret: {{.Values.auth.globus.clientSecret | quote}}
-  auth.globus.callback-url: {{.Values.auth.globus.callbackUrl | quote}}
-  auth.globus.identity-provider: {{.Values.auth.globus.identityProvider | quote}}
-  {{- end }}
-  {{ if eq .Values.auth.type "lti" -}}
-  auth.lti.consumers: |
-{{ toYaml .Values.auth.lti.consumers | indent 4 }}
-  {{- end }}
-
-  {{ if .Values.auth.whitelist.users -}}
-  auth.whitelist.users: |
-{{ toYaml .Values.auth.whitelist.users | indent 4}}
-  {{- end }}
-  {{ if eq .Values.auth.type "dummy" -}}
-  {{ if .Values.auth.dummy.password -}}
-  auth.dummy.password: {{ .Values.auth.dummy.password | quote }}
-  {{- end }}
-  {{- end }}
-
-  {{ if eq .Values.auth.type "custom" -}}
-  auth.custom.class-name: {{ .Values.auth.custom.className | quote }}
-  auth.custom.config : {{ toJson .Values.auth.custom.config | quote }}
-  {{- end }}
-
-  auth.state.enabled: {{ .Values.auth.state.enabled | quote }}
+  auth.state.enabled: "false"
 
   {{ if .Values.singleuser.lifecycleHooks -}}
   singleuser.lifecycle-hooks: {{ toJson .Values.singleuser.lifecycleHooks | quote }}
@@ -140,7 +83,7 @@ data:
   {{ else if eq .Values.hub.db.type "sqlite-memory" -}}
   hub.db_url: "sqlite://"
   {{- end }}
-  auth.admin.access: {{ .Values.auth.admin.access | quote }}
+  auth.admin.access: "true"
   {{ if .Values.auth.admin.users -}}
   auth.admin.users: |
 {{ toYaml .Values.auth.admin.users | indent 4 }}

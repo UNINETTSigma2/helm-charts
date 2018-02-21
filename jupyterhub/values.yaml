@@ -12,29 +12,17 @@ hub:
 
 proxy:
   secretToken: '0e56cb468b840b156b4f11fd4ffc8a0d4a7496270920f6018e8f064de46e651f'
-  chp:
-    resources:
-      requests:
-        cpu: 0.2
-        memory: 512Mi
-      limits:
-        cpu: 0.4
-        memory: 1Gi
+  resources:
+    requests:
+      cpu: 0.2
+      memory: 512Mi
+    limits:
+      cpu: 0.4
+      memory: 1Gi
 
-# Google OAuth secrets
 auth:
-  type: dummy
-  whitelist:
-    users:
   admin:
-    access: true
     users:
-  dummy:
-    password: "hei"
-  state:
-    enabled: false
-    cryptoKey:
-
 
 singleuser:
   networkTools:
