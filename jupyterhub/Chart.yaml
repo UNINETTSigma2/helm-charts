@@ -1,4 +1,4 @@
 apiVersion: v1
-description: Multi-user Jupyter installation
+description: Multi-user Jupyter installation with Dataporten integration
 name: jupyterhub
 version: v0.1
