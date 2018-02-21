@@ -5,53 +5,24 @@ metadata:
 data:
   auth.state.enabled: "false"
 
-  {{ if .Values.singleuser.lifecycleHooks -}}
-  singleuser.lifecycle-hooks: {{ toJson .Values.singleuser.lifecycleHooks | quote }}
-  {{- end }}
+  singleuser.network-tools.image.name: jupyterhub/k8s-network-tools
+  singleuser.network-tools.image.tag: v0.6
 
-  {{ if .Values.singleuser.initContainers -}}
-  singleuser.init-containers: {{ toJson .Values.singleuser.initContainers | quote }}
-  {{- end }}
+  singleuser.cloud-metadata.enabled: "true"
+  singleuser.cloud-metadata.ip: "169.254.169.254"
 
-  singleuser.network-tools.image.name: {{ .Values.singleuser.networkTools.image.name | quote }}
-  singleuser.network-tools.image.tag: {{ .Values.singleuser.networkTools.image.tag | quote }}
-
-  singleuser.cloud-metadata: |
-{{ toYaml .Values.singleuser.cloudMetadata | indent 4 }}
-
-  singleuser.start-timeout: {{ .Values.singleuser.startTimeout | quote }}
+  singleuser.start-timeout: "300"
   hub.concurrent-spawn-limit: "64"
 
-  {{ if .Values.singleuser.cmd -}}
-  singleuser.cmd: {{ .Values.singleuser.cmd | quote }}
-  {{- end }}
-  {{ if .Values.singleuser.defaultUrl }}
-  singleuser.default-url: {{ .Values.singleuser.defaultUrl | quote }}
-  {{- end }}
+  singleuser.cmd: "jupyterhub-singleuser"
 
-  singleuser.uid: {{ .Values.singleuser.uid | quote }}
-  singleuser.fs-gid: {{ .Values.singleuser.fsGid | quote }}
+  singleuser.uid: "1000"
+  singleuser.fs-gid: "1000"
   singleuser.service-account-name: {{ .Release.Name }}-hub
-  singleuser.node-selector: {{ toJson .Values.singleuser.nodeSelector | quote }}
+  singleuser.node-selector: "{}"
 
-  {{ if .Values.singleuser.schedulerStrategy }}
-  singleuser.scheduler-strategy: {{ .Values.singleuser.schedulerStrategy | quote }}
-  {{- end }}
-  singleuser.storage.type: {{ .Values.singleuser.storage.type | quote }}
-  singleuser.storage.home_mount_path: {{ .Values.singleuser.storage.homeMountPath | quote }}
-  singleuser.storage.extra-volumes: {{ toJson .Values.singleuser.storage.extraVolumes | quote }}
-  singleuser.storage.extra-volume-mounts: {{ toJson .Values.singleuser.storage.extraVolumeMounts | quote }}
-  {{ if eq .Values.singleuser.storage.type "dynamic" -}}
-  singleuser.storage.capacity: {{.Values.singleuser.storage.capacity | quote }}
-  {{ if .Values.singleuser.storage.dynamic.storageClass -}}
-  singleuser.storage.dynamic.storage-class: {{ .Values.singleuser.storage.dynamic.storageClass | quote }}
-  {{- end }}
-  {{ else if eq .Values.singleuser.storage.type "static" -}}
-  singleuser.storage.static.pvc-name: {{ .Values.singleuser.storage.static.pvcName | quote }}
-  singleuser.storage.static.sub-path: {{ .Values.singleuser.storage.static.subPath | quote }}
-  {{ else if eq .Values.singleuser.storage.type "hostPath" -}}
-  singleuser.storage.home_host_path_template: {{ .Values.singleuser.storage.homeHostPathTemplate | quote }}
-  {{- end }}
+  singleuser.storage.type: "none"
+  singleuser.storage.home_mount_path: "/home/jovyan"
   {{ if .Values.singleuser.memory.limit -}}
   singleuser.memory.limit: {{ .Values.singleuser.memory.limit | quote}}
   {{- end }}
@@ -64,30 +35,11 @@ data:
   {{ if .Values.singleuser.cpu.guarantee -}}
   singleuser.cpu.guarantee: {{ .Values.singleuser.cpu.guarantee | quote}}
   {{- end }}
-  {{ if .Values.singleuser.extraLabels -}}
-  singleuser.extra-labels: |
-    {{ range $key, $value := .Values.singleuser.extraLabels -}}
-    {{ $key | quote }}: {{ $value | quote }}
-    {{- end }}
-  {{- end }}
-  {{ if .Values.singleuser.extraEnv -}}
-  singleuser.extra-env: |
-    {{ range $key, $value := .Values.singleuser.extraEnv }}
-    {{ $key | quote }}: {{ $value | quote }}
-    {{ end }}
-  {{- end }}
   token.cookie_secret: {{ .Values.hub.cookieSecret | quote }}
   hub.base_url: "/"
-  {{ if eq .Values.hub.db.type "sqlite-pvc" -}}
-  hub.db_url: "sqlite:///jupyterhub.sqlite"
-  {{ else if eq .Values.hub.db.type "sqlite-memory" -}}
-  hub.db_url: "sqlite://"
-  {{- end }}
+  hub.db_url: "sqlite://" # Use in memory
   auth.admin.access: "true"
   {{ if .Values.auth.admin.users -}}
   auth.admin.users: |
 {{ toYaml .Values.auth.admin.users | indent 4 }}
   {{- end }}
-  {{ range $key, $value := .Values.hub.extraConfigMap -}}
-  custom.{{ $key }}: {{ toJson $value | quote }}
-  {{ end -}}

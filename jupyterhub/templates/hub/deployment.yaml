@@ -52,12 +52,11 @@ spec:
             name: secret
         resources:
 {{ toYaml .Values.hub.resources | indent 12}}
-        imagePullPolicy: {{ .Values.hub.imagePullPolicy }}
         env:
         # Put this here directly so hub will restart when we
         # change this
         - name: SINGLEUSER_IMAGE
-          value:  "{{ .Values.singleuser.image.name }}:{{ .Values.singleuser.image.tag }}"
+          value:  "jupyterhub/k8s-singleuser-sample:v0.6"
         {{ if .Values.hub.cookieSecret }}
         - name: JPY_COOKIE_SECRET
           valueFrom:

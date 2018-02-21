@@ -1,7 +1,5 @@
 hub:
   cookieSecret:
-  db:
-    type: sqlite-memory
   resources:
     requests:
       cpu: 0.2
@@ -25,44 +23,12 @@ auth:
     users:
 
 singleuser:
-  networkTools:
-    image:
-      name: jupyterhub/k8s-network-tools
-      tag: v0.6
-  cloudMetadata:
-    enabled: true
-    ip: 169.254.169.254
-  extraLabels: {}
-  extraEnv: {}
-  lifecycleHooks:
-  initContainers:
-  nodeSelector: {}
-  uid: 1000
-  fsGid: 1000
-  schedulerStrategy:
-  storage:
-    type: none
-    extraVolumes: []
-    extraVolumeMounts: []
-    static:
-      pvcName:
-      subPath: '{username}'
-    capacity: 10Gi
-    homeMountPath: /home/jovyan
-    dynamic:
-      storageClass:
-  image:
-    name: jupyterhub/k8s-singleuser-sample
-    tag: v0.6
-  startTimeout: 300
   cpu:
     limit: 0.2
     guarantee: 0.2
   memory:
     limit: 1G
     guarantee: 1G
-  cmd: jupyterhub-singleuser
-  defaultUrl:
 
 ingress:
   host: "paaltest.appstore-dep.ioudaas.no"
