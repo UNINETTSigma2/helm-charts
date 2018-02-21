@@ -9,7 +9,6 @@ hub:
       memory: 1Gi
 
 proxy:
-  secretToken: '0e56cb468b840b156b4f11fd4ffc8a0d4a7496270920f6018e8f064de46e651f'
   resources:
     requests:
       cpu: 0.2
