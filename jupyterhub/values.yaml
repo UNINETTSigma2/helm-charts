@@ -1,5 +1,4 @@
 hub:
-  cookieSecret:
   resources:
     requests:
       cpu: 0.2

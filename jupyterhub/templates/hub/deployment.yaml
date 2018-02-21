@@ -57,13 +57,6 @@ spec:
         # change this
         - name: SINGLEUSER_IMAGE
           value:  "jupyterhub/k8s-singleuser-sample:v0.6"
-        {{ if .Values.hub.cookieSecret }}
-        - name: JPY_COOKIE_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Release.Name }}-hub-secret
-              key: hub.cookie-secret
-        {{- end }}
         - name: POD_NAMESPACE
           valueFrom:
             fieldRef:

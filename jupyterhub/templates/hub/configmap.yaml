@@ -35,7 +35,7 @@ data:
   {{ if .Values.singleuser.cpu.guarantee -}}
   singleuser.cpu.guarantee: {{ .Values.singleuser.cpu.guarantee | quote}}
   {{- end }}
-  token.cookie_secret: {{ .Values.hub.cookieSecret | quote }}
+  token.cookie_secret: ""
   hub.base_url: "/"
   hub.db_url: "sqlite://" # Use in memory
   auth.admin.access: "true"
