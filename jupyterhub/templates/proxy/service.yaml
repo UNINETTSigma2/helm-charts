@@ -19,8 +19,6 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ .Release.Name }}-proxy-http
-  # toYaml + indent seem a lot more unstable & error prone
-  annotations: {{ toJson .Values.proxy.service.annotations }}
   labels:
     release: {{ .Release.Name }}
     group: {{ .Release.Name }}-jupyterhub

@@ -20,19 +20,14 @@ spec:
       annotations:
         # This lets us autorestart when the secret changes!
         checksum/hub-secret: {{ include (print $.Template.BasePath "/hub/secret.yaml") . | sha256sum }}
-        hub.jupyter.org/https-type: {{ .Values.proxy.https.type }}
+        hub.jupyter.org/https-type: "letsencrypt"
       labels:
         name: proxy
         component: proxy
         group: {{ .Release.Name }}-jupyterhub
         release: {{ .Release.Name }}
         heritage: {{ .Release.Service }}
-        {{- if eq .Values.proxy.https.type "letsencrypt" }}
-        # required for kube-lego to work
-        app: kube-lego
-        {{- end }}
     spec:
-      nodeSelector: {{ toJson .Values.proxy.nodeSelector }}
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -49,7 +44,7 @@ spec:
                       values: [ {{ .Release.Name | quote }} ]
       containers:
         - name: chp
-          image: {{ .Values.proxy.chp.image.name }}:{{ .Values.proxy.chp.image.tag }}
+          image: jupyterhub/configurable-http-proxy:3.0.0
           command:
             - "configurable-http-proxy"
             - "--ip=0.0.0.0"
@@ -67,7 +62,7 @@ spec:
                 secretKeyRef:
                   name: {{ .Release.Name }}-hub-secret
                   key: proxy.token
-          imagePullPolicy: {{ .Values.proxy.chp.image.pullPolicy }}
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
               name: proxy-public
