@@ -1,38 +1,7 @@
 hub:
-  service:
-    type: ClusterIP
-  baseUrl: /
   cookieSecret:
-  publicURL:
-  uid: 1000
-  fsGid: 1000
-  nodeSelector: {}
-  concurrentSpawnLimit: 64
-  activeServerLimit:
   db:
     type: sqlite-memory
-    upgrade:
-    pvc:
-      annotations: {}
-      selector: {}
-      accessModes:
-        - ReadWriteOnce
-      storage: 1Gi
-      subPath:
-      storageClassName:
-    url:
-  labels: {}
-  extraConfig: ""
-  extraConfigMap: {}
-  extraEnv:
-    OAUTH2_TOKEN_URL: "https://auth.dataporten.no/oauth/token"
-    OAUTH2_AUTHORIZE_URL: "https://auth.dataporten.no/oauth/authorization"
-  extraContainers: []
-  extraVolumes: []
-  extraVolumeMounts: []
-  image:
-    name: jupyterhub/k8s-hub
-    tag: v0.6
   resources:
     requests:
       cpu: 0.2
@@ -40,13 +9,6 @@ hub:
     limits:
       cpu: 0.4
       memory: 1Gi
-  services: {}
-  imagePullPolicy: IfNotPresent
-  pdb:
-    enabled: true
-
-rbac:
-  enabled: true
 
 proxy:
   secretToken: '0e56cb468b840b156b4f11fd4ffc8a0d4a7496270920f6018e8f064de46e651f'

@@ -77,39 +77,8 @@ data:
 {{ toYaml .Values.singleuser.cloudMetadata | indent 4 }}
 
   singleuser.start-timeout: {{ .Values.singleuser.startTimeout | quote }}
-  hub.concurrent-spawn-limit: {{ .Values.hub.concurrentSpawnLimit | quote }}
-  {{ if .Values.hub.activeServerLimit }}
-  hub.active-server-limit: {{ .Values.hub.activeServerLimit | quote }}
-  {{- end }}
+  hub.concurrent-spawn-limit: "64"
 
-  {{ if .Values.hub.services -}}
-  hub.services: |
-    # include hub.services *except* api_tokens
-    {{ range $name, $service := .Values.hub.services -}}
-    {{$name}}:
-      {{ range $key, $value := $service -}}
-      {{ if ne $key "apiToken" -}}
-      # Use toJson since values can be more than just strings
-      {{$key}}: {{ toJson $value }}
-      {{- end }}
-      {{ end }}
-    {{ end }}
-  {{- end }}
-  {{ if .Values.hub.extraConfig -}}
-  {{ $extraConfigType := typeOf .Values.hub.extraConfig -}}
-  {{ if eq $extraConfigType "string" -}}
-  hub.extra-config.default.py: |
-{{ .Values.hub.extraConfig | indent 4 }}
-  {{ else if eq $extraConfigType "map[string]interface {}" -}}
-  {{ range $key, $value := .Values.hub.extraConfig -}}
-  hub.extra-config.{{ $key }}.py: |
-{{ $value | indent 4 }}
-  {{- end }}
-  {{- end }}
-  {{- end }}
-  {{ if .Values.hub.extraConfigVars -}}
-  hub.extra-vars: {{ toJson .Values.hub.extraConfigVars | quote }}
-  {{- end }}
   {{ if .Values.singleuser.cmd -}}
   singleuser.cmd: {{ .Values.singleuser.cmd | quote }}
   {{- end }}
@@ -165,13 +134,11 @@ data:
     {{ end }}
   {{- end }}
   token.cookie_secret: {{ .Values.hub.cookieSecret | quote }}
-  hub.base_url: {{ .Values.hub.baseUrl | quote }}
+  hub.base_url: "/"
   {{ if eq .Values.hub.db.type "sqlite-pvc" -}}
   hub.db_url: "sqlite:///jupyterhub.sqlite"
   {{ else if eq .Values.hub.db.type "sqlite-memory" -}}
   hub.db_url: "sqlite://"
-  {{ else -}}
-  hub.db_url: {{ .Values.hub.db.url | quote }}
   {{- end }}
   auth.admin.access: {{ .Values.auth.admin.access | quote }}
   {{ if .Values.auth.admin.users -}}
