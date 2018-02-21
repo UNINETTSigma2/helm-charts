@@ -2,5 +2,6 @@ dataporten:
   Options:
     ScopesRequested:
       - profile
+      - openid
     RedirectURI:
       - /hub/oauth_callback
