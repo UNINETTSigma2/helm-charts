@@ -17,3 +17,5 @@ appstore_generated_data:
   dataporten:
     id: ""
     client_secret: ""
+    admins:
+      - ""
