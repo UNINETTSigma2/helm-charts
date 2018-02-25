@@ -3,5 +3,6 @@ dataporten:
     ScopesRequested:
       - profile
       - openid
+      - groups
     RedirectURI:
       - /hub/oauth_callback

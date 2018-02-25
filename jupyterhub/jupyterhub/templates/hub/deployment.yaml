@@ -73,6 +73,8 @@ spec:
           value: "{{ .Values.appstore_generated_data.dataporten.client_secret }}"
         - name: OAUTH_CALLBACK_URL
           value: "https://{{ .Values.ingress.host }}/hub/oauth_callback"
+        - name: AUTHORIZED_GROUPS
+          value: "{{- join "," .Values.appstore_generated_data.dataporten.admins -}}"
         - name: CONFIGPROXY_AUTH_TOKEN
           valueFrom:
             secretKeyRef:
