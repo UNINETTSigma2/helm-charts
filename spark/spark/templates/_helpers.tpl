@@ -26,7 +26,7 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
     "client_secret": "{{ .Values.appstore_generated_data.dataporten.client_secret }}",
     "issuer_url": "https://auth.dataporten.no",
     "redirect_url": "https://{{ .Values.ingress.host }}/oauth2/callback",
-    "scopes": "{{ .Values.appstore_generated_data.dataporten.scopes }}",
+    "scopes":  "{{- join "," .Values.appstore_generated_data.dataporten.scopes -}}",
     "signkey": "{{ randAlphaNum 60 }}",
     "token_type": "",
     "groups_endpoint": "https://groups-api.dataporten.no/groups/me/groups",
