@@ -9,6 +9,8 @@ resources:
     memory: 1Gi
 appstore_generated_data:
   dataporten:
+    scopes:
+      - ""
     id: ""
     client_secret: ""
     admins:
