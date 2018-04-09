@@ -9,6 +9,8 @@ spec:
       labels:
         app: {{ template "fullname" . }}-spark-master
         group: {{ template "fullname" . }}-spark
+      annotations:
+        checksum/config: {{ include "oidcconfig-spark" . | sha256sum }}
     spec:
       volumes:
         - name: oidcconfig-spark

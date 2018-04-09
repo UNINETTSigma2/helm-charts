@@ -10,6 +10,8 @@ spec:
     metadata:
       labels:
         app: {{ template "fullname" . }}
+      annotations:
+        checksum/config: {{ include "oidcconfig" . | sha256sum }}
     spec:
       volumes:
         - name: oidcconfig
