@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 set -o pipefail
-charts=( "dokuwiki" "spark/spark" "wordpress" "etherpad" "jupyter" "jupyterhub/jupyterhub" "jupyterlab/jupyterlab" "deep-learning-tools" )
+charts=( "dokuwiki" "spark" "wordpress" "etherpad" "jupyter" "jupyterhub" "jupyterlab" "deep-learning-tools" )
 
 for chart in "${charts[@]}"
 do
