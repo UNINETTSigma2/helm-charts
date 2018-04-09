@@ -2,7 +2,7 @@ apiVersion: v1
 entries:
   deep-learning-tools:
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.503100297+02:00
+    created: 2018-04-09T20:53:13.292497186+02:00
     description: A collection of various deep learning tools
     digest: e0ea57ebc693f1afa0771029aa2f00e4a95c12e677cbf0719b8d8a94753040ac
     home: https://github.com/UNINETT/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -16,7 +16,7 @@ entries:
     version: 0.1.0
   dokuwiki:
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.504171446+02:00
+    created: 2018-04-09T20:53:13.293452025+02:00
     description: Dokuwiki with oauth support
     digest: 2985c7c26a7552ab338d1d1eca2fb383f2b20572fd60879287a52132584c50ed
     home: https://github.com/UNINETT/appstore-app-dokuwiki
@@ -29,7 +29,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/dokuwiki-0.2.6.tgz
     version: 0.2.6
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.503906923+02:00
+    created: 2018-04-09T20:53:13.293215971+02:00
     description: Dokuwiki with oauth support
     digest: 12a47e04dd1188b87a0ca9b4d94844947d607f9a0a9d405fe9b37fe73e2ca0f3
     home: https://github.com/UNINETT/appstore-app-dokuwiki
@@ -42,7 +42,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/dokuwiki-0.2.5.tgz
     version: 0.2.5
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.503646174+02:00
+    created: 2018-04-09T20:53:13.292986502+02:00
     description: Dokuwiki with oauth support
     digest: 4841c82ea2da314716c2270144727c083916735211e7b9b95320f18bc61262d4
     home: https://github.com/UNINETT/appstore-app-dokuwiki
@@ -55,7 +55,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/dokuwiki-0.2.4.tgz
     version: 0.2.4
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.503365424+02:00
+    created: 2018-04-09T20:53:13.292758482+02:00
     description: Dokuwiki with oauth support
     digest: 8aabf7d3e4289d4b29a7e6bada1478045398a2212a5eade53272e79f2bf996f2
     home: https://github.com/UNINETT/appstore-app-dokuwiki
@@ -69,7 +69,7 @@ entries:
     version: 0.2.3
   etherpad:
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.505268313+02:00
+    created: 2018-04-09T20:53:13.294522439+02:00
     description: Etherpad + Dataporten
     digest: 8a57c371d578377d3802a3625f6a2f22f9818dabf55c83676987f82e72b3bbfc
     home: https://github.com/UNINETT/appstore-app-etherpad
@@ -82,7 +82,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/etherpad-1.0.4.tgz
     version: 1.0.4
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.505000987+02:00
+    created: 2018-04-09T20:53:13.294279557+02:00
     description: Etherpad + Dataporten
     digest: ba3939ea1243ee1bf2bcf10599d8af6cbaefeba00a57884c929857bb19c37f39
     home: https://github.com/UNINETT/appstore-app-etherpad
@@ -95,7 +95,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/etherpad-1.0.3.tgz
     version: 1.0.3
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.504732638+02:00
+    created: 2018-04-09T20:53:13.294036899+02:00
     description: Etherpad + Dataporten
     digest: eee01ebdedf53cadb0ad7bb954473cc49c207f19949becb16fa760d6bd877c66
     home: https://github.com/UNINETT/appstore-app-etherpad
@@ -108,7 +108,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/etherpad-1.0.2.tgz
     version: 1.0.2
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.50444131+02:00
+    created: 2018-04-09T20:53:13.29378388+02:00
     description: Etherpad + Dataporten
     digest: 7497e4bcb133a1640e8763fd641b2e97bbcff2fe3ad5c25b56f21afe2c4d7cc9
     home: https://github.com/UNINETT/appstore-app-etherpad
@@ -122,7 +122,7 @@ entries:
     version: 1.0.1
   jupyter:
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.506918591+02:00
+    created: 2018-04-09T20:53:13.296036093+02:00
     description: Jupyter notebook with Dataporten integration
     digest: 6c76489d48cddbc57ad54adaf3bbec80fab29cec7607d80bb4210f43ba54fe4c
     home: https://github.com/UNINETT/helm-charts/tree/master/jupyter
@@ -135,7 +135,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/jupyter-0.3.7.tgz
     version: 0.3.7
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.506651078+02:00
+    created: 2018-04-09T20:53:13.295793032+02:00
     description: Jupyter notebook with Dataporten integration
     digest: 8df3c221e35451760cc7dd9fdd4e4ab90ddbec176816184cae7d44098a98efdc
     home: https://github.com/UNINETT/helm-charts/tree/master/jupyter
@@ -148,7 +148,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/jupyter-0.3.5.tgz
     version: 0.3.5
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.506379914+02:00
+    created: 2018-04-09T20:53:13.295545932+02:00
     description: Jupyter notebook with Dataporten integration
     digest: abf4b4e045df888b0b30788d1cdef5cce26f0d03aa04b52fdf3a1c7eb57f7691
     home: https://github.com/UNINETT/helm-charts/tree/master/jupyter
@@ -161,7 +161,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/jupyter-0.3.4.tgz
     version: 0.3.4
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.506106939+02:00
+    created: 2018-04-09T20:53:13.295299565+02:00
     description: Jupyter notebook with Dataporten integration
     digest: b0369b063ed8bad67e76df8a1d939f64e362a29c0f0be5fb8a9fd0f06f4c266c
     home: https://github.com/UNINETT/helm-charts/tree/master/jupyter
@@ -174,7 +174,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/jupyter-0.3.3.tgz
     version: 0.3.3
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.505823652+02:00
+    created: 2018-04-09T20:53:13.295056154+02:00
     description: Jupyter notebook with Dataporten integration
     digest: 94fc12d459736ed50b5751a1fab87f163bdadf6d538b93d2532c8c2f6b865638
     home: https://github.com/UNINETT/helm-charts/tree/master/jupyter
@@ -187,7 +187,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/jupyter-0.3.2.tgz
     version: 0.3.2
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.505547593+02:00
+    created: 2018-04-09T20:53:13.29479823+02:00
     description: Jupyter notebook with Dataporten integration
     digest: 8e620658b046e8d14c2f62e0d088603564e631cbf87a927a5acfe09b95746356
     home: https://github.com/UNINETT/helm-charts/tree/master/jupyter
@@ -199,101 +199,9 @@ entries:
     urls:
     - https://UNINETT.github.com/helm-charts/jupyter-0.3.1.tgz
     version: 0.3.1
-  jupyter-tensorflow:
-  - apiVersion: v1
-    created: 2018-04-09T20:47:24.508869794+02:00
-    description: Jupyter notebook with Tensorflow and Dataporten integration
-    digest: 7b0115fcabf36d0115f53c8f5b1023f4930f8c81d49dca6d4b56019cc7177e8a
-    home: https://github.com/UNINETT/helm-charts/tree/master/jupyter-tensorflow
-    icon: https://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
-    maintainers:
-    - email: paal@128.no
-      name: Pål Karlsrud @ UNINETT
-    name: jupyter-tensorflow
-    urls:
-    - https://UNINETT.github.com/helm-charts/jupyter-tensorflow-0.1.6.tgz
-    version: 0.1.6
-  - apiVersion: v1
-    created: 2018-04-09T20:47:24.50859048+02:00
-    description: Jupyter notebook with Tensorflow and Dataporten integration
-    digest: 969add6b64a38f4c78b36b6c492739463783910939d97426c552ed737569e00f
-    home: https://github.com/UNINETT/helm-charts/tree/master/jupyter-tensorflow
-    icon: https://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
-    maintainers:
-    - email: paal@128.no
-      name: Pål Karlsrud @ UNINETT
-    name: jupyter-tensorflow
-    urls:
-    - https://UNINETT.github.com/helm-charts/jupyter-tensorflow-0.1.5.tgz
-    version: 0.1.5
-  - apiVersion: v1
-    created: 2018-04-09T20:47:24.508309717+02:00
-    description: Jupyter notebook with Tensorflow and Dataporten integration
-    digest: a0017b7c3b0879412e22074f1e0869ec99d5dd06721a0681b90d9788129d58ac
-    home: https://github.com/UNINETT/helm-charts/tree/master/jupyter-tensorflow
-    icon: https://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
-    maintainers:
-    - email: paal@128.no
-      name: Pål Karlsrud @ UNINETT
-    name: jupyter-tensorflow
-    urls:
-    - https://UNINETT.github.com/helm-charts/jupyter-tensorflow-0.1.4.tgz
-    version: 0.1.4
-  - apiVersion: v1
-    created: 2018-04-09T20:47:24.508038958+02:00
-    description: Jupyter notebook with Tensorflow and Dataporten integration
-    digest: 2ac5df74e0a15164668af9f553fdab3a4a836290577068db4403e02710aa7a5e
-    home: https://github.com/UNINETT/helm-charts/tree/master/jupyter-tensorflow
-    icon: https://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
-    maintainers:
-    - email: paal@128.no
-      name: Pål Karlsrud @ UNINETT
-    name: jupyter-tensorflow
-    urls:
-    - https://UNINETT.github.com/helm-charts/jupyter-tensorflow-0.1.3.tgz
-    version: 0.1.3
-  - apiVersion: v1
-    created: 2018-04-09T20:47:24.507746922+02:00
-    description: Jupyter notebook with Tensorflow and Dataporten integration
-    digest: 92d219fc1f280f5f2b56ca3eb4538dedb37b5da96dc73476a6817efd3b95492d
-    home: https://github.com/UNINETT/helm-charts/tree/master/jupyter-tensorflow
-    icon: https://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
-    maintainers:
-    - email: paal@128.no
-      name: Pål Karlsrud @ UNINETT
-    name: jupyter-tensorflow
-    urls:
-    - https://UNINETT.github.com/helm-charts/jupyter-tensorflow-0.1.2.tgz
-    version: 0.1.2
-  - apiVersion: v1
-    created: 2018-04-09T20:47:24.50748099+02:00
-    description: Jupyter notebook with Tensorflow and Dataporten integration
-    digest: a513afd3f25adcb87473045b3ea0671c72b68bfa2bd2b7ab08d6380dcaec9ab1
-    home: https://github.com/UNINETT/helm-charts/tree/master/jupyter-tensorflow
-    icon: https://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
-    maintainers:
-    - email: paal@128.no
-      name: Pål Karlsrud @ UNINETT
-    name: jupyter-tensorflow
-    urls:
-    - https://UNINETT.github.com/helm-charts/jupyter-tensorflow-0.1.1.tgz
-    version: 0.1.1
-  - apiVersion: v1
-    created: 2018-04-09T20:47:24.507208862+02:00
-    description: Jupyter notebook with Tensorflow and Dataporten integration
-    digest: 0775e2ed37424625e4823a762a0010c31b7dbc57181f9853a308e22ba3f5ed47
-    home: https://github.com/UNINETT/helm-charts/tree/master/jupyter-tensorflow
-    icon: https://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
-    maintainers:
-    - email: paal@128.no
-      name: Pål Karlsrud @ UNINETT
-    name: jupyter-tensorflow
-    urls:
-    - https://UNINETT.github.com/helm-charts/jupyter-tensorflow-0.1.0.tgz
-    version: 0.1.0
   jupyterhub:
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.510765539+02:00
+    created: 2018-04-09T20:53:13.296828669+02:00
     description: Multi-user Jupyter installation with Dataporten integration
     digest: c856e02dc52776333afb66ca3c4c6eedac22ce4bb18b624197aa2e11261c6b06
     icon: https://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
@@ -302,7 +210,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/jupyterhub-0.2.0.tgz
     version: 0.2.0
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.509817893+02:00
+    created: 2018-04-09T20:53:13.296430369+02:00
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 0c422a6477fde7b6cd46c4ef838974804754596cf0d2b74b3a0fda0dfdcdb327
     icon: https://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
@@ -312,7 +220,7 @@ entries:
     version: 0.1.1
   jupyterlab:
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.512014768+02:00
+    created: 2018-04-09T20:53:13.297778315+02:00
     description: Jupyterlab with Dataporten integration
     digest: d0e29da0799628e0ca72095d49640390b98bcaebbe5d4713d6938382e8312a76
     home: https://github.com/UNINETT/helm-charts/tree/master/jupyterlab
@@ -325,7 +233,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/jupyterlab-0.1.3.tgz
     version: 0.1.3
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.511752577+02:00
+    created: 2018-04-09T20:53:13.297541074+02:00
     description: Jupyterlab with Dataporten integration
     digest: 3363039ef76872017476a7e12e3354e723c34a3756b34e0d24dcc7ce80cbcd5c
     home: https://github.com/UNINETT/helm-charts/tree/master/jupyterlab
@@ -338,7 +246,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/jupyterlab-0.1.2.tgz
     version: 0.1.2
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.511472885+02:00
+    created: 2018-04-09T20:53:13.297305155+02:00
     description: Jupyterlab with Dataporten integration
     digest: 403748124fc3f35cdfaa06fa745d5a0959a929775365781f8fedadf3491e3314
     home: https://github.com/UNINETT/helm-charts/tree/master/jupyterlab
@@ -351,7 +259,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/jupyterlab-0.1.1.tgz
     version: 0.1.1
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.511217815+02:00
+    created: 2018-04-09T20:53:13.297064409+02:00
     description: Jupyterlab with Dataporten integration
     digest: cb8269b4d36d171e6fc928c125a4c00783c1a4273f26a63b30baf4ca3505a353
     home: https://github.com/UNINETT/helm-charts/tree/master/jupyterlab
@@ -365,7 +273,7 @@ entries:
     version: 0.1.0
   spark:
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.51419823+02:00
+    created: 2018-04-09T20:53:13.301109506+02:00
     description: Apache Spark is a fast and general engine for big data processing.
     digest: 414c4f116b4462c7d5fcb84409741562ea2a72b65a8c36f8535a988ad04975b0
     home: https://github.com/UNINETT/helm-charts/tree/master/spark
@@ -378,7 +286,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/spark-0.4.3.tgz
     version: 0.4.3
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.513787185+02:00
+    created: 2018-04-09T20:53:13.300697262+02:00
     description: Apache Spark is a fast and general engine for big data processing.
     digest: 32936b82055257329b214b8e5f80961b74c5a2ed0e59d6edd629150bfb58b047
     home: https://github.com/UNINETT/helm-charts/tree/master/spark
@@ -391,7 +299,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/spark-0.4.2.tgz
     version: 0.4.2
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.513510709+02:00
+    created: 2018-04-09T20:53:13.300458115+02:00
     description: Apache Spark is a fast and general engine for big data processing.
     digest: 26ec9251551cbbcfcfde426b71a1a2970f1d60b61919942af6dfba49987089c3
     home: https://github.com/UNINETT/helm-charts/tree/master/spark
@@ -404,7 +312,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/spark-0.4.1.tgz
     version: 0.4.1
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.513233794+02:00
+    created: 2018-04-09T20:53:13.300133315+02:00
     description: Apache Spark is a fast and general engine for big data processing.
     digest: cb948e33e5a7f24ce4b07bf78a5b75e783dd1769fb74139d5eea98fd3ccd9213
     home: https://github.com/UNINETT/helm-charts/tree/master/spark
@@ -417,7 +325,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/spark-0.4.0.tgz
     version: 0.4.0
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.512935438+02:00
+    created: 2018-04-09T20:53:13.299390999+02:00
     description: Apache Spark is a fast and general engine for big data processing.
     digest: 600c23f35364ce7d251353c85f139ef28ddef1cfd650453520f879d18123814c
     home: https://github.com/UNINETT/helm-charts/tree/master/spark
@@ -430,7 +338,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/spark-0.3.9.tgz
     version: 0.3.9
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.51261497+02:00
+    created: 2018-04-09T20:53:13.298650027+02:00
     description: Apache Spark is a fast and general engine for big data processing.
     digest: c7777492c96b87600cdedd349b93d532c623b5670f00f46a3adbf312ce58897d
     home: https://github.com/UNINETT/helm-charts/tree/master/spark
@@ -443,7 +351,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/spark-0.3.8.tgz
     version: 0.3.8
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.512289456+02:00
+    created: 2018-04-09T20:53:13.298034249+02:00
     description: Apache Spark is a fast and general engine for big data processing.
     digest: fc4e391bb0911da24fb07a23d21e7cf25d825aec862b92a8d855f3e4483b8b82
     home: https://github.com/UNINETT/helm-charts/tree/master/spark
@@ -457,7 +365,7 @@ entries:
     version: 0.3.7
   wordpress:
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.515819029+02:00
+    created: 2018-04-09T20:53:13.302546229+02:00
     description: Dataporten + Wordpress
     digest: 74acd7f4199c8ed1ea04c1816610b56ad30ac6563d2077185a74a922e75e9edc
     home: https://github.com/UNINETT/appstore-app-wordpress
@@ -470,7 +378,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/wordpress-1.0.5.tgz
     version: 1.0.5
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.515464732+02:00
+    created: 2018-04-09T20:53:13.302270841+02:00
     description: Dataporten + Wordpress
     digest: cb997d2899c214295bb78ed9dfc7a517fb7907d6e53dadd7befeb20ace4dd3df
     home: https://github.com/UNINETT/appstore-app-wordpress
@@ -483,7 +391,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/wordpress-1.0.4.tgz
     version: 1.0.4
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.515118278+02:00
+    created: 2018-04-09T20:53:13.30192416+02:00
     description: Dataporten + Wordpress
     digest: 421adec7d72687ddbd08c24d0fca8226995e007c5e2fb0fd64a77809ecce5b13
     home: https://github.com/UNINETT/appstore-app-wordpress
@@ -496,7 +404,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/wordpress-1.0.3.tgz
     version: 1.0.3
   - apiVersion: v1
-    created: 2018-04-09T20:47:24.514646945+02:00
+    created: 2018-04-09T20:53:13.301509797+02:00
     description: Dataporten + Wordpress
     digest: 38a92b56c9affc75246336bcf5d90a6bd666df02e4cff67bf940b6a000bc6ea2
     home: https://github.com/UNINETT/appstore-app-wordpress
@@ -508,4 +416,4 @@ entries:
     urls:
     - https://UNINETT.github.com/helm-charts/wordpress-1.0.2.tgz
     version: 1.0.2
-generated: 2018-04-09T20:47:24.502668359+02:00
+generated: 2018-04-09T20:53:13.292118567+02:00
