@@ -1,0 +1,60 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include "oidcconfig" . | sha256sum }}
+      labels:
+        app: {{ template "fullname" . }}
+        driver: nvidia-gpu
+    spec:
+      volumes:
+        - name: oidcconfig
+          secret:
+            secretName: {{ template "fullname" . }}
+      containers:
+      - name: auth-proxy
+        image: quay.io/uninett/goidc-proxy:latest
+        imagePullPolicy: Always
+        env:
+          - name: DATAPORTEN_CLIENTID
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "fullname" . }}
+                key: dataporten_client_id
+          - name: DATAPORTEN_CLIENTSECRET
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "fullname" . }}
+                key: dataporten_client_secret
+        ports:
+          - containerPort: 80
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+        volumeMounts:
+          - name: oidcconfig
+            mountPath: /conf
+        workingDir: /conf
+      - name: jupyter
+        image: quay.io/uninett/deep-learning-tools
+        resources:
+          requests:
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}
+            alpha.kubernetes.io/nvidia-gpu: {{ .Values.resources.requests.gpu }}
+          limits:
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: {{ .Values.resources.limits.memory }}
+            alpha.kubernetes.io/nvidia-gpu: {{ .Values.resources.limits.gpu }}
+        ports:
+        - containerPort: 8888

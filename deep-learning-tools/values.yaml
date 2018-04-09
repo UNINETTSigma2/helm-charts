@@ -1,0 +1,19 @@
+ingress:
+  host: "example.localhost.com"
+resources:
+  requests:
+    cpu: 1
+    memory: 2Gi
+    gpu: 1
+  limits:
+    cpu: 2
+    memory: 4Gi
+    gpu: 1
+appstore_generated_data:
+  dataporten:
+    scopes:
+      - ""
+    id: ""
+    client_secret: ""
+    admins:
+      - ""
