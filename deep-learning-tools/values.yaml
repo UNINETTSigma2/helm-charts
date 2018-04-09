@@ -9,6 +9,9 @@ resources:
     cpu: 2
     memory: 4Gi
     gpu: 1
+persistentStorage:
+  enabled: false
+  existingClaim: ""
 appstore_generated_data:
   dataporten:
     scopes:
