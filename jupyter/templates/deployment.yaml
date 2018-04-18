@@ -17,7 +17,7 @@ spec:
         - name: oidcconfig
           secret:
             secretName: {{ template "fullname" . }}
-        {{ if .Values.persistentStorage.enabled }}
+        {{ if ne .Values.persistentStorage.existingClaim "" }}
         - name: data
           persistentVolumeClaim:
             claimName: {{ .Values.persistentStorage.existingClaim }}
