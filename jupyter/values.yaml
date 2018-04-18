@@ -8,7 +8,6 @@ resources:
     cpu: 300m
     memory: 1Gi
 persistentStorage:
-  enabled: false
   existingClaim: ""
 env:
   sparkMasterUrl: "spark://example-master-url:7077"

@@ -58,7 +58,7 @@ spec:
 {{ toYaml .Values.resources | indent 10 }}
         ports:
         - containerPort: 8888
-        {{- if .Values.persistentStorage.enabled }}
+        {{- if ne .Values.persistentStorage.existingClaim "" }}
         volumeMounts:
         - name: data
           mountPath: /jupyter/data
