@@ -1,7 +1,7 @@
 apiVersion: v1
 description: Dataporten + Wordpress
 name: wordpress
-version: 1.0.5
+version: 1.0.6
 maintainers:
   - name: Pål Karlsrud @ UNINETT
     email: paal@128.no

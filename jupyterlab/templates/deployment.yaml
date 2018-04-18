@@ -19,7 +19,7 @@ spec:
             secretName: {{ template "fullname" . }}
       containers:
       - name: auth-proxy
-        image: paalka/goidc-proxy:latest
+        image: quay.io/uninett/goidc-proxy:latest
         imagePullPolicy: Always
         env:
           - name: DATAPORTEN_CLIENTID
@@ -45,7 +45,7 @@ spec:
             mountPath: /conf
         workingDir: /conf
       - name: jupyterlab
-        image: paalka/jupyterlab
+        image: quay.io/uninett/jupyterlab
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         ports:

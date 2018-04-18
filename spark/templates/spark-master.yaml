@@ -55,7 +55,7 @@ spec:
               mountPath: /conf
           workingDir: /conf
         - name: spark-master
-          image: paalka/spark-master
+          image: quay.io/uninett/spark-master
           imagePullPolicy: Always
           ports:
             - containerPort: 7077

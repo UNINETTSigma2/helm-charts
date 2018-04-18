@@ -1,7 +1,7 @@
 apiVersion: v1
 description: Etherpad + Dataporten
 name: etherpad
-version: 1.0.4
+version: 1.0.5
 maintainers:
   - name: Pål Karlsrud @ UNINETT
     email: paal@128.no

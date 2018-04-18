@@ -5,5 +5,5 @@
 ### Advanced
 This application creates a [Apache Spark](https://github.com/UNINETT/helm-charts/tree/master/spark) using the following Dockerfiles:
   - [quay.io/UNINETT/goidc-proxy](https://github.com/UNINETT/goidc-proxy/blob/master/Dockerfile)
-  - [paalka/spark-worker](https://github.com/UNINETT/helm-charts/blob/master/spark/dockerfiles/worker/Dockerfile)
-  - [paalka/spark-master](https://github.com/UNINETT/helm-charts/blob/master/spark/dockerfiles/master/Dockerfile)
+  - [uninett/spark-worker](https://github.com/UNINETT/helm-charts-dockerfiles/blob/master/spark/worker/Dockerfile)
+  - [uninett/spark-master](https://github.com/UNINETT/helm-charts-dockerfiles/blob/master/spark/master/Dockerfile)

@@ -43,7 +43,7 @@ spec:
             mountPath: /conf
         workingDir: /conf
       - name: dokuwiki
-        image: paalka/dokuwiki:latest
+        image: quay.io/uninett/dokuwiki
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         ports:
