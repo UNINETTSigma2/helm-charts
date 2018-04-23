@@ -18,7 +18,7 @@ spec:
           secret:
             secretName: {{ template "fullname" . }}
         {{ if ne .Values.persistentStorage.existingClaim "" }}
-        - name: data
+        - name: {{ .Values.persistentStorage.existingClaimName }}
           persistentVolumeClaim:
             claimName: {{ .Values.persistentStorage.existingClaim }}
         {{ end }}
@@ -60,6 +60,6 @@ spec:
         - containerPort: 8888
         {{- if ne .Values.persistentStorage.existingClaim "" }}
         volumeMounts:
-        - name: data
-          mountPath: /jupyter/data
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          mountPath: /mount/{{ .Values.persistentStorage.existingClaimName }}
         {{- end -}}
