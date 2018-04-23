@@ -61,5 +61,5 @@ spec:
         {{- if ne .Values.persistentStorage.existingClaim "" }}
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mount/{{ .Values.persistentStorage.existingClaimName }}
+          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
         {{- end -}}
