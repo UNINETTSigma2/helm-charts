@@ -17,6 +17,11 @@ spec:
         - name: oidcconfig
           secret:
             secretName: {{ template "fullname" . }}
+        {{ if ne .Values.persistentStorage.existingClaim "" }}
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistentStorage.existingClaim }}
+        {{ end }}
       containers:
       - name: auth-proxy
         image: quay.io/uninett/goidc-proxy:latest
@@ -50,3 +55,8 @@ spec:
 {{ toYaml .Values.resources | indent 10 }}
         ports:
         - containerPort: 8888
+        {{- if ne .Values.persistentStorage.existingClaim "" }}
+        volumeMounts:
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+        {{- end -}}

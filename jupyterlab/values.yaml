@@ -15,3 +15,6 @@ appstore_generated_data:
     client_secret: ""
     admins:
       - ""
+persistentStorage:
+  existingClaim: ""
+  existingClaimName: "example-name"
