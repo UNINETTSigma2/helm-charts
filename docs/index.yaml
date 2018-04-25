@@ -2,7 +2,7 @@ apiVersion: v1
 entries:
   deep-learning-tools:
   - apiVersion: v1
-    created: 2018-04-23T14:24:41.626303694+02:00
+    created: 2018-04-25T14:40:11.093184993+02:00
     description: A collection of various deep learning tools
     digest: 50833cdc3977bbe2150f9010bae929044a454d7385bb5566aa82e378b2044f5e
     home: https://github.com/UNINETT/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -16,7 +16,7 @@ entries:
     version: 0.1.2
   dokuwiki:
   - apiVersion: v1
-    created: 2018-04-23T14:24:41.626550723+02:00
+    created: 2018-04-25T14:40:11.093428478+02:00
     description: Dokuwiki with oauth support
     digest: a96ee4540656f10ec050b13e6da1190445400fe12567eb18543cbfb5bb42ba8e
     home: https://github.com/UNINETT/appstore-app-dokuwiki
@@ -30,7 +30,7 @@ entries:
     version: 0.2.7
   etherpad:
   - apiVersion: v1
-    created: 2018-04-23T14:24:41.626796729+02:00
+    created: 2018-04-25T14:40:11.093669859+02:00
     description: Etherpad + Dataporten
     digest: 08d04ece5143aa519483e42ab6ef355d3cd9393385b4eb1e9b17b342b9740c5b
     home: https://github.com/UNINETT/appstore-app-etherpad
@@ -44,7 +44,7 @@ entries:
     version: 1.0.5
   jupyter:
   - apiVersion: v1
-    created: 2018-04-23T14:24:41.627311976+02:00
+    created: 2018-04-25T14:40:11.09559114+02:00
     description: Jupyter notebook with Dataporten integration
     digest: 414cd7d89c0af3430e671c9fd25b8fd10b59d7c1bacb91fdb49f2292b6383a9c
     home: https://github.com/UNINETT/helm-charts/tree/master/jupyter
@@ -57,7 +57,7 @@ entries:
     - https://UNINETT.github.com/helm-charts/jupyter-0.4.1.tgz
     version: 0.4.1
   - apiVersion: v1
-    created: 2018-04-23T14:24:41.627034977+02:00
+    created: 2018-04-25T14:40:11.095163987+02:00
     description: Jupyter notebook with Dataporten integration
     digest: 456e4d38d622f0d9fab340085738ff87aed2e3d4283cb2e4bd7a533ad98432e4
     home: https://github.com/UNINETT/helm-charts/tree/master/jupyter
@@ -71,7 +71,16 @@ entries:
     version: 0.4.0
   jupyterhub:
   - apiVersion: v1
-    created: 2018-04-23T14:24:41.627770788+02:00
+    created: 2018-04-25T14:40:11.09698547+02:00
+    description: Multi-user Jupyter installation with Dataporten integration
+    digest: 5cef6626b8a9bd518dc0d1c376ba54c422982df95e372e12340e4f1002b7e493
+    icon: https://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
+    name: jupyterhub
+    urls:
+    - https://UNINETT.github.com/helm-charts/jupyterhub-0.2.3.tgz
+    version: 0.2.3
+  - apiVersion: v1
+    created: 2018-04-25T14:40:11.09639928+02:00
     description: Multi-user Jupyter installation with Dataporten integration
     digest: f7c55916c838dd83b047267b2bed95dbbcd8c1bd24d808392a9b7c18b9b12dba
     icon: https://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
@@ -81,7 +90,7 @@ entries:
     version: 0.2.2
   jupyterlab:
   - apiVersion: v1
-    created: 2018-04-23T14:24:41.628020258+02:00
+    created: 2018-04-25T14:40:11.097330017+02:00
     description: Jupyterlab with Dataporten integration
     digest: df50d33e03d667b1514b8b2d894f008fb01f3e64971511edf735b9627cab8755
     home: https://github.com/UNINETT/helm-charts/tree/master/jupyterlab
@@ -95,7 +104,7 @@ entries:
     version: 0.1.5
   spark:
   - apiVersion: v1
-    created: 2018-04-23T14:24:41.628283499+02:00
+    created: 2018-04-25T14:40:11.097592925+02:00
     description: Apache Spark is a fast and general engine for big data processing.
     digest: 48debc05907c2c489dde311cf0617ec256eb4be4d09056d316896d2a2e745e39
     home: https://github.com/UNINETT/helm-charts/tree/master/spark
@@ -109,7 +118,7 @@ entries:
     version: 0.4.4
   wordpress:
   - apiVersion: v1
-    created: 2018-04-23T14:24:41.628555841+02:00
+    created: 2018-04-25T14:40:11.097853571+02:00
     description: Dataporten + Wordpress
     digest: 9fbf64c6adbfdfac3b972c511c9289d86a6d531f702ed10a02e5b2d82293d4fa
     home: https://github.com/UNINETT/appstore-app-wordpress
@@ -121,4 +130,4 @@ entries:
     urls:
     - https://UNINETT.github.com/helm-charts/wordpress-1.0.6.tgz
     version: 1.0.6
-generated: 2018-04-23T14:24:41.625889466+02:00
+generated: 2018-04-25T14:40:11.092758913+02:00

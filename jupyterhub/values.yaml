@@ -16,10 +16,6 @@ proxy:
       cpu: 0.4
       memory: 1Gi
 
-auth:
-  admin:
-    users:
-
 singleuser:
   cpu:
     limit: 0.2

@@ -39,7 +39,3 @@ data:
   hub.base_url: "/"
   hub.db_url: "sqlite://" # Use in memory
   auth.admin.access: "true"
-  {{ if .Values.auth.admin.users -}}
-  auth.admin.users: |
-{{ toYaml .Values.auth.admin.users | indent 4 }}
-  {{- end }}
