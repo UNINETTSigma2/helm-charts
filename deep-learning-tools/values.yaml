@@ -10,8 +10,8 @@ resources:
     memory: 4Gi
     gpu: 1
 persistentStorage:
-  enabled: false
   existingClaim: ""
+  existingClaimName: "example-name"
 appstore_generated_data:
   dataporten:
     scopes:

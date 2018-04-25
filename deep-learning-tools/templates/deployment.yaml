@@ -18,8 +18,8 @@ spec:
         - name: oidcconfig
           secret:
             secretName: {{ template "fullname" . }}
-        {{ if .Values.persistentStorage.enabled }}
-        - name: data
+        {{ if ne .Values.persistentStorage.existingClaim "" }}
+        - name: {{ .Values.persistentStorage.existingClaimName }}
           persistentVolumeClaim:
             claimName: {{ .Values.persistentStorage.existingClaim }}
         {{ end }}
@@ -63,8 +63,8 @@ spec:
             alpha.kubernetes.io/nvidia-gpu: {{ .Values.resources.limits.gpu }}
         ports:
         - containerPort: 8888
-        {{- if .Values.persistentStorage.enabled }}
+        {{- if ne .Values.persistentStorage.existingClaim "" }}
         volumeMounts:
-        - name: data
-          mountPath: /data/persistent
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
         {{- end -}}
