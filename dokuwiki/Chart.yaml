@@ -4,6 +4,6 @@ name: dokuwiki
 maintainers:
   - name: Pål Karlsrud @ UNINETT
     email: paal@128.no
-version: 0.2.7
+version: 0.3.0
 home: https://github.com/UNINETT/appstore-app-dokuwiki
 icon: https://bitnami.com/assets/stacks/dokuwiki/img/dokuwiki-stack-110x117.png

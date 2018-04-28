@@ -26,5 +26,5 @@ appstore_generated_data:
       - ""
     id: ""
     client_secret: ""
-    admins:
+    authorized_groups:
       - ""

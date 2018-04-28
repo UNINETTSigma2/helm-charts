@@ -6,4 +6,4 @@ maintainers:
 - email: paal@128.no
   name: Pål Karlsrud @ UNINETT
 name: jupyterlab
-version: 0.1.6
+version: 0.2.0

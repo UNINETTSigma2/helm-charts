@@ -26,7 +26,7 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
     "groups_endpoint": "https://groups-api.dataporten.no/groups/me/groups",
     "jwt_token_issuer": "",
     "xhr_endpoints": "",
-    "authorized_principals": "{{- join "," .Values.appstore_generated_data.dataporten.admins -}}",
+    "authorized_principals": "{{- join "," .Values.appstore_generated_data.dataporten.authorized_groups -}}",
     "twofactor": {
       "all": false,
       "principals": "",
