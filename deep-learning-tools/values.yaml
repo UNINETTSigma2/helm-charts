@@ -9,6 +9,7 @@ resources:
     cpu: 2
     memory: 4Gi
     gpu: 1
+dockerImage: quay.io/uninett/deep-learning-tools
 persistentStorage:
   existingClaim: ""
   existingClaimName: "example-name"
