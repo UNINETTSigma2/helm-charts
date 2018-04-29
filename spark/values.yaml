@@ -20,6 +20,10 @@ master:
 ingress:
   host: "host.example.com"
 
+persistentStorage:
+  existingClaim: ""
+  existingClaimName: "example-name"
+
 appstore_generated_data:
   dataporten:
     scopes:
