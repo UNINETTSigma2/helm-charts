@@ -6,4 +6,4 @@ maintainers:
   - name: Pål Karlsrud @ UNINETT
     email: paal@128.no
 home: https://github.com/UNINETT/helm-charts/tree/master/spark
-icon: http://spark.apache.org/images/spark-logo-trademark.png
+icon: https://spark.apache.org/images/spark-logo-trademark.png
