@@ -23,6 +23,12 @@ spec:
           persistentVolumeClaim:
             claimName: {{ .Values.persistentStorage.existingClaim }}
         {{ end }}
+        - name: notebook-config
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: notebook_config.py
+              path: notebook_config.py
       containers:
       - name: auth-proxy
         image: quay.io/uninett/goidc-proxy:latest
@@ -51,7 +57,7 @@ spec:
             mountPath: /conf
         workingDir: /conf
       - name: jupyter
-        image: quay.io/uninett/deep-learning-tools
+        image: {{ .Values.dockerImage }}
         resources:
           requests:
             cpu: {{ .Values.resources.requests.cpu }}
@@ -63,8 +69,10 @@ spec:
             alpha.kubernetes.io/nvidia-gpu: {{ .Values.resources.limits.gpu }}
         ports:
         - containerPort: 8888
-        {{- if ne .Values.persistentStorage.existingClaim "" }}
         volumeMounts:
+        - name: notebook-config
+          mountPath: /opt/jupyter/config
+        {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
         {{- end -}}
