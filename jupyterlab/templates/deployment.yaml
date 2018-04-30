@@ -24,7 +24,7 @@ spec:
         {{ end }}
       containers:
       - name: auth-proxy
-        image: quay.io/uninett/goidc-proxy:latest
+        image: quay.io/uninett/goidc-proxy:v1.0.9
         imagePullPolicy: Always
         env:
           - name: DATAPORTEN_CLIENTID
