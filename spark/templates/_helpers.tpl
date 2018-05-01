@@ -38,7 +38,7 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
     }
   },
   "server": {
-    "port": 80,
+    "port": 8000,
     "health_port": 1337,
     "cert": "cert.pem",
     "key": "key.pem",

@@ -31,7 +31,7 @@ spec:
               path: notebook_config.py
       containers:
       - name: auth-proxy
-        image: quay.io/uninett/goidc-proxy:latest
+        image: quay.io/uninett/goidc-proxy:v1.1.1
         imagePullPolicy: Always
         env:
           - name: DATAPORTEN_CLIENTID
@@ -45,11 +45,11 @@ spec:
                 name: {{ template "fullname" . }}
                 key: dataporten_client_secret
         ports:
-          - containerPort: 80
+          - containerPort: 8080
         livenessProbe:
           httpGet:
             path: /healthz
-            port: 80
+            port: 8080
           initialDelaySeconds: 30
           timeoutSeconds: 30
         volumeMounts:
