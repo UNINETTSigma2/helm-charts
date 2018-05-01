@@ -29,7 +29,7 @@ spec:
             - name: {{ template "fullname" . }}-rewrite-config-vol
               mountPath: /etc/nginx/conf.d
         - name: auth-proxy
-          image: quay.io/uninett/goidc-proxy:v1.0.9
+          image: quay.io/uninett/goidc-proxy:v1.1.1
           imagePullPolicy: Always
           env:
             - name: DATAPORTEN_CLIENTID
@@ -43,11 +43,11 @@ spec:
                   name: {{ template "fullname" . }}-spark
                   key: dataporten_client_secret
           ports:
-            - containerPort: 80
+            - containerPort: 8000
           livenessProbe:
             httpGet:
               path: /healthz
-              port: 80
+              port: 8000
             initialDelaySeconds: 30
             timeoutSeconds: 30
           volumeMounts:
@@ -95,7 +95,7 @@ metadata:
 spec:
   ports:
     - port: 80
-      targetPort: 80
+      targetPort: 8000
   selector:
     app: {{ template "fullname" . }}-spark-master
 
