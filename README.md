@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/UNINETT/helm-charts.png)](https://travis-ci.org/UNINETT/helm-charts)
+
 # Helm repository
 
 

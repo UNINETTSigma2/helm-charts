@@ -1,0 +1,9 @@
+sudo: false
+language: golang
+env:
+  HELM_VERSION: v2.8.2
+install:
+- wget "https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz"
+- tar zxf helm-${HELM_VERSION}-linux-amd64.tar.gz
+- mv linux-amd64/helm $HOME/helm
+script: ./update-chart-repo.sh

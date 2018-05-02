@@ -5,13 +5,13 @@ charts=( "dokuwiki" "spark" "wordpress" "etherpad" "jupyter" "jupyterhub" "jupyt
 
 for chart in "${charts[@]}"
 do
-    helm lint --strict $chart | grep -v "linted"
+    $HOME/helm lint --strict $chart | grep -v "linted"
     echo
 done
 
 for chart in "${charts[@]}"
 do
     echo "Packaging $chart..."
-    helm package $chart --destination docs/
+    $HOME/helm package $chart --destination docs/
 done
-helm repo index docs --url https://UNINETT.github.com/helm-charts
+$HOME/helm repo index docs --url https://UNINETT.github.com/helm-charts
