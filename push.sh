@@ -8,12 +8,13 @@ setup_git() {
 }
 
 commit_website_files() {
+  git checkout master
   git add docs/
   git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
 }
 
 upload_files() {
-  git remote set-url origin https://${GH_TOKEN}@github.com/UNINETT/helm-charts.git
+  git remote set-url origin https://${GH_TOKEN}@github.com/UNINETT/helm-charts.git > /dev/null 2>&1
   git push --set-upstream origin master
 }
 
