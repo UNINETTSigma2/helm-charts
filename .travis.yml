@@ -1,9 +1,9 @@
 sudo: false
 language: golang
 env:
-  HELM_VERSION: v2.8.2
   global:
-    secure: gJFBY9WZPwVMaAu+D/v/past97rIg+S/IS+OF6gCjfgJJQJwgkDQWA9NMJHkBi6DQfJHewcNzMdNpgklySqvazHh6kyc/hL9S8lNxBYSrJkhbPVyOO4w/Ue49aQpfZwP0QABlg3GjzW5tMAUZPiacl1f1IEoqJGg8sXjS2De7mKzWmMzneSZdjOYkToUx7USdMlfteWv5P+Jt8IhBcnn6TYb/737tVkWM13+hhrQkRRvfFFzs74Llexu/Gz0bwq06JgBynGG0+U7UWhp0uDL9/ihtaorFeYr/61rjV5uZGHtmul5DOrkMiwIIpYYa6j2k5oJsxu4KygD8RyY3vEVS+eMtTsYzPnmoPvSEE2LHc3yeY6wIw5PQ5jaz+F3hWEGv8APVXzeTR767R+B+Mxr9iq5lVui29FH8YXo6jToymNZkn2eU/MO8BCTg0E1LHnDQHi7NeUVaRM+GRYWxtsk9Zt+tc8AXfG7NPYBb0pWuIlASE+blLCP1/tIn+Ye/XyvNSwPPBnsS8ImsqszFoH78OgLWOI6iRn3LGixv53Vb8JK+gWUaaO2ZvZRN8sza9sMPs15yYYJH8VnT90oBE4OB8grZLC/493x1I2C4sT6gq4SQbyu0+b8piJAxnu8qgBoysduxF7pqnVKbcHoP1mZLSgcy24rj54owoS8Nj9Ztyc=
+    - HELM_VERSION="v2.8.2"
+    - secure="gJFBY9WZPwVMaAu+D/v/past97rIg+S/IS+OF6gCjfgJJQJwgkDQWA9NMJHkBi6DQfJHewcNzMdNpgklySqvazHh6kyc/hL9S8lNxBYSrJkhbPVyOO4w/Ue49aQpfZwP0QABlg3GjzW5tMAUZPiacl1f1IEoqJGg8sXjS2De7mKzWmMzneSZdjOYkToUx7USdMlfteWv5P+Jt8IhBcnn6TYb/737tVkWM13+hhrQkRRvfFFzs74Llexu/Gz0bwq06JgBynGG0+U7UWhp0uDL9/ihtaorFeYr/61rjV5uZGHtmul5DOrkMiwIIpYYa6j2k5oJsxu4KygD8RyY3vEVS+eMtTsYzPnmoPvSEE2LHc3yeY6wIw5PQ5jaz+F3hWEGv8APVXzeTR767R+B+Mxr9iq5lVui29FH8YXo6jToymNZkn2eU/MO8BCTg0E1LHnDQHi7NeUVaRM+GRYWxtsk9Zt+tc8AXfG7NPYBb0pWuIlASE+blLCP1/tIn+Ye/XyvNSwPPBnsS8ImsqszFoH78OgLWOI6iRn3LGixv53Vb8JK+gWUaaO2ZvZRN8sza9sMPs15yYYJH8VnT90oBE4OB8grZLC/493x1I2C4sT6gq4SQbyu0+b8piJAxnu8qgBoysduxF7pqnVKbcHoP1mZLSgcy24rj54owoS8Nj9Ztyc="
 install:
 - wget "https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz"
 - tar zxf helm-${HELM_VERSION}-linux-amd64.tar.gz
