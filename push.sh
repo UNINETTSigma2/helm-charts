@@ -13,11 +13,10 @@ commit_website_files() {
 }
 
 upload_files() {
-  git remote add origin https://${GH_TOKEN}@github.com/UNINETT/helm-charts.git > /dev/null 2>&1
-  git push --quiet --set-upstream origin master
+  git remote add origin https://${GH_TOKEN}@github.com/UNINETT/helm-charts.git
+  git push --set-upstream origin master
 }
 
 setup_git
 commit_website_files
 upload_files
-echo "hei
