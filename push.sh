@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 # Copied from: https://gist.github.com/willprice/e07efd73fb7f13f917ea
 
@@ -18,6 +18,13 @@ upload_files() {
   git push --set-upstream origin master
 }
 
+changes() {
+  git diff --name-only --diff-filter=ADMR @~..@
+}
+
 setup_git
 commit_website_files
-upload_files
+# Only push changes if more than the index changed this build.
+if changes | grep -vE 'index.yaml'; then
+  upload_files
+fi
