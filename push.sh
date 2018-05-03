@@ -25,6 +25,6 @@ changes() {
 setup_git
 commit_website_files
 # Only push changes if more than the index changed this build.
-if changes | grep -vE 'index.yaml'; then
+if changes | grep -vE 'index.yaml|.*.sh|.travis|README|LICENSE'; then
   upload_files
 fi
