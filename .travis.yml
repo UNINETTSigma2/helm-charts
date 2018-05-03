@@ -9,5 +9,4 @@ install:
 - tar zxf helm-${HELM_VERSION}-linux-amd64.tar.gz
 - mv linux-amd64/helm $HOME/helm
 script:
-  - "./update-chart-repo.sh"
-  - "./push.sh"
+  - "./dist-docs.sh"

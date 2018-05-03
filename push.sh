@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 # Copied from: https://gist.github.com/willprice/e07efd73fb7f13f917ea
 
 setup_git() {
@@ -7,16 +8,16 @@ setup_git() {
 }
 
 commit_website_files() {
-  git add . docs/
+  git add docs/
   git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
 }
 
 upload_files() {
-  #git remote add origin https://${GH_TOKEN}@github.com/UNINETT/helm-charts.git > /dev/null 2>&1
-  #git push --quiet --set-upstream origin master
-  echo "pushing"
+  git remote add origin https://${GH_TOKEN}@github.com/UNINETT/helm-charts.git > /dev/null 2>&1
+  git push --quiet --set-upstream origin master
 }
 
 setup_git
 commit_website_files
 upload_files
+echo "hei
