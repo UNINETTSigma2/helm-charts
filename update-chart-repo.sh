@@ -9,6 +9,7 @@ do
     echo
 done
 
+$HOME/helm init -c
 for chart in "${charts[@]}"
 do
     echo "Packaging $chart..."
