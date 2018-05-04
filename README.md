@@ -23,13 +23,3 @@ helm ls
 helm install jupyter
 helm delete DEPLOYMENT
 ```
-
-
-
-## Maintaining charts
-When adding a new chart, make sure to update the script.
-
-```
-./update-chart-repo.sh
-
-```

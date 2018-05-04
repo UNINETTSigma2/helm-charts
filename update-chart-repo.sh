@@ -1,12 +1,16 @@
 #!/bin/bash
 set -e
 set -o pipefail
-charts=( "dokuwiki" "spark" "wordpress" "etherpad" "jupyter" "jupyterhub" "jupyterlab" "deep-learning-tools" )
+
+charts=()
+while IFS= read -r -d $'\0'; do
+    charts+=("$REPLY")
+done < <(find -- * -type d -exec sh -c '[ -f "$0"/Chart.yaml ]' '{}' \; -print0)
 
 for chart in "${charts[@]}"
 do
-    $HOME/helm lint --strict $chart | grep -v "linted"
-    echo
+	$HOME/helm lint --strict $chart | grep -v "linted"
+	echo
 done
 
 $HOME/helm init -c
