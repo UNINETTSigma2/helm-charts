@@ -29,7 +29,7 @@ spec:
             - name: {{ template "fullname" . }}-rewrite-config-vol
               mountPath: /etc/nginx/conf.d
         - name: auth-proxy
-          image: quay.io/uninett/goidc-proxy:v1.1.1
+          image: quay.io/uninett/goidc-proxy:v1.1.2
           imagePullPolicy: Always
           env:
             - name: DATAPORTEN_CLIENTID
