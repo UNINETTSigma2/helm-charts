@@ -10,6 +10,7 @@ done < <(find -- * -type d -exec sh -c '[ -f "$0"/Chart.yaml ]' '{}' \; -print0)
 for chart in "${charts[@]}"
 do
 	$HOME/helm lint --strict $chart | grep -v "linted"
+	$HOME/helm template $chart | $HOME/kubeval --strict
 	echo
 done
 
