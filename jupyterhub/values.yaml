@@ -1,28 +1,28 @@
 hub:
   resources:
     requests:
-      cpu: 0.2
+      cpu: "0.2"
       memory: 512Mi
     limits:
-      cpu: 0.4
+      cpu: "0.4"
       memory: 1Gi
 
 proxy:
   resources:
     requests:
-      cpu: 0.2
+      cpu: "0.2"
       memory: 512Mi
     limits:
-      cpu: 0.4
+      cpu: "0.4"
       memory: 1Gi
 
 singleuser:
   cpu:
-    limit: 0.2
-    guarantee: 0.2
+    limit: "0.2"
+    guarantee: "0.2"
   memory:
-    limit: 1G
-    guarantee: 1G
+    limit: "1G"
+    guarantee: "1G"
 
 ingress:
   host: "paaltest.appstore-dep.ioudaas.no"
