@@ -5,4 +5,4 @@
 ### Advanced
 This application creates a [DokuWiki](https://github.com/UNINETT/appstore-app-dokuwiki) instance using the following Dockerfiles:
   - [quay.io/UNINETT/goidc-proxy](https://github.com/UNINETT/goidc-proxy/blob/master/Dockerfile)
-  - [quay.io/UNINETT/dokuwiki:latest](https://github.com/UNINETT/helm-charts-dockerfiles/blob/master/dokuwiki/Dockerfile)
+  - [quay.io/UNINETT/dokuwiki](https://github.com/UNINETT/helm-charts-dockerfiles/blob/master/dokuwiki/Dockerfile)

@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: spark-worker
-          image: quay.io/uninett/spark-worker
+          image: quay.io/uninett/spark-worker:20180409-79dd9dd
           imagePullPolicy: Always
           env:
             - name: SPARK_WORKER_MEMORY

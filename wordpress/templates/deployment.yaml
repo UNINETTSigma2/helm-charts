@@ -19,7 +19,7 @@ spec:
             secretName: {{ template "fullname" . }}
       containers:
       - name: mysql
-        image: mysql/mysql-server:latest
+        image: mysql/mysql-server:8.0
         env:
           - name: MYSQL_ROOT_HOST
             value: "%"
@@ -30,7 +30,7 @@ spec:
         ports:
         - containerPort: 3306
       - name: wordpress
-        image: quay.io/uninett/wordpress:latest
+        image: quay.io/uninett/wordpress:20180409-8650758
         env:
           - name: DBHOST
             value: "127.0.0.1"

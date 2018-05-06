@@ -50,7 +50,7 @@ spec:
             mountPath: /conf
         workingDir: /conf
       - name: jupyterlab
-        image: quay.io/uninett/jupyterlab
+        image: quay.io/uninett/jupyterlab:20180501-6469a2f
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         ports:

@@ -4,4 +4,4 @@
 
 ### Advanced
 This application creates a [Etherpad](https://github.com/UNINETT/appstore-app-etherpad) instance using the following Dockerfiles:
-  - [quay.io/UNINETT/etherpad:latest](https://github.com/UNINETT/helm-charts-dockerfiles/blob/master/etherpad/Dockerfile)
+  - [quay.io/UNINETT/etherpad](https://github.com/UNINETT/helm-charts-dockerfiles/blob/master/etherpad/Dockerfile)
