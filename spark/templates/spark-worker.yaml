@@ -10,6 +10,12 @@ spec:
         app: {{ template "fullname" . }}-spark-worker
         group: {{ template "fullname" . }}-spark
     spec:
+      {{ if ne .Values.persistentStorage.existingClaim "" }}
+      volumes:
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistentStorage.existingClaim }}
+      {{ end }}
       containers:
         - name: spark-worker
           image: quay.io/uninett/spark-worker:20180409-79dd9dd
@@ -30,3 +36,8 @@ spec:
             limits:
                 cpu: {{ .Values.workers.resources.limits.cpu }}
                 memory: {{ .Values.workers.resources.limits.memory }}
+        {{- if ne .Values.persistentStorage.existingClaim "" }}
+        volumeMounts:
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+        {{- end -}}

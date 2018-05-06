@@ -19,6 +19,11 @@ spec:
         - name: {{ template "fullname" . }}-rewrite-config-vol
           configMap:
             name: {{ template "fullname" . }}-rewrite-config
+        {{ if ne .Values.persistentStorage.existingClaim "" }}
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistentStorage.existingClaim }}
+        {{ end }}
       containers:
         - name: proxy-rewriter
           image: paalka/nginx-alpine
@@ -70,6 +75,11 @@ spec:
           env:
             - name: SPARK_PUBLIC_DNS
               value: {{ .Values.ingress.host }}
+        {{- if ne .Values.persistentStorage.existingClaim "" }}
+        volumeMounts:
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+        {{- end -}}
 
 ---
 kind: Service
