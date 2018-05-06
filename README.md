@@ -16,4 +16,4 @@ helm repo add researchlab https://uninett.github.io/helm-charts
 
 ### Documentation
 - [Wiki](https://github.com/UNINETT/helm-charts/wiki/)
-- [Getting started](https://github.com/UNINETT/helm-charts/wiki/Adding-a-new-package)
+- [Adding a new package](https://github.com/UNINETT/helm-charts/wiki/Adding-a-new-package)
