@@ -39,7 +39,7 @@ spec:
           - name: DBUSER
             value: root
           - name: DBPASS
-            value:
+            value: ""
           - name: DATAPORTEN_CLIENTID
             valueFrom:
               secretKeyRef:

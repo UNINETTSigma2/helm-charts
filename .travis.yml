@@ -4,6 +4,7 @@ env:
   global:
   - HELM_VERSION="v2.8.2"
   - KUBEVAL_VERSION="0.7.1"
+  - KUBETEST_VERSION="0.1.1"
   - secure: r14Fbf/XlKySvyUD6BeBTaKm6WjlKl9jjrN5GOhPfkuh0UQsZNR1jKMkqo3eKwZo8SC7LRydbmkP3JL2AFTHT4CBn+OsBxTIbH6DSa70lm2Qy/xmKmm5ZkxqhJ1AEahtCp6hoH2REinggiu/xRkQRr+CAU5EknzOSV+L6t44pVZx57J06DoF4TUqIFAvxeMS2Z551mo1u4AeL32dx4ezYiU2aLYtWaSYYb7zv7Z1Ur11ZEnLaTx7Z3upPnu3k8f3bLoDxZmcFzDdHChKgW0KkM+OVCX/j7OWIpgxyBpbpH8G6IlvguRRPSkiiuX/34z30Op3dFesmzEDWP7SvHLlsDN1kZoXd0HsxFzeV3wkAPHQDGtORt59JEbkxn0Ri7Gt+o/4wqkJcxSp2DD7/hZgvoRFuS/FEA1g2y0FtHG6HcnFwQNU3moI81gUUPI6c78yk4WiqXQ6gYhD9EhL5v2L6P8WmsI4gNxi7I2FJJPUst3BeyBRNn3WXL68ddtcyPH2QfyZEzUe2D82tICycskvM/g5LLWCjz/F8U51n2Ci/nXbkr1FJdSQdXChs6RK0nrkK46ueMQ265lGYnoRaV73X68o0qL7dZMpPxdHTc2eLy8QwMzQzaAtGZWM2ViyPD1HXJy3wRzGSQRuUdr3sjehoU2sc0JMd6qo35X6XTKOgRE=
 before_script:
 - wget "https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz"
@@ -13,6 +14,9 @@ before_script:
 - wget "https://github.com/garethr/kubeval/releases/download/${KUBEVAL_VERSION}/kubeval-linux-amd64.tar.gz"
 - tar zxf kubeval-linux-amd64.tar.gz
 - mv kubeval ./bin/
+- wget "https://github.com/garethr/kubetest/releases/download/${KUBETEST_VERSION}/kubetest-linux-amd64.tar.gz"
+- tar zxf kubetest-linux-amd64.tar.gz
+- mv kubetest ./bin/
 - export PATH=$PATH:$PWD/bin/
 script:
 - "./build/update-chart-repo.sh"
