@@ -12,7 +12,7 @@ persistentStorage:
   existingClaimName: "example-name"
 env:
   sparkMasterUrl: "spark://example-master-url:7077"
-dockerImage: quay.io/uninett/spark-notebook:20180409-79dd9d
+dockerImage: quay.io/uninett/spark-notebook:20180409-79dd9dd
 appstore_generated_data:
   dataporten:
     scopes:
