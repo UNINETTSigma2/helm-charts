@@ -14,12 +14,6 @@ To add the repo to a local helm client, run:
 helm repo add researchlab https://uninett.github.io/helm-charts
 ```
 
-## Installing an app
-
-How to install an app:
-
-```
-helm ls
-helm install jupyter
-helm delete DEPLOYMENT
-```
+### Documentation
+- [Wiki](https://github.com/UNINETT/helm-charts/wiki/)
+- [Getting started](https://github.com/UNINETT/helm-charts/wiki/Adding-a-new-package)
