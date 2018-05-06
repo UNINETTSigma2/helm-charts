@@ -6,3 +6,7 @@ dataporten:
       - groups
     RedirectURI:
       - /oauth2/callback
+appstore:
+  Options:
+    Standards:
+      - defaultMount
