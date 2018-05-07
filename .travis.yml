@@ -21,4 +21,4 @@ before_script:
 script:
 - "./build/update-chart-repo.sh"
 after_success:
-- "./build/push.sh*"
+- "./build/push.sh"

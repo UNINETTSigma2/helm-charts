@@ -22,6 +22,13 @@ changes() {
   git diff --name-only --diff-filter=ADMR @~..@
 }
 
+if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
+   exit 0;
+fi
+if [ "$TRAVIS_BRANCH" != "master" ]; then
+   exit 0;
+fi
+
 setup_git
 commit_website_files
 
