@@ -1,0 +1,21 @@
+ingress:
+  host: "local-chart.example.com"
+resources:
+  requests:
+    cpu: 100m
+    memory: 512Mi
+  limits:
+    cpu: 300m
+    memory: 1Gi
+persistentStorage:
+  existingClaim: ""
+  existingClaimName: "example-name"
+dockerImage: quay.io/uninett/rstudio-server:20180507-d991ba8
+appstore_generated_data:
+  dataporten:
+    scopes:
+      - ""
+    id: "0000"
+    client_secret: "0000"
+    authorized_groups:
+      - ""
