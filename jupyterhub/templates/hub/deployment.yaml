@@ -40,7 +40,7 @@ spec:
           secretName: {{ .Release.Name }}-hub-secret
       containers:
       - name: hub-container
-        image: quay.io/uninett/jupyterhub:latest
+        image: quay.io/uninett/jupyterhub:20180409-79dd9dd
         command:
           - jupyterhub
           - --config

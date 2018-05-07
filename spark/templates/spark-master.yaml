@@ -19,6 +19,11 @@ spec:
         - name: {{ template "fullname" . }}-rewrite-config-vol
           configMap:
             name: {{ template "fullname" . }}-rewrite-config
+        {{ if ne .Values.persistentStorage.existingClaim "" }}
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistentStorage.existingClaim }}
+        {{ end }}
       containers:
         - name: proxy-rewriter
           image: paalka/nginx-alpine
@@ -29,7 +34,7 @@ spec:
             - name: {{ template "fullname" . }}-rewrite-config-vol
               mountPath: /etc/nginx/conf.d
         - name: auth-proxy
-          image: quay.io/uninett/goidc-proxy:v1.1.1
+          image: quay.io/uninett/goidc-proxy:v1.1.2
           imagePullPolicy: Always
           env:
             - name: DATAPORTEN_CLIENTID
@@ -55,7 +60,7 @@ spec:
               mountPath: /conf
           workingDir: /conf
         - name: spark-master
-          image: quay.io/uninett/spark-master
+          image: quay.io/uninett/spark-master:20180409-79dd9dd
           imagePullPolicy: Always
           ports:
             - containerPort: 7077
@@ -70,6 +75,11 @@ spec:
           env:
             - name: SPARK_PUBLIC_DNS
               value: {{ .Values.ingress.host }}
+        {{- if ne .Values.persistentStorage.existingClaim "" }}
+        volumeMounts:
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+        {{- end -}}
 
 ---
 kind: Service

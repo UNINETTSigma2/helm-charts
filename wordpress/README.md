@@ -4,4 +4,4 @@
 
 ### Advanced
 This application creates a [WordPress](https://github.com/UNINETT/appstore-app-wordpress) instance using the following Dockerfiles:
-  - [quay.io/UNINETT/wordpress:latest](https://github.com/UNINETT/helm-charts-dockerfiles/blob/master/wordpress/Dockerfile)
+  - [quay.io/UNINETT/wordpress](https://github.com/UNINETT/helm-charts-dockerfiles/blob/master/wordpress/Dockerfile)

@@ -12,12 +12,12 @@ persistentStorage:
   existingClaimName: "example-name"
 env:
   sparkMasterUrl: "spark://example-master-url:7077"
-dockerImage: quay.io/uninett/jupyter-spark
+dockerImage: quay.io/uninett/spark-notebook:20180409-79dd9dd
 appstore_generated_data:
   dataporten:
     scopes:
-      - ""
-    id: ""
-    client_secret: ""
+      - "scope"
+    id: "0000-abc"
+    client_secret: "0000-0000"
     authorized_groups:
       - ""

@@ -17,7 +17,7 @@ spec:
             secretName: {{ template "fullname" . }}
       containers:
       - name: auth-proxy
-        image: quay.io/uninett/goidc-proxy:v1.1.1
+        image: quay.io/uninett/goidc-proxy:v1.1.2
         imagePullPolicy: Always
         env:
           - name: DATAPORTEN_CLIENTID
@@ -43,7 +43,7 @@ spec:
             mountPath: /conf
         workingDir: /conf
       - name: dokuwiki
-        image: quay.io/uninett/dokuwiki
+        image: quay.io/uninett/dokuwiki:20180409-8650758
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         ports:
