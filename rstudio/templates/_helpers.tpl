@@ -56,7 +56,7 @@ upstream backend {
 }
 
 server {
-  listen       8080;
+  listen       8888;
   server_name  localhost;
 
   location /js/encrypt.min.js {
