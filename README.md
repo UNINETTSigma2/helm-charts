@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/UNINETT/helm-charts.png)](https://travis-ci.org/UNINETT/helm-charts)
+[![Build Status](https://travis-ci.org/UNINETT/helm-charts.svg?branch=master)](https://travis-ci.org/UNINETT/helm-charts)
 
 # Helm repository
 
