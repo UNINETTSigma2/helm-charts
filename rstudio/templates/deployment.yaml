@@ -67,6 +67,8 @@ spec:
 {{ toYaml .Values.resources | indent 10 }}
         ports:
         - containerPort: 8787
+        securityContext:
+          runAsUser: 1000
         {{- if ne .Values.persistentStorage.existingClaim "" }}
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
