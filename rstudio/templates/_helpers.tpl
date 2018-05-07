@@ -79,7 +79,7 @@ server {
   }
   location /logout.html {
     root /usr/share/nginx/html;
-    add_header Set-Cookie "goidc0=42;Path=/";
+    proxy_cookie_path / /notexistentpath/;
     break;
   }
   location / {
@@ -92,6 +92,7 @@ server {
     proxy_set_header Connection "Upgrade";
     proxy_redirect https://backend/ https://{{ .Values.ingress.host }}/;
     root /usr/share/nginx/html;
+    proxy_read_timeout 20d;
   }
 
   error_page   500 502 503 504  /50x.html;

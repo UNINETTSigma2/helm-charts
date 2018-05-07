@@ -68,7 +68,10 @@ spec:
         ports:
         - containerPort: 8787
         securityContext:
-          runAsUser: 1000
+          runAsUser: 999
+        env:
+        - name: TZ
+          value: Europe/Oslo
         {{- if ne .Values.persistentStorage.existingClaim "" }}
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}

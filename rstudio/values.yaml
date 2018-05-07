@@ -2,15 +2,15 @@ ingress:
   host: "local-chart.example.com"
 resources:
   requests:
-    cpu: 100m
-    memory: 512Mi
+    cpu: 200m
+    memory: 200M
   limits:
-    cpu: 300m
-    memory: 1Gi
+    cpu: 400m
+    memory: 400M
 persistentStorage:
   existingClaim: ""
   existingClaimName: "example-name"
-dockerImage: quay.io/uninett/rstudio-server:20180507-d991ba8
+dockerImage: quay.io/uninett/rstudio-server:20180507-af8d72f
 appstore_generated_data:
   dataporten:
     scopes:
