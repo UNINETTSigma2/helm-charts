@@ -10,7 +10,7 @@ setup_git() {
 commit_website_files() {
   git checkout master
   git add docs/
-  git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
+  git commit --message "Travis build: $TRAVIS_BUILD_NUMBER [skip-ci]"
 }
 
 upload_files() {
