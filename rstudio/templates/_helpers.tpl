@@ -23,6 +23,7 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
     "signkey": "{{ randAlphaNum 60 }}",
     "token_type": "",
     "jwt_token_issuer": "",
+    "logout_redirect_url": "https://appstore.ioudaas.no",
     "groups_endpoint": "https://groups-api.dataporten.no/groups/me/groups",
     "xhr_endpoints": "",
     "authorized_principals": "{{- join "," .Values.appstore_generated_data.dataporten.authorized_groups -}}",
@@ -74,12 +75,7 @@ server {
     break;
   }
   location /auth-sign-in {
-    return 301 https://{{ .Values.ingress.host }}/logout.html;
-    break;
-  }
-  location /logout.html {
-    root /usr/share/nginx/html;
-    proxy_cookie_path / /notexistentpath/;
+    return 301 https://{{ .Values.ingress.host }}/oauth2/logout;
     break;
   }
   location / {
