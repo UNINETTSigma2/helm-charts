@@ -58,11 +58,9 @@ spec:
           # supplementalGroups:
           # - 999
         livenessProbe:
-          httpGet:
-            path: /
-            port: 9000
-          initialDelaySeconds: 30
-          timeoutSeconds: 30
+          tcpSocket:
+              port: 9000
+            timeoutSeconds: 1
         {{ if ne .Values.persistentStorage.existingClaim "" }}
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
