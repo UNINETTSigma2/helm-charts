@@ -1,6 +1,6 @@
-# RStudio
+# minio
 
-[minio](https://minio.io) Minio is a distributed object storage server, designed for private cloud infrastructure.
+[minio](https://minio.io) is a distributed object storage server, designed for private cloud infrastructure.
 
 
 ### Advanced
