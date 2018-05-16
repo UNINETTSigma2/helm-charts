@@ -59,8 +59,7 @@ spec:
           # - 999
         livenessProbe:
           tcpSocket:
-              port: 9000
-            timeoutSeconds: 1
+            port: 9000
         {{ if ne .Values.persistentStorage.existingClaim "" }}
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
