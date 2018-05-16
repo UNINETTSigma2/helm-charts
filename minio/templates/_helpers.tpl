@@ -9,91 +9,130 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
-{{- define "oidcconfig" -}}
+{{- define "minioconfig" -}}
 {
-  "proxy": {
-    "target": "http://localhost:8888"
+  "version": "23",
+  "credential": {
+    "accessKey": "{{ randAlphaNum 20 }}",
+    "secretKey": "{{ randAlphaNum 40 }}"
   },
-  "engine": {
-    "client_id": "{{ .Values.appstore_generated_data.dataporten.id }}",
-    "client_secret": "{{ .Values.appstore_generated_data.dataporten.client_secret }}",
-    "issuer_url": "https://auth.dataporten.no",
-    "redirect_url": "https://{{ .Values.ingress.host }}/oauth2/callback",
-    "scopes": "{{- join "," .Values.appstore_generated_data.dataporten.scopes -}}",
-    "signkey": "{{ randAlphaNum 60 }}",
-    "token_type": "",
-    "jwt_token_issuer": "",
-    "logout_redirect_url": "https://appstore.ioudaas.no",
-    "groups_endpoint": "https://groups-api.dataporten.no/groups/me/groups",
-    "xhr_endpoints": "",
-    "authorized_principals": "{{- join "," .Values.appstore_generated_data.dataporten.authorized_groups -}}",
-    "twofactor": {
-      "all": false,
-      "principals": "",
-      "acr_values": "",
-      "backend": ""
+  "region": "",
+  "browser": "on",
+  "domain": "",
+  "storageclass": {
+    "standard": "",
+    "rrs": ""
+  },
+  "cache": {
+    "drives": [],
+    "expiry": 90,
+    "exclude": []
+  },
+  "notify": {
+    "amqp": {
+      "1": {
+        "enable": false,
+        "url": "",
+        "exchange": "",
+        "routingKey": "",
+        "exchangeType": "",
+        "deliveryMode": 0,
+        "mandatory": false,
+        "immediate": false,
+        "durable": false,
+        "internal": false,
+        "noWait": false,
+        "autoDeleted": false
+      }
     },
-    "logging": {
-      "level": "info"
+    "elasticsearch": {
+      "1": {
+        "enable": false,
+        "format": "",
+        "url": "",
+        "index": ""
+      }
+    },
+    "kafka": {
+      "1": {
+        "enable": false,
+        "brokers": null,
+        "topic": ""
+      }
+    },
+    "mqtt": {
+      "1": {
+        "enable": false,
+        "broker": "",
+        "topic": "",
+        "qos": 0,
+        "clientId": "",
+        "username": "",
+        "password": "",
+        "reconnectInterval": 0,
+        "keepAliveInterval": 0
+      }
+    },
+    "mysql": {
+      "1": {
+        "enable": false,
+        "format": "",
+        "dsnString": "",
+        "table": "",
+        "host": "",
+        "port": "",
+        "user": "",
+        "password": "",
+        "database": ""
+      }
+    },
+    "nats": {
+      "1": {
+        "enable": false,
+        "address": "",
+        "subject": "",
+        "username": "",
+        "password": "",
+        "token": "",
+        "secure": false,
+        "pingInterval": 0,
+        "streaming": {
+          "enable": false,
+          "clusterID": "",
+          "clientID": "",
+          "async": false,
+          "maxPubAcksInflight": 0
+        }
+      }
+    },
+    "postgresql": {
+      "1": {
+        "enable": false,
+        "format": "",
+        "connectionString": "",
+        "table": "",
+        "host": "",
+        "port": "",
+        "user": "",
+        "password": "",
+        "database": ""
+      }
+    },
+    "redis": {
+      "1": {
+        "enable": false,
+        "format": "",
+        "address": "",
+        "password": "",
+        "key": ""
+      }
+    },
+    "webhook": {
+      "1": {
+        "enable": false,
+        "endpoint": ""
+      }
     }
-  },
-  "server": {
-    "port": 8080,
-    "health_port": 1337,
-    "cert": "cert.pem",
-    "key": "key.pem",
-    "readtimeout": 10,
-    "writetimeout": 20,
-    "idletimeout": 120,
-    "ssl": false,
-    "secure_cookie": false
-  }
-}
-{{- end -}}
-
-{{- define "default.conf" -}}
-upstream backend {
-  server  localhost:8787;
-}
-
-server {
-  listen       8888;
-  server_name  localhost;
-
-  location /js/encrypt.min.js {
-    proxy_pass   http://backend$request_uri;
-    break;
-  }
-  location /auth-public-key {
-    proxy_pass   http://backend$request_uri;
-    break;
-  }
-  location /auth-do-sign-in {
-    proxy_pass   http://backend$request_uri;
-    proxy_redirect https://backend/ https://{{ .Values.ingress.host }}/;
-
-    break;
-  }
-  location /auth-sign-in {
-    return 301 https://{{ .Values.ingress.host }}/oauth2/logout;
-    break;
-  }
-  location / {
-    if ($cookie_user-id) {
-      proxy_pass   http://backend$request_uri;
-      break;
-    }
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection "Upgrade";
-    proxy_redirect https://backend/ https://{{ .Values.ingress.host }}/;
-    root /usr/share/nginx/html;
-    proxy_read_timeout 20d;
-  }
-
-  error_page   500 502 503 504  /50x.html;
-  location = /50x.html {
-      root   /usr/share/nginx/html;
   }
 }
 {{- end -}}

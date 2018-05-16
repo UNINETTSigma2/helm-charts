@@ -24,4 +24,4 @@ spec:
           - path: /
             backend:
               serviceName: {{ template "fullname" . }}
-              servicePort: 8080
+              servicePort: 9000

@@ -6,8 +6,8 @@ metadata:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
   ports:
-  - port: 8080
-    targetPort: 8080
+  - port: 9000
+    targetPort: 9000
     protocol: TCP
     name: {{ template "fullname" . }}-service
   selector:

@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ template "fullname" . }}-proxy
-  labels:
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
-type: Opaque
-data:
-  default.conf: {{ include "default.conf" . | quote }}
