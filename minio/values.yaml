@@ -1,0 +1,12 @@
+ingress:
+  host: "local-chart.example.com"
+resources:
+  requests:
+    cpu: 200m
+    memory: 200M
+  limits:
+    cpu: 400m
+    memory: 400M
+persistentStorage:
+  existingClaim: ""
+  existingClaimName: "example-name"

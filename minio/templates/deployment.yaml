@@ -1,0 +1,79 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include "oidcconfig" . | sha256sum }}
+      labels:
+        app: {{ template "fullname" . }}
+    spec:
+      volumes:
+        - name: oidcconfig
+          secret:
+            secretName: {{ template "fullname" . }}
+        - name: proxy-config
+          configMap:
+            name: {{ template "fullname" . }}-proxy
+            items:
+            - key: default.conf
+              path: default.conf
+        {{ if ne .Values.persistentStorage.existingClaim "" }}
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistentStorage.existingClaim }}
+        {{ end }}
+      containers:
+      - name: auth-proxy
+        image: quay.io/uninett/goidc-proxy:v1.1.3
+        imagePullPolicy: Always
+        env:
+          - name: DATAPORTEN_CLIENTID
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "fullname" . }}
+                key: dataporten_client_id
+          - name: DATAPORTEN_CLIENTSECRET
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "fullname" . }}
+                key: dataporten_client_secret
+        ports:
+          - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+        volumeMounts:
+          - name: oidcconfig
+            mountPath: /conf
+        workingDir: /conf
+      - name: rstudio-proxy
+        image: quay.io/uninett/rstudio-proxy:20180508-982419f
+        imagePullPolicy: Always
+        volumeMounts:
+          - name: proxy-config
+            mountPath: /etc/nginx/conf.d
+      - name: rstudio-server
+        image: {{ .Values.dockerImage }}
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+        ports:
+        - containerPort: 8787
+        securityContext:
+          runAsUser: 999
+        env:
+        - name: TZ
+          value: Europe/Oslo
+        {{- if ne .Values.persistentStorage.existingClaim "" }}
+        volumeMounts:
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+        {{- end -}}
