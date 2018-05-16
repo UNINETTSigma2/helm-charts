@@ -37,8 +37,8 @@ spec:
         - containerPort: 9000
         securityContext:
           runAsUser: 999
-          supplementalGroups:
-          - 999
+          # supplementalGroups:
+          # - 999
         env:
         - name: TZ
           value: Europe/Oslo
