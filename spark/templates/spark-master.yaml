@@ -88,7 +88,7 @@ spec:
           volumeMounts:
           - name: {{ .Values.persistentStorage.existingClaimName }}
             mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
-          {{- end -}}
+          {{- end }}
 
 ---
 kind: Service
