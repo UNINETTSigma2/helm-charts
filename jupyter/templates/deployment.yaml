@@ -63,6 +63,7 @@ spec:
         workingDir: /conf
       - name: jupyter
         image: {{ .Values.dockerImage }}
+        args: ["/usr/local/bin/start-notebook.sh"]
         env:
           {{ if .Values.env.jupyterLab }}
           - name: JUPYTER_ENABLE_LAB
