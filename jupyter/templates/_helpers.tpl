@@ -49,3 +49,30 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
   }
 }
 {{- end -}}
+
+{{- define "notebook-config" -}}
+# Configuration file for ipython-notebook.
+
+c = get_config()
+
+# ------------------------------------------------------------------------------
+# NotebookApp configuration
+# ------------------------------------------------------------------------------
+
+c.IPKernelApp.pylab = 'inline'
+c.NotebookApp.ip = 'localhost'
+c.NotebookApp.open_browser = False
+c.NotebookApp.port = 8888
+c.NotebookApp.base_url = '/'
+c.NotebookApp.trust_xheaders = True
+c.NotebookApp.tornado_settings = {'static_url_prefix': '/static/'}
+{{ if ne .Values.persistentStorage.existingClaim "" }}
+c.NotebookApp.notebook_dir = '/mnt/{{ .Values.persistentStorage.existingClaimName }}'
+{{ else }}
+c.NotebookApp.notebook_dir = '/home/notebook'
+{{ end }}
+c.NotebookApp.allow_origin = '*'
+c.NotebookApp.token = ''
+c.NotebookApp.password = ''
+
+{{- end -}}

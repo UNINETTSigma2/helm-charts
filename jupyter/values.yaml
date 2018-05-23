@@ -11,8 +11,9 @@ persistentStorage:
   existingClaim: ""
   existingClaimName: "example-name"
 env:
-  sparkMasterUrl: "spark://example-master-url:7077"
-dockerImage: quay.io/uninett/spark-notebook:20180409-79dd9dd
+  sparkMasterUrl: "local[*]"
+  jupyterLab: false
+dockerImage: quay.io/uninett/jupyter-spark:20180523-0f6c26b
 appstore_generated_data:
   dataporten:
     scopes:
