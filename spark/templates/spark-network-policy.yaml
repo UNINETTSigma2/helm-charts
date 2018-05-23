@@ -1,11 +1,11 @@
 apiVersion: extensions/v1beta1
 kind: NetworkPolicy
 metadata:
-  name: {{ template "fullname" . }}-spark
+  name: {{ template "fullname" . }}
 spec:
   podSelector:
     matchLabels:
-      group: {{ template "fullname" . }}-spark
+      group: {{ template "fullname" . }}
   ingress:
     - from:
       - namespaceSelector:
@@ -18,11 +18,11 @@ spec:
 apiVersion: extensions/v1beta1
 kind: NetworkPolicy
 metadata:
-  name: {{ template "fullname" . }}-spark-ui
+  name: {{ template "fullname" . }}-ui
 spec:
   podSelector:
     matchLabels:
-      group: {{ template "fullname" . }}-spark
+      group: {{ template "fullname" . }}
   ingress:
     - from:
       - namespaceSelector:

@@ -1,21 +1,21 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{ template "fullname" . }}-spark-master
+  name: {{ template "fullname" . }}-master
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: {{ template "fullname" . }}-spark-master
-        group: {{ template "fullname" . }}-spark
+        app: {{ template "fullname" . }}-master
+        group: {{ template "fullname" . }}
       annotations:
-        checksum/config: {{ include "oidcconfig-spark" . | sha256sum }}
+        checksum/config: {{ include "oidcconfig" . | sha256sum }}
     spec:
       volumes:
-        - name: oidcconfig-spark
+        - name: oidcconfig
           secret:
-            secretName: {{ template "fullname" . }}-spark
+            secretName: {{ template "fullname" . }}
         - name: {{ template "fullname" . }}-rewrite-config-vol
           configMap:
             name: {{ template "fullname" . }}-rewrite-config
@@ -35,12 +35,12 @@ spec:
             - name: DATAPORTEN_CLIENTID
               valueFrom:
                 secretKeyRef:
-                  name: {{ template "fullname" . }}-spark
+                  name: {{ template "fullname" . }}
                   key: dataporten_client_id
             - name: DATAPORTEN_CLIENTSECRET
               valueFrom:
                 secretKeyRef:
-                  name: {{ template "fullname" . }}-spark
+                  name: {{ template "fullname" . }}
                   key: dataporten_client_secret
           ports:
             - containerPort: 8000
@@ -54,7 +54,7 @@ spec:
             initialDelaySeconds: 30
             timeoutSeconds: 30
           volumeMounts:
-            - name: oidcconfig-spark
+            - name: oidcconfig
               mountPath: /conf
           workingDir: /conf
         - name: spark-master
@@ -82,41 +82,41 @@ spec:
           env:
             - name: SPARK_PUBLIC_DNS
               value: {{ .Values.ingress.host }}
-        {{- if ne .Values.persistentStorage.existingClaim "" }}
+          {{- if ne .Values.persistentStorage.existingClaim "" }}
             - name: SPARK_RECOVERY_DIR
               value: /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/spark-master
-        volumeMounts:
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
-        {{- end -}}
+          volumeMounts:
+          - name: {{ .Values.persistentStorage.existingClaimName }}
+            mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          {{- end -}}
 
 ---
 kind: Service
 apiVersion: v1
 metadata:
-  name: {{ template "fullname" . }}-spark-master
+  name: {{ template "fullname" . }}-master
   labels:
-    group: {{ template "fullname" . }}-spark
+    group: {{ template "fullname" . }}
 spec:
   ports:
     - port: 7077
       targetPort: 7077
   selector:
-    app: {{ template "fullname" . }}-spark-master
+    app: {{ template "fullname" . }}-master
 
 ---
 kind: Service
 apiVersion: v1
 metadata:
-  name: {{ template "fullname" . }}-spark-master-ui
+  name: {{ template "fullname" . }}-master-ui
   labels:
-    group: {{ template "fullname" . }}-spark
+    group: {{ template "fullname" . }}
 spec:
   ports:
     - port: 80
       targetPort: 8000
   selector:
-    app: {{ template "fullname" . }}-spark-master
+    app: {{ template "fullname" . }}-master
 
 ---
 apiVersion: v1

@@ -1,14 +1,14 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{ template "fullname" . }}-spark-worker
+  name: {{ template "fullname" . }}-worker
 spec:
   replicas: {{ .Values.workers.replicas }}
   template:
     metadata:
       labels:
-        app: {{ template "fullname" . }}-spark-worker
-        group: {{ template "fullname" . }}-spark
+        app: {{ template "fullname" . }}-worker
+        group: {{ template "fullname" . }}
     spec:
       {{ if ne .Values.persistentStorage.existingClaim "" }}
       volumes:
@@ -30,7 +30,7 @@ spec:
             - name: SPARK_WORKER_CORES
               value: '2'
             - name: SPARK_MASTER_SERVICE_HOST
-              value: {{ template "fullname" . }}-spark-master
+              value: {{ template "fullname" . }}-master
           ports:
             - containerPort: 8081
           livenessProbe:
@@ -48,8 +48,8 @@ spec:
             limits:
                 cpu: {{ .Values.workers.resources.limits.cpu }}
                 memory: {{ .Values.workers.resources.limits.memory }}
-        {{- if ne .Values.persistentStorage.existingClaim "" }}
-        volumeMounts:
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
-        {{- end -}}
+          {{- if ne .Values.persistentStorage.existingClaim "" }}
+          volumeMounts:
+          - name: {{ .Values.persistentStorage.existingClaimName }}
+            mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          {{- end -}}

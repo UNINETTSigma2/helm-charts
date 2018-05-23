@@ -10,7 +10,7 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- end -}}
 
 
-{{- define "oidcconfig-spark" -}}
+{{- define "oidcconfig" -}}
 {
   "proxy": {
     "target": "http://localhost:8080"

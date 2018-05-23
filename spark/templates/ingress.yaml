@@ -8,7 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
   labels:
-    group: {{ template "fullname" . }}-spark
+    group: {{ template "fullname" . }}
 spec:
   tls:
     - hosts:
@@ -20,5 +20,5 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: {{ template "fullname" . }}-spark-master-ui
+          serviceName: {{ template "fullname" . }}-master-ui
           servicePort: 80
