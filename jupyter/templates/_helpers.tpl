@@ -60,7 +60,7 @@ c = get_config()
 # ------------------------------------------------------------------------------
 
 c.IPKernelApp.pylab = 'inline'
-c.NotebookApp.ip = 'localhost'
+c.NotebookApp.ip = '127.0.0.1'
 c.NotebookApp.open_browser = False
 c.NotebookApp.port = 8888
 c.NotebookApp.base_url = '/'
