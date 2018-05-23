@@ -16,10 +16,14 @@ spec:
           persistentVolumeClaim:
             claimName: {{ .Values.persistentStorage.existingClaim }}
       {{ end }}
+      securityContext:
+        runAsNonRoot: true
+        fsGroup: 999
       containers:
         - name: spark-worker
-          image: quay.io/uninett/spark-worker:20180409-79dd9dd
+          image: {{ .Values.workerImage }}
           imagePullPolicy: Always
+          args: ["/usr/local/bin/start-worker.sh"]
           env:
             - name: SPARK_WORKER_MEMORY
               value: '1G'
@@ -29,6 +33,14 @@ spec:
               value: {{ template "fullname" . }}-spark-master
           ports:
             - containerPort: 8081
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8081
+            initialDelaySeconds: 30
+            timeoutSeconds: 30
+          securityContext:
+            runAsUser: 999
           resources:
             requests:
                 cpu: {{ .Values.workers.resources.requests.cpu }}

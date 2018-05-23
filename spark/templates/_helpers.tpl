@@ -13,7 +13,7 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- define "oidcconfig-spark" -}}
 {
   "proxy": {
-    "target": "http://localhost:9001"
+    "target": "http://localhost:8080"
   },
   "engine": {
     "client_id": "{{ .Values.appstore_generated_data.dataporten.id }}",
