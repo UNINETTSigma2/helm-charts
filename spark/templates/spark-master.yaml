@@ -27,6 +27,17 @@ spec:
       securityContext:
         runAsNonRoot: true
         fsGroup: 999
+      {{- if ne .Values.persistentStorage.existingClaim "" }}
+      initContainers:
+      - name: busybox
+        image: busybox:1
+        securityContext:
+          runAsUser: 999
+        args: ["/bin/mkdir", "-p", "/mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/spark-master"]
+        volumeMounts:
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+      {{- end }}
       containers:
         - name: auth-proxy
           image: quay.io/uninett/goidc-proxy:v1.1.3
