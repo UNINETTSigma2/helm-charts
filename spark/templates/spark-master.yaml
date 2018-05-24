@@ -46,7 +46,6 @@ spec:
           - "/bin/mkdir"
           - "-p"
           - "/mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}/master"
-          - "/mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}/events"
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
@@ -122,8 +121,6 @@ spec:
           {{- if ne .Values.persistentStorage.existingClaim "" }}
             - name: SPARK_RECOVERY_DIR
               value: /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}/master
-            - name: SPARK_EVENTLOG_DIR
-              value: /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}/events
           volumeMounts:
           - name: {{ .Values.persistentStorage.existingClaimName }}
             mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
