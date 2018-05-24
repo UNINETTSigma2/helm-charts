@@ -18,7 +18,7 @@ spec:
             secretName: {{ template "fullname" . }}
         - name: {{ template "fullname" . }}-rewrite-config
           configMap:
-            name: {{ template "fullname" . }}-rewrite-config
+            name: {{ template "fullname" . }}-nginx-config
             items:
             - key: default.conf
               path: default.conf

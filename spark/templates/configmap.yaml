@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "fullname" . }}-rewrite-config
+  name: {{ template "fullname" . }}-nginx-config
 data:
   default.conf: |
     upstream node {
