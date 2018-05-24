@@ -13,7 +13,7 @@ persistentStorage:
 env:
   sparkMasterUrl: "local[*]"
   jupyterLab: false
-dockerImage: quay.io/uninett/jupyter-spark:20180524-e1e4382
+dockerImage: quay.io/uninett/jupyter-spark:20180524-b6527f4
 githubToken: ""
 appstore_generated_data:
   dataporten:
