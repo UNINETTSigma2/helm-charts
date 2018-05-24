@@ -69,6 +69,10 @@ spec:
           - name: JUPYTER_ENABLE_LAB
             value: "1"
           {{ end }}
+          {{ if ne .Values.persistentStorage.existingClaim "" }}
+          - name: SPARK_EVENTLOG_DIR
+            value: /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/spark-events
+          {{ end }}
           - name: SPARK_MASTER_SERVICE
             value: {{ .Values.env.sparkMasterUrl }}
           - name: SPARK_OPTS
