@@ -20,13 +20,13 @@ spec:
           configMap:
             name: {{ template "fullname" . }}-rewrite-config
             items:
-              key: default.conf
+            - key: default.conf
               path: default.conf
         - name: {{ template "fullname" . }}-nginx-config
           configMap:
             name: {{ template "fullname" . }}-nginx-config
             items:
-              key: nginx.conf
+            - key: nginx.conf
               path: nginx.conf
         {{ if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
