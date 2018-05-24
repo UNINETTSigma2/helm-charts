@@ -31,6 +31,10 @@ spec:
               value: '2'
             - name: SPARK_MASTER_SERVICE_HOST
               value: {{ template "fullname" . }}-master
+            {{ if ne .Values.persistentStorage.existingClaim "" }}
+            - name: SPARK_EVENTLOG_DIR
+              value: /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}/events
+            {{ end }}
           ports:
             - containerPort: 8081
           livenessProbe:

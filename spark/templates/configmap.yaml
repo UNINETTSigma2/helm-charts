@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "fullname" . }}-rewrite-config
+data:
+  default.conf: |
+    upstream node {
+      server localhost:8080;
+    }
+
+    server {
+      server_name             _;
+      listen                  9001;
+
+      location / {
+          proxy_set_header X-Real-IP \$remote_addr;
+          proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+          proxy_set_header Host {{ .Values.ingress.host }};
+          proxy_pass http://node;
+          proxy_redirect off;
+          port_in_redirect off;
+      }
+    }
+  nginx.conf: |
+    pid   /tmp/nginx.pid;
+
+    worker_processes 1;
+
+    events {
+      worker_connections 1024;
+    }
+
+    http {
+      # Set an array of temp and cache file options that will otherwise default to
+      # restricted locations accessible only to root.
+      client_body_temp_path /tmp/client_body;
+      fastcgi_temp_path /tmp/fastcgi_temp;
+      proxy_temp_path /tmp/proxy_temp;
+      scgi_temp_path /tmp/scgi_temp;
+      uwsgi_temp_path /tmp/uwsgi_temp;
+
+      tcp_nopush on;
+      tcp_nodelay on;
+      keepalive_timeout 65;
+      types_hash_max_size 2048;
+
+      log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                          '$status $body_bytes_sent "$http_referer" '
+                          '"$http_user_agent" "$http_x_forwarded_for"';
+
+      include /etc/nginx/mime.types;
+      index index.html index.htm index.php;
+      default_type  application/octet-stream;
+
+      # Disable access log and error log to stderr
+      access_log  /dev/null;
+      error_log  /dev/stderr;
+
+      include /etc/nginx/conf.d/*.conf;
+    }
