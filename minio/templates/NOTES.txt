@@ -5,6 +5,6 @@ You can use the follow credentials to login to this Minio instance
     Access Key: {{ .Values.accessKey }}
     Secret Key: {{ .Values.secretKey }}
 {{ if eq .Values.accessKey "exampleaccesskey" }}
-Note: if you are seeing key as "exampleaccesskey", please change it by going
-to reconfigure menu on right and under advanced options.
+Note: Please change the default access and secret keys by going
+to Reconfigure menu on the right side and under Advanced options.
 {{ end }}
