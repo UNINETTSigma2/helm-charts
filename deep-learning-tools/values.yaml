@@ -9,7 +9,11 @@ resources:
     cpu: 2
     memory: 4Gi
     gpu: 1
-dockerImage: quay.io/uninett/deep-learning-tools:20180409-61eab4d
+env:
+  sparkMasterUrl: "local[*]"
+  jupyterLab: false
+dockerImage: quay.io/uninett/deep-learning-tools:20180525-7303ff1
+githubToken: ""
 persistentStorage:
   existingClaim: ""
   existingClaimName: "example-name"

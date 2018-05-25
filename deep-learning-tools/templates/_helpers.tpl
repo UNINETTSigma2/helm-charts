@@ -60,13 +60,20 @@ c = get_config()
 # ------------------------------------------------------------------------------
 
 c.IPKernelApp.pylab = 'inline'
-c.NotebookApp.ip = 'localhost'
+c.NotebookApp.ip = '127.0.0.1'
 c.NotebookApp.open_browser = False
 c.NotebookApp.port = 8888
 c.NotebookApp.base_url = '/'
 c.NotebookApp.trust_xheaders = True
 c.NotebookApp.tornado_settings = {'static_url_prefix': '/static/'}
-c.NotebookApp.notebook_dir = '/mnt'
+{{ if ne .Values.persistentStorage.existingClaim "" }}
+c.NotebookApp.notebook_dir = '/mnt/{{ .Values.persistentStorage.existingClaimName }}'
+{{ else }}
+c.NotebookApp.notebook_dir = '/home/notebook'
+{{ end }}
+{{ if ne .Values.githubToken "" }}
+c.GitHubConfig.access_token = '{{ .Values.githubToken }}'
+{{ end }}
 c.NotebookApp.allow_origin = '*'
 c.NotebookApp.token = ''
 c.NotebookApp.password = ''

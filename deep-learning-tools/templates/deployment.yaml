@@ -29,9 +29,12 @@ spec:
             items:
             - key: notebook_config.py
               path: notebook_config.py
+      securityContext:
+        runAsNonRoot: true
+        fsGroup: 999
       containers:
       - name: auth-proxy
-        image: quay.io/uninett/goidc-proxy:v1.1.2
+        image: quay.io/uninett/goidc-proxy:v1.1.3
         imagePullPolicy: Always
         env:
           - name: DATAPORTEN_CLIENTID
@@ -46,6 +49,9 @@ spec:
                 key: dataporten_client_secret
         ports:
           - containerPort: 8080
+        securityContext:
+          runAsUser: 65534
+          readOnlyRootFilesystem: true
         livenessProbe:
           httpGet:
             path: /healthz
@@ -58,6 +64,20 @@ spec:
         workingDir: /conf
       - name: jupyter
         image: {{ .Values.dockerImage }}
+        args: ["/usr/local/bin/start-notebook.sh"]
+        env:
+          {{ if .Values.env.jupyterLab }}
+          - name: JUPYTER_ENABLE_LAB
+            value: "1"
+          {{ end }}
+          - name: SPARK_MASTER_SERVICE
+            value: {{ .Values.env.sparkMasterUrl }}
+          - name: SPARK_OPTS
+            value: --master={{ .Values.env.sparkMasterUrl }}
+          - name: SPARK_DRIVER_MEMORY   # Need to set these values according to allocated resources
+            value: 1g
+          - name: SPARK_DRIVER_CORES
+            value: '1'
         resources:
           requests:
             cpu: {{ .Values.resources.requests.cpu }}
@@ -69,9 +89,12 @@ spec:
             alpha.kubernetes.io/nvidia-gpu: {{ .Values.resources.limits.gpu }}
         ports:
         - containerPort: 8888
+        securityContext:
+          runAsUser: 999
         volumeMounts:
         - name: notebook-config
-          mountPath: /opt/jupyter/config
+          mountPath: /home/notebook/.jupyter/notebook_config.py
+          subPath: notebook_config.py
         {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
