@@ -12,7 +12,7 @@ resources:
 env:
   sparkMasterUrl: "local[*]"
   jupyterLab: false
-dockerImage: quay.io/uninett/deep-learning-tools:20180525-7303ff1
+dockerImage: quay.io/uninett/deep-learning-tools:20180526-db0f936
 githubToken: ""
 persistentStorage:
   existingClaim: ""
