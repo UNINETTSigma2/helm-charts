@@ -91,7 +91,7 @@ spec:
         livenessProbe:
           httpGet:
             path: /unsupported_browser.htm
-            port: 8080
+            port: 8787
           initialDelaySeconds: 30
           timeoutSeconds: 30
         securityContext:

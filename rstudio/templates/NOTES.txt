@@ -1,5 +1,10 @@
 -- [ RStudio and R Shiny Server
 
-Rstudio is available at {{ .Values.ingress.host }} and protected with Dataporten authentication and groups authorization.
+Rstudio is available at: {{ .Values.ingress.host }}
+R Shiny server is available at: shiny-{{ .Values.ingress.host }}
 
-R Shiny server is available at shiny-{{ .Values.ingress.host }}. Shiny server is available publicly without any authentication to enable end users access to your public shiny apps. You can publish shiny apps by copying them to "/srv/shiny-server".
+RStudio is protected with Dataporten authentication
+and groups authorization. Shiny server is available publicly
+without any authentication to enable end users access to your
+public shiny apps. You can publish shiny apps by copying them
+to "/srv/shiny-server".
