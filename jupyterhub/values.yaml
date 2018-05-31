@@ -26,7 +26,7 @@ singleuser:
 
 ingress:
   host: "paaltest.appstore-dep.ioudaas.no"
-
+userImage: jupyterhub/k8s-singleuser-sample:v0.6
 appstore_generated_data:
   dataporten:
     id: ""

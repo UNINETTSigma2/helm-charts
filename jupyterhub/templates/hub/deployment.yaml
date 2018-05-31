@@ -56,7 +56,7 @@ spec:
         # Put this here directly so hub will restart when we
         # change this
         - name: SINGLEUSER_IMAGE
-          value:  "jupyterhub/k8s-singleuser-sample:v0.6"
+          value:  "{{ .Values.userImage }}"
         - name: POD_NAMESPACE
           valueFrom:
             fieldRef:
