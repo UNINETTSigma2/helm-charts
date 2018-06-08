@@ -16,8 +16,8 @@ master:
     limits:
         cpu: 200m
         memory: 1500Mi
-masterImage: quay.io/uninett/jupyter-spark:20180525-3a3c4dd
-workerImage: quay.io/uninett/jupyter-spark:20180525-3a3c4dd
+masterImage: quay.io/uninett/jupyter-spark:20180608-ed0d171
+workerImage: quay.io/uninett/jupyter-spark:20180608-ed0d171
 ingress:
   host: "host.example.com"
 
