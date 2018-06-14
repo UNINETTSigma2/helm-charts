@@ -82,11 +82,11 @@ spec:
           requests:
             cpu: {{ .Values.resources.requests.cpu }}
             memory: {{ .Values.resources.requests.memory }}
-            alpha.kubernetes.io/nvidia-gpu: {{ .Values.resources.requests.gpu }}
+            nvidia.com/gpu: {{ .Values.resources.requests.gpu }}
           limits:
             cpu: {{ .Values.resources.limits.cpu }}
             memory: {{ .Values.resources.limits.memory }}
-            alpha.kubernetes.io/nvidia-gpu: {{ .Values.resources.limits.gpu }}
+            nvidia.com/gpu: {{ .Values.resources.limits.gpu }}
         ports:
         - containerPort: 8888
         securityContext:
