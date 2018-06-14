@@ -12,7 +12,6 @@ spec:
         checksum/config: {{ include "oidcconfig" . | sha256sum }}
       labels:
         app: {{ template "fullname" . }}
-        driver: nvidia-gpu
     spec:
       volumes:
         - name: oidcconfig
