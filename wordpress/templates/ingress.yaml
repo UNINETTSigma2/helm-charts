@@ -9,10 +9,9 @@ metadata:
     heritage: "{{ .Release.Service }}"
   annotations:
     kubernetes.io/ingress.class: nginx
-    certmanager.k8s.io/cluster-issuer: letsencrypt-staging
 spec:
   tls:
-    - secretName: {{ template "fullname" . }}-tls
+    - secretName: wildcard-tls
       hosts:
          - {{ .Values.ingress.host }}
   rules:

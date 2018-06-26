@@ -9,7 +9,6 @@ metadata:
     heritage: {{ .Release.Service }}
   annotations:
     kubernetes.io/ingress.class: nginx
-    certmanager.k8s.io/cluster-issuer: letsencrypt-staging
     nginx.ingress.kubernetes.io/proxy-body-size: "0"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
@@ -23,6 +22,6 @@ spec:
               serviceName: {{ .Release.Name }}-proxy-http
               servicePort: 8000
   tls:
-    - secretName: {{ .Release.Name }}-jupyterhub-tls
+    - secretName: wildcard-tls
       hosts:
          - {{ .Values.ingress.host }}
