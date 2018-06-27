@@ -4,6 +4,6 @@
 
 ### Advanced
 This application creates a [Jupyter Notebook](https://github.com/UNINETT/helm-charts/tree/master/jupyter) instance using the following Dockerfiles:
-  - [quay.io/uninett/jupyter-spark](https://github.com/UNINETT/helm-charts-dockerfiles/tree/b86e87e/jupyter-spark/Dockerfile)
+  - [quay.io/uninett/jupyter-spark](https://github.com/UNINETT/helm-charts-dockerfiles/tree/0f20926/jupyter-spark/Dockerfile)
 
 These dockerfiles contains the information about relevant packages available in the application.

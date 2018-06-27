@@ -4,4 +4,4 @@
 
 ### Advanced
 This application creates a [Apache Spark](https://github.com/UNINETT/helm-charts/tree/master/spark) using the following Dockerfile:
-  - [uninett/jupyter-spark](https://github.com/UNINETT/helm-charts-dockerfiles/tree/b86e87e/jupyter-spark/Dockerfile)
+  - [uninett/jupyter-spark](https://github.com/UNINETT/helm-charts-dockerfiles/tree/0f20926/jupyter-spark/Dockerfile)
