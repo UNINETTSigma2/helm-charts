@@ -10,11 +10,6 @@ resources:
 persistentStorage:
   existingClaim: ""
   existingClaimName: "example-name"
-env:
-  sparkMasterUrl: "local[*]"
-  jupyterLab: false
-dockerImage: quay.io/uninett/jupyter-spark:20180627-0f20926
-githubToken: ""
 appstore_generated_data:
   dataporten:
     scopes:
@@ -23,3 +18,9 @@ appstore_generated_data:
     client_secret: "0000-0000"
     authorized_groups:
       - ""
+advanced:
+  env:
+    sparkMasterUrl: "local[*]"
+    jupyterLab: false
+  dockerImage: quay.io/uninett/jupyter-spark:20180627-0f20926
+  githubToken: ""
