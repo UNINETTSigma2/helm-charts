@@ -71,8 +71,8 @@ c.NotebookApp.notebook_dir = '/mnt/{{ .Values.persistentStorage.existingClaimNam
 {{ else }}
 c.NotebookApp.notebook_dir = '/home/notebook'
 {{ end }}
-{{ if ne .Values.githubToken "" }}
-c.GitHubConfig.access_token = '{{ .Values.githubToken }}'
+{{ if ne .Values.advanced.githubToken "" }}
+c.GitHubConfig.access_token = '{{ .Values.advanced.githubToken }}'
 {{ end }}
 c.NotebookApp.allow_origin = '*'
 c.NotebookApp.token = ''
