@@ -1,32 +1,33 @@
-hub:
-  resources:
-    requests:
-      cpu: "0.2"
-      memory: 512Mi
-    limits:
-      cpu: "0.4"
-      memory: 1Gi
+advanced:
+  hub:
+    resources:
+      requests:
+        cpu: "0.2"
+        memory: 512Mi
+      limits:
+        cpu: "0.4"
+        memory: 1Gi
 
-proxy:
-  resources:
-    requests:
-      cpu: "0.2"
-      memory: 512Mi
-    limits:
-      cpu: "0.4"
-      memory: 1Gi
+  proxy:
+    resources:
+      requests:
+        cpu: "0.2"
+        memory: 512Mi
+      limits:
+        cpu: "0.4"
+        memory: 1Gi
 
-singleuser:
-  cpu:
-    limit: "0.2"
-    guarantee: "0.2"
-  memory:
-    limit: "1G"
-    guarantee: "1G"
+  singleuser:
+    cpu:
+      limit: "0.2"
+      guarantee: "0.2"
+    memory:
+      limit: "1G"
+      guarantee: "1G"
+  userImage: jupyterhub/k8s-singleuser-sample:v0.6
 
 ingress:
   host: "paaltest.appstore-dep.ioudaas.no"
-userImage: jupyterhub/k8s-singleuser-sample:v0.6
 appstore_generated_data:
   dataporten:
     id: ""

@@ -51,12 +51,12 @@ spec:
           - mountPath: /etc/jupyterhub/secret/
             name: secret
         resources:
-{{ toYaml .Values.hub.resources | indent 12}}
+{{ toYaml .Values.advanced.hub.resources | indent 12}}
         env:
         # Put this here directly so hub will restart when we
         # change this
         - name: SINGLEUSER_IMAGE
-          value:  "{{ .Values.userImage }}"
+          value:  "{{ .Values.advanced.userImage }}"
         - name: POD_NAMESPACE
           valueFrom:
             fieldRef:
