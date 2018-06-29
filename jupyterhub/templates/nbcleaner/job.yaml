@@ -34,3 +34,4 @@ spec:
           value: {{.Release.Name}}
         - name: NAMESPACE
           value: {{ .Release.Namespace }}
+        command: ["/bin/clean.sh"]
