@@ -25,10 +25,10 @@ spec:
     spec:
       restartPolicy: Never
       serviceAccountName: {{.Release.Name}}-pod-cleaner
-      imagePullPolicy: Always
       containers:
       - name: pod-clean-job
         image: "gurvin/kubectl:1.10.5"
+        imagePullPolicy: Always
         env:
         - name: RELEASE
           value: {{.Release.Name}}
