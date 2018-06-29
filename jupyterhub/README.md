@@ -8,4 +8,4 @@ scientific research group.
 
 ### Advanced
 This application uses the following Dockerfile:
-  - [quay.io/uninett/jupyterhub](https://github.com/UNINETT/helm-charts-dockerfiles/tree/1bafa3a/jupyterhub/Dockerfile)
+  - [quay.io/uninett/jupyterhub](https://github.com/UNINETT/helm-charts-dockerfiles/tree/38876f4/jupyterhub/Dockerfile)
