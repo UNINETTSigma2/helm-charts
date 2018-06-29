@@ -55,7 +55,7 @@ spec:
             - "--default-target=http://$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST):$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT)"
             - "--error-target=http://$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST):$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT)"
           resources:
-{{ toYaml .Values.proxy.resources | indent 12 }}
+{{ toYaml .Values.advanced.proxy.resources | indent 12 }}
           env:
             - name: CONFIGPROXY_AUTH_TOKEN
               valueFrom:

@@ -4,12 +4,12 @@ metadata:
   name: {{ .Release.Name }}-hub-config
 data:
   {{- /* Cull */}}
-  {{- if .Values.killIdle.enabled }}
+  {{- if .Values.advanced.killIdle.enabled }}
   cull.enabled: "true"
   cull.users: "false"
-  cull.timeout: {{ .Values.killIdle.timeout | quote }}
+  cull.timeout: {{ .Values.advanced.killIdle.timeout | quote }}
   cull.every: "600"
-  cull.concurrency: {{ .Values.killIdle.concurrency | quote }}
+  cull.concurrency: {{ .Values.advanced.killIdle.concurrency | quote }}
   {{- end }}
 
   {{- /* Auth */}}
@@ -36,17 +36,17 @@ data:
   singleuser.storage.type: "none"
   {{- end }}
   singleuser.storage.home_mount_path: "/home/jovyan"
-  {{- if .Values.singleuser.memory.limit }}
-  singleuser.memory.limit: {{ .Values.singleuser.memory.limit | quote}}
+  {{- if .Values.advanced.singleuser.memory.limit }}
+  singleuser.memory.limit: {{ .Values.advanced.singleuser.memory.limit | quote}}
   {{- end }}
-  {{- if .Values.singleuser.memory.guarantee }}
-  singleuser.memory.guarantee: {{ .Values.singleuser.memory.guarantee | quote}}
+  {{- if .Values.advanced.singleuser.memory.guarantee }}
+  singleuser.memory.guarantee: {{ .Values.advanced.singleuser.memory.guarantee | quote}}
   {{- end }}
-  {{- if .Values.singleuser.cpu.limit }}
-  singleuser.cpu.limit: {{ .Values.singleuser.cpu.limit | quote}}
+  {{- if .Values.advanced.singleuser.cpu.limit }}
+  singleuser.cpu.limit: {{ .Values.advanced.singleuser.cpu.limit | quote}}
   {{- end }}
-  {{- if .Values.singleuser.cpu.guarantee }}
-  singleuser.cpu.guarantee: {{ .Values.singleuser.cpu.guarantee | quote}}
+  {{- if .Values.advanced.singleuser.cpu.guarantee }}
+  singleuser.cpu.guarantee: {{ .Values.advanced.singleuser.cpu.guarantee | quote}}
   {{- end }}
   singleuser.extra-labels: |
     hub.jupyter.org/network-access-hub: "true"
@@ -55,4 +55,4 @@ data:
 
   hub.base_url: "/"
   hub.db_url: "sqlite:///jupyterhub.sqlite" # Use in memory
-  hub.concurrent-spawn-limit: {{ .Values.notebook.spawn-limit | quote }}
+  hub.concurrent-spawn-limit: {{ .Values.advanced.notebook.spawnLimit | quote }}

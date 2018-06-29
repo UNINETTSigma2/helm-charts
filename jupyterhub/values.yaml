@@ -1,32 +1,40 @@
-hub:
-  resources:
-    requests:
-      cpu: "0.2"
-      memory: 512Mi
-    limits:
-      cpu: "0.4"
-      memory: 1Gi
-
-proxy:
-  resources:
-    requests:
-      cpu: "0.2"
-      memory: 512Mi
-    limits:
-      cpu: "0.4"
-      memory: 1Gi
-
-singleuser:
-  cpu:
-    limit: "0.2"
-    guarantee: "0.2"
-  memory:
-    limit: "1G"
-    guarantee: "1G"
-
+persistentStorage:
+  existingClaim: ""
+  existingClaimName: "example-name"
 ingress:
   host: "paaltest.appstore-dep.ioudaas.no"
-userImage: jupyterhub/k8s-singleuser-sample:v0.6
+advanced:
+  killIdle:
+    enabled: true
+    timeout: 3600
+    concurrency: 10
+  notebook:
+    spawnLimit: 100
+  hub:
+    resources:
+      requests:
+        cpu: "0.2"
+        memory: 512Mi
+      limits:
+        cpu: "0.4"
+        memory: 1Gi
+  proxy:
+    resources:
+      requests:
+        cpu: "0.2"
+        memory: 512Mi
+      limits:
+        cpu: "0.4"
+        memory: 1Gi
+  singleuser:
+    cpu:
+      limit: "0.2"
+      guarantee: "0.2"
+    memory:
+      limit: "1G"
+      guarantee: "1G"
+  userImage: jupyterhub/k8s-singleuser-sample:v0.6
+
 appstore_generated_data:
   dataporten:
     id: ""

@@ -82,7 +82,7 @@ spec:
         securityContext:
           runAsUser: 65534
       - name: rstudio-server
-        image: {{ .Values.dockerImage }}
+        image: {{ .Values.advanced.dockerImage }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         ports:

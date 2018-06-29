@@ -94,7 +94,7 @@ spec:
               mountPath: /conf
           workingDir: /conf
         - name: spark-master
-          image: {{ .Values.masterImage }}
+          image: {{ .Values.advanced.masterImage }}
           imagePullPolicy: Always
           args: ["/usr/local/bin/start-master.sh"]
           ports:
@@ -110,11 +110,11 @@ spec:
             runAsUser: 999
           resources:
             requests:
-                cpu: {{ .Values.master.resources.requests.cpu }}
-                memory: {{ .Values.master.resources.requests.memory }}
+                cpu: {{ .Values.advanced.master.resources.requests.cpu }}
+                memory: {{ .Values.advanced.master.resources.requests.memory }}
             limits:
-                cpu: {{ .Values.master.resources.limits.cpu }}
-                memory: {{ .Values.master.resources.limits.memory }}
+                cpu: {{ .Values.advanced.master.resources.limits.cpu }}
+                memory: {{ .Values.advanced.master.resources.limits.memory }}
           env:
             - name: SPARK_PUBLIC_DNS
               value: {{ .Values.ingress.host }}

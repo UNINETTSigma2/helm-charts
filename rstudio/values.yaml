@@ -10,7 +10,6 @@ resources:
 persistentStorage:
   existingClaim: ""
   existingClaimName: "example-name"
-dockerImage: quay.io/uninett/rstudio-server:20180526-7fb982a
 appstore_generated_data:
   dataporten:
     scopes:
@@ -19,3 +18,5 @@ appstore_generated_data:
     client_secret: "0000"
     authorized_groups:
       - ""
+advanced:
+  dockerImage: quay.io/uninett/rstudio-server:20180526-7fb982a

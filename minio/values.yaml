@@ -10,5 +10,6 @@ resources:
 persistentStorage:
   existingClaim: ""
   existingClaimName: "example-name"
-accessKey: "exampleaccesskey"
-secretKey: "examplesecretkey"
+advanced:
+  accessKey: "exampleaccesskey"
+  secretKey: "examplesecretkey"
