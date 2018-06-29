@@ -20,7 +20,8 @@ data:
   {{- /* Singleuser */}}
   singleuser.network-tools.image.name: jupyterhub/k8s-network-tools
   singleuser.network-tools.image.tag: 36a8dcb
-  singleuser.cloud-metadata.enabled: "false"
+  singleuser.cloud-metadata: |
+    enabled: false
   singleuser.start-timeout: "300"
   singleuser.image-pull-policy: IfNotPresent
   singleuser.scheduler-strategy: pack
