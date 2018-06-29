@@ -47,7 +47,7 @@ spec:
           secretName: {{ .Release.Name }}-hub-secret
       containers:
       - name: hub-container
-        image: quay.io/uninett/jupyterhub:20180629-8ddde7c
+        image: quay.io/uninett/jupyterhub:20180629-1bafa3a
         command:
           - jupyterhub
           - --config
@@ -69,18 +69,12 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        - name: PROXY_PUBLIC_SERVICE_HOST
-          value: {{ .Release.Name | upper | replace "-" "_" }}_PROXY_HTTP_SERVICE_HOST
-        - name: PROXY_PUBLIC_SERVICE_PORT
-          value: {{ .Release.Name | upper | replace "-" "_" }}_PROXY_HTTP_SERVICE_PORT
-        - name: PROXY_API_SERVICE_HOST
-          value: {{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE_HOST
-        - name: PROXY_API_SERVICE_PORT
-          value: {{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE_PORT
-        - name: HUB_SERVICE_HOST
-          value: {{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST
-        - name: HUB_SERVICE_PORT
-          value: {{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT
+        - name: PROXY_PUBLIC_SERVICE_NAME
+          value: {{ .Release.Name | upper | replace "-" "_" }}_PROXY_HTTP_SERVICE
+        - name: PROXY_API_SERVICE_NAME
+          value: {{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE
+        - name: HUB_SERVICE_NAME
+          value: {{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE
         - name: OAUTH_CLIENT_ID
           value: "{{ .Values.appstore_generated_data.dataporten.id }}"
         - name: OAUTH_CLIENT_SECRET
