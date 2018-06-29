@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
@@ -9,24 +9,25 @@ metadata:
   name: {{ .Release.Name }}-proxy
 spec:
   replicas: 1
-  strategy:
-      rollingUpdate:
-          # There's no PVCs attached here, so is ok to set maxUnavailable to 1
-          # This means new pod will be spun up and traffic transferred to it
-          # before old pod is shut down.
-          maxUnavailable: 1
+  revisionHistoryLimit: 4
+  selector:
+    matchLabels:
+      chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+      component: proxy
+      heritage: {{ .Release.Service }}
+      release: {{ .Release.Name }}
   template:
     metadata:
       annotations:
-        # This lets us autorestart when the secret changes!
         checksum/hub-secret: {{ include (print $.Template.BasePath "/hub/secret.yaml") . | sha256sum }}
-        hub.jupyter.org/https-type: "letsencrypt"
       labels:
         name: proxy
         component: proxy
         group: {{ .Release.Name }}-jupyterhub
         release: {{ .Release.Name }}
         heritage: {{ .Release.Service }}
+        hub.jupyter.org/network-access-hub: "true"
+        hub.jupyter.org/network-access-singleuser: "true"
     spec:
       affinity:
         podAffinity:
@@ -53,7 +54,6 @@ spec:
             - "--api-port=8001"
             - "--default-target=http://$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST):$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT)"
             - "--error-target=http://$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST):$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT)"
-            - "--log-level=debug"
           resources:
 {{ toYaml .Values.proxy.resources | indent 12 }}
           env:
@@ -62,7 +62,6 @@ spec:
                 secretKeyRef:
                   name: {{ .Release.Name }}-hub-secret
                   key: proxy.token
-          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
               name: proxy-public

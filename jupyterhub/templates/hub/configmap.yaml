@@ -3,39 +3,56 @@ apiVersion: v1
 metadata:
   name: {{ .Release.Name }}-hub-config
 data:
+  {{- /* Cull */}}
+  {{- if .Values.killIdle.enabled }}
+  cull.enabled: "true"
+  cull.users: "false"
+  cull.timeout: {{ .Values.killIdle.timeout | quote }}
+  cull.every: "600"
+  cull.concurrency: {{ .Values.killIdle.concurrency | quote }}
+  {{- end }}
+
+  {{- /* Auth */}}
   auth.state.enabled: "false"
+  auth.admin.access: "true"
+  auth.type: "dataporten"
 
+  {{- /* Singleuser */}}
   singleuser.network-tools.image.name: jupyterhub/k8s-network-tools
-  singleuser.network-tools.image.tag: v0.6
-
-  singleuser.cloud-metadata.enabled: "true"
-  singleuser.cloud-metadata.ip: "169.254.169.254"
-
+  singleuser.network-tools.image.tag: 36a8dcb
+  singleuser.cloud-metadata.enabled: "false"
   singleuser.start-timeout: "300"
-  hub.concurrent-spawn-limit: "64"
-
+  singleuser.scheduler-strategy: pack
   singleuser.cmd: "jupyterhub-singleuser"
-
   singleuser.uid: "1000"
   singleuser.fs-gid: "1000"
-  singleuser.service-account-name: {{ .Release.Name }}-hub
+  singleuser.service-account-name: "default"
   singleuser.node-selector: "{}"
-
+  {{- if ne .Values.persistentStorage.existingClaim "" }}
+  singleuser.storage.type: "static"
+  singleuser.storage.static.pvc-name: {{ .Values.persistentStorage.existingClaimName }}
+  singleuser.storage.static.subPath: 'home/{username}'
+  {{- else }}
   singleuser.storage.type: "none"
+  {{- end }}
   singleuser.storage.home_mount_path: "/home/jovyan"
-  {{ if .Values.singleuser.memory.limit -}}
+  {{- if .Values.singleuser.memory.limit }}
   singleuser.memory.limit: {{ .Values.singleuser.memory.limit | quote}}
   {{- end }}
-  {{ if .Values.singleuser.memory.guarantee -}}
+  {{- if .Values.singleuser.memory.guarantee }}
   singleuser.memory.guarantee: {{ .Values.singleuser.memory.guarantee | quote}}
   {{- end }}
-  {{ if .Values.singleuser.cpu.limit -}}
+  {{- if .Values.singleuser.cpu.limit }}
   singleuser.cpu.limit: {{ .Values.singleuser.cpu.limit | quote}}
   {{- end }}
-  {{ if .Values.singleuser.cpu.guarantee -}}
+  {{- if .Values.singleuser.cpu.guarantee }}
   singleuser.cpu.guarantee: {{ .Values.singleuser.cpu.guarantee | quote}}
   {{- end }}
-  token.cookie_secret: ""
+  singleuser.extra-labels: |
+    hub.jupyter.org/network-access-hub: "true"
+    group: {{ .Release.Name }}-jupyterhub
+    release: {{ .Release.Name }}
+
   hub.base_url: "/"
-  hub.db_url: "sqlite://" # Use in memory
-  auth.admin.access: "true"
+  hub.db_url: "sqlite:///jupyterhub.sqlite" # Use in memory
+  hub.concurrent-spawn-limit: {{ .Values.notebook.spawn-limit | quote }}

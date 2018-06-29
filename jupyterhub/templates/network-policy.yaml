@@ -42,3 +42,5 @@ spec:
           port: 8000
         - protocol: TCP
           port: 8001
+        - protocol: TCP
+          port: 8888

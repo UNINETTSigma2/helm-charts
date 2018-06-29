@@ -1,0 +1,16 @@
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ .Release.Name }}-hub
+  labels:
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: hub
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      name: {{ .Release.Name }}-hub
+      component: hub
+      release: {{ .Release.Name }}
