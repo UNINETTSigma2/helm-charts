@@ -21,7 +21,7 @@ spec:
         heritage: {{.Release.Service | quote }}
         release: {{.Release.Name | quote }}
         chart: "{{.Chart.Name}}-{{.Chart.Version}}"
-      group: {{ .Release.Name }}-jupyterhub
+        group: {{ .Release.Name }}-jupyterhub
     spec:
       restartPolicy: Never
       serviceAccountName: pod-cleaner
