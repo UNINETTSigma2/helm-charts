@@ -4,6 +4,7 @@ metadata:
   labels:
     chart: {{ .Chart.Name }}-{{ .Chart.Version }}
     component: proxy
+    group: {{ .Release.Name }}-jupyterhub
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
   name: {{ .Release.Name }}-proxy
@@ -12,20 +13,25 @@ spec:
   revisionHistoryLimit: 4
   selector:
     matchLabels:
-      chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+      name: {{ .Release.Name }}-proxy
       component: proxy
+      group: {{ .Release.Name }}-jupyterhub
       heritage: {{ .Release.Service }}
       release: {{ .Release.Name }}
+      chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+      hub.jupyter.org/network-access-hub: "true"
+      hub.jupyter.org/network-access-singleuser: "true"
   template:
     metadata:
       annotations:
         checksum/hub-secret: {{ include (print $.Template.BasePath "/hub/secret.yaml") . | sha256sum }}
       labels:
-        name: proxy
+        name: {{ .Release.Name }}-proxy
         component: proxy
         group: {{ .Release.Name }}-jupyterhub
         release: {{ .Release.Name }}
         heritage: {{ .Release.Service }}
+        chart: {{ .Chart.Name }}-{{ .Chart.Version }}
         hub.jupyter.org/network-access-hub: "true"
         hub.jupyter.org/network-access-singleuser: "true"
     spec:
