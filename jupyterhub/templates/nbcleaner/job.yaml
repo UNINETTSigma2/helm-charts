@@ -29,11 +29,11 @@ spec:
       - name: pod-clean-job
         image: "gurvin/kubectl:1.10.5"
         command:
-          - "/bin/kubectl"
-          - "--namespace={{ .Release.Namespace }}"
-          - "--server=https://$KUBERNETES_SERVICE_HOST"
-          - "--token=`cat /run/secrets/kubernetes.io/serviceaccount/token`"
-          - "--certificate-authority=/run/secrets/kubernetes.io/serviceaccount/ca.crt"
-          - "--selector=release={{.Release.Name}}"
-          - "delete"
-          - "pod"
+          - /bin/kubectl
+          - --namespace={{ .Release.Namespace }}
+          - --server="https://$KUBERNETES_SERVICE_HOST"
+          - --token=`cat /run/secrets/kubernetes.io/serviceaccount/token`
+          - --certificate-authority=/run/secrets/kubernetes.io/serviceaccount/ca.crt
+          - --selector=release={{.Release.Name}}
+          - delete
+          - pod

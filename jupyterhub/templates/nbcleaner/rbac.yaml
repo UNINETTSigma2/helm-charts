@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: pod-cleaner
+  name: {{ .Release.Name }}-pod-cleaner
   labels:
     group: {{ .Release.Name }}-jupyterhub
     component: pod-cleaner
@@ -11,7 +11,7 @@ metadata:
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1beta1
 metadata:
-  name: pod-cleaner
+  name: {{ .Release.Name }}-pod-cleaner
   labels:
     group: {{ .Release.Name }}-jupyterhub
     component: pod-cleaner
@@ -31,7 +31,7 @@ rules:
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1beta1
 metadata:
-  name: pod-cleaner
+  name: {{ .Release.Name }}-pod-cleaner
   labels:
     group: {{ .Release.Name }}-jupyterhub
     component: pod-cleaner
@@ -40,8 +40,8 @@ metadata:
 subjects:
   - kind: ServiceAccount
     namespace: {{ .Release.Namespace }}
-    name: pod-cleaner
+    name: {{ .Release.Name }}-pod-cleaner
 roleRef:
   kind: Role
-  name: pod-cleaner
+  name: {{ .Release.Name }}-pod-cleaner
   apiGroup: rbac.authorization.k8s.io
