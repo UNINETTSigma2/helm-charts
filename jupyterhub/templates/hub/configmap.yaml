@@ -50,8 +50,11 @@ data:
   {{- end }}
   singleuser.extra-labels: |
     hub.jupyter.org/network-access-hub: "true"
+
+  kubespawner.common-labels: |
     group: {{ .Release.Name }}-jupyterhub
     release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
 
   hub.base_url: "/"
   hub.db_url: "sqlite:///jupyterhub.sqlite" # Use in memory
