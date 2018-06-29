@@ -56,3 +56,4 @@ data:
   hub.base_url: "/"
   hub.db_url: "sqlite:///jupyterhub.sqlite" # Use in memory
   hub.concurrent-spawn-limit: {{ .Values.advanced.notebook.spawnLimit | quote }}
+  debug.enabled: {{ .Values.advanced.debug.enabled | quote }}

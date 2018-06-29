@@ -10,6 +10,8 @@ advanced:
     concurrency: 10
   notebook:
     spawnLimit: 100
+  debug:
+    enabled: false
   hub:
     resources:
       requests:
