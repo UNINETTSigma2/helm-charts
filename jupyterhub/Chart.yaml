@@ -2,4 +2,4 @@ apiVersion: v1
 description: Multi-user Jupyter installation with Dataporten integration
 name: jupyterhub
 icon: https://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
-version: 0.5.1
+version: 0.5.2
