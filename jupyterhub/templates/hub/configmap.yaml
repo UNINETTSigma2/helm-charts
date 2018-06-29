@@ -22,6 +22,7 @@ data:
   singleuser.network-tools.image.tag: 36a8dcb
   singleuser.cloud-metadata.enabled: "false"
   singleuser.start-timeout: "300"
+  singleuser.image-pull-policy: IfNotPresent
   singleuser.scheduler-strategy: pack
   singleuser.cmd: "jupyterhub-singleuser"
   singleuser.uid: "1000"
