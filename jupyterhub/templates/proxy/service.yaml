@@ -7,7 +7,7 @@ metadata:
     group: {{ .Release.Name }}-jupyterhub
 spec:
   selector:
-    name: proxy
+    name: {{ .Release.Name }}-proxy
     component: proxy
     release: {{ .Release.Name }}
   ports:
@@ -25,7 +25,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    name: proxy
+    name: {{ .Release.Name }}-proxy
     component: proxy
     release: {{ .Release.Name }}
   ports:
