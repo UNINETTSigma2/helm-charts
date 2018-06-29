@@ -24,7 +24,7 @@ spec:
         group: {{ .Release.Name }}-jupyterhub
     spec:
       restartPolicy: Never
-      serviceAccountName: pod-cleaner
+      serviceAccountName: {{.Release.Name}}-pod-cleaner
       containers:
       - name: pod-clean-job
         image: "gurvin/kubectl:1.10.5"
