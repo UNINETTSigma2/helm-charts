@@ -27,9 +27,9 @@ data:
   singleuser.service-account-name: "default"
   singleuser.node-selector: "{}"
   {{- if .Values.advanced.jupyterLab }}
-  singleuser.cmd: "'jupyter lab --config /home/notebook/.jupyter/notebook_config.py'"
+  singleuser.cmd: "/opt/conda/bin/jupyter lab --config /home/notebook/.jupyter/notebook_config.py"
   {{- else }}
-  singleuser.cmd: "'jupyter notebook --config /home/notebook/.jupyter/notebook_config.py'"
+  singleuser.cmd: "/opt/conda/bin/jupyter notebook --config /home/notebook/.jupyter/notebook_config.py"
   {{- end }}
   {{- if ne .Values.persistentStorage.existingClaim "" }}
   singleuser.storage.type: "static"
