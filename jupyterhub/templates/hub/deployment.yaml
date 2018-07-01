@@ -78,7 +78,7 @@ spec:
           {{- if ne .Values.persistentStorage.existingClaim "" }}
           - name: {{ .Values.persistentStorage.existingClaimName }}
             mountPath: /srv/jupyterhub
-            subPath: /.tools/{{ .Release.Name }}-hub
+            subPath: .tools/{{ .Release.Name }}-hub
           {{- end }}
         resources:
 {{ toYaml .Values.advanced.hub.resources | indent 12}}
