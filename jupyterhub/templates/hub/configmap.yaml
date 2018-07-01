@@ -29,7 +29,7 @@ data:
   {{- if ne .Values.persistentStorage.existingClaim "" }}
   singleuser.storage.type: "static"
   singleuser.storage.static.pvc-name: {{ .Values.persistentStorage.existingClaim }}
-  singleuser.storage.static.subPath: 'home/{username}'
+  singleuser.storage.static.sub-path: 'home/{username}'
   {{- else }}
   singleuser.storage.type: "none"
   {{- end }}
