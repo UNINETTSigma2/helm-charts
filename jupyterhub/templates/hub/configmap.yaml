@@ -4,12 +4,12 @@ metadata:
   name: {{ .Release.Name }}-hub-config
 data:
   {{- /* Cull */}}
-  {{- if .Values.advanced.killIdle.enabled }}
+  {{- if .Values.advanced.killIdlePods.enabled }}
   cull.enabled: "true"
   cull.users: "false"
-  cull.timeout: {{ .Values.advanced.killIdle.timeout | quote }}
+  cull.timeout: {{ .Values.advanced.killIdlePods.timeout | quote }}
   cull.every: "600"
-  cull.concurrency: {{ .Values.advanced.killIdle.concurrency | quote }}
+  cull.concurrency: {{ .Values.advanced.killIdlePods.concurrency | quote }}
   {{- end }}
 
   {{- /* Auth */}}
@@ -26,14 +26,19 @@ data:
   singleuser.fs-gid: "1000"
   singleuser.service-account-name: "default"
   singleuser.node-selector: "{}"
+  {{- if .Values.advanced.jupyterLab }}
+  singleuser.cmd: "jupyter lab --config $HOME/.jupyter/notebook_config.py"
+  {{- else }}
+  singleuser.cmd: "jupyter notebook --config $HOME/.jupyter/notebook_config.py"
+  {{- end }}
   {{- if ne .Values.persistentStorage.existingClaim "" }}
   singleuser.storage.type: "static"
-  singleuser.storage.static.pvc-name: {{ .Values.persistentStorage.existingClaimName }}
+  singleuser.storage.static.pvc-name: {{ .Values.persistentStorage.existingClaim }}
   singleuser.storage.static.subPath: 'home/{username}'
   {{- else }}
   singleuser.storage.type: "none"
   {{- end }}
-  singleuser.storage.home_mount_path: "/home/jovyan"
+  singleuser.storage.home_mount_path: "/home/notebook"
   {{- if .Values.advanced.singleuser.memory.limit }}
   singleuser.memory.limit: {{ .Values.advanced.singleuser.memory.limit | quote}}
   {{- end }}
@@ -57,4 +62,4 @@ data:
   hub.base_url: "/"
   hub.db_url: "sqlite:///jupyterhub.sqlite" # Use in memory
   hub.concurrent-spawn-limit: {{ .Values.advanced.notebook.spawnLimit | quote }}
-  debug.enabled: {{ .Values.advanced.debug.enabled | quote }}
+  debug.enabled: {{ .Values.advanced.debug | quote }}

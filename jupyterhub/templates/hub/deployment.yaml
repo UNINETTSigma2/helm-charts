@@ -58,13 +58,14 @@ spec:
           - "/bin/mkdir"
           - "-p"
           - "/mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ .Release.Name }}-hub"
+          - "/mnt/{{ .Values.persistentStorage.existingClaimName }}/home"
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
       {{- end }}
       containers:
       - name: hub-container
-        image: quay.io/uninett/jupyterhub:20180701-ba4f966
+        image: quay.io/uninett/jupyterhub-server:20180701-98e0927
         command:
           - jupyterhub
           - --config

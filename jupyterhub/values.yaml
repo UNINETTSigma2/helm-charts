@@ -4,14 +4,14 @@ persistentStorage:
 ingress:
   host: "paaltest.appstore-dep.ioudaas.no"
 advanced:
-  killIdle:
+  killIdlePods:
     enabled: true
     timeout: 3600
     concurrency: 10
   notebook:
     spawnLimit: 100
-  debug:
-    enabled: false
+  debug: false
+  jupyterLab: false
   hub:
     resources:
       requests:
@@ -35,7 +35,7 @@ advanced:
     memory:
       limit: "1G"
       guarantee: "1G"
-  userImage: jupyterhub/k8s-singleuser-sample:v0.6
+  userImage: quay.io/uninett/jupyterhub-singleuser:20180701-bd8f5a1
 
 appstore_generated_data:
   dataporten:
