@@ -45,9 +45,26 @@ spec:
       - name: secret
         secret:
           secretName: {{ .Release.Name }}-hub-secret
+      {{- if ne .Values.persistentStorage.existingClaim "" }}
+      - name: {{ .Values.persistentStorage.existingClaimName }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.persistentStorage.existingClaim }}
+      initContainers:
+      - name: busybox
+        image: busybox:1
+        securityContext:
+          runAsUser: 999
+        args:
+          - "/bin/mkdir"
+          - "-p"
+          - "/mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}"
+        volumeMounts:
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+      {{- end }}
       containers:
       - name: hub-container
-        image: quay.io/uninett/jupyterhub:20180629-e906891
+        image: quay.io/uninett/jupyterhub:20180701-ba4f966
         command:
           - jupyterhub
           - --config
@@ -58,6 +75,11 @@ spec:
             name: config
           - mountPath: /etc/jupyterhub/secret/
             name: secret
+          {{- if ne .Values.persistentStorage.existingClaim "" }}
+          - name: {{ .Values.persistentStorage.existingClaimName }}
+            mountPath: /srv/jupyterhub
+            subPath: /.tools/{{ template "fullname" . }}
+          {{- end }}
         resources:
 {{ toYaml .Values.advanced.hub.resources | indent 12}}
         env:
