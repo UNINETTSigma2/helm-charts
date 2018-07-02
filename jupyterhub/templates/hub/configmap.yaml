@@ -27,6 +27,7 @@ data:
   singleuser.uid: "999"
   singleuser.fs-gid: "999"
   singleuser.service-account-name: "default"
+  singleuser.pod-name-template: "{{.Release.Name}}-jupyter-{username}"
   singleuser.node-selector: "{}"
   {{- if ne .Values.persistentStorage.existingClaim "" }}
   singleuser.storage.type: "static"
