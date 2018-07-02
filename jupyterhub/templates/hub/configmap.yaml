@@ -15,15 +15,15 @@ data:
   {{- /* Auth */}}
   auth.state.enabled: "false"
   auth.admin.access: "true"
-  auth.admin.users: |
-    - {{ .Values.appstore_generated_data.owner_id | replace "fc:uid:" "" }}
+  # auth.admin.users: |
+  #   - {{ .Values.appstore_generated_data.owner_id | replace "fc:uid:" "" }}
   auth.type: "dataporten"
 
   {{- /* Singleuser */}}
   singleuser.start-timeout: "300"
   singleuser.image-pull-policy: IfNotPresent
   singleuser.scheduler-strategy: pack
-  singleuser.cmd: "jupyterhub-singleuser"
+  singleuser.cmd: ["jupyterhub-singleuser", "--config", "$HOME/.jupyter/notebook_config.py"]
   singleuser.uid: "999"
   singleuser.fs-gid: "999"
   singleuser.service-account-name: "default"
