@@ -33,6 +33,7 @@ advanced:
         memory: 1G
   singleuser:
     resources:
+      divider: 1 # Represents the number of users.
       requests:
         cpu: "0.2"
         memory: 1G
