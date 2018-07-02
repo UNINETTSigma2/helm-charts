@@ -23,7 +23,7 @@ data:
   singleuser.start-timeout: "300"
   singleuser.image-pull-policy: IfNotPresent
   singleuser.scheduler-strategy: pack
-  singleuser.cmd: '["jupyterhub-singleuser", "--config", "$HOME/.jupyter/notebook_config.py"]'
+  singleuser.cmd: "/usr/local/bin/start-notebook.sh"
   singleuser.uid: "999"
   singleuser.fs-gid: "999"
   singleuser.service-account-name: "default"
