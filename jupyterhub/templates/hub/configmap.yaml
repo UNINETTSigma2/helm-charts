@@ -31,8 +31,7 @@ data:
   singleuser.storage.static.pvc-name: {{ .Values.persistentStorage.existingClaim }}
   singleuser.storage.static.sub-path: 'home/{username}'
   {{- if .Values.advanced.sharedData.enabled }}
-  singleuser.storage.extra-volumes: '[{"name": "shareddata", "persistentVolumeClaim": {"claimName": "{{.Values.persistentStorage.existingClaim}}" } }]'
-  singleuser.storage.extra-volume-mounts: '[{"name": "shareddata", "mountPath": "/mnt/data", "subPath": "{{.Values.advanced.sharedData.subPath}}", "readOnly": {{.Values.advanced.sharedData.readOnly}}  }]'
+  singleuser.storage.extra-volume-mounts: '[{"name": "home", "mountPath": "/mnt/data", "subPath": "{{.Values.advanced.sharedData.subPath}}", "readOnly": {{.Values.advanced.sharedData.readOnly}}  }]'
   {{- end }}
   {{- else }}
   singleuser.storage.type: "none"
