@@ -36,6 +36,13 @@ spec:
         - name: image-pull-singleuser
           image: "{{ .Values.advanced.userImage }}"
           imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: 30m
+              memory: 10M
+            requests:
+              cpu: 10m
+              memory: 10M
           command:
             - /bin/sh
             - -c
@@ -43,3 +50,10 @@ spec:
       containers:
         - name: pause
           image: gcr.io/google_containers/pause:3.0
+          resources:
+            limits:
+              cpu: 30m
+              memory: 10M
+            requests:
+              cpu: 10m
+              memory: 10M
