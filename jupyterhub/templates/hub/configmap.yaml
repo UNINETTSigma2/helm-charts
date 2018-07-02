@@ -15,6 +15,8 @@ data:
   {{- /* Auth */}}
   auth.state.enabled: "false"
   auth.admin.access: "true"
+  auth.admin.users: |
+    - {{.Values.owner_id | replace "fc:uid:" ""}}
   auth.type: "dataporten"
 
   {{- /* Singleuser */}}
