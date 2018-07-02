@@ -34,7 +34,7 @@ advanced:
     memory:
       limit: "1G"
       guarantee: "1G"
-  userImage: quay.io/uninett/jupyterhub-singleuser:20180701-bd8f5a1
+  userImage: quay.io/uninett/jupyterhub-singleuser:20180701-847c083
 
 appstore_generated_data:
   dataporten:

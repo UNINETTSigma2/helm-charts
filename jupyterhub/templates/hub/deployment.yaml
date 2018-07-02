@@ -65,7 +65,7 @@ spec:
       {{- end }}
       containers:
       - name: hub-container
-        image: quay.io/uninett/jupyterhub-server:20180701-98e0927
+        image: quay.io/uninett/jupyterhub-server:20180701-f1745b4
         command:
           - jupyterhub
           - --config

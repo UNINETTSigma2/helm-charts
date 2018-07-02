@@ -22,8 +22,8 @@ data:
   singleuser.image-pull-policy: IfNotPresent
   singleuser.scheduler-strategy: pack
   singleuser.cmd: "jupyterhub-singleuser"
-  singleuser.uid: "1000"
-  singleuser.fs-gid: "1000"
+  singleuser.uid: "999"
+  singleuser.fs-gid: "999"
   singleuser.service-account-name: "default"
   singleuser.node-selector: "{}"
   {{- if ne .Values.persistentStorage.existingClaim "" }}
