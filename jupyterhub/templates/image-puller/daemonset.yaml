@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: {{ .Release.Name }}-image-puller
+  labels:
+    group: {{ .Release.Name }}-jupyterhub
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    component: image-puller
+  annotations:
+    "helm.sh/hook": pre-install,pre-upgrade
+    "helm.sh/hook-delete-policy": hook-succeeded,hook-failed
+    "helm.sh/hook-weight": "-10"
+spec:
+  selector:
+    matchLabels:
+      group: {{ .Release.Name }}-jupyterhub
+      release: {{ .Release.Name }}
+      heritage: {{ .Release.Service }}
+      component: image-puller
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 100%
+  template:
+    metadata:
+      labels:
+        group: {{ .Release.Name }}-jupyterhub
+        release: {{ .Release.Name }}
+        heritage: {{ .Release.Service }}
+        component: image-puller
+    spec:
+      terminationGracePeriodSeconds: 0
+      automountServiceAccountToken: false
+      initContainers:
+        - name: image-pull-singleuser
+          image: "{{ .Values.advanced.userImage }}"
+          imagePullPolicy: IfNotPresent
+          command:
+            - /bin/sh
+            - -c
+            - echo "Pulling complete"
+      containers:
+        - name: pause
+          image: gcr.io/google_containers/pause:3.0
