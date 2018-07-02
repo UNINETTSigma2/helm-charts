@@ -11,6 +11,10 @@ advanced:
   notebook:
     spawnLimit: 100
   debug: false
+  sharedData:
+    enabled: false
+    subPath: data
+    readOnly: true
   hub:
     resources:
       requests:
@@ -35,7 +39,7 @@ advanced:
       limits:
         cpu: "0.2"
         memory: 1G
-  userImage: quay.io/uninett/jupyterhub-singleuser:20180701-847c083
+  userImage: quay.io/uninett/jupyterhub-singleuser:20180702-ba91a87
 
 appstore_generated_data:
   dataporten:
