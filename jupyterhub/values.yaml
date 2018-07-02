@@ -13,7 +13,7 @@ advanced:
   debug: false
   sharedData:
     enabled: false
-    subPath: data
+    subPath: "data"
     readOnly: true
   hub:
     resources:
