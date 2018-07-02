@@ -37,17 +37,17 @@ data:
   singleuser.storage.type: "none"
   {{- end }}
   singleuser.storage.home_mount_path: "/home/notebook"
-  {{- if .Values.allUsers.resources.limits.memory }}
-  singleuser.memory.limit: {{ .Values.allUsers.resources.limits.memory | quote}}
+  {{- if .Values.userNotebookType.resources.limits.memory }}
+  singleuser.memory.limit: {{ .Values.userNotebookType.resources.limits.memory | quote}}
   {{- end }}
-  {{- if .Values.allUsers.resources.requests.memory }}
-  singleuser.memory.guarantee: {{ .Values.allUsers.resources.requests.memory | quote}}
+  {{- if .Values.userNotebookType.resources.requests.memory }}
+  singleuser.memory.guarantee: {{ .Values.userNotebookType.resources.requests.memory | quote}}
   {{- end }}
-  {{- if .Values.allUsers.resources.limits.cpu }}
-  singleuser.cpu.limit: {{ .Values.allUsers.resources.limits.cpu | quote}}
+  {{- if .Values.userNotebookType.resources.limits.cpu }}
+  singleuser.cpu.limit: {{ .Values.userNotebookType.resources.limits.cpu | quote}}
   {{- end }}
-  {{- if .Values.allUsers.resources.requests.cpu }}
-  singleuser.cpu.guarantee: {{ .Values.allUsers.resources.requests.cpu | quote}}
+  {{- if .Values.userNotebookType.resources.requests.cpu }}
+  singleuser.cpu.guarantee: {{ .Values.userNotebookType.resources.requests.cpu | quote}}
   {{- end }}
   singleuser.extra-labels: |
     hub.jupyter.org/network-access-hub: "true"

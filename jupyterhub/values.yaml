@@ -3,15 +3,52 @@ persistentStorage:
   existingClaimName: "example-name"
 ingress:
   host: "paaltest.appstore-dep.ioudaas.no"
-allUsers:
+userNotebookType:
   resources:
-    divider: 1 # The total amount of resources are divided by this.
     requests:
-      cpu: "16"
-      memory: 16G
+      cpu: "1"
+      memory: 1G
     limits:
-      cpu: "32"
-      memory: 16G
+      cpu: "2"
+      memory: 1G
+users:
+  resources:
+    options:
+      - id: "< 100"
+        requests:
+          cpu: "0.5"
+          memory: 1G
+        limits:
+            cpu: "1"
+            memory: 2G
+      - id: "100-200"
+        requests:
+            cpu: "1"
+            memory: 1G
+        limits:
+            cpu: "2"
+            memory: 2G
+      - id: "200-500"
+        requests:
+            cpu: "2"
+            memory: 2G
+        limits:
+            cpu: "4"
+            memory: 4G
+      - id: "> 500"
+        requests:
+            cpu: "4"
+            memory: 4G
+        limits:
+            cpu: "8"
+            memory: 8G
+    selected:
+      requests:
+        cpu: "2"
+        memory: 2G
+      limits:
+        cpu: "4"
+        memory: 2G
 advanced:
   killIdlePods:
     enabled: true
@@ -24,24 +61,7 @@ advanced:
     enabled: false
     subPath: "data"
     readOnly: true
-  hub:
-    resources:
-      requests:
-        cpu: "0.2"
-        memory: 512M
-      limits:
-        cpu: "0.4"
-        memory: 1G
-  proxy:
-    resources:
-      requests:
-        cpu: "0.2"
-        memory: 512M
-      limits:
-        cpu: "0.4"
-        memory: 1G
   userImage: quay.io/uninett/jupyterhub-singleuser:20180702-ba91a87
-
 appstore_generated_data:
   dataporten:
     id: ""

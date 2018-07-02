@@ -82,7 +82,7 @@ spec:
             subPath: .tools/{{ .Release.Name }}-hub
           {{- end }}
         resources:
-{{ toYaml .Values.advanced.hub.resources | indent 12}}
+{{ toYaml .Values.users.resources.selected | indent 12 }}
         env:
         # Put this here directly so hub will restart when we
         # change this
