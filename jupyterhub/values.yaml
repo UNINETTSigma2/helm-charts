@@ -63,7 +63,8 @@ advanced:
     readOnly: true
   userImage: quay.io/uninett/jupyterhub-singleuser:20180702-ba91a87
 appstore_generated_data:
-  owner_id: ""
+  appstore_meta_data:
+    owner_id: ""
   dataporten:
     id: ""
     client_secret: ""
