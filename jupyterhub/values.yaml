@@ -3,6 +3,15 @@ persistentStorage:
   existingClaimName: "example-name"
 ingress:
   host: "paaltest.appstore-dep.ioudaas.no"
+allUsers:
+  resources:
+    divider: 1 # The total amount of resources are divided by this.
+    requests:
+      cpu: "16"
+      memory: 16G
+    limits:
+      cpu: "32"
+      memory: 16G
 advanced:
   killIdlePods:
     enabled: true
@@ -30,15 +39,6 @@ advanced:
         memory: 512M
       limits:
         cpu: "0.4"
-        memory: 1G
-  singleuser:
-    resources:
-      divider: 1 # Represents the number of users.
-      requests:
-        cpu: "0.2"
-        memory: 1G
-      limits:
-        cpu: "0.2"
         memory: 1G
   userImage: quay.io/uninett/jupyterhub-singleuser:20180702-ba91a87
 
