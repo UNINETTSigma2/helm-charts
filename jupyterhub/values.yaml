@@ -28,12 +28,13 @@ advanced:
         cpu: "0.4"
         memory: 1Gi
   singleuser:
-    cpu:
-      limit: "0.2"
-      guarantee: "0.2"
-    memory:
-      limit: "1G"
-      guarantee: "1G"
+    resources:
+      requests:
+        cpu: "0.2"
+        memory: 1G
+      limits:
+        cpu: "0.2"
+        memory: 1G
   userImage: quay.io/uninett/jupyterhub-singleuser:20180701-847c083
 
 appstore_generated_data:

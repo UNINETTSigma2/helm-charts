@@ -34,17 +34,17 @@ data:
   singleuser.storage.type: "none"
   {{- end }}
   singleuser.storage.home_mount_path: "/home/notebook"
-  {{- if .Values.advanced.singleuser.memory.limit }}
-  singleuser.memory.limit: {{ .Values.advanced.singleuser.memory.limit | quote}}
+  {{- if .Values.advanced.singleuser.resources.limits.memory }}
+  singleuser.memory.limit: {{ .Values.advanced.singleuser.resources.limits.memory | quote}}
   {{- end }}
-  {{- if .Values.advanced.singleuser.memory.guarantee }}
-  singleuser.memory.guarantee: {{ .Values.advanced.singleuser.memory.guarantee | quote}}
+  {{- if .Values.advanced.singleuser.resources.requests.memory }}
+  singleuser.memory.guarantee: {{ .Values.advanced.singleuser.resources.requests.memory | quote}}
   {{- end }}
-  {{- if .Values.advanced.singleuser.cpu.limit }}
-  singleuser.cpu.limit: {{ .Values.advanced.singleuser.cpu.limit | quote}}
+  {{- if .Values.advanced.singleuser.resources.limits.cpu }}
+  singleuser.cpu.limit: {{ .Values.advanced.singleuser.resources.limits.cpu | quote}}
   {{- end }}
-  {{- if .Values.advanced.singleuser.cpu.guarantee }}
-  singleuser.cpu.guarantee: {{ .Values.advanced.singleuser.cpu.guarantee | quote}}
+  {{- if .Values.advanced.singleuser.resources.requests.cpu }}
+  singleuser.cpu.guarantee: {{ .Values.advanced.singleuser.resources.requests.cpu | quote}}
   {{- end }}
   singleuser.extra-labels: |
     hub.jupyter.org/network-access-hub: "true"
