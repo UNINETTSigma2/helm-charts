@@ -61,7 +61,7 @@ advanced:
     enabled: false
     subPath: "data"
     readOnly: true
-  userImage: quay.io/uninett/jupyterhub-singleuser:20180702-431133d
+  userImage: quay.io/uninett/jupyterhub-singleuser:20180703-f31579d
 appstore_generated_data:
   appstore_meta_data:
     owner_id: ""

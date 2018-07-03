@@ -8,5 +8,5 @@ scientific research group.
 
 ### Advanced
 This application uses the following Dockerfile:
-  - [Jupyter Hub Server](https://github.com/UNINETT/helm-charts-dockerfiles/tree/431133d/jupyterhub/server/Dockerfile)
-  - [User Notebook Server](https://github.com/UNINETT/helm-charts-dockerfiles/tree/431133d/jupyterhub/singleuser/Dockerfile)
+  - [Jupyter Hub Server](https://github.com/UNINETT/helm-charts-dockerfiles/tree/f31579d/jupyterhub/server/Dockerfile)
+  - [User Notebook Server](https://github.com/UNINETT/helm-charts-dockerfiles/tree/f31579d/jupyterhub/singleuser/Dockerfile)
