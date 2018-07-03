@@ -1,0 +1,41 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{.Release.Name}}-hub-pod"
+  labels:
+    heritage: {{.Release.Service | quote }}
+    release: {{.Release.Name | quote }}
+    chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    group: {{ .Release.Name }}-jupyterhub
+  annotations:
+    # This is what defines this resource as a hook.
+    # We need to delete the hub pod due to proxy token issue
+    "helm.sh/hook": post-upgrade
+    "helm.sh/hook-weight": "2"
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  template:
+    metadata:
+      name: "{{.Release.Name}}-hub-pod"
+      labels:
+        heritage: {{.Release.Service | quote }}
+        release: {{.Release.Name | quote }}
+        chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+        group: {{ .Release.Name }}-jupyterhub
+    spec:
+      restartPolicy: Never
+      serviceAccountName: {{.Release.Name}}-pod-cleaner
+      containers:
+      - name: pod-clean-job
+        image: "gurvin/kubectl:1.10.5"
+        imagePullPolicy: Always
+        env:
+        - name: RELEASE
+          value: {{.Release.Name}}
+        - name: NAMESPACE
+          value: {{ .Release.Namespace }}
+        args:
+          - --namespace="$(NAMESPACE)"
+          - --selector=release="$(RELEASE),component=hub"
+          - delete
+          - pod
