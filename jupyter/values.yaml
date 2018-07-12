@@ -3,10 +3,10 @@ ingress:
 resources:
   requests:
     cpu: 100m
-    memory: 512Mi
+    memory: 512M
   limits:
     cpu: 300m
-    memory: 1Gi
+    memory: 1G
 persistentStorage:
   existingClaim: ""
   existingClaimName: "example-name"
