@@ -24,5 +24,5 @@ advanced:
   env:
     sparkMasterUrl: "local[*]"
     jupyterLab: false
-  dockerImage: quay.io/uninett/deep-learning-tools:20180608-f8b3a46
+  dockerImage: quay.io/uninett/deep-learning-tools:20180713-94e0aec
   githubToken: ""

@@ -77,6 +77,8 @@ spec:
             value: 1g
           - name: SPARK_DRIVER_CORES
             value: '1'
+          - name: MEM_LIMIT
+            value: {{ .Values.resources.limits.memory }}
         resources:
           requests:
             cpu: {{ .Values.resources.requests.cpu }}
