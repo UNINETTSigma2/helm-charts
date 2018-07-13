@@ -4,6 +4,6 @@ Pytorch, Keras, Theano and CNTK made available through a jupyter notebook. In ad
 
 ### Advanced
 This application creates a Jupyter Notebook instance using the following Dockerfiles:
-  - [quay.io/UNINETT/deep-learning-tools](https://github.com/UNINETT/helm-charts-dockerfiles/tree/f8b3a46/deep-learning-tools/Dockerfile)
+  - [quay.io/Uninett/deep-learning-tools](https://github.com/Uninett/helm-charts-dockerfiles/tree/f8b3a46/deep-learning-tools/Dockerfile)
 
 This Dockerfile contains the information about available packages and their versions in the application.

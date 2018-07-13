@@ -19,4 +19,4 @@ do
     echo "Packaging $chart..."
     helm package $chart --destination docs/
 done
-helm repo index docs --url https://UNINETT.github.com/helm-charts
+helm repo index docs --url https://Uninett.github.com/helm-charts

@@ -6,4 +6,4 @@
 ### Advanced
 This application uses the following Dockerfile:
 
-- [RStudio](https://github.com/UNINETT/helm-charts-dockerfiles/tree/7fb982a/rstudio/server/Dockerfile)
+- [RStudio](https://github.com/Uninett/helm-charts-dockerfiles/tree/7fb982a/rstudio/server/Dockerfile)

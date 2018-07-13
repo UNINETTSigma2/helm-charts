@@ -2,8 +2,8 @@ apiVersion: v1
 description: Dokuwiki with oauth support
 name: dokuwiki
 maintainers:
-  - name: Pål Karlsrud @ UNINETT
+  - name: Pål Karlsrud @ Uninett
     email: paal@128.no
 version: 0.3.3
-home: https://github.com/UNINETT/appstore-app-dokuwiki
+home: https://github.com/Uninett/appstore-app-dokuwiki
 icon: https://bitnami.com/assets/stacks/dokuwiki/img/dokuwiki-stack-110x117.png

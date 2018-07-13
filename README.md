@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/UNINETT/helm-charts.svg?branch=master)](https://travis-ci.org/UNINETT/helm-charts)
+[![Build Status](https://travis-ci.org/Uninett/helm-charts.svg?branch=master)](https://travis-ci.org/Uninett/helm-charts)
 
 # Helm repository
 
@@ -15,5 +15,5 @@ helm repo add researchlab https://uninett.github.io/helm-charts
 ```
 
 ### Documentation
-- [Wiki](https://github.com/UNINETT/helm-charts/wiki/)
-- [Adding a new package](https://github.com/UNINETT/helm-charts/wiki/Creating-a-new-package)
+- [Wiki](https://github.com/Uninett/helm-charts/wiki/)
+- [Adding a new package](https://github.com/Uninett/helm-charts/wiki/Creating-a-new-package)
