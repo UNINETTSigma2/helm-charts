@@ -8,10 +8,10 @@ Github pages is used to automatically host a indexed repo to be used by helm of 
 
 * <https://uninett.github.io/helm-charts/>
 
-To add the repo to a local helm client, run:
+To add the stable repo to a local helm client, run:
 
 ```
-helm repo add researchlab https://uninett.github.io/helm-charts
+helm repo add researchlab https://uninett.github.io/helm-charts/repos/stable
 ```
 
 ### Documentation
