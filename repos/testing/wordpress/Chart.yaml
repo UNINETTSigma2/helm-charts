@@ -3,7 +3,7 @@ description: Dataporten + Wordpress
 name: wordpress
 version: 1.1.2
 maintainers:
-  - name: Pål Karlsrud @ Uninett
-    email: paal@128.no
+  - name: Uninett AS
+    email: system@uninett.no
 home: https://github.com/Uninett/appstore-app-wordpress
 icon: https://bitnami.com/assets/stacks/wordpress/img/wordpress-stack-220x234.png

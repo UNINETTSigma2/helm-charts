@@ -3,7 +3,7 @@ description: Apache Spark is a fast and general engine for big data processing.
 name: spark
 version: 0.7.0
 maintainers:
-  - name: Pål Karlsrud @ Uninett
-    email: paal@128.no
+  - name: Uninett AS
+    email: system@uninett.no
 home: https://github.com/Uninett/helm-charts/tree/master/spark
 icon: https://spark.apache.org/images/spark-logo-trademark.png
