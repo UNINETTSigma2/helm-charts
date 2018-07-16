@@ -23,5 +23,5 @@ advanced:
   env:
     sparkMasterUrl: "local[*]"
     jupyterLab: false
-  dockerImage: quay.io/uninett/jupyter-spark:20180713-77917d7
+  dockerImage: quay.io/uninett/jupyter-spark:20180716-33e9cbb
   githubToken: ""
