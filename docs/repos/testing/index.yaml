@@ -2,44 +2,44 @@ apiVersion: v1
 entries:
   dokuwiki:
   - apiVersion: v1
-    created: 2018-07-16T12:50:05.923976682Z
+    created: 2018-07-16T12:57:13.058470294Z
     description: Dokuwiki with oauth support
-    digest: 9e8ea5beb66cdf6531b6218979a49bcc1122655cc57e754bada3a6d9be88c891
+    digest: ed88e6d75e8ce8cf4797e43822d77171a8b463d0ebbac794c78f35117bd43425
     home: https://github.com/Uninett/appstore-app-dokuwiki
     icon: https://bitnami.com/assets/stacks/dokuwiki/img/dokuwiki-stack-110x117.png
     maintainers:
-    - email: paal@128.no
-      name: Pål Karlsrud @ Uninett
+    - email: system@uninett.no
+      name: Uninett AS
     name: dokuwiki
     urls:
     - https://Uninett.github.com/helm-charts/repos/testing/dokuwiki-0.3.3.tgz
     version: 0.3.3
   etherpad:
   - apiVersion: v1
-    created: 2018-07-16T12:50:05.924299551Z
+    created: 2018-07-16T12:57:13.058841287Z
     description: Etherpad + Dataporten
-    digest: d4ce6328a6892252da3c72cf1ec579b5d2d7817ca66fd947ca0a9752455519a4
+    digest: fefa1fab18f3fabd63e84556e9314e89cc94734071c2d2a93203766dec7d80ee
     home: https://github.com/Uninett/appstore-app-etherpad
     icon: https://translatewiki.net/images/thumb/6/6f/Etherpad_lite.svg/200px-Etherpad_lite.svg.png
     maintainers:
-    - email: paal@128.no
-      name: Pål Karlsrud @ Uninett
+    - email: system@uninett.no
+      name: Uninett AS
     name: etherpad
     urls:
     - https://Uninett.github.com/helm-charts/repos/testing/etherpad-1.1.3.tgz
     version: 1.1.3
   wordpress:
   - apiVersion: v1
-    created: 2018-07-16T12:50:05.924637298Z
+    created: 2018-07-16T12:57:13.059182053Z
     description: Dataporten + Wordpress
-    digest: 03e4351812ae0e539f14d5e8e19147cc5062a7962f951619ec5ed663d4138544
+    digest: 08aac861f1647655ac5018583ce3c9e83b52c4fd3a4aaad459f07fba91e79896
     home: https://github.com/Uninett/appstore-app-wordpress
     icon: https://bitnami.com/assets/stacks/wordpress/img/wordpress-stack-220x234.png
     maintainers:
-    - email: paal@128.no
-      name: Pål Karlsrud @ Uninett
+    - email: system@uninett.no
+      name: Uninett AS
     name: wordpress
     urls:
     - https://Uninett.github.com/helm-charts/repos/testing/wordpress-1.1.2.tgz
     version: 1.1.2
-generated: 2018-07-16T12:50:05.923474264Z
+generated: 2018-07-16T12:57:13.057917276Z

@@ -2,7 +2,7 @@ apiVersion: v1
 entries:
   deep-learning-tools:
   - apiVersion: v1
-    created: 2018-07-16T12:50:03.84073337Z
+    created: 2018-07-16T12:57:11.233213347Z
     description: A collection of various deep learning tools
     digest: 883fde565cd446fb1b23f4fdf8c02d38d7683591c8daaf770be4d88c6898360a
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -15,7 +15,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/deep-learning-tools-0.3.2.tgz
     version: 0.3.2
   - apiVersion: v1
-    created: 2018-07-16T12:50:03.840129521Z
+    created: 2018-07-16T12:57:11.232847343Z
     description: A collection of various deep learning tools
     digest: c0bc4cbb524347066e52e1d6c92aeb438aa3f491b12559b0b564c569331e1816
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -29,31 +29,34 @@ entries:
     version: 0.3.1
   jupyter:
   - apiVersion: v1
-    created: 2018-07-16T12:50:03.841315198Z
+    created: 2018-07-16T12:57:11.233572657Z
     description: Jupyter notebook with Dataporten integration
-    digest: ee6b585cffbef35c9fa07ae561e761f47bad33fe8a2c90c756c75daf62b06441
+    digest: ede25fe270c9032d7d290702d2e41af27319227314ce344c4d66bd33626547ae
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
     icon: https://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
     maintainers:
-    - email: paal@128.no
-      name: Pål Karlsrud @ Uninett
+    - email: system@uninett.no
+      name: Uninett AS
     name: jupyter
     urls:
     - https://Uninett.github.com/helm-charts/repos/stable/jupyter-0.7.5.tgz
     version: 0.7.5
   jupyterhub:
   - apiVersion: v1
-    created: 2018-07-16T12:50:03.84208478Z
+    created: 2018-07-16T12:57:11.234058368Z
     description: Multi-user Jupyter installation with Dataporten integration
-    digest: 9f2dcbf6c7f2e8ad24939c51e2c124956f2979047f2783af361cb3a0adb678e7
+    digest: 2b7edc5e445f9d50ce9cdf13ac236ed3981001b4bead9bff45c8a783ba325cb0
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
+    maintainers:
+    - email: system@uninett.no
+      name: Uninett AS
     name: jupyterhub
     urls:
     - https://Uninett.github.com/helm-charts/repos/stable/jupyterhub-0.9.6.tgz
     version: 0.9.6
   minio:
   - apiVersion: v1
-    created: 2018-07-16T12:50:03.842574894Z
+    created: 2018-07-16T12:57:11.234341895Z
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: afa03dd7d0652aba3c6fb353d2a254c91033d32bf72e624d6ac452e0b0c2a542
     home: https://minio.io/
@@ -67,7 +70,7 @@ entries:
     version: 0.2.1
   rstudio:
   - apiVersion: v1
-    created: 2018-07-16T12:50:03.843145099Z
+    created: 2018-07-16T12:57:11.234723007Z
     description: RStudio is an integrated development environment (IDE) for R
     digest: b6a8a2358faaaf2273db921fdeb18e67c04a81e4fd3e3a15098a5cf0bc348f70
     home: https://www.rstudio.com/products/RStudio/
@@ -81,16 +84,16 @@ entries:
     version: 0.0.8
   spark:
   - apiVersion: v1
-    created: 2018-07-16T12:50:03.843801748Z
+    created: 2018-07-16T12:57:11.235103408Z
     description: Apache Spark is a fast and general engine for big data processing.
-    digest: 3241e330643e6b19a8e49cb810fe1e098d2119aab42c30a5a058b97f386bd927
+    digest: cf7abce12464be5d70feae53c0aea99bc20b6e56fa0934559cbeee176ddfa46b
     home: https://github.com/Uninett/helm-charts/tree/master/spark
     icon: https://spark.apache.org/images/spark-logo-trademark.png
     maintainers:
-    - email: paal@128.no
-      name: Pål Karlsrud @ Uninett
+    - email: system@uninett.no
+      name: Uninett AS
     name: spark
     urls:
     - https://Uninett.github.com/helm-charts/repos/stable/spark-0.7.0.tgz
     version: 0.7.0
-generated: 2018-07-16T12:50:03.839287302Z
+generated: 2018-07-16T12:57:11.23229702Z
