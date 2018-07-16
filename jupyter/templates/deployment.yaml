@@ -27,6 +27,7 @@ spec:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           persistentVolumeClaim:
             claimName: {{ .Values.persistentStorage.existingClaim }}
+            readOnly: {{ .Values.persistentStorage.readOnly }}
         {{ end }}
       securityContext:
         runAsNonRoot: true
