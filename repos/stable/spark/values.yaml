@@ -26,6 +26,7 @@ ingress:
 persistentStorage:
   existingClaim: ""
   existingClaimName: "example-name"
+  readOnly: false
 
 appstore_generated_data:
   dataporten:

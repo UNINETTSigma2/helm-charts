@@ -1,6 +1,7 @@
 persistentStorage:
   existingClaim: ""
   existingClaimName: "example-name"
+  readOnly: false
 ingress:
   host: "paaltest.appstore-dep.ioudaas.no"
 userNotebookType:
