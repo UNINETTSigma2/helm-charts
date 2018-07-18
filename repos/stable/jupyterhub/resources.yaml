@@ -6,3 +6,7 @@ dataporten:
       - groups
     RedirectURI:
       - /hub/oauth_callback
+appstore:
+  Options:
+    Standards:
+      - defaultMount
