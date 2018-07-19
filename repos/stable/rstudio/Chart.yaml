@@ -2,8 +2,9 @@ apiVersion: v1
 description: RStudio is an integrated development environment (IDE) for R
 name: rstudio
 maintainers:
-  - name: Uninett AS
-    email: system@uninett.no
+- name: Uninett AS
+  email: system@uninett.no
 home: https://www.rstudio.com/products/RStudio/
 icon: https://upload.wikimedia.org/wikipedia/en/f/f0/RStudio_logo.png
 version: 0.0.9
+packageVersions: []
