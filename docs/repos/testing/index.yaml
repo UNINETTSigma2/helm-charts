@@ -2,7 +2,7 @@ apiVersion: v1
 entries:
   dokuwiki:
   - apiVersion: v1
-    created: 2018-07-18T10:55:42.54293595Z
+    created: 2018-07-19T10:00:54.480901566Z
     description: Dokuwiki with oauth support
     digest: ed88e6d75e8ce8cf4797e43822d77171a8b463d0ebbac794c78f35117bd43425
     home: https://github.com/Uninett/appstore-app-dokuwiki
@@ -16,7 +16,7 @@ entries:
     version: 0.3.3
   etherpad:
   - apiVersion: v1
-    created: 2018-07-18T10:55:42.543428164Z
+    created: 2018-07-19T10:00:54.481250124Z
     description: Etherpad + Dataporten
     digest: fefa1fab18f3fabd63e84556e9314e89cc94734071c2d2a93203766dec7d80ee
     home: https://github.com/Uninett/appstore-app-etherpad
@@ -30,7 +30,7 @@ entries:
     version: 1.1.3
   wordpress:
   - apiVersion: v1
-    created: 2018-07-18T10:55:42.543831716Z
+    created: 2018-07-19T10:00:54.481611382Z
     description: Dataporten + Wordpress
     digest: 08aac861f1647655ac5018583ce3c9e83b52c4fd3a4aaad459f07fba91e79896
     home: https://github.com/Uninett/appstore-app-wordpress
@@ -42,4 +42,4 @@ entries:
     urls:
     - https://Uninett.github.com/helm-charts/repos/testing/wordpress-1.1.2.tgz
     version: 1.1.2
-generated: 2018-07-18T10:55:42.542353006Z
+generated: 2018-07-19T10:00:54.480378042Z
