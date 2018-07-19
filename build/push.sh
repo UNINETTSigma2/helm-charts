@@ -10,7 +10,7 @@ setup_git() {
 commit_files() {
   git checkout master
   git add docs/
-  git add repos/*/*/Chart.yaml
+  git add repos/*/*/package_versions.json
   git commit --message "Travis build: $TRAVIS_BUILD_NUMBER [skip ci]"
 }
 

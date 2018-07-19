@@ -5,7 +5,6 @@ set -o pipefail
 REPO="Uninett"
 API_URL="https://quay.io/api/v1"
 CHART_DIR=$1
-CHART_YAML=$1/Chart.yaml
 
 IMAGES=$(grep -iPhor "quay\.io\/$REPO\/\K[A-Za-z0-9\-]*:[a-zA-Z0-9\.\-]*" $CHART_DIR || true)
 if [[ -z $IMAGES ]]; then
@@ -26,5 +25,4 @@ do
     echo "$ALL_LABELS" > labels.json
 done
 
-cat $CHART_YAML | yq '.' > chart.json
-yq -s -y '.[0] * .[1]' chart.json labels.json > $CHART_YAML
+mv labels.json $CHART_DIR/package_versions.json
