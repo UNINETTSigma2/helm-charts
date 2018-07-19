@@ -7,9 +7,10 @@ setup_git() {
   git config --global user.name "Travis CI"
 }
 
-commit_website_files() {
+commit_files() {
   git checkout master
   git add docs/
+  git add repos/*/*/Chart.yaml
   git commit --message "Travis build: $TRAVIS_BUILD_NUMBER [skip ci]"
 }
 
@@ -30,7 +31,7 @@ if [ "$TRAVIS_BRANCH" != "master" ]; then
 fi
 
 setup_git
-commit_website_files
+commit_files
 
 # Only push changes if more than the index changed this build.
 if changes | grep -vE 'index.yaml|.*.sh|.travis|README|LICENSE|build'; then

@@ -10,19 +10,20 @@ do
 	charts+=("$REPLY")
     done < <(find -- $repo/* -type d -exec sh -c '[ -f "$0"/Chart.yaml ]' '{}' \; -print0)
 
-    for chart in "${charts[@]}"
+    for chart_dir in "${charts[@]}"
     do
-	    ./lint-chart.sh $chart
+	    ./get-labels.sh $chart_dir
+	    ./lint-chart.sh $chart_dir
 	    echo
     done
 
     repo_dir="docs/$repo"
     mkdir -p $repo_dir
     helm init -c
-    for chart in "${charts[@]}"
+    for chart_dir in "${charts[@]}"
     do
-	echo "Packaging $chart..."
-	helm package $chart --destination $repo_dir
+	echo "Packaging $chart_dir..."
+	helm package $chart_dir --destination $repo_dir
     done
     helm repo index $repo_dir --url https://Uninett.github.com/helm-charts/$repo
 done
