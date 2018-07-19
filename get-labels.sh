@@ -7,14 +7,13 @@ API_URL="https://quay.io/api/v1"
 CHART_DIR=$1
 CHART_YAML=$1/Chart.yaml
 
-IMAGES=$(grep -iqPhor "quay\.io\/$REPO\/\K[A-Za-z0-9\-]*:[a-zA-Z0-9\.\-]*" $CHART_DIR || true)
+IMAGES=$(grep -iPhor "quay\.io\/$REPO\/\K[A-Za-z0-9\-]*:[a-zA-Z0-9\.\-]*" $CHART_DIR || true)
 if [[ -z $IMAGES ]]; then
     exit 0
 fi
 
 for i in $IMAGES
 do
-    echo "img=> $i"
     IFS=':' read -a parts <<< "${i}"
     IMAGE="${parts[0]}"
     IMG_TAG="${parts[1]}"
