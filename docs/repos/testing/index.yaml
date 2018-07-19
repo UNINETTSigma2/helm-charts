@@ -2,9 +2,9 @@ apiVersion: v1
 entries:
   dokuwiki:
   - apiVersion: v1
-    created: 2018-07-19T10:32:55.227034088Z
+    created: 2018-07-19T10:58:54.529910544Z
     description: Dokuwiki with oauth support
-    digest: 1c62d6e453c88b167f8ab8d08a674a1f9479bf62c49ad0b0ff29566961c53386
+    digest: 1a03dc4d82338b742e383028c71150c84a354f9b0bf0b3360e604b7ce0997ea3
     home: https://github.com/Uninett/appstore-app-dokuwiki
     icon: https://bitnami.com/assets/stacks/dokuwiki/img/dokuwiki-stack-110x117.png
     maintainers:
@@ -16,9 +16,9 @@ entries:
     version: 0.3.3
   etherpad:
   - apiVersion: v1
-    created: 2018-07-19T10:32:55.227513994Z
+    created: 2018-07-19T10:58:54.530245999Z
     description: Etherpad + Dataporten
-    digest: cc2d033665509abbb6b6b50f9c6f28744c2cb6f08dd8971e3d8a1f803d9ad4c8
+    digest: 73658188373d2a9e6ed7cdcd58f0f2a85c7d6ccc6ca13af4733218ae0a4cb665
     home: https://github.com/Uninett/appstore-app-etherpad
     icon: https://translatewiki.net/images/thumb/6/6f/Etherpad_lite.svg/200px-Etherpad_lite.svg.png
     maintainers:
@@ -30,9 +30,9 @@ entries:
     version: 1.1.3
   wordpress:
   - apiVersion: v1
-    created: 2018-07-19T10:32:55.228132242Z
+    created: 2018-07-19T10:58:54.530626379Z
     description: Dataporten + Wordpress
-    digest: 6ad7377caa6deac402ce7696379f5d4fbf505ff22f537b07c1d8bc3cdb0617d2
+    digest: 54c5a495367c85b4dfa5e5072db3ea018552d8cd142b8ce71b751d6ec5b3c0c3
     home: https://github.com/Uninett/appstore-app-wordpress
     icon: https://bitnami.com/assets/stacks/wordpress/img/wordpress-stack-220x234.png
     maintainers:
@@ -42,4 +42,4 @@ entries:
     urls:
     - https://Uninett.github.com/helm-charts/repos/testing/wordpress-1.1.2.tgz
     version: 1.1.2
-generated: 2018-07-19T10:32:55.226232915Z
+generated: 2018-07-19T10:58:54.529380865Z

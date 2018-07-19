@@ -1,34 +1,14 @@
 {
-  "packageVersions": [
-    {
-      "pkg-cntk-version": "2.5.1"
-    },
-    {
-      "pkg-onnx-version": "1.2.1"
-    },
-    {
-      "pkg-mxnet-version": "1.2.0"
-    },
-    {
-      "pkg-tensorflow-version": "1.9.0"
-    },
-    {
-      "pkg-pytorch-version": "0.4.0"
-    },
-    {
-      "pkg-cuda-version": "9.2.148"
-    },
-    {
-      "pkg-cudnn-version": "7.1.4.18"
-    },
-    {
-      "pkg-keras-version": "2.2.0"
-    },
-    {
-      "pkg-caffe2-version": "0.8.dev"
-    },
-    {
-      "pkg-theano-version": "1.0.2"
-    }
-  ]
+  "packageVersions": {
+    "pkg-cntk-version": "2.5.1",
+    "pkg-onnx-version": "1.2.1",
+    "pkg-mxnet-version": "1.2.0",
+    "pkg-tensorflow-version": "1.9.0",
+    "pkg-pytorch-version": "0.4.0",
+    "pkg-cuda-version": "9.2.148",
+    "pkg-cudnn-version": "7.1.4.18",
+    "pkg-keras-version": "2.2.0",
+    "pkg-caffe2-version": "0.8.dev",
+    "pkg-theano-version": "1.0.2"
+  }
 }
