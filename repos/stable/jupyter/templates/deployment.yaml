@@ -28,9 +28,6 @@ spec:
           persistentVolumeClaim:
             claimName: {{ .Values.persistentStorage.existingClaim }}
             readOnly: {{ .Values.persistentStorage.readOnly }}
-            {{ if ne .Values.persistentStorage.subPath "/" }}
-            subPath: {{ .Values.persistentStorage.subPath }}
-            {{ end }}
         {{ end }}
       securityContext:
         runAsNonRoot: true
@@ -96,4 +93,7 @@ spec:
         {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          {{ if ne .Values.persistentStorage.subPath "/" }}
+          subPath: {{ .Values.persistentStorage.subPath }}
+          {{ end }}
         {{- end -}}
