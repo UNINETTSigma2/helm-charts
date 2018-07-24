@@ -28,6 +28,9 @@ spec:
           persistentVolumeClaim:
             claimName: {{ .Values.persistentStorage.existingClaim }}
             readOnly: {{ .Values.persistentStorage.readOnly }}
+            {{ if ne .Values.persistentStorage.subPath "/" }}
+            subPath: {{ .Values.persistentStorage.subPath }}
+            {{ end }}
         {{ end }}
       securityContext:
         runAsNonRoot: true
