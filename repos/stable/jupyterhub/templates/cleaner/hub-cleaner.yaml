@@ -38,8 +38,5 @@ spec:
           - /bin/sh
         args:
           - -c
-          - kubectl
-          - --namespace="$(NAMESPACE)"
-          - --selector=release="$(RELEASE),component=hub"
-          - delete
-          - pod
+          - -x
+          - "kubectl --namespace=${NAMESPACE} --selector=release=${RELEASE},component=hub delete pod"
