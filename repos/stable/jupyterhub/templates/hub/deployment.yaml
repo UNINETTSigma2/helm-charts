@@ -81,6 +81,9 @@ spec:
           - name: {{ .Values.persistentStorage.existingClaimName }}
             mountPath: /srv/jupyterhub
             subPath: .tools/{{ .Release.Name }}-hub
+            {{ if ne .Values.persistentStorage.subPath "/" }}
+            subPath: {{ .Values.persistentStorage.subPath }}
+            {{ end }}
           {{- end }}
         resources:
 {{ toYaml .Values.users.resources.selected | indent 12 }}

@@ -11,6 +11,7 @@ persistentStorage:
   existingClaim: ""
   existingClaimName: "example-name"
   readOnly: false
+  subPath: "/"
 advanced:
   accessKey: "exampleaccesskey"
   secretKey: "examplesecretkey"

@@ -27,6 +27,7 @@ persistentStorage:
   existingClaim: ""
   existingClaimName: "example-name"
   readOnly: false
+  subPath: "/"
 
 appstore_generated_data:
   dataporten:
