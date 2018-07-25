@@ -31,7 +31,7 @@ spec:
               path: notebook_config.py
       securityContext:
         runAsNonRoot: true
-        fsGroup: 999
+        fsGroup: {{ .Values.uid }}
       containers:
       - name: auth-proxy
         image: quay.io/uninett/goidc-proxy:v1.1.3
@@ -92,7 +92,7 @@ spec:
         ports:
         - containerPort: 8888
         securityContext:
-          runAsUser: 999
+          runAsUser: {{ .Values.uid }}
         volumeMounts:
         - name: notebook-config
           mountPath: /home/notebook/.jupyter/notebook_config.py

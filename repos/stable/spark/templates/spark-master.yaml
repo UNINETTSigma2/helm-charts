@@ -36,13 +36,13 @@ spec:
         {{ end }}
       securityContext:
         runAsNonRoot: true
-        fsGroup: 999
+        fsGroup: {{ .Values.uid }}
       {{- if ne .Values.persistentStorage.existingClaim "" }}
       initContainers:
       - name: busybox
         image: busybox:1
         securityContext:
-          runAsUser: 999
+          runAsUser: {{ .Values.uid }}
         args:
           - "/bin/mkdir"
           - "-p"
@@ -108,7 +108,7 @@ spec:
             initialDelaySeconds: 30
             timeoutSeconds: 30
           securityContext:
-            runAsUser: 999
+            runAsUser: {{ .Values.uid }}
           resources:
             requests:
                 cpu: {{ .Values.advanced.master.resources.requests.cpu }}

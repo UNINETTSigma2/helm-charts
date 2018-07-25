@@ -22,6 +22,7 @@ appstore_generated_data:
     client_secret: "0000-abcd"
     authorized_groups:
       - ""
+uid: 999
 advanced:
   env:
     sparkMasterUrl: "local[*]"

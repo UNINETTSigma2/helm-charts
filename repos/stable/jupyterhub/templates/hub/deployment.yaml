@@ -54,7 +54,7 @@ spec:
       - name: busybox
         image: busybox:1
         securityContext:
-          runAsUser: 999
+          runAsUser: {{ .Values.uid }}
         args:
           - "/bin/mkdir"
           - "-p"

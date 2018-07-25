@@ -51,6 +51,7 @@ users:
       limits:
         cpu: "4"
         memory: 2G
+uid: 999
 advanced:
   killIdlePods:
     enabled: true

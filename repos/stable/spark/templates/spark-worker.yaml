@@ -19,7 +19,7 @@ spec:
       {{ end }}
       securityContext:
         runAsNonRoot: true
-        fsGroup: 999
+        fsGroup: {{ .Values.uid }}
       containers:
         - name: spark-worker
           image: {{ .Values.advanced.workerImage }}
@@ -41,7 +41,7 @@ spec:
             initialDelaySeconds: 30
             timeoutSeconds: 30
           securityContext:
-            runAsUser: 999
+            runAsUser: {{ .Values.uid }}
           resources:
             requests:
                 cpu: {{ .Values.advanced.workers.resources.requests.cpu }}

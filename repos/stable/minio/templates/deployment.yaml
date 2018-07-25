@@ -21,7 +21,7 @@ spec:
       - name: busybox
         image: busybox:1
         securityContext:
-          runAsUser: 999
+          runAsUser: {{ .Values.uid }}
         args:
           - "/bin/mkdir"
           - "-p"
@@ -32,7 +32,7 @@ spec:
       {{- end }}
       securityContext:
         runAsNonRoot: true
-        fsGroup: 999
+        fsGroup: {{ .Values.uid }}
       containers:
       - name: minio
         env:
@@ -59,7 +59,7 @@ spec:
         ports:
         - containerPort: 9000
         securityContext:
-          runAsUser: 999
+          runAsUser: {{ .Values.uid }}
         livenessProbe:
           httpGet:
             path: /minio/health/live

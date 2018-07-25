@@ -20,6 +20,8 @@ advanced:
   masterImage: quay.io/uninett/jupyter-spark:20180627-0f20926
   workerImage: quay.io/uninett/jupyter-spark:20180627-0f20926
 
+uid: 999
+
 ingress:
   host: "host.example.com"
 
