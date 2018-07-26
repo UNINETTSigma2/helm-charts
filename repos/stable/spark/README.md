@@ -5,3 +5,13 @@
 ### Advanced
 This application creates a [Apache Spark](https://github.com/Uninett/helm-charts/tree/master/spark) using the following Dockerfile:
   - [uninett/jupyter-spark](https://github.com/Uninett/helm-charts-dockerfiles/tree/0f20926/jupyter-spark/Dockerfile)
+
+
+#### Values
+| Value name    | Description |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| advanced.masterImage | The Docker image to use when creating the master.    |
+| advanced.workerImage | The Docker image to use when creating worker(s).     |
+| advanced.master.machineType | Determines how much resources will be allocated to the master. |
+| advanced.worker.replicas | The amount of workers to create in the cluster. |
+| advanced.worker.machineType | Determines how much resources will be allocated to each worker. |

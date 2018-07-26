@@ -6,4 +6,9 @@
 This application creates a [Jupyter Notebook](https://github.com/Uninett/helm-charts/tree/master/jupyter) instance using the following Dockerfiles:
   - [quay.io/uninett/jupyter-spark](https://github.com/Uninett/helm-charts-dockerfiles/tree/0f20926/jupyter-spark/Dockerfile)
 
-These dockerfiles contains the information about relevant packages available in the application.
+#### Values
+| Value name    | Description |
+| ------------- | ----------------------------------------------------------------------------------------------------------- |
+| advanced.githubToken        | If you need to access private Github repositories, you need to specify a Github access token. |
+| advanced.env.jupyterLab     | Whether or not to use JupyterLab                                                              |
+| advanced.env.sparkMasterUrl | The URL to use when attempting to connect to Spark from a Jupyter notebook.                   |

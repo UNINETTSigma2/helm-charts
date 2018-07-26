@@ -6,4 +6,9 @@ Pytorch, Keras, Theano and CNTK made available through a jupyter notebook. In ad
 This application creates a Jupyter Notebook instance using the following Dockerfiles:
   - [quay.io/Uninett/deep-learning-tools](https://github.com/Uninett/helm-charts-dockerfiles/tree/f8b3a46/deep-learning-tools/Dockerfile)
 
-This Dockerfile contains the information about available packages and their versions in the application.
+#### Values
+| Value name    | Description |
+| ------------- | ----------------------------------------------------------------------------------------------------------- |
+| advanced.githubToken        | If you need to access private Github repositories, you need to specify a Github access token. |
+| advanced.env.jupyterLab     | Whether or not to use JupyterLab                                                              |
+| advanced.env.sparkMasterUrl | The URL to use when attempting to connect to Spark from a Jupyter notebook.                   |
