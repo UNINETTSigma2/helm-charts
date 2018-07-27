@@ -22,4 +22,4 @@ appstore_generated_data:
     authorized_groups:
       - ""
 advanced:
-  dockerImage: quay.io/uninett/rstudio-server:20180726-b815993
+  dockerImage: quay.io/uninett/rstudio-server:20180727-3e9e154

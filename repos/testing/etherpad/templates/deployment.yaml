@@ -19,7 +19,7 @@ spec:
             secretName: {{ template "fullname" . }}
       containers:
       - name: etherpad
-        image: quay.io/uninett/etherpad:20180409-8650758
+        image: quay.io/uninett/etherpad:20180626-6f14404
         env:
           - name: DATAPORTEN_CLIENTID
             valueFrom:

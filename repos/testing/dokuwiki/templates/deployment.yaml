@@ -43,7 +43,7 @@ spec:
             mountPath: /conf
         workingDir: /conf
       - name: dokuwiki
-        image: quay.io/uninett/dokuwiki:20180409-8650758
+        image: quay.io/uninett/dokuwiki:20180727-30f3127
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         ports:
