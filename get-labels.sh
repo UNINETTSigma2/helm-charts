@@ -19,7 +19,7 @@ do
     IMG_TAG="${parts[1]}"
 
     MANIFEST_ID="$(curl -sq -L "$API_URL/repository/$REPO/$IMAGE/tag/?specificTag=$IMG_TAG" | jq -r '.tags[0].manifest_digest')"
-    LABELS="$(curl -sq -L "$API_URL/repository/$REPO/$IMAGE/manifest/$MANIFEST_ID/labels" | jq '.labels | [.[] | select( .key | startswith("pkg"))] | map({(.key):  .value}) | add | {"packageVersions": .}')"
+    LABELS="$(curl -sq -L "$API_URL/repository/$REPO/$IMAGE/manifest/$MANIFEST_ID/labels" | jq '.labels | [.[] | select( .key | startswith("pkg"))] | map({(.key):  .value}) | add | . //= {} | {"packageVersions": . }')"
     echo "$LABELS" > labels-tmp.json
     ALL_LABELS="$(jq -s '.[0] * .[1]' labels.json labels-tmp.json)"
     echo "$ALL_LABELS" > labels.json
