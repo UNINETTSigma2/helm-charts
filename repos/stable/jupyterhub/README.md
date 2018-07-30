@@ -1,7 +1,7 @@
 By installing this package, an instance of Jupyterhub capable of creating new
 Jupyter notebook instances will be created.
 
-[https://jupyterhub.readthedocs.io/en/latest/](JupyterHub) can for instance be
+[Jupyterhub](https://jupyterhub.readthedocs.io/en/latest/) can for instance be
 used to serve notebooks to a class of students, a corporate data science
 group, or a scientific research group.
 
