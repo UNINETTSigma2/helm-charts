@@ -1,13 +1,12 @@
 apiVersion: v1
 description: A collection of various deep learning tools
 name: deep-learning-tools
-version: 0.3.6
+version: 0.3.7
 maintainers:
 - name: Uninett AS
   email: system@uninett.no
 home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
 icon: https://upload.wikimedia.org/wikipedia/commons/8/81/Deep_learning.png
 keywords:
-  - Machine learning
   - GPU enabled
   - Jupyter notebook
