@@ -17,8 +17,8 @@ advanced:
       limits:
           cpu: 200m
           memory: 1500Mi
-  masterImage: quay.io/uninett/jupyter-spark:20180627-0f20926
-  workerImage: quay.io/uninett/jupyter-spark:20180627-0f20926
+  masterImage: quay.io/uninett/jupyter-spark:20180726-b815993
+  workerImage: quay.io/uninett/jupyter-spark:20180726-b815993
 
 uid: 999
 
