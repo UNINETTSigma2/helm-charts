@@ -5,6 +5,8 @@ of the single-user Jupyter notebook server. JupyterHub can be used to serve
 notebooks to a class of students, a corporate data science group, or a
 scientific research group.
 
+------
+
 ### Advanced
 This application uses the following Dockerfile:
   - [Jupyter Hub Server](https://github.com/Uninett/helm-charts-dockerfiles/tree/0ff1eb6/jupyterhub/server/Dockerfile)

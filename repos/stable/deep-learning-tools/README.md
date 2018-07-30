@@ -1,6 +1,10 @@
 # Deep learning tools
 A collection of several commonly used deep learning tools, such as Tensorflow,
-Pytorch, Keras, Theano and CNTK made available through a jupyter notebook. In addition there is [Tensorboard](https://www.tensorflow.org/programmers_guide/summaries_and_tensorboard) and [Visdom](https://github.com/facebookresearch/visdom) are available for visualization during training.
+Pytorch, Keras, Theano and CNTK made available through a jupyter notebook.
+In addition there is [Tensorboard](https://www.tensorflow.org/programmers_guide/summaries_and_tensorboard) and [Visdom](https://github.com/facebookresearch/visdom) are available for visualization during training.
+
+
+------
 
 ### Advanced
 This application creates a Jupyter Notebook instance using the following Dockerfiles:
