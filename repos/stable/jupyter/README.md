@@ -1,7 +1,11 @@
-# Jupyter notebook
+By installing this package, a Jupyter notebook with various pre-installed tools will be created.
 
-[Jupyter Notebook](http://jupyter.org/) is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more.
+A [Jupyter Notebook](http://jupyter.org/) is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more.
 
+## Features
+- A browser accessible and user customisable Jupyter notebook
+- Support for using Python, Scala and R within the notebook
+- Support for distributed computing using Apache Spark
 
 ------
 

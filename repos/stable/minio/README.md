@@ -1,7 +1,12 @@
-# minio
+By installing this package, an instance of [minio](https://minio.io) capable
+of storing data/files will be created.
 
-[minio](https://minio.io) is a distributed object storage server, designed for private cloud infrastructure.
+[minio](https://minio.io) is a distributed storage server, designed for private cloud infrastructure.
 
+
+## Features
+- The ability to download and upload data/files through a web interface
+- Support for sharing data among other users
 
 ------
 

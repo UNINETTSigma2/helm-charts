@@ -1,9 +1,14 @@
-# Jupyterhub
+By installing this package, an instance of Jupyterhub capable of creating new
+Jupyter notebook instances will be created.
 
-[https://jupyterhub.readthedocs.io/en/latest/](JupyterHub), a multi-user Hub, spawns, manages, and proxies multiple instances
-of the single-user Jupyter notebook server. JupyterHub can be used to serve
-notebooks to a class of students, a corporate data science group, or a
-scientific research group.
+[https://jupyterhub.readthedocs.io/en/latest/](JupyterHub) can for instance be
+used to serve notebooks to a class of students, a corporate data science
+group, or a scientific research group.
+
+## Features
+- The ability to access and administer the notebooks of each user
+- Support for sharing data among the users
+- The ability to use a custom Docker image when spawning new notebooks
 
 ------
 

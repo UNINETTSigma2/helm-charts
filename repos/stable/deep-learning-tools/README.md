@@ -1,8 +1,16 @@
-# Deep learning tools
-A collection of several commonly used deep learning tools, such as Tensorflow,
+By installing this package, a Jupyter notebook with various pre-installed
+deep-learning related tools will be created.
+
+This package includes a collection of several commonly used deep learning tools, such as Tensorflow,
 Pytorch, Keras, Theano and CNTK made available through a jupyter notebook.
 In addition there is [Tensorboard](https://www.tensorflow.org/programmers_guide/summaries_and_tensorboard) and [Visdom](https://github.com/facebookresearch/visdom) are available for visualization during training.
 
+
+## Features
+- A browser accessible and user customisable Jupyter notebook
+- Various machine learning and visualization libraries
+- Pre-configured GPU drivers
+- Support for distributed computing using Apache Spark
 
 ------
 

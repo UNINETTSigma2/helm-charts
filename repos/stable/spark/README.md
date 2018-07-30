@@ -1,12 +1,17 @@
-# Apache Spark
+By installing this package, an [Apache Spark](https://spark.apache.org/) cluster will be created.
 
-[Apache Spark](https://spark.apache.org/) is a fast and general engine for big data processing, with built-in modules for streaming, SQL, machine learning and graph processing.
+[Apache Spark](https://spark.apache.org/) is a fast and general engine for big
+data processing, with built-in modules for streaming, SQL, machine learning
+and graph processing.
 
+## Features
+- Support for connecting other applications (such Jupyter notebooks) to the Spark cluster
+- A user-accessible cluster dashboard
 
 ------
 
 ### Advanced
-This application creates a [Apache Spark](https://github.com/Uninett/helm-charts/tree/master/spark) using the following Dockerfile:
+This application creates a [Apache Spark](https://github.com/Uninett/helm-charts/tree/master/spark) cluster using the following Dockerfile:
   - [uninett/jupyter-spark](https://github.com/Uninett/helm-charts-dockerfiles/tree/0f20926/jupyter-spark/Dockerfile)
 
 
