@@ -18,7 +18,6 @@ spec:
       group: {{ .Release.Name }}-jupyterhub
       heritage: {{ .Release.Service }}
       release: {{ .Release.Name }}
-      chart: {{ .Chart.Name }}-{{ .Chart.Version }}
       hub.jupyter.org/network-access-hub: "true"
       hub.jupyter.org/network-access-singleuser: "true"
   template:
