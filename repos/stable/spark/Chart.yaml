@@ -7,3 +7,5 @@ maintainers:
   email: system@uninett.no
 home: https://github.com/Uninett/helm-charts/tree/master/spark
 icon: https://spark.apache.org/images/spark-logo-trademark.png
+keywords:
+  - Distributed computing

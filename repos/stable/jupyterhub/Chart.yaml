@@ -6,3 +6,5 @@ version: 0.9.10
 maintainers:
 - name: Uninett AS
   email: system@uninett.no
+keywords:
+  - Jupyter notebook server
