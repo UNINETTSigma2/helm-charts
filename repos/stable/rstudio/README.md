@@ -3,7 +3,7 @@ By installing this package, an instance of [RStudio](https://www.rstudio.com/pro
 [RStudio](https://www.rstudio.com/products/RStudio/) is an integrated development environment (IDE) for R. It includes a console, syntax-highlighting editor that supports direct code execution, as well as tools for plotting, history, debugging and workspace management. R Shiny server is also integerated in this application.
 
 ## Features
-- A pre-configured R development environment
+- A pre-configured R development environment accessible through a web browser
 - Support for installing custom packages
 
 ------
