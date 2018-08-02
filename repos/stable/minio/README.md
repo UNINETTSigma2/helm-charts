@@ -1,5 +1,6 @@
 By installing this package, an instance of [minio](https://minio.io) capable
-of storing data/files will be created.
+of storing data/files will be created. After installing, you will be able to
+access minio's web interface through a web browser.
 
 [minio](https://minio.io) is a distributed storage server, designed for private cloud infrastructure.
 

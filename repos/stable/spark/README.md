@@ -1,4 +1,6 @@
-By installing this package, an [Apache Spark](https://spark.apache.org/) cluster will be created.
+By installing this package, an [Apache Spark](https://spark.apache.org/)
+cluster will be created. After installing, you will be able to access the Apache Spark
+cluster dashboard through your web browser.
 
 [Apache Spark](https://spark.apache.org/) is a fast and general engine for big
 data processing, with built-in modules for streaming, SQL, machine learning

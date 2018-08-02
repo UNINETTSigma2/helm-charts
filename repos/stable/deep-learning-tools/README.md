@@ -1,5 +1,6 @@
 By installing this package, a Jupyter notebook with various pre-installed
 deep-learning related tools will be created.
+After installing, you will be able to access this notebook using your web browser.
 
 This package includes a collection of several commonly used deep learning tools, such as Tensorflow,
 Pytorch, Keras, Theano and CNTK made available through a jupyter notebook.

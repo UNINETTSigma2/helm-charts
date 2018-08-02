@@ -1,5 +1,7 @@
 By installing this package, an instance of Jupyterhub capable of creating new
-Jupyter notebook instances will be created.
+Jupyter notebook instances will be created. After installing, you will be able
+access Jupyterhub through your web browser, and other logged in users will be
+able to create Jupyter notebooks by visiting Jupyterhub.
 
 [Jupyterhub](https://jupyterhub.readthedocs.io/en/latest/) can for instance be
 used to serve notebooks to a class of students, a corporate data science

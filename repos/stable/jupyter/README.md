@@ -1,4 +1,6 @@
-By installing this package, a Jupyter notebook with various pre-installed tools will be created.
+By installing this package, a Jupyter notebook with various pre-installed
+tools will be created. After installing, you will be able to access the
+Jupyter notebook using your web browser.
 
 A [Jupyter Notebook](http://jupyter.org/) is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more.
 
