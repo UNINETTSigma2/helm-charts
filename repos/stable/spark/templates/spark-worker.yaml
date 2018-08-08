@@ -27,9 +27,9 @@ spec:
           args: ["/usr/local/bin/start-worker.sh"]
           env:
             - name: SPARK_WORKER_MEMORY
-              value: '1G'
+              value: {{ .Values.advanced.workers.resources.requests.memory }}
             - name: SPARK_WORKER_CORES
-              value: '2'
+              value: {{ .Values.advanced.workers.resources.requests.cpu }}
             - name: SPARK_MASTER_SERVICE_HOST
               value: {{ template "fullname" . }}-master
           ports:
