@@ -50,7 +50,7 @@ spec:
                       values: [ {{ .Release.Name | quote }} ]
       containers:
         - name: chp
-          image: jupyterhub/configurable-http-proxy:3.0.0
+          image: jupyterhub/configurable-http-proxy:3.1.1
           command:
             - "configurable-http-proxy"
             - "--ip=0.0.0.0"
