@@ -16,41 +16,34 @@ userNotebookType:
 users:
   resources:
     options:
-      - id: "< 100"
+      - id: "< 200"
         requests:
-          cpu: "0.5"
-          memory: 1G
+            cpu: "0.5"
+            memory: 512M
         limits:
             cpu: "1"
-            memory: 2G
-      - id: "100-200"
+            memory: 1G
+      - id: "200-500"
         requests:
             cpu: "1"
             memory: 1G
         limits:
             cpu: "2"
-            memory: 2G
-      - id: "200-500"
-        requests:
-            cpu: "2"
-            memory: 2G
-        limits:
-            cpu: "4"
-            memory: 4G
+            memory: 1G
       - id: "> 500"
         requests:
-            cpu: "4"
-            memory: 4G
+            cpu: "1"
+            memory: 2G
         limits:
-            cpu: "8"
-            memory: 8G
+            cpu: "2"
+            memory: 2G
     selected:
       requests:
-        cpu: "2"
-        memory: 2G
+        cpu: "0.5"
+        memory: 512M
       limits:
-        cpu: "4"
-        memory: 2G
+        cpu: "1"
+        memory: 1G
 uid: 999
 advanced:
   killIdlePods:

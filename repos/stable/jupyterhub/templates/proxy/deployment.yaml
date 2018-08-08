@@ -60,7 +60,12 @@ spec:
             - "--default-target=http://$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST):$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT)"
             - "--error-target=http://$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST):$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT)"
           resources:
-{{ toYaml .Values.users.resources.selected | indent 12 }}
+            requests:
+                cpu: "0.5"
+                memory: 512M
+            limits:
+                cpu: "1"
+                memory: 1G
           env:
             - name: CONFIGPROXY_AUTH_TOKEN
               valueFrom:
