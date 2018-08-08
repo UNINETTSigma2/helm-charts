@@ -29,7 +29,7 @@ spec:
             - name: SPARK_WORKER_MEMORY
               value: {{ .Values.advanced.workers.resources.requests.memory }}
             - name: SPARK_WORKER_CORES
-              value: {{ .Values.advanced.workers.resources.requests.cpu }}
+              value: {{ .Values.advanced.workers.resources.requests.cpu | quote }}
             - name: SPARK_MASTER_SERVICE_HOST
               value: {{ template "fullname" . }}-master
           ports:
