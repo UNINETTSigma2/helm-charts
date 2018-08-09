@@ -28,7 +28,7 @@ spec:
       containers:
       - name: pod-clean-job
         image: "gurvin/kubectl:1.10.5"
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         env:
         - name: RELEASE
           value: {{.Release.Name}}
