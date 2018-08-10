@@ -119,6 +119,10 @@ spec:
           env:
             - name: SPARK_PUBLIC_DNS
               value: {{ .Values.ingress.host }}
+            - name: SPARK_DAEMON_MEMORY
+              value: {{ .Values.advanced.master.resources.requests.memory }}
+            - name: SPARK_DAEMON_CORES
+              value: {{ .Values.advanced.master.resources.requests.cpu | quote }}
           {{- if ne .Values.persistentStorage.existingClaim "" }}
             - name: SPARK_RECOVERY_DIR
               value: /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}/master
