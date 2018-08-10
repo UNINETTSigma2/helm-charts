@@ -14,7 +14,7 @@ and graph processing.
 
 ### Advanced
 This application creates a [Apache Spark](https://github.com/Uninett/helm-charts/tree/master/spark) cluster using the following Dockerfile:
-  - [uninett/jupyter-spark](https://github.com/Uninett/helm-charts-dockerfiles/tree/0f20926/jupyter-spark/Dockerfile)
+  - [uninett/jupyter-spark](https://github.com/Uninett/helm-charts-dockerfiles/tree/20765fe/jupyter-spark/Dockerfile)
 
 
 #### Values
