@@ -1,0 +1,26 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ template "fullname" . }}-master
+  labels:
+    group: {{ template "fullname" . }}
+spec:
+  ports:
+    - port: 7077
+      targetPort: 7077
+  selector:
+    app: {{ template "fullname" . }}-master
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ template "fullname" . }}-master-ui
+  labels:
+    group: {{ template "fullname" . }}
+spec:
+  ports:
+    - port: 80
+      targetPort: 8000
+  selector:
+    app: {{ template "fullname" . }}-master

@@ -1,0 +1,131 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}-master
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ template "fullname" . }}-master
+        group: {{ template "fullname" . }}
+      annotations:
+        checksum/config: {{ include "oidcconfig" . | sha256sum }}
+    spec:
+      volumes:
+        - name: oidcconfig
+          secret:
+            secretName: {{ template "fullname" . }}
+        - name: {{ template "fullname" . }}-rewrite-config
+          configMap:
+            name: {{ template "fullname" . }}-nginx-config
+            items:
+            - key: default.conf
+              path: default.conf
+        - name: {{ template "fullname" . }}-nginx-config
+          configMap:
+            name: {{ template "fullname" . }}-nginx-config
+            items:
+            - key: nginx.conf
+              path: nginx.conf
+        {{ if ne .Values.persistentStorage.existingClaim "" }}
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistentStorage.existingClaim }}
+            readOnly: {{ .Values.persistentStorage.readOnly }}
+        {{ end }}
+      securityContext:
+        runAsNonRoot: true
+        fsGroup: {{ .Values.uid }}
+      {{- if ne .Values.persistentStorage.existingClaim "" }}
+      initContainers:
+      - name: busybox
+        image: busybox:1
+        securityContext:
+          runAsUser: {{ .Values.uid }}
+        args:
+          - "/bin/mkdir"
+          - "-p"
+          - "/mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}/master"
+        volumeMounts:
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+      {{- end }}
+      containers:
+        - name: proxy-rewriter
+          image: nginx:1.14-alpine
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9001
+          securityContext:
+            runAsUser: 100
+          volumeMounts:
+            - name: {{ template "fullname" . }}-rewrite-config
+              mountPath: /etc/nginx/conf.d
+            - name: {{ template "fullname" . }}-nginx-config
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+        - name: auth-proxy
+          image: quay.io/uninett/goidc-proxy:v1.1.3
+          imagePullPolicy: Always
+          env:
+            - name: DATAPORTEN_CLIENTID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "fullname" . }}
+                  key: dataporten_client_id
+            - name: DATAPORTEN_CLIENTSECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "fullname" . }}
+                  key: dataporten_client_secret
+          ports:
+            - containerPort: 8000
+          securityContext:
+            runAsUser: 65534
+            readOnlyRootFilesystem: true
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            initialDelaySeconds: 30
+            timeoutSeconds: 30
+          volumeMounts:
+            - name: oidcconfig
+              mountPath: /conf
+          workingDir: /conf
+        - name: spark-master
+          image: {{ .Values.advanced.masterImage }}
+          imagePullPolicy: Always
+          args: ["/usr/local/bin/start-master.sh"]
+          ports:
+            - containerPort: 7077
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 30
+            timeoutSeconds: 30
+          securityContext:
+            runAsUser: {{ .Values.uid }}
+          resources:
+            requests:
+                cpu: {{ .Values.advanced.master.resources.requests.cpu }}
+                memory: {{ .Values.advanced.master.resources.requests.memory }}
+            limits:
+                cpu: {{ .Values.advanced.master.resources.limits.cpu }}
+                memory: {{ .Values.advanced.master.resources.limits.memory }}
+          env:
+            - name: SPARK_PUBLIC_DNS
+              value: {{ .Values.ingress.host }}
+          {{- if ne .Values.persistentStorage.existingClaim "" }}
+            - name: SPARK_RECOVERY_DIR
+              value: /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}/master
+          volumeMounts:
+          - name: {{ .Values.persistentStorage.existingClaimName }}
+            mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          {{ if ne .Values.persistentStorage.subPath "/" }}
+          subPath: {{ .Values.persistentStorage.subPath }}
+          {{ end }}
+          {{- end }}

@@ -1,0 +1,41 @@
+advanced:
+  workers:
+    replicas: 1
+    resources:
+      requests:
+          cpu: 100m
+          memory: 1Gi
+      limits:
+          cpu: 200m
+          memory: 1500Mi
+
+  master:
+    resources:
+      requests:
+          cpu: 100m
+          memory: 1Gi
+      limits:
+          cpu: 200m
+          memory: 1500Mi
+  masterImage: quay.io/uninett/jupyter-spark:20180810-20765fe
+  workerImage: quay.io/uninett/jupyter-spark:20180810-20765fe
+
+uid: 999
+
+ingress:
+  host: "host.example.com"
+
+persistentStorage:
+  existingClaim: ""
+  existingClaimName: "example-name"
+  readOnly: false
+  subPath: "/"
+
+appstore_generated_data:
+  dataporten:
+    scopes:
+      - ""
+    id: "0000"
+    client_secret: "0000"
+    authorized_groups:
+      - ""

@@ -1,0 +1,59 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}-worker
+spec:
+  replicas: {{ .Values.advanced.workers.replicas }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "fullname" . }}-worker
+        group: {{ template "fullname" . }}
+    spec:
+      {{ if ne .Values.persistentStorage.existingClaim "" }}
+      volumes:
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistentStorage.existingClaim }}
+            readOnly: {{ .Values.persistentStorage.readOnly }}
+      {{ end }}
+      securityContext:
+        runAsNonRoot: true
+        fsGroup: {{ .Values.uid }}
+      containers:
+        - name: spark-worker
+          image: {{ .Values.advanced.workerImage }}
+          imagePullPolicy: Always
+          args: ["/usr/local/bin/start-worker.sh"]
+          env:
+            - name: SPARK_WORKER_MEMORY
+              value: {{ .Values.advanced.workers.resources.requests.memory }}
+            - name: SPARK_WORKER_CORES
+              value: {{ .Values.advanced.workers.resources.requests.cpu | quote }}
+            - name: SPARK_MASTER_SERVICE_HOST
+              value: {{ template "fullname" . }}-master
+          ports:
+            - containerPort: 8081
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8081
+            initialDelaySeconds: 30
+            timeoutSeconds: 30
+          securityContext:
+            runAsUser: {{ .Values.uid }}
+          resources:
+            requests:
+                cpu: {{ .Values.advanced.workers.resources.requests.cpu }}
+                memory: {{ .Values.advanced.workers.resources.requests.memory }}
+            limits:
+                cpu: {{ .Values.advanced.workers.resources.limits.cpu }}
+                memory: {{ .Values.advanced.workers.resources.limits.memory }}
+          {{- if ne .Values.persistentStorage.existingClaim "" }}
+          volumeMounts:
+          - name: {{ .Values.persistentStorage.existingClaimName }}
+            mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+            {{ if ne .Values.persistentStorage.subPath "/" }}
+            subPath: {{ .Values.persistentStorage.subPath }}
+            {{ end }}
+          {{- end -}}

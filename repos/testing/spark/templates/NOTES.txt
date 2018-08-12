@@ -1,0 +1,7 @@
+-- [ Using Spark with other applications
+
+In order to connect Spark to other applications, such as a Jupyter notebook, specify
+
+    spark://{{ template "fullname" . }}-master:7077
+
+as the master URL.

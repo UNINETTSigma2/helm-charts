@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: NetworkPolicy
+metadata:
+  name: {{ template "fullname" . }}
+spec:
+  podSelector:
+    matchLabels:
+      group: {{ template "fullname" . }}
+  ingress:
+    - from:
+      - namespaceSelector:
+          matchLabels:
+            name: {{ .Release.Namespace }}
+      ports:
+        - protocol: TCP
+
+---
+apiVersion: extensions/v1beta1
+kind: NetworkPolicy
+metadata:
+  name: {{ template "fullname" . }}-ui
+spec:
+  podSelector:
+    matchLabels:
+      group: {{ template "fullname" . }}
+  ingress:
+    - from:
+      - namespaceSelector:
+          matchLabels:
+            name: kube-ingress
+      ports:
+        - protocol: TCP
+          port: 8000
