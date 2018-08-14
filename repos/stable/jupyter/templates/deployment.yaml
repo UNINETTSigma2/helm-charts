@@ -31,7 +31,11 @@ spec:
         {{ end }}
       securityContext:
         runAsNonRoot: true
-        fsGroup: {{ .Values.uid }}
+        fsGroup: {{ .Values.gid }}
+        {{- $strGroups := .Values.supplementalGroups | quote }}
+        {{- if ne $strGroups "[]" }}
+        supplementalGroups: {{ .Values.supplementalGroups }}
+        {{- end }}
       containers:
       - name: auth-proxy
         image: quay.io/uninett/goidc-proxy:v1.1.3
@@ -86,6 +90,11 @@ spec:
         - containerPort: 8888
         securityContext:
           runAsUser: {{ .Values.uid }}
+          fsGroup: {{ .Values.gid }}
+          {{- $strGroups := .Values.supplementalGroups | quote }}
+          {{- if ne $strGroups "[]" }}
+          supplementalGroups: {{ .Values.supplementalGroups }}
+          {{- end }}
         volumeMounts:
         - name: notebook-config
           mountPath: /home/notebook/.jupyter/notebook_config.py
