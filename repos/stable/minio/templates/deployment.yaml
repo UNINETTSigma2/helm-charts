@@ -48,7 +48,7 @@ spec:
               key: MINIO_SECRET_KEY
         - name: TZ
           value: Europe/Oslo
-        image: quay.io/uninett/minio:20180730-da8afe5
+        image: quay.io/uninett/minio:20180813-32cb3ba
         {{ if ne .Values.persistentStorage.existingClaim "" }}
         args: [ 'server', '--quiet', '--config-dir', '/mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}', '/mnt/{{ .Values.persistentStorage.existingClaimName }}' ]
         {{ else }}
