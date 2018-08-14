@@ -1,0 +1,42 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{.Release.Name}}-user-pod"
+  labels:
+    heritage: {{.Release.Service | quote }}
+    release: {{.Release.Name | quote }}
+    chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    group: {{ .Release.Name }}-jupyterhub
+  annotations:
+    # This is what defines this resource as a hook. Without this line, the
+    # job is considered part of the release.
+    "helm.sh/hook": pre-delete
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  template:
+    metadata:
+      name: "{{.Release.Name}}-user-pod"
+      labels:
+        heritage: {{.Release.Service | quote }}
+        release: {{.Release.Name | quote }}
+        chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+        group: {{ .Release.Name }}-jupyterhub
+    spec:
+      restartPolicy: Never
+      serviceAccountName: {{.Release.Name}}-pod-cleaner
+      containers:
+      - name: pod-clean-job
+        image: "gurvin/kubectl:1.10.5"
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: RELEASE
+          value: {{.Release.Name}}
+        - name: NAMESPACE
+          value: {{ .Release.Namespace }}
+        command:
+          - /bin/sh
+        args:
+          - -x
+          - -c
+          - "kubectl --namespace=${NAMESPACE} --selector=release=${RELEASE},component=singleuser-server delete pod"

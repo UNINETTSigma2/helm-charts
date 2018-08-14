@@ -1,0 +1,68 @@
+persistentStorage:
+  existingClaim: ""
+  existingClaimName: "example-name"
+  readOnly: false
+  subPath: "/"
+ingress:
+  host: "paaltest.appstore-dep.ioudaas.no"
+userNotebookType:
+  resources:
+    requests:
+      cpu: "1"
+      memory: 1G
+    limits:
+      cpu: "2"
+      memory: 1G
+users:
+  resources:
+    options:
+      - id: "< 200"
+        requests:
+            cpu: "0.5"
+            memory: 512M
+        limits:
+            cpu: "1"
+            memory: 1G
+      - id: "200-500"
+        requests:
+            cpu: "1"
+            memory: 1G
+        limits:
+            cpu: "2"
+            memory: 1G
+      - id: "> 500"
+        requests:
+            cpu: "1"
+            memory: 2G
+        limits:
+            cpu: "2"
+            memory: 2G
+    selected:
+      requests:
+        cpu: "0.5"
+        memory: 512M
+      limits:
+        cpu: "1"
+        memory: 1G
+uid: 999
+advanced:
+  killIdlePods:
+    enabled: true
+    timeout: 3600
+    concurrency: 10
+  notebook:
+    spawnLimit: 100
+  debug: false
+  sharedData:
+    enabled: false
+    subPath: "data"
+    readOnly: true
+  userImage: quay.io/uninett/jupyterhub-singleuser:20180703-0ff1eb6
+appstore_generated_data:
+  appstore_meta_data:
+    owner_id: ""
+  dataporten:
+    id: ""
+    client_secret: ""
+    authorized_groups:
+      - ""

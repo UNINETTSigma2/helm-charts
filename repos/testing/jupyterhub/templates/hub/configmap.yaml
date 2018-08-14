@@ -1,0 +1,66 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}-hub-config
+data:
+  {{- /* Cull */}}
+  {{- if .Values.advanced.killIdlePods.enabled }}
+  cull.enabled: "true"
+  cull.users: "false"
+  cull.timeout: {{ .Values.advanced.killIdlePods.timeout | quote }}
+  cull.every: "600"
+  cull.concurrency: {{ .Values.advanced.killIdlePods.concurrency | quote }}
+  {{- end }}
+
+  {{- /* Auth */}}
+  auth.state.enabled: "false"
+  auth.admin.access: "true"
+  auth.admin.users: |
+    - {{ .Values.appstore_generated_data.appstore_meta_data.owner_id | replace "fc:uid:" "" }}
+  auth.type: "dataporten"
+
+  {{- /* Singleuser */}}
+  singleuser.start-timeout: "300"
+  singleuser.image-pull-policy: IfNotPresent
+  singleuser.scheduler-strategy: pack
+  singleuser.cmd: "/usr/local/bin/start-notebook.sh"
+  singleuser.uid: "{{ .Values.uid }}"
+  singleuser.fs-gid: "{{ .Values.uid }}"
+  singleuser.service-account-name: "default"
+  singleuser.pod-name-template: "{{.Release.Name}}-jupyter-{username}"
+  singleuser.node-selector: "{}"
+  {{- if ne .Values.persistentStorage.existingClaim "" }}
+  singleuser.storage.type: "static"
+  singleuser.storage.static.pvc-name: {{ .Values.persistentStorage.existingClaim }}
+  singleuser.storage.static.sub-path: 'home/{username}'
+  {{- if .Values.advanced.sharedData.enabled }}
+  singleuser.storage.extra-volume-mounts: '[{"name": "home", "mountPath": "/mnt/data", "subPath": "{{.Values.advanced.sharedData.subPath}}", "readOnly": {{.Values.advanced.sharedData.readOnly}}  }]'
+  {{- end }}
+  {{- else }}
+  singleuser.storage.type: "none"
+  {{- end }}
+  singleuser.storage.home_mount_path: "/home/notebook"
+  {{- if .Values.userNotebookType.resources.limits.memory }}
+  singleuser.memory.limit: {{ .Values.userNotebookType.resources.limits.memory | quote}}
+  {{- end }}
+  {{- if .Values.userNotebookType.resources.requests.memory }}
+  singleuser.memory.guarantee: {{ .Values.userNotebookType.resources.requests.memory | quote}}
+  {{- end }}
+  {{- if .Values.userNotebookType.resources.limits.cpu }}
+  singleuser.cpu.limit: {{ .Values.userNotebookType.resources.limits.cpu | quote}}
+  {{- end }}
+  {{- if .Values.userNotebookType.resources.requests.cpu }}
+  singleuser.cpu.guarantee: {{ .Values.userNotebookType.resources.requests.cpu | quote}}
+  {{- end }}
+  singleuser.extra-labels: |
+    hub.jupyter.org/network-access-hub: "true"
+
+  kubespawner.common-labels: |
+    group: {{ .Release.Name }}-jupyterhub
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+
+  hub.base_url: "/"
+  hub.db_url: "sqlite:///jupyterhub.sqlite" # Use in memory
+  hub.concurrent-spawn-limit: {{ .Values.advanced.notebook.spawnLimit | quote }}
+  debug.enabled: {{ .Values.advanced.debug | quote }}

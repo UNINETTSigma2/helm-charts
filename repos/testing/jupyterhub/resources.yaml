@@ -1,0 +1,12 @@
+dataporten:
+  Options:
+    ScopesRequested:
+      - profile
+      - openid
+      - groups
+    RedirectURI:
+      - /hub/oauth_callback
+appstore:
+  Options:
+    Standards:
+      - defaultMount

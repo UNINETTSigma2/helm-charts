@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: proxy
+    group: {{ .Release.Name }}-jupyterhub
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+  name: {{ .Release.Name }}-proxy
+spec:
+  replicas: 1
+  revisionHistoryLimit: 4
+  selector:
+    matchLabels:
+      name: {{ .Release.Name }}-proxy
+      component: proxy
+      group: {{ .Release.Name }}-jupyterhub
+      heritage: {{ .Release.Service }}
+      release: {{ .Release.Name }}
+      hub.jupyter.org/network-access-hub: "true"
+      hub.jupyter.org/network-access-singleuser: "true"
+  template:
+    metadata:
+      annotations:
+        checksum/hub-secret: {{ include (print $.Template.BasePath "/hub/secret.yaml") . | sha256sum }}
+      labels:
+        name: {{ .Release.Name }}-proxy
+        component: proxy
+        group: {{ .Release.Name }}-jupyterhub
+        release: {{ .Release.Name }}
+        heritage: {{ .Release.Service }}
+        chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+        hub.jupyter.org/network-access-hub: "true"
+        hub.jupyter.org/network-access-singleuser: "true"
+    spec:
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              podAffinityTerm:
+                topologyKey: kubernetes.io/hostname
+                labelSelector:
+                  matchExpressions:
+                    - key: component
+                      operator: In
+                      values: ['hub']
+                    - key: release
+                      operator: In
+                      values: [ {{ .Release.Name | quote }} ]
+      containers:
+        - name: chp
+          image: jupyterhub/configurable-http-proxy:3.1.1
+          command:
+            - "configurable-http-proxy"
+            - "--ip=0.0.0.0"
+            - "--port=8000"
+            - "--api-ip=0.0.0.0"
+            - "--api-port=8001"
+            - "--default-target=http://$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST):$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT)"
+            - "--error-target=http://$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST):$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT)"
+          resources:
+            requests:
+                cpu: "0.5"
+                memory: 512M
+            limits:
+                cpu: "1"
+                memory: 1G
+          env:
+            - name: CONFIGPROXY_AUTH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-hub-secret
+                  key: proxy.token
+          ports:
+            - containerPort: 8000
+              name: proxy-public
+            - containerPort: 8001
+              name: api
+      terminationGracePeriodSeconds: 60

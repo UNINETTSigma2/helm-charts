@@ -1,0 +1,124 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-hub
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: {{ .Release.Name }}-hub
+      group: {{ .Release.Name }}-jupyterhub
+      component: hub
+      release: {{ .Release.Name }}
+      heritage: {{ .Release.Service }}
+  template:
+    metadata:
+      labels:
+        name: {{ .Release.Name }}-hub
+        group: {{ .Release.Name }}-jupyterhub
+        component: hub
+        release: {{ .Release.Name }}
+        heritage: {{ .Release.Service }}
+      annotations:
+        # This lets us autorestart when the configmap changes!
+        checksum/config-map: {{ include (print $.Template.BasePath "/hub/configmap.yaml") . | sha256sum }}
+        checksum/secret: {{ include (print $.Template.BasePath "/hub/secret.yaml") . | sha256sum }}
+    spec:
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              podAffinityTerm:
+                topologyKey: kubernetes.io/hostname
+                labelSelector:
+                  matchExpressions:
+                    - key: component
+                      operator: In
+                      values: ['proxy']
+                    - key: release
+                      operator: In
+                      values: [ {{ .Release.Name | quote }} ]
+      volumes:
+      - name: config
+        configMap:
+          name: {{ .Release.Name }}-hub-config
+      - name: secret
+        secret:
+          secretName: {{ .Release.Name }}-hub-secret
+      {{- if ne .Values.persistentStorage.existingClaim "" }}
+      - name: {{ .Values.persistentStorage.existingClaimName }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.persistentStorage.existingClaim }}
+          readOnly: {{ .Values.persistentStorage.readOnly }}
+      initContainers:
+      - name: busybox
+        image: busybox:1
+        securityContext:
+          runAsUser: {{ .Values.uid }}
+        args:
+          - "/bin/mkdir"
+          - "-p"
+          - "/mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ .Release.Name }}-hub"
+          - "/mnt/{{ .Values.persistentStorage.existingClaimName }}/home"
+        volumeMounts:
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+      {{- end }}
+      containers:
+      - name: hub-container
+        image: quay.io/uninett/jupyterhub-server:20180808-09e832b
+        command:
+          - jupyterhub
+          - --config
+          - /srv/jupyterhub_config.py
+          - --upgrade-db
+        volumeMounts:
+          - mountPath: /etc/jupyterhub/config/
+            name: config
+          - mountPath: /etc/jupyterhub/secret/
+            name: secret
+          {{- if ne .Values.persistentStorage.existingClaim "" }}
+          - name: {{ .Values.persistentStorage.existingClaimName }}
+            mountPath: /srv/jupyterhub
+            subPath: .tools/{{ .Release.Name }}-hub
+            {{ if ne .Values.persistentStorage.subPath "/" }}
+            subPath: {{ .Values.persistentStorage.subPath }}
+            {{ end }}
+          {{- end }}
+        resources:
+{{ toYaml .Values.users.resources.selected | indent 12 }}
+        env:
+        # Put this here directly so hub will restart when we
+        # change this
+        - name: SINGLEUSER_IMAGE
+          value:  "{{ .Values.advanced.userImage }}"
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: PROXY_PUBLIC_SERVICE_NAME
+          value: {{ .Release.Name | upper | replace "-" "_" }}_PROXY_HTTP_SERVICE
+        - name: PROXY_API_SERVICE_NAME
+          value: {{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE
+        - name: HUB_SERVICE_NAME
+          value: {{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE
+        - name: OAUTH_CLIENT_ID
+          value: "{{ .Values.appstore_generated_data.dataporten.id }}"
+        - name: OAUTH_CLIENT_SECRET
+          value: "{{ .Values.appstore_generated_data.dataporten.client_secret }}"
+        - name: OAUTH_CALLBACK_URL
+          value: "https://{{ .Values.ingress.host }}/hub/oauth_callback"
+        - name: AUTHORIZED_GROUPS
+          value: "{{- join "," .Values.appstore_generated_data.dataporten.authorized_groups -}}"
+        - name: CONFIGPROXY_AUTH_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-hub-secret
+              key: proxy.token
+        - name: OAUTH2_TOKEN_URL
+          value: "https://auth.dataporten.no/oauth/token"
+        - name: OAUTH2_AUTHORIZE_URL
+          value: "https://auth.dataporten.no/oauth/authorization"
+        ports:
+          - containerPort: 8081
+      serviceAccountName: {{ .Release.Name }}-hub
