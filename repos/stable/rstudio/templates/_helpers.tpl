@@ -24,7 +24,7 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
     "signkey": "{{ randAlphaNum 60 }}",
     "token_type": "",
     "jwt_token_issuer": "",
-    "logout_redirect_url": "https://appstore.ioudaas.no",
+    "logout_redirect_url": "https://{{ .Values.ingress.host }}",
     "groups_endpoint": "https://groups-api.dataporten.no/groups/me/groups",
     "xhr_endpoints": "",
     "authorized_principals": "{{- join "," .Values.appstore_generated_data.dataporten.authorized_groups -}}",
