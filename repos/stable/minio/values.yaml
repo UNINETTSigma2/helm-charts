@@ -15,6 +15,14 @@ persistentStorage:
 uid: 999
 gid: 999
 supplementalGroups: []
+appstore_generated_data:
+  dataporten:
+    scopes:
+      - ""
+    id: "0000"
+    client_secret: "0000"
+    authorized_groups:
+      - ""
 advanced:
   accessKey: "exampleaccesskey"
   secretKey: "examplesecretkey"
