@@ -51,6 +51,9 @@ spec:
       containers:
         - name: pause
           image: gcr.io/google_containers/pause:3.0
+          securityContext:
+            runAsUser: 65534
+            readOnlyRootFilesystem: true
           resources:
             limits:
               cpu: 30m
