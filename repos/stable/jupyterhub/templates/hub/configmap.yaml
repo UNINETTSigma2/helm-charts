@@ -25,7 +25,7 @@ data:
   singleuser.scheduler-strategy: pack
   singleuser.cmd: "/usr/local/bin/start-notebook.sh"
   singleuser.uid: "{{ .Values.uid }}"
-  singleuser.fs-gid: "{{ .Values.uid }}"
+  singleuser.fs-gid: "{{ .Values.gid }}"
   singleuser.service-account-name: "default"
   singleuser.pod-name-template: "{{.Release.Name}}-jupyter-{username}"
   singleuser.node-selector: "{}"
