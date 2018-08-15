@@ -32,7 +32,11 @@ spec:
       {{- end }}
       securityContext:
         runAsNonRoot: true
-        fsGroup: {{ .Values.uid }}
+        fsGroup: {{ .Values.gid }}
+        {{- $strGroups := .Values.supplementalGroups | quote }}
+        {{- if ne $strGroups "[]" }}
+        supplementalGroups: {{ .Values.supplementalGroups }}
+        {{- end }}
       containers:
       - name: minio
         env:
@@ -103,6 +107,14 @@ spec:
         persistentVolumeClaim:
           claimName: {{ .Values.persistentStorage.existingClaim }}
       restartPolicy: Never
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: {{ .Values.uid }}
+        fsGroup: {{ .Values.gid }}
+        {{- $strGroups := .Values.supplementalGroups | quote }}
+        {{- if ne $strGroups "[]" }}
+        supplementalGroups: {{ .Values.supplementalGroups }}
+        {{- end }}
       containers:
       - name: cleaner-job
         image: "alpine:3.8"
