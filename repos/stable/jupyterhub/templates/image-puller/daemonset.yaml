@@ -36,8 +36,8 @@ spec:
           imagePullPolicy: IfNotPresent
           resources:
             limits:
-              cpu: 30m
-              memory: 10M
+              cpu: 20m
+              memory: 20M
             requests:
               cpu: 10m
               memory: 10M
@@ -46,7 +46,7 @@ spec:
           command:
             - /bin/sh
             - -c
-            - echo "Pulling complete"
+            - 'echo "Pulling complete"'
       containers:
         - name: pause
           image: gcr.io/google_containers/pause:3.0
@@ -54,8 +54,8 @@ spec:
             runAsUser: 65534
           resources:
             limits:
-              cpu: 30m
-              memory: 10M
+              cpu: 20m
+              memory: 20M
             requests:
               cpu: 10m
               memory: 10M
