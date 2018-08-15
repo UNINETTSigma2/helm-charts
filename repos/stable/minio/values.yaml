@@ -13,6 +13,7 @@ persistentStorage:
   readOnly: false
   subPath: "/"
 uid: 999
+gid: 999
 advanced:
   accessKey: "exampleaccesskey"
   secretKey: "examplesecretkey"
