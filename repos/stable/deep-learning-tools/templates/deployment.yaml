@@ -31,7 +31,11 @@ spec:
               path: notebook_config.py
       securityContext:
         runAsNonRoot: true
-        fsGroup: {{ .Values.uid }}
+        fsGroup: {{ .Values.gid }}
+        {{- $strGroups := .Values.supplementalGroups | quote }}
+        {{- if ne $strGroups "[]" }}
+        supplementalGroups: {{ .Values.supplementalGroups }}
+        {{- end }}
       containers:
       - name: auth-proxy
         image: quay.io/uninett/goidc-proxy:v1.1.3

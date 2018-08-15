@@ -23,6 +23,8 @@ appstore_generated_data:
     authorized_groups:
       - ""
 uid: 999
+gid: 999
+supplementalGroups: []
 advanced:
   env:
     sparkMasterUrl: "local[*]"
