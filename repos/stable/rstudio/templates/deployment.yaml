@@ -36,7 +36,7 @@ spec:
         args:
           - "/bin/mkdir"
           - "-p"
-          - "/mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}/shiny-server"
+          - "/mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}"
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
