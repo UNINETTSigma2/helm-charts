@@ -43,7 +43,6 @@ spec:
               memory: 10M
           securityContext:
             runAsUser: 65534
-            readOnlyRootFilesystem: true
           command:
             - /bin/sh
             - -c
@@ -53,7 +52,6 @@ spec:
           image: gcr.io/google_containers/pause:3.0
           securityContext:
             runAsUser: 65534
-            readOnlyRootFilesystem: true
           resources:
             limits:
               cpu: 30m
