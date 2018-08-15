@@ -38,6 +38,13 @@ spec:
                     - key: release
                       operator: In
                       values: [ {{ .Release.Name | quote }} ]
+      securityContext:
+        runAsNonRoot: true
+        fsGroup: {{ .Values.gid }}
+        {{- $strGroups := .Values.supplementalGroups | quote }}
+        {{- if ne $strGroups "[]" }}
+        supplementalGroups: {{ .Values.supplementalGroups }}
+        {{- end }}
       volumes:
       - name: config
         configMap:
@@ -72,6 +79,8 @@ spec:
           - --config
           - /srv/jupyterhub_config.py
           - --upgrade-db
+        securityContext:
+          runAsUser: {{ .Values.uid }}
         volumeMounts:
           - mountPath: /etc/jupyterhub/config/
             name: config

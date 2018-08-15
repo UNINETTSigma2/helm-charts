@@ -28,6 +28,8 @@ spec:
     spec:
       terminationGracePeriodSeconds: 0
       automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
       initContainers:
         - name: image-pull-singleuser
           image: "{{ .Values.advanced.userImage }}"
@@ -39,6 +41,9 @@ spec:
             requests:
               cpu: 10m
               memory: 10M
+          securityContext:
+            runAsUser: 65534
+            readOnlyRootFilesystem: true
           command:
             - /bin/sh
             - -c

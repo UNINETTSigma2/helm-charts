@@ -45,6 +45,8 @@ users:
         cpu: "1"
         memory: 1G
 uid: 999
+gid: 999
+supplementalGroups: []
 advanced:
   killIdlePods:
     enabled: true
