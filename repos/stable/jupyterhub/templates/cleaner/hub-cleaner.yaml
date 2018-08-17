@@ -74,8 +74,8 @@ spec:
         runAsNonRoot: true
         runAsUser: {{ .Values.uid }}
         fsGroup: {{ .Values.gid }}
-        {{ $firstGroup := .Values.supplementalGroups | first | quote }}
-        {{- if ne $firstGroup "000" }}
+        {{ $firstGroup := .Values.supplementalGroups | first }}
+        {{- if $firstGroup }}
         supplementalGroups:
           {{- range .Values.supplementalGroups }}
           - {{ . }}
