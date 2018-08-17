@@ -14,7 +14,8 @@ persistentStorage:
   subPath: "/"
 uid: 999
 gid: 999
-supplementalGroups: []
+supplementalGroups:
+  - 000
 appstore_generated_data:
   dataporten:
     scopes:

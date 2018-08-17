@@ -26,8 +26,8 @@ data:
   singleuser.cmd: "/usr/local/bin/start-notebook.sh"
   singleuser.uid: "{{ .Values.uid }}"
   singleuser.fs-gid: "{{ .Values.gid }}"
-  {{- $strGroups := .Values.supplementalGroups | quote }}
-  {{- if ne $strGroups "[]" }}
+  {{ $firstGroup := .Values.supplementalGroups | first | quote }}
+  {{- if ne $firstGroup "000" }}
   singleuser.supplemental-gids: "{{ .Values.supplementalGroups }}"
   {{- end }}
   singleuser.service-account-name: "default"

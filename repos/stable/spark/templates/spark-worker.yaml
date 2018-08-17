@@ -20,9 +20,12 @@ spec:
       securityContext:
         runAsNonRoot: true
         fsGroup: {{ .Values.gid }}
-        {{- $strGroups := .Values.supplementalGroups | quote }}
-        {{- if ne $strGroups "[]" }}
-        supplementalGroups: {{ .Values.supplementalGroups }}
+        {{ $firstGroup := .Values.supplementalGroups | first | quote }}
+        {{- if ne $firstGroup "000" }}
+        supplementalGroups:
+          {{- range .Values.supplementalGroups }}
+          - {{ . }}
+          {{- end }}
         {{- end }}
       containers:
         - name: spark-worker

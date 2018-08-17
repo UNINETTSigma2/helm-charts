@@ -9,7 +9,8 @@ resources:
     memory: 400M
 uid: 999
 gid: 999
-supplementalGroups: []
+supplementalGroups:
+  - 000
 persistentStorage:
   existingClaim: ""
   existingClaimName: "example-name"
