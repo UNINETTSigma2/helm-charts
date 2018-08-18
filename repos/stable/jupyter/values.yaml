@@ -15,7 +15,7 @@ persistentStorage:
 appstore_generated_data:
   dataporten:
     scopes:
-      - "scope"
+      - ""
     id: "0000-abc"
     client_secret: "0000-0000"
     authorized_groups:
@@ -30,3 +30,6 @@ advanced:
     jupyterLab: false
   dockerImage: quay.io/uninett/jupyter-spark:20180810-20765fe
   githubToken: ""
+authGroupProviders:
+  - url: "https://groups-api.dataporten.no/groups/me/groups"
+    scope: groups

@@ -32,3 +32,6 @@ advanced:
     jupyterLab: false
   dockerImage: quay.io/uninett/deep-learning-tools:20180814-0b4564f
   githubToken: ""
+authGroupProviders:
+  - url: "https://groups-api.dataporten.no/groups/me/groups"
+    scope: groups

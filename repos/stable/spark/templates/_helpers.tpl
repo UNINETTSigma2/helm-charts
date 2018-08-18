@@ -9,6 +9,37 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
+{{- define "all_scopes" -}}
+    {{- $n_groups := len .Values.authGroupProviders }}
+    {{- if .Values.appstore_generated_data.dataporten.scopes | first }}
+	{{- printf "%s" (join "," .Values.appstore_generated_data.dataporten.scopes) }}
+
+	{{- if (gt (len .Values.appstore_generated_data.dataporten.scopes) 0) }}
+	    {{- if (gt $n_groups 0) }}
+		{{- printf "," }}
+	    {{- end }}
+	{{- end }}
+    {{- end }}
+
+    {{- $n_groups := sub $n_groups 1 }}
+    {{- range $index, $el := .Values.authGroupProviders }}
+	{{- printf "%s" .scope }}
+	{{- if lt $index $n_groups }}
+	    {{- printf "," }}
+	{{- end }}
+    {{- end }}
+{{- end -}}
+
+{{- define "all_endpoints" -}}
+    {{- $n_groups := sub (len .Values.authGroupProviders) 1 }}
+    {{- range $index, $el := .Values.authGroupProviders }}
+	{{- printf "%s" .url }}
+	{{- if lt $index $n_groups }}
+	    {{- printf "," }}
+	{{- end }}
+    {{- end }}
+{{- end -}}
+
 
 {{- define "oidcconfig" -}}
 {
@@ -20,10 +51,10 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
     "client_secret": "{{ .Values.appstore_generated_data.dataporten.client_secret }}",
     "issuer_url": "https://auth.dataporten.no",
     "redirect_url": "https://{{ .Values.ingress.host }}/oauth2/callback",
-    "scopes":  "{{- join "," .Values.appstore_generated_data.dataporten.scopes -}}",
+    "scopes": "{{- include "all_scopes" . }}",
     "signkey": "{{ randAlphaNum 60 }}",
     "token_type": "",
-    "groups_endpoint": "https://groups-api.dataporten.no/groups/me/groups",
+    "groups_endpoint": "{{- include "all_endpoints" . }}",
     "jwt_token_issuer": "",
     "xhr_endpoints": "",
     "authorized_principals": "{{- join "," .Values.appstore_generated_data.dataporten.authorized_groups -}}",
