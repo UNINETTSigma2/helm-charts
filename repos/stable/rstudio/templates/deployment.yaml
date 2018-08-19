@@ -107,6 +107,8 @@ spec:
         env:
         - name: TZ
           value: Europe/Oslo
+        - name: OWNER_ID
+          value: {{ .Values.appstore_generated_data.dataporten.owner }}
         {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: SHINY_APPS_PATH
           value: /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}/shiny-server

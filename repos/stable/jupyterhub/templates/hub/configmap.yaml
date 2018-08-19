@@ -16,7 +16,7 @@ data:
   auth.state.enabled: "false"
   auth.admin.access: "true"
   auth.admin.users: |
-    - {{ .Values.appstore_generated_data.appstore_meta_data.owner_id | replace "fc:uid:" "" }}
+    - {{ .Values.appstore_generated_data.dataporten.owner }}
   auth.type: "dataporten"
 
   {{- /* Singleuser */}}

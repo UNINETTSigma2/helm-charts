@@ -87,6 +87,8 @@ spec:
             value: '1'
           - name: MEM_LIMIT
             value: {{ .Values.resources.limits.memory }}
+          - name: OWNER_ID
+            value: {{ .Values.appstore_generated_data.dataporten.owner }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         ports:

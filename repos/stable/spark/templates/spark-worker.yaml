@@ -37,6 +37,8 @@ spec:
               value: {{ .Values.advanced.workers.resources.requests.memory }}
             - name: SPARK_WORKER_CORES
               value: {{ .Values.advanced.workers.resources.requests.cpu | quote }}
+            - name: OWNER_ID
+              value: {{ .Values.appstore_generated_data.dataporten.owner }}
             - name: SPARK_MASTER_SERVICE_HOST
               value: {{ template "fullname" . }}-master
           ports:
