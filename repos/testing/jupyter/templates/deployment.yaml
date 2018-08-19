@@ -23,6 +23,18 @@ spec:
             items:
             - key: notebook_config.py
               path: notebook_config.py
+        - name: notebook-config
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: notebook_config.py
+              path: notebook_config.py
+        - name: notebook-config
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: notebook_config.py
+              path: notebook_config.py
         {{ if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           persistentVolumeClaim:
@@ -87,6 +99,8 @@ spec:
             value: '1'
           - name: MEM_LIMIT
             value: {{ .Values.resources.limits.memory }}
+          - name: OWNER_ID
+            value: {{ .Values.appstore_generated_data.dataporten.owner }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         ports:
@@ -97,6 +111,12 @@ spec:
         - name: notebook-config
           mountPath: /home/notebook/.jupyter/notebook_config.py
           subPath: notebook_config.py
+        - name: passwd
+          mountPath: /etc/passwd
+          subPath: passwd
+        - name: group
+          mountPath: /etc/group
+          subPath: group
         {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}

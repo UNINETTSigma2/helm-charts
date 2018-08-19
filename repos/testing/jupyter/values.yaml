@@ -17,11 +17,15 @@ appstore_generated_data:
     scopes:
       - ""
     id: "0000-abc"
+    owner: "0000-1234"
     client_secret: "0000-0000"
     authorized_groups:
       - ""
 uid: 999
 gid: 999
+username: notebook
+supplementalGroupName:
+  - ""
 supplementalGroups:
   - ""
 advanced:
