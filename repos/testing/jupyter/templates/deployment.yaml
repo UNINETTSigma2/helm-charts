@@ -23,18 +23,18 @@ spec:
             items:
             - key: notebook_config.py
               path: notebook_config.py
-        - name: notebook-config
+        - name: passwd
           configMap:
             name: {{ template "fullname" . }}
             items:
-            - key: notebook_config.py
-              path: notebook_config.py
-        - name: notebook-config
+            - key: passwd
+              path: passwd
+        - name: group
           configMap:
             name: {{ template "fullname" . }}
             items:
-            - key: notebook_config.py
-              path: notebook_config.py
+            - key: group
+              path: group
         {{ if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           persistentVolumeClaim:
