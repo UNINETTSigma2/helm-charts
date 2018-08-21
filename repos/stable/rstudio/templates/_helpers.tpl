@@ -203,9 +203,11 @@ shiny:x:998:
 rstudio:x:999:rstudio
 nogroup:x:65534:
 {{- $firstGroup := .Values.supplementalGroups | first }}
-{{- if $firstGroup.name }}
+{{- if $firstGroup.gid }}
 {{- range .Values.supplementalGroups }}
+{{- if .name }}
 {{ .name }}:x:{{ .gid }}:
+{{- end }}
 {{- end }}
 {{- end }}
 
