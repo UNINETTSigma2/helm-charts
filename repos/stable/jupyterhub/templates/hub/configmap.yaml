@@ -27,7 +27,7 @@ data:
   singleuser.uid: "{{ .Values.uid }}"
   singleuser.fs-gid: "{{ .Values.gid }}"
   {{ $firstGroup := .Values.supplementalGroups | first }}
-  {{- if $firstGroup.name }}
+  {{- if $firstGroup.gid }}
   singleuser.supplemental-gids: "{{ include "supplemental_groups_list" . }}"
   {{- end }}
   singleuser.service-account-name: "default"

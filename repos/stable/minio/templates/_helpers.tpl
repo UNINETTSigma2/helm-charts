@@ -81,9 +81,11 @@ wheel:x:11:
 ssh:x:101:
 {{ .Values.username }}:x:{{ .Values.gid }}:
 {{- $firstGroup := .Values.supplementalGroups | first }}
-{{- if $firstGroup.name }}
+{{- if $firstGroup.gid }}
 {{- range .Values.supplementalGroups }}
+{{- if .name }}
 {{ .name }}:x:{{ .gid }}:
+{{- end }}
 {{- end }}
 {{- end }}
 

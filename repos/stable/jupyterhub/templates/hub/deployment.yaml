@@ -42,7 +42,7 @@ spec:
         runAsNonRoot: true
         fsGroup: {{ .Values.gid }}
         {{ $firstGroup := .Values.supplementalGroups | first }}
-        {{- if $firstGroup.name }}
+        {{- if $firstGroup.gid }}
         supplementalGroups:
           {{- range .Values.supplementalGroups }}
           - {{ .gid }}
