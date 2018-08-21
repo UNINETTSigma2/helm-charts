@@ -129,6 +129,7 @@ server {
 {{- define "passwd" -}}
 # Create /etc/passwd file to contain UID of users we add
 
+root:x:0:0:root:/root:/bin/bash
 daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
 bin:x:2:2:bin:/bin:/usr/sbin/nologin
 sys:x:3:3:sys:/dev:/usr/sbin/nologin
@@ -146,8 +147,10 @@ list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
 irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
 gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
 nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
-_apt:x:100:65534::/nonexistent:/usr/sbin/nologin
-jovyan:x:1000:100::/home/jovyan:/bin/bash
+_apt:x:100:65534::/nonexistent:/bin/false
+rstudio-server:x:988:988::/home/rstudio-server:
+rstudio:x:999:999::/home/rstudio:
+shiny:x:998:998::/home/shiny:
 {{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/rstudio:/bin/bash
 
 {{- end -}}
@@ -190,12 +193,16 @@ utmp:x:43:
 video:x:44:
 sasl:x:45:
 plugdev:x:46:
-staff:x:50:
+staff:x:50:rstudio:{{ .Values.username }}
 games:x:60:
-users:x:100:notebook
+users:x:100:
 nogroup:x:65534:
-wheel:x:11:
+rstudio-server:x:988:
+rstudio:x:999:
 ssh:x:101:
+shiny:x:998:
+rstudio:x:999:rstudio:{{ .Values.username }}
+nogroup:x:65534:
 {{- .Values.username }}:x:{{ .Values.gid }}:
 {{- $firstGroup := .Values.supplementalGroups | first }}
 {{- if $firstGroup.name }}
