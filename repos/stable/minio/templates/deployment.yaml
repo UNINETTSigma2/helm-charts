@@ -11,12 +11,7 @@ spec:
       labels:
         app: {{ template "fullname" . }}
     spec:
-      {{ if ne .Values.persistentStorage.existingClaim "" }}
       volumes:
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          persistentVolumeClaim:
-            claimName: {{ .Values.persistentStorage.existingClaim }}
-            readOnly: {{ .Values.persistentStorage.readOnly }}
         - name: passwd
           configMap:
             name: {{ template "fullname" . }}
@@ -29,6 +24,11 @@ spec:
             items:
             - key: group
               path: group
+      {{ if ne .Values.persistentStorage.existingClaim "" }}
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistentStorage.existingClaim }}
+            readOnly: {{ .Values.persistentStorage.readOnly }}
       initContainers:
       - name: busybox
         image: busybox:1
