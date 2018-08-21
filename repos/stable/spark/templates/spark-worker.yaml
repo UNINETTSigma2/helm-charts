@@ -10,8 +10,20 @@ spec:
         app: {{ template "fullname" . }}-worker
         group: {{ template "fullname" . }}
     spec:
-      {{ if ne .Values.persistentStorage.existingClaim "" }}
       volumes:
+        - name: passwd
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: passwd
+              path: passwd
+        - name: group
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: group
+              path: group
+      {{ if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           persistentVolumeClaim:
             claimName: {{ .Values.persistentStorage.existingClaim }}
@@ -21,10 +33,10 @@ spec:
         runAsNonRoot: true
         fsGroup: {{ .Values.gid }}
         {{ $firstGroup := .Values.supplementalGroups | first }}
-        {{- if $firstGroup }}
+        {{- if $firstGroup.name }}
         supplementalGroups:
           {{- range .Values.supplementalGroups }}
-          - {{ . }}
+          - {{ .gid }}
           {{- end }}
         {{- end }}
       containers:
@@ -58,8 +70,14 @@ spec:
             limits:
                 cpu: {{ .Values.advanced.workers.resources.limits.cpu }}
                 memory: {{ .Values.advanced.workers.resources.limits.memory }}
-          {{- if ne .Values.persistentStorage.existingClaim "" }}
           volumeMounts:
+          - name: passwd
+            mountPath: /etc/passwd
+            subPath: passwd
+          - name: group
+            mountPath: /etc/group
+            subPath: group
+          {{- if ne .Values.persistentStorage.existingClaim "" }}
           - name: {{ .Values.persistentStorage.existingClaimName }}
             mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
             {{ if ne .Values.persistentStorage.subPath "/" }}

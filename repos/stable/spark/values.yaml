@@ -22,8 +22,10 @@ advanced:
 
 uid: 999
 gid: 999
+username: notebook
 supplementalGroups:
-  - ""
+  - name: ""
+    gid: ""
 ingress:
   host: "host.example.com"
 
