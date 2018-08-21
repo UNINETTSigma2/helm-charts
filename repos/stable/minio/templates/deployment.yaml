@@ -17,6 +17,18 @@ spec:
           persistentVolumeClaim:
             claimName: {{ .Values.persistentStorage.existingClaim }}
             readOnly: {{ .Values.persistentStorage.readOnly }}
+        - name: passwd
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: passwd
+              path: passwd
+        - name: group
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: group
+              path: group
       initContainers:
       - name: busybox
         image: busybox:1
@@ -34,10 +46,10 @@ spec:
         runAsNonRoot: true
         fsGroup: {{ .Values.gid }}
         {{ $firstGroup := .Values.supplementalGroups | first }}
-        {{- if $firstGroup }}
+        {{- if $firstGroup.name }}
         supplementalGroups:
           {{- range .Values.supplementalGroups }}
-          - {{ . }}
+          - {{ .gid }}
           {{- end }}
         {{- end }}
       containers:
@@ -73,8 +85,14 @@ spec:
             port: 9000
           initialDelaySeconds: 30
           timeoutSeconds: 30
-        {{ if ne .Values.persistentStorage.existingClaim "" }}
         volumeMounts:
+        - name: passwd
+          mountPath: /etc/passwd
+          subPath: passwd
+        - name: group
+          mountPath: /etc/group
+          subPath: group
+        {{ if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
           {{ if ne .Values.persistentStorage.subPath "/" }}
@@ -115,10 +133,10 @@ spec:
         runAsUser: {{ .Values.uid }}
         fsGroup: {{ .Values.gid }}
         {{ $firstGroup := .Values.supplementalGroups | first }}
-        {{- if $firstGroup }}
+        {{- if $firstGroup.name }}
         supplementalGroups:
           {{- range .Values.supplementalGroups }}
-          - {{ . }}
+          - {{ .gid }}
           {{- end }}
         {{- end }}
       containers:

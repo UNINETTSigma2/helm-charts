@@ -29,14 +29,26 @@ spec:
             items:
             - key: notebook_config.py
               path: notebook_config.py
+        - name: passwd
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: passwd
+              path: passwd
+        - name: group
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: group
+              path: group
       securityContext:
         runAsNonRoot: true
         fsGroup: {{ .Values.gid }}
         {{ $firstGroup := .Values.supplementalGroups | first }}
-        {{- if $firstGroup }}
+        {{- if $firstGroup.name }}
         supplementalGroups:
           {{- range .Values.supplementalGroups }}
-          - {{ . }}
+          - {{ .gid }}
           {{- end }}
         {{- end }}
       containers:
@@ -106,6 +118,12 @@ spec:
         - name: notebook-config
           mountPath: /home/notebook/.jupyter/notebook_config.py
           subPath: notebook_config.py
+        - name: passwd
+          mountPath: /etc/passwd
+          subPath: passwd
+        - name: group
+          mountPath: /etc/group
+          subPath: group
         {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}

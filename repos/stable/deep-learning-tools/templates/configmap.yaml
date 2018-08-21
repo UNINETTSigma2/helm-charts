@@ -7,3 +7,5 @@ metadata:
 type: Opaque
 data:
   notebook_config.py: {{ include "notebook-config" . | quote }}
+  passwd: {{ include "passwd" . | quote }}
+  group: {{ include "group" . | quote }}

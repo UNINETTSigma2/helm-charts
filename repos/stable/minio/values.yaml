@@ -14,8 +14,10 @@ persistentStorage:
   subPath: "/"
 uid: 999
 gid: 999
+username: minio
 supplementalGroups:
-  - ""
+  - name: ""
+    gid: ""
 appstore_generated_data:
   dataporten:
     scopes:
