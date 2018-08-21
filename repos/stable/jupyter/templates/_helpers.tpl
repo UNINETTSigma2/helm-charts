@@ -160,12 +160,12 @@ users:x:100:notebook
 nogroup:x:65534:
 wheel:x:11:
 ssh:x:101:
-{{ .Values.username }}:x:{{ .Values.gid }}:
-{{ $firstGroup := .Values.supplementalGroups | first }}
+{{- .Values.username }}:x:{{ .Values.gid }}:
+{{- $firstGroup := .Values.supplementalGroups | first }}
 {{- if $firstGroup.name }}
-{{- range .Values.supplementalGroups }}
-{{ .name }}:x:{{ .gid }}:
-{{- end }}
+    {{- range .Values.supplementalGroups }}
+	{{- .name }}:x:{{ .gid }}:
+    {{- end }}
 {{- end }}
 
 {{- end -}}
