@@ -9,8 +9,10 @@ resources:
     memory: 400M
 uid: 999
 gid: 999
+username: rstudio
 supplementalGroups:
-  - ""
+  - name: ""
+    gid: ""
 persistentStorage:
   existingClaim: ""
   existingClaimName: "example-name"

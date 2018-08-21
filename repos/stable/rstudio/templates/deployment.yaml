@@ -19,10 +19,22 @@ spec:
             secretName: {{ template "fullname" . }}
         - name: proxy-config
           configMap:
-            name: {{ template "fullname" . }}-proxy
+            name: {{ template "fullname" . }}
             items:
             - key: default.conf
               path: default.conf
+        - name: passwd
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: passwd
+              path: passwd
+        - name: group
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: group
+              path: group
         {{ if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           persistentVolumeClaim:
@@ -45,10 +57,10 @@ spec:
         runAsNonRoot: true
         fsGroup: {{ .Values.gid }}
         {{ $firstGroup := .Values.supplementalGroups | first }}
-        {{- if $firstGroup }}
+        {{- if $firstGroup.name }}
         supplementalGroups:
           {{- range .Values.supplementalGroups }}
-          - {{ . }}
+          - {{ .gid }}
           {{- end }}
         {{- end }}
       containers:
@@ -112,7 +124,15 @@ spec:
         {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: SHINY_APPS_PATH
           value: /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}/shiny-server
+        {{- end }}
         volumeMounts:
+        - name: passwd
+          mountPath: /etc/passwd
+          subPath: passwd
+        - name: group
+          mountPath: /etc/group
+          subPath: group
+        {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
           {{ if ne .Values.persistentStorage.subPath "/" }}
@@ -153,9 +173,12 @@ spec:
         runAsNonRoot: true
         runAsUser: {{ .Values.uid }}
         fsGroup: {{ .Values.gid }}
-        {{- $strGroups := .Values.supplementalGroups | quote }}
-        {{- if ne $strGroups "[]" }}
-        supplementalGroups: {{ .Values.supplementalGroups }}
+        {{ $firstGroup := .Values.supplementalGroups | first }}
+        {{- if $firstGroup.name }}
+        supplementalGroups:
+          {{- range .Values.supplementalGroups }}
+          - {{ .gid }}
+          {{- end }}
         {{- end }}
       containers:
       - name: cleaner-job
