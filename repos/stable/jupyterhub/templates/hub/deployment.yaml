@@ -42,10 +42,10 @@ spec:
         runAsNonRoot: true
         fsGroup: {{ .Values.gid }}
         {{ $firstGroup := .Values.supplementalGroups | first }}
-        {{- if $firstGroup }}
+        {{- if $firstGroup.name }}
         supplementalGroups:
           {{- range .Values.supplementalGroups }}
-          - {{ . }}
+          - {{ .gid }}
           {{- end }}
         {{- end }}
       volumes:
@@ -55,6 +55,18 @@ spec:
       - name: secret
         secret:
           secretName: {{ .Release.Name }}-hub-secret
+      - name: passwd
+        configMap:
+          name: {{ template "fullname" . }}
+          items:
+          - key: passwd
+            path: passwd
+      - name: group
+        configMap:
+          name: {{ template "fullname" . }}
+          items:
+          - key: group
+            path: group
       {{- if ne .Values.persistentStorage.existingClaim "" }}
       - name: {{ .Values.persistentStorage.existingClaimName }}
         persistentVolumeClaim:
@@ -89,6 +101,12 @@ spec:
             name: config
           - mountPath: /etc/jupyterhub/secret/
             name: secret
+          - name: passwd
+            mountPath: /etc/passwd
+            subPath: passwd
+          - name: group
+            mountPath: /etc/group
+            subPath: group
           {{- if ne .Values.persistentStorage.existingClaim "" }}
           - name: {{ .Values.persistentStorage.existingClaimName }}
             mountPath: /srv/jupyterhub

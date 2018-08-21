@@ -27,8 +27,8 @@ data:
   singleuser.uid: "{{ .Values.uid }}"
   singleuser.fs-gid: "{{ .Values.gid }}"
   {{ $firstGroup := .Values.supplementalGroups | first }}
-  {{- if $firstGroup }}
-  singleuser.supplemental-gids: "{{ .Values.supplementalGroups }}"
+  {{- if $firstGroup.name }}
+  singleuser.supplemental-gids: "{{ include "supplemental_groups_list" . }}"
   {{- end }}
   singleuser.service-account-name: "default"
   singleuser.pod-name-template: "{{.Release.Name}}-jupyter-{username}"

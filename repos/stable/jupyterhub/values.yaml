@@ -46,8 +46,10 @@ users:
         memory: 1G
 uid: 999
 gid: 999
+username: jupyterhub
 supplementalGroups:
-  - ""
+  - name: ""
+    gid: ""
 advanced:
   killIdlePods:
     enabled: true
