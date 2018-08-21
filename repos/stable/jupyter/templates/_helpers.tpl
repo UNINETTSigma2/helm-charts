@@ -112,7 +112,7 @@ gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologi
 nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
 _apt:x:100:65534::/nonexistent:/usr/sbin/nologin
 jovyan:x:1000:100::/home/jovyan:/bin/bash
-{{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/{{ .Values.username }}:/bin/bash
+{{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/notebook:/bin/bash
 
 {{- end -}}
 
