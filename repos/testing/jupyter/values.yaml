@@ -24,10 +24,9 @@ appstore_generated_data:
 uid: 999
 gid: 999
 username: notebook
-supplementalGroupName:
-  - ""
 supplementalGroups:
-  - ""
+  - name: ""
+    gid: ""
 advanced:
   env:
     sparkMasterUrl: "local[*]"
