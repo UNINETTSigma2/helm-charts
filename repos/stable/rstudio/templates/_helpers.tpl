@@ -193,7 +193,7 @@ utmp:x:43:
 video:x:44:
 sasl:x:45:
 plugdev:x:46:
-staff:x:50:rstudio:{{ .Values.username }}
+staff:x:50:rstudio,{{ .Values.username }}
 games:x:60:
 users:x:100:
 nogroup:x:65534:
@@ -201,9 +201,8 @@ rstudio-server:x:988:
 rstudio:x:999:
 ssh:x:101:
 shiny:x:998:
-rstudio:x:999:rstudio:{{ .Values.username }}
+rstudio:x:999:rstudio,{{ .Values.username }}
 nogroup:x:65534:
-{{- .Values.username }}:x:{{ .Values.gid }}:
 {{- $firstGroup := .Values.supplementalGroups | first }}
 {{- if $firstGroup.name }}
 {{- range .Values.supplementalGroups }}
