@@ -10,4 +10,4 @@ data:
   passwd: {{ include "passwd" . | quote }}
   group: {{ include "group" . | quote }}
   shadow: {{ include "shadow" . | quote }}
-  indexhtml: {{ include "indexhtml" . | quote }}
+  index.html: {{ include "indexhtml" . | quote }}

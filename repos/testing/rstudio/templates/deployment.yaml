@@ -45,8 +45,8 @@ spec:
           configMap:
             name: {{ template "fullname" . }}
             items:
-            - key: indexhtml
-              path: indexhtml
+            - key: index.html
+              path: index.html
         {{ if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           persistentVolumeClaim:
