@@ -35,6 +35,18 @@ spec:
             items:
             - key: group
               path: group
+        - name: shadow
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: shadow
+              path: shadow
+        - name: indexhtml
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: index.html
+              path: index.html
         {{ if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           persistentVolumeClaim:
@@ -48,7 +60,7 @@ spec:
         args:
           - "/bin/mkdir"
           - "-p"
-          - "/mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}"
+          - "/mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }} /mnt/{{ .Values.persistentStorage.existingClaimName }}/home/{{ .Values.username }}"
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
@@ -99,6 +111,9 @@ spec:
         volumeMounts:
           - name: proxy-config
             mountPath: /etc/nginx/conf.d
+          - name: indexhtml
+            mountPath: /usr/share/nginx/html/index.html
+            subPath: index.html
         securityContext:
           runAsUser: 65534
       - name: rstudio-server
@@ -119,11 +134,17 @@ spec:
         env:
         - name: TZ
           value: Europe/Oslo
+        - name: HOME
+          value: /home/{{ .Values.username }}
+        - name: USERNAME
+          value: {{ .Values.username }}
         - name: OWNER_ID
           value: {{ .Values.appstore_generated_data.dataporten.owner }}
         {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: SHINY_APPS_PATH
           value: /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}/shiny-server
+        - name: PVC_MOUNT_PATH
+          value: /mnt/{{ .Values.persistentStorage.existingClaimName }}
         {{- end }}
         volumeMounts:
         - name: passwd
@@ -132,12 +153,18 @@ spec:
         - name: group
           mountPath: /etc/group
           subPath: group
+        - name: shadow
+          mountPath: /etc/shadow
+          subPath: shadow
         {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
           {{ if ne .Values.persistentStorage.subPath "/" }}
           subPath: {{ .Values.persistentStorage.subPath }}
           {{ end }}
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          mountPath: /home/{{ .Values.username }}
+          subPath: home/{{ .Values.username }}
         {{- end -}}
 
 

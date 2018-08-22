@@ -9,3 +9,5 @@ data:
   default.conf: {{ include "default.conf" . | quote }}
   passwd: {{ include "passwd" . | quote }}
   group: {{ include "group" . | quote }}
+  shadow: {{ include "shadow" . | quote }}
+  index.html: {{ include "indexhtml" . | quote }}

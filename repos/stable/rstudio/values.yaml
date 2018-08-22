@@ -28,7 +28,7 @@ appstore_generated_data:
     authorized_groups:
       - ""
 advanced:
-  dockerImage: quay.io/uninett/rstudio-server:20180815-5d5648e
+  dockerImage: quay.io/uninett/rstudio-server:20180822-105bf47
 authGroupProviders:
   - url: "https://groups-api.dataporten.no/groups/me/groups"
     scope: groups

@@ -151,7 +151,7 @@ _apt:x:100:65534::/nonexistent:/bin/false
 rstudio-server:x:988:988::/home/rstudio-server:
 rstudio:x:999:999::/home/rstudio:
 shiny:x:998:998::/home/shiny:
-{{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/rstudio:/bin/bash
+{{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/{{ .Values.username }}:/bin/bash
 
 {{- end -}}
 
@@ -211,4 +211,106 @@ nogroup:x:65534:
 {{- end }}
 {{- end }}
 
+{{- end -}}
+
+# Create /etc/group file to contain UID of users we add
+{{- define "shadow" -}}
+root:*:17647:0:99999:7:::
+daemon:*:17647:0:99999:7:::
+bin:*:17647:0:99999:7:::
+sys:*:17647:0:99999:7:::
+sync:*:17647:0:99999:7:::
+games:*:17647:0:99999:7:::
+man:*:17647:0:99999:7:::
+lp:*:17647:0:99999:7:::
+mail:*:17647:0:99999:7:::
+news:*:17647:0:99999:7:::
+uucp:*:17647:0:99999:7:::
+proxy:*:17647:0:99999:7:::
+www-data:*:17647:0:99999:7:::
+backup:*:17647:0:99999:7:::
+list:*:17647:0:99999:7:::
+irc:*:17647:0:99999:7:::
+gnats:*:17647:0:99999:7:::
+nobody:*:17647:0:99999:7:::
+_apt:*:17647:0:99999:7:::
+rstudio-server:!:17652::::::
+{{ .Values.username }}:$6$OLWwdiLp$uLstyoh.dp5yAWgZqoHUj707hxKlca17PrGFoDKvOlX.QHJVdLBm3eBfG9JF0NKjgxCL8QKTl3xMR/LZJSmgR1:17652:0:99999:7:::
+{{- end -}}
+
+# Create index.html file to specific user to be authenticated as
+{{- define "indexhtml" -}}
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>RStudio Sign In</title>
+<script type="text/javascript" src="js/encrypt.min.js"></script>
+<script type="text/javascript">
+  function prepare() {
+     try {
+        var payload = "{{ .Values.username }}\nrstudio";
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "auth-public-key", true);
+        xhr.onreadystatechange = function() {
+           try {
+              if (xhr.readyState == 4) {
+                 if (xhr.status != 200) {
+                    var errorMessage;
+                    if (xhr.status == 0)
+                       errorMessage = "Error: Could not reach server--check your internet connection";
+                    else
+                       errorMessage = "Error: " + xhr.statusText;
+
+                    var errorDiv = document.getElementById('errorpanel');
+                    errorDiv.innerHTML = '';
+                    var errorp = document.createElement('p');
+                    errorDiv.appendChild(errorp);
+                    if (typeof(errorp.innerText) == 'undefined')
+                       errorp.textContent = errorMessage;
+                    else
+                       errorp.innerText = errorMessage;
+                    errorDiv.style.display = 'block';
+                 }
+                 else {
+                    var response = xhr.responseText;
+                    var chunks = response.split(':', 2);
+                    var exp = chunks[0];
+                    var mod = chunks[1];
+                    var encrypted = encrypt(payload, exp, mod);
+                    document.getElementById('persist').value = "1";
+                    document.getElementById('package').value = encrypted;
+                    document.getElementById('clientPath').value = window.location.pathname;
+                    document.realform.submit();
+                 }
+              }
+           } catch (exception) {
+              alert("Error: " + exception);
+           }
+        };
+        xhr.send(null);
+     } catch (exception) {
+        alert("Error: " + exception);
+     }
+  }
+  window.onload =  function() {
+     if (prepare())
+        document.realform.submit();
+  }
+</script>
+</head>
+
+<div id="errorpanel">
+<p>Starting up RStudio</p>
+</div>
+
+<form action="auth-do-sign-in" name="realform" method="POST">
+   <input type="hidden" name="persist" id="persist" value=""/>
+   <input type="hidden" name="appUri" value=""/>
+   <input type="hidden" name="clientPath" id="clientPath" value=""/>
+   <input id="package" type="hidden" name="v" value=""/>
+</form>
+
+</body>
+</html>
 {{- end -}}
