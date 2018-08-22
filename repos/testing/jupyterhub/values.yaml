@@ -45,6 +45,11 @@ users:
         cpu: "1"
         memory: 1G
 uid: 999
+gid: 999
+username: jupyterhub
+supplementalGroups:
+  - name: ""
+    gid: ""
 advanced:
   killIdlePods:
     enabled: true
@@ -59,10 +64,9 @@ advanced:
     readOnly: true
   userImage: quay.io/uninett/jupyterhub-singleuser:20180703-0ff1eb6
 appstore_generated_data:
-  appstore_meta_data:
-    owner_id: ""
   dataporten:
     id: ""
+    owner: "0000-1234"
     client_secret: ""
     authorized_groups:
       - ""

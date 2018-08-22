@@ -38,6 +38,16 @@ spec:
                     - key: release
                       operator: In
                       values: [ {{ .Release.Name | quote }} ]
+      securityContext:
+        runAsNonRoot: true
+        fsGroup: {{ .Values.gid }}
+        {{ $firstGroup := .Values.supplementalGroups | first }}
+        {{- if $firstGroup.gid }}
+        supplementalGroups:
+          {{- range .Values.supplementalGroups }}
+          - {{ .gid }}
+          {{- end }}
+        {{- end }}
       volumes:
       - name: config
         configMap:
@@ -45,6 +55,18 @@ spec:
       - name: secret
         secret:
           secretName: {{ .Release.Name }}-hub-secret
+      - name: passwd
+        configMap:
+          name: {{ template "fullname" . }}
+          items:
+          - key: passwd
+            path: passwd
+      - name: group
+        configMap:
+          name: {{ template "fullname" . }}
+          items:
+          - key: group
+            path: group
       {{- if ne .Values.persistentStorage.existingClaim "" }}
       - name: {{ .Values.persistentStorage.existingClaimName }}
         persistentVolumeClaim:
@@ -66,17 +88,25 @@ spec:
       {{- end }}
       containers:
       - name: hub-container
-        image: quay.io/uninett/jupyterhub-server:20180808-09e832b
+        image: quay.io/uninett/jupyterhub-server:20180816-94e7839
         command:
           - jupyterhub
           - --config
           - /srv/jupyterhub_config.py
           - --upgrade-db
+        securityContext:
+          runAsUser: {{ .Values.uid }}
         volumeMounts:
           - mountPath: /etc/jupyterhub/config/
             name: config
           - mountPath: /etc/jupyterhub/secret/
             name: secret
+          - name: passwd
+            mountPath: /etc/passwd
+            subPath: passwd
+          - name: group
+            mountPath: /etc/group
+            subPath: group
           {{- if ne .Values.persistentStorage.existingClaim "" }}
           - name: {{ .Values.persistentStorage.existingClaimName }}
             mountPath: /srv/jupyterhub
@@ -96,6 +126,8 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
+        - name: OWNER_ID
+          value: {{ .Values.appstore_generated_data.dataporten.owner }}
         - name: PROXY_PUBLIC_SERVICE_NAME
           value: {{ .Release.Name | upper | replace "-" "_" }}_PROXY_HTTP_SERVICE
         - name: PROXY_API_SERVICE_NAME
@@ -110,6 +142,8 @@ spec:
           value: "https://{{ .Values.ingress.host }}/hub/oauth_callback"
         - name: AUTHORIZED_GROUPS
           value: "{{- join "," .Values.appstore_generated_data.dataporten.authorized_groups -}}"
+        - name: OAUTH2_USERDATA_URL
+          value: "https://apps-mas-sigma.dataporten-api.no/userinfo"
         - name: CONFIGPROXY_AUTH_TOKEN
           valueFrom:
             secretKeyRef:
@@ -119,6 +153,8 @@ spec:
           value: "https://auth.dataporten.no/oauth/token"
         - name: OAUTH2_AUTHORIZE_URL
           value: "https://auth.dataporten.no/oauth/authorization"
+        - name: GROUP_URLS
+          value: "https://apps-mas-sigma.dataporten-api.no/groups/me/groups,https://groups-api.dataporten.no/groups/me/groups"
         ports:
           - containerPort: 8081
       serviceAccountName: {{ .Release.Name }}-hub

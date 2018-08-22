@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiVersion: apps/v1beta2
 kind: DaemonSet
 metadata:
   name: {{ .Release.Name }}-image-puller
@@ -28,28 +28,34 @@ spec:
     spec:
       terminationGracePeriodSeconds: 0
       automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
       initContainers:
         - name: image-pull-singleuser
           image: "{{ .Values.advanced.userImage }}"
           imagePullPolicy: IfNotPresent
           resources:
             limits:
-              cpu: 30m
-              memory: 10M
+              cpu: 20m
+              memory: 20M
             requests:
               cpu: 10m
               memory: 10M
+          securityContext:
+            runAsUser: 65534
           command:
             - /bin/sh
             - -c
-            - echo "Pulling complete"
+            - 'echo "Pulling complete"'
       containers:
         - name: pause
           image: gcr.io/google_containers/pause:3.0
+          securityContext:
+            runAsUser: 65534
           resources:
             limits:
-              cpu: 30m
-              memory: 10M
+              cpu: 20m
+              memory: 20M
             requests:
               cpu: 10m
               memory: 10M

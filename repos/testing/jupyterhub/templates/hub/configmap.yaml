@@ -16,7 +16,7 @@ data:
   auth.state.enabled: "false"
   auth.admin.access: "true"
   auth.admin.users: |
-    - {{ .Values.appstore_generated_data.appstore_meta_data.owner_id | replace "fc:uid:" "" }}
+    - {{ .Values.appstore_generated_data.dataporten.owner }}
   auth.type: "dataporten"
 
   {{- /* Singleuser */}}
@@ -25,7 +25,11 @@ data:
   singleuser.scheduler-strategy: pack
   singleuser.cmd: "/usr/local/bin/start-notebook.sh"
   singleuser.uid: "{{ .Values.uid }}"
-  singleuser.fs-gid: "{{ .Values.uid }}"
+  singleuser.fs-gid: "{{ .Values.gid }}"
+  {{ $firstGroup := .Values.supplementalGroups | first }}
+  {{- if $firstGroup.gid }}
+  singleuser.supplemental-gids: "{{ include "supplemental_groups_list" . }}"
+  {{- end }}
   singleuser.service-account-name: "default"
   singleuser.pod-name-template: "{{.Release.Name}}-jupyter-{username}"
   singleuser.node-selector: "{}"

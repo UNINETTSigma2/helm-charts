@@ -70,6 +70,17 @@ spec:
         persistentVolumeClaim:
           claimName: {{ .Values.persistentStorage.existingClaim }}
       restartPolicy: Never
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: {{ .Values.uid }}
+        fsGroup: {{ .Values.gid }}
+        {{ $firstGroup := .Values.supplementalGroups | first }}
+        {{- if $firstGroup.gid }}
+        supplementalGroups:
+          {{- range .Values.supplementalGroups }}
+          - {{ .gid }}
+          {{- end }}
+        {{- end }}
       containers:
       - name: cleaner-job
         image: "alpine:3.8"
