@@ -1,0 +1,34 @@
+ingress:
+  host: "local-chart.example.com"
+resources:
+  requests:
+    cpu: 200m
+    memory: 200M
+  limits:
+    cpu: 400m
+    memory: 400M
+uid: 999
+gid: 999
+username: rstudio
+supplementalGroups:
+  - name: "test"
+    gid: "123"
+persistentStorage:
+  existingClaim: ""
+  existingClaimName: "example-name"
+  readOnly: false
+  subPath: "/"
+appstore_generated_data:
+  dataporten:
+    scopes:
+      - ""
+    id: "0000"
+    owner: "0000-1234"
+    client_secret: "0000"
+    authorized_groups:
+      - ""
+advanced:
+  dockerImage: quay.io/uninett/rstudio-server:20180822-e7e5c18
+authGroupProviders:
+  - url: "https://groups-api.dataporten.no/groups/me/groups"
+    scope: groups
