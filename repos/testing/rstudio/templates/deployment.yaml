@@ -114,9 +114,9 @@ spec:
         volumeMounts:
           - name: proxy-config
             mountPath: /etc/nginx/conf.d
-        - name: indexhtml
-          mountPath: /usr/share/nginx/html/index.html
-          subPath: index.html
+          - name: indexhtml
+            mountPath: /usr/share/nginx/html/index.html
+            subPath: index.html
         securityContext:
           runAsUser: 65534
       - name: rstudio-server
