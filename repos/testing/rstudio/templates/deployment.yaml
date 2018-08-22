@@ -52,9 +52,6 @@ spec:
           persistentVolumeClaim:
             claimName: {{ .Values.persistentStorage.existingClaim }}
             readOnly: {{ .Values.persistentStorage.readOnly }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}-home
-          persistentVolumeClaim:
-            claimName: {{ .Values.persistentStorage.existingClaim }}
       initContainers:
       - name: busybox
         image: busybox:1
@@ -165,7 +162,7 @@ spec:
           {{ if ne .Values.persistentStorage.subPath "/" }}
           subPath: {{ .Values.persistentStorage.subPath }}
           {{ end }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}-home
+        - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /home/{{ .Values.username }}
           subPath: home/{{ .Values.username }}
         {{- end -}}
