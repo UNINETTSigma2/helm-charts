@@ -70,3 +70,6 @@ appstore_generated_data:
     client_secret: ""
     authorized_groups:
       - ""
+authGroupProviders:
+  - url: "https://groups-api.dataporten.no/groups/me/groups"
+    scope: groups

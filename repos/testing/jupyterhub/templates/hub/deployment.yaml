@@ -88,7 +88,7 @@ spec:
       {{- end }}
       containers:
       - name: hub-container
-        image: quay.io/uninett/jupyterhub-server:20180816-94e7839
+        image: quay.io/uninett/jupyterhub-server:20180822-b81d5e2
         command:
           - jupyterhub
           - --config
@@ -140,6 +140,8 @@ spec:
           value: "{{ .Values.appstore_generated_data.dataporten.client_secret }}"
         - name: OAUTH_CALLBACK_URL
           value: "https://{{ .Values.ingress.host }}/hub/oauth_callback"
+        - name: GROUP_URLS
+          value: "{{ include "all_endpoints" . }}"
         - name: AUTHORIZED_GROUPS
           value: "{{- join "," .Values.appstore_generated_data.dataporten.authorized_groups -}}"
         - name: OAUTH2_USERDATA_URL
