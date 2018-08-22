@@ -107,8 +107,8 @@ gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologi
 nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
 _apt:x:100:65534::/nonexistent:/usr/sbin/nologin
 jovyan:x:1000:100::/home/jovyan:/bin/bash
+{{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/{{ .Values.username }}:/bin/bash
 notebook:x:999:999::/home/notebook:/bin/bash
-{{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/notebook:/bin/bash
 
 {{- end -}}
 
@@ -155,7 +155,6 @@ users:x:100:notebook
 nogroup:x:65534:
 wheel:x:11:
 ssh:x:101:
-notebook:x:999:
 {{ .Values.username }}:x:{{ .Values.gid }}:
 {{- $firstGroup := .Values.supplementalGroups | first }}
 {{- if $firstGroup.gid }}
@@ -165,5 +164,6 @@ notebook:x:999:
 {{- end }}
 {{- end }}
 {{- end }}
+notebook:x:999:
 
 {{- end -}}

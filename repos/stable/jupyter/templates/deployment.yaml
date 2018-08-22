@@ -48,7 +48,7 @@ spec:
         args:
           - "/bin/sh"
           - "-c"
-          - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/home/{{ .Values.username }}"
+          - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/home/{{ .Values.username }}/.jupyter "
           - "chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/home"
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
@@ -104,6 +104,8 @@ spec:
           {{ end }}
           - name: TZ
             value: Europe/Oslo
+          - name: XDG_CACHE_HOME
+            value: /home/{{ .Values.username }}/.cache
           - name: HOME
             value: /home/{{ .Values.username }}
           - name: USER
