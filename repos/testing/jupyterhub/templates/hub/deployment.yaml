@@ -145,7 +145,7 @@ spec:
         - name: AUTHORIZED_GROUPS
           value: "{{- join "," .Values.appstore_generated_data.dataporten.authorized_groups -}}"
         - name: OAUTH2_USERDATA_URL
-          value: "https://apps-mas-sigma.dataporten-api.no/userinfo"
+          value: {{ .Values.userInfoURL }}
         - name: CONFIGPROXY_AUTH_TOKEN
           valueFrom:
             secretKeyRef:
