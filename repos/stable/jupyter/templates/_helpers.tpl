@@ -76,11 +76,7 @@ c.NotebookApp.port = 8888
 c.NotebookApp.base_url = '/'
 c.NotebookApp.trust_xheaders = True
 c.NotebookApp.tornado_settings = {'static_url_prefix': '/static/'}
-{{ if ne .Values.persistentStorage.existingClaim "" }}
-c.NotebookApp.notebook_dir = '/mnt/{{ .Values.persistentStorage.existingClaimName }}'
-{{ else }}
-c.NotebookApp.notebook_dir = '/home/notebook'
-{{ end }}
+c.NotebookApp.notebook_dir = '/home/{{ .Values.username }}'
 {{ if ne .Values.advanced.githubToken "" }}
 c.GitHubConfig.access_token = '{{ .Values.advanced.githubToken }}'
 {{ end }}
@@ -90,9 +86,8 @@ c.NotebookApp.password = ''
 
 {{- end -}}
 
-{{- define "passwd" -}}
 # Create /etc/passwd file to contain UID of users we add
-
+{{- define "passwd" -}}
 daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
 bin:x:2:2:bin:/bin:/usr/sbin/nologin
 sys:x:3:3:sys:/dev:/usr/sbin/nologin
@@ -112,13 +107,13 @@ gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologi
 nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
 _apt:x:100:65534::/nonexistent:/usr/sbin/nologin
 jovyan:x:1000:100::/home/jovyan:/bin/bash
+notebook:x:999:999::/home/notebook:/bin/bash
 {{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/notebook:/bin/bash
 
 {{- end -}}
 
-{{- define "group" -}}
 # Create /etc/group file to contain UID of users we add
-
+{{- define "group" -}}
 root:x:0:
 daemon:x:1:
 bin:x:2:
@@ -160,6 +155,7 @@ users:x:100:notebook
 nogroup:x:65534:
 wheel:x:11:
 ssh:x:101:
+notebook:x:999:
 {{ .Values.username }}:x:{{ .Values.gid }}:
 {{- $firstGroup := .Values.supplementalGroups | first }}
 {{- if $firstGroup.gid }}
