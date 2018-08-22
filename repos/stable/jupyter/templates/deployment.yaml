@@ -54,6 +54,7 @@ spec:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
       {{ end }}
+      hostname: {{ template "fullname" . }}
       securityContext:
         runAsNonRoot: true
         fsGroup: {{ .Values.gid }}
