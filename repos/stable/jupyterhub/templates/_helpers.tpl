@@ -9,6 +9,16 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
+{{- define "all_endpoints" -}}
+    {{- $n_groups := sub (len .Values.authGroupProviders) 1 }}
+    {{- range $index, $el := .Values.authGroupProviders }}
+	{{- printf "%s" .url }}
+	{{- if lt $index $n_groups }}
+	    {{- printf "," }}
+	{{- end }}
+    {{- end }}
+{{- end -}}
+
 {{- define "supplemental_groups_list" -}}
     {{- $n_groups := sub (len .Values.supplementalGroups) 1 }}
     {{- printf "[" }}
