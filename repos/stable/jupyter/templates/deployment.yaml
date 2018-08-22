@@ -46,9 +46,10 @@ spec:
         securityContext:
           runAsUser: {{ .Values.uid }}
         args:
-          - "/bin/mkdir"
-          - "-p"
-          - "/mnt/{{ .Values.persistentStorage.existingClaimName }}/home/{{ .Values.username }}"
+          - "/bin/sh"
+          - "-c"
+          - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/home/{{ .Values.username }}"
+          - "chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/home"
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
@@ -145,4 +146,7 @@ spec:
           {{ if ne .Values.persistentStorage.subPath "/" }}
           subPath: {{ .Values.persistentStorage.subPath }}
           {{ end }}
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          mountPath: /home/{{ .Values.username }}
+          subPath: home/{{ .Values.username }}
         {{- end -}}
