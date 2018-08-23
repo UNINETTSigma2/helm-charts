@@ -51,7 +51,6 @@ spec:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           persistentVolumeClaim:
             claimName: {{ .Values.persistentStorage.existingClaim }}
-            readOnly: {{ .Values.persistentStorage.readOnly }}
       initContainers:
       - name: busybox
         image: busybox:1
@@ -65,6 +64,9 @@ spec:
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          {{ if ne .Values.persistentStorage.subPath "/" }}
+          subPath: {{ .Values.persistentStorage.subPath }}
+          {{ end }}
         {{ end }}
       hostname: {{ template "fullname" . }}
       securityContext:
@@ -222,4 +224,7 @@ spec:
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          {{ if ne .Values.persistentStorage.subPath "/" }}
+          subPath: {{ .Values.persistentStorage.subPath }}
+          {{ end }}
 {{ end }}
