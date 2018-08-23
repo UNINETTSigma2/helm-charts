@@ -17,7 +17,7 @@ In addition there is [Tensorboard](https://www.tensorflow.org/programmers_guide/
 
 ### Advanced
 This application creates a Jupyter Notebook instance using the following Dockerfiles:
-  - [quay.io/Uninett/deep-learning-tools](https://github.com/Uninett/helm-charts-dockerfiles/tree/0b4564f/deep-learning-tools/Dockerfile)
+  - [quay.io/Uninett/deep-learning-tools](https://github.com/Uninett/helm-charts-dockerfiles/tree/d9ea9b3/deep-learning-tools/Dockerfile)
 
 #### Values
 | Value name    | Description |

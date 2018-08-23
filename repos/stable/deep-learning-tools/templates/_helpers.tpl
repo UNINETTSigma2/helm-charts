@@ -90,9 +90,8 @@ c.NotebookApp.password = ''
 
 {{- end -}}
 
-{{- define "passwd" -}}
 # Create /etc/passwd file to contain UID of users we add
-
+{{- define "passwd" -}}
 daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
 bin:x:2:2:bin:/bin:/usr/sbin/nologin
 sys:x:3:3:sys:/dev:/usr/sbin/nologin
@@ -113,6 +112,7 @@ nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
 _apt:x:100:65534::/nonexistent:/usr/sbin/nologin
 jovyan:x:1000:100::/home/jovyan:/bin/bash
 {{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/notebook:/bin/bash
+notebook:x:999:999::/home/notebook:/bin/bash
 
 {{- end -}}
 
@@ -169,5 +169,6 @@ ssh:x:101:
 {{- end }}
 {{- end }}
 {{- end }}
+notebook:x:101:
 
 {{- end -}}

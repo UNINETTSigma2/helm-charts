@@ -17,12 +17,6 @@ spec:
         - name: oidcconfig
           secret:
             secretName: {{ template "fullname" . }}
-        {{ if ne .Values.persistentStorage.existingClaim "" }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          persistentVolumeClaim:
-            claimName: {{ .Values.persistentStorage.existingClaim }}
-            readOnly: {{ .Values.persistentStorage.readOnly }}
-        {{ end }}
         - name: notebook-config
           configMap:
             name: {{ template "fullname" . }}
@@ -41,6 +35,26 @@ spec:
             items:
             - key: group
               path: group
+      {{ if ne .Values.persistentStorage.existingClaim "" }}
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistentStorage.existingClaim }}
+            readOnly: {{ .Values.persistentStorage.readOnly }}
+      initContainers:
+      - name: busybox
+        image: busybox:1
+        securityContext:
+          runAsUser: {{ .Values.uid }}
+        args:
+          - /bin/sh
+          - -c
+          - -x
+          - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/home/{{ .Values.username }}/.jupyter && chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/home"
+        volumeMounts:
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+      {{ end }}
+      hostname: {{ template "fullname" . }}
       securityContext:
         runAsNonRoot: true
         fsGroup: {{ .Values.gid }}
@@ -84,11 +98,20 @@ spec:
       - name: jupyter
         image: {{ .Values.advanced.dockerImage }}
         args: ["/usr/local/bin/start-notebook.sh"]
+        workingDir: /home/{{ .Values.username }}
         env:
           {{ if .Values.advanced.env.jupyterLab }}
           - name: JUPYTER_ENABLE_LAB
             value: "1"
           {{ end }}
+          - name: TZ
+            value: Europe/Oslo
+          - name: XDG_CACHE_HOME
+            value: /home/{{ .Values.username }}/.cache
+          - name: HOME
+            value: /home/{{ .Values.username }}
+          - name: USER
+            value: {{ .Values.username }}
           - name: SPARK_MASTER_SERVICE
             value: {{ .Values.advanced.env.sparkMasterUrl }}
           - name: SPARK_OPTS
@@ -97,6 +120,10 @@ spec:
             value: 1g
           - name: SPARK_DRIVER_CORES
             value: '1'
+          {{- if ne .Values.persistentStorage.existingClaim "" }}
+          - name: PVC_MOUNT_PATH
+            value: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          {{- end }}
           - name: MEM_LIMIT
             value: {{ .Values.resources.limits.memory }}
           - name: OWNER_ID
@@ -130,4 +157,7 @@ spec:
           {{ if ne .Values.persistentStorage.subPath "/" }}
           subPath: {{ .Values.persistentStorage.subPath }}
           {{ end }}
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          mountPath: /home/{{ .Values.username }}
+          subPath: home/{{ .Values.username }}
         {{- end -}}
