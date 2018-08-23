@@ -46,10 +46,10 @@ spec:
         securityContext:
           runAsUser: {{ .Values.uid }}
         args:
-          - "/bin/sh"
-          - "-c"
-          - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/home/{{ .Values.username }}/.jupyter "
-          - "chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/home"
+          - /bin/sh
+          - -c
+          - -x
+          - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/home/{{ .Values.username }}/.jupyter && chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/home"
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
