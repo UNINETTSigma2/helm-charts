@@ -67,7 +67,7 @@ spec:
               key: MINIO_SECRET_KEY
         - name: TZ
           value: Europe/Oslo
-        image: quay.io/uninett/minio:20180813-32cb3ba
+        image: quay.io/uninett/minio:20180823-b36e663
         {{ if ne .Values.persistentStorage.existingClaim "" }}
         args: [ 'server', '--quiet', '--config-dir', '/mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}', '/mnt/{{ .Values.persistentStorage.existingClaimName }}' ]
         {{ else }}
@@ -148,7 +148,7 @@ spec:
         args:
           - -c
           - -x
-          - "rm -rf /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}"
+          - "rm -rf /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }} /mnt/{{ .Values.persistentStorage.existingClaimName }}/.minio.sys /mnt/{{ .Values.persistentStorage.existingClaimName }}/.minio"
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
