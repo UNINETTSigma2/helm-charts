@@ -38,7 +38,9 @@ data:
   singleuser.storage.static.pvc-name: {{ .Values.persistentStorage.existingClaim }}
   singleuser.storage.static.sub-path: 'home/{username}'
   {{- if .Values.advanced.sharedData.enabled }}
-  singleuser.storage.extra-volume-mounts: '[{"name": "home", "mountPath": "/mnt/data", "subPath": "{{.Values.advanced.sharedData.subPath}}", "readOnly": {{.Values.advanced.sharedData.readOnly}}  }]'
+  singleuser.storage.extra-volume-mounts: '[{"name": "home", "mountPath": "/mnt/data", "subPath": "{{.Values.advanced.sharedData.subPath}}", "readOnly": {{.Values.advanced.sharedData.readOnly}}  }, {"name": "passwd", "mountPath":"/etc/passwd", "subPath": "passwd"}, {"name": "group", "mountPath":"/etc/group", "subPath": "group"}]'
+  {{- else }}
+  singleuser.storage.extra-volume-mounts: '[{"name": "passwd", "mountPath":"/etc/passwd", "subPath": "passwd"}, {"name": "group", "mountPath":"/etc/group", "subPath": "group"}]'
   {{- end }}
   {{- else }}
   singleuser.storage.type: "none"
