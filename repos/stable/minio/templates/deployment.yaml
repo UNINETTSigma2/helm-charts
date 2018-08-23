@@ -113,7 +113,10 @@ spec:
           {{ end }}
         {{ end }}
 
-{{ if (ne .Values.persistentStorage.existingClaim "") and (ne .Values.persistentStorage.readOnly "true") }}
+
+{{- if ne .Values.persistentStorage.existingClaim "" }}
+{{- if .Values.persistentStorage.readOnly }}
+{{- else }}
 ---
 apiVersion: batch/v1
 kind: Job

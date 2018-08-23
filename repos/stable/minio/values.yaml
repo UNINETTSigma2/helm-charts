@@ -27,5 +27,5 @@ appstore_generated_data:
     authorized_groups:
       - ""
 advanced:
-  accessKey: "exampleaccesskey"
-  secretKey: "examplesecretkey"
+  accessKey: "accesskeyexample"
+  secretKey: "secretkeyexample"
