@@ -98,6 +98,7 @@ spec:
       - name: jupyter
         image: {{ .Values.advanced.dockerImage }}
         args: ["/usr/local/bin/start-notebook.sh"]
+        workingDir: /home/{{ .Values.username }}
         env:
           {{ if .Values.advanced.env.jupyterLab }}
           - name: JUPYTER_ENABLE_LAB
