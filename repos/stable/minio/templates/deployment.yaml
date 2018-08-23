@@ -24,11 +24,13 @@ spec:
             items:
             - key: group
               path: group
-      {{ if ne .Values.persistentStorage.existingClaim "" }}
+       {{ if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           persistentVolumeClaim:
             claimName: {{ .Values.persistentStorage.existingClaim }}
             readOnly: {{ .Values.persistentStorage.readOnly }}
+       {{- end }}
+      {{ if ne .Values.persistentStorage.existingClaim "" and ne .Values.persistentStorage.readOnly }}
       initContainers:
       - name: busybox
         image: busybox:1
@@ -42,6 +44,9 @@ spec:
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          {{ if ne .Values.persistentStorage.subPath "/" }}
+          subPath: {{ .Values.persistentStorage.subPath }}
+          {{ end }}
       {{- end }}
       securityContext:
         runAsNonRoot: true
@@ -70,7 +75,11 @@ spec:
           value: Europe/Oslo
         image: quay.io/uninett/minio:20180823-b36e663
         {{ if ne .Values.persistentStorage.existingClaim "" }}
+        {{ if .Values.persistentStorage.readOnly }}
+        args: [ 'server', '--quiet', '--config-dir', '/tmp/.minio', '/mnt/{{ .Values.persistentStorage.existingClaimName }}' ]
+        {{ else }}
         args: [ 'server', '--quiet', '--config-dir', '/mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}', '/mnt/{{ .Values.persistentStorage.existingClaimName }}' ]
+        {{ end }}
         {{ else }}
         args: [ 'server', '--quiet', '--config-dir', '/tmp/.minio', '/tmp' ]
         {{ end }}
@@ -101,7 +110,7 @@ spec:
           {{ end }}
         {{ end }}
 
-{{ if ne .Values.persistentStorage.existingClaim "" }}
+{{ if ne .Values.persistentStorage.existingClaim "" and ne .Values.persistentStorage.readOnly }}
 ---
 apiVersion: batch/v1
 kind: Job
