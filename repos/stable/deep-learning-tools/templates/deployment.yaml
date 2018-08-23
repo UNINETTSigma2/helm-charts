@@ -39,7 +39,6 @@ spec:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           persistentVolumeClaim:
             claimName: {{ .Values.persistentStorage.existingClaim }}
-            readOnly: {{ .Values.persistentStorage.readOnly }}
       initContainers:
       - name: busybox
         image: busybox:1
@@ -98,7 +97,9 @@ spec:
       - name: jupyter
         image: {{ .Values.advanced.dockerImage }}
         args: ["/usr/local/bin/start-notebook.sh"]
+        {{- if ne .Values.persistentStorage.existingClaim "" }}
         workingDir: /home/{{ .Values.username }}
+        {{ end }}
         env:
           {{ if .Values.advanced.env.jupyterLab }}
           - name: JUPYTER_ENABLE_LAB
@@ -106,12 +107,6 @@ spec:
           {{ end }}
           - name: TZ
             value: Europe/Oslo
-          - name: XDG_CACHE_HOME
-            value: /home/{{ .Values.username }}/.cache
-          - name: HOME
-            value: /home/{{ .Values.username }}
-          - name: USER
-            value: {{ .Values.username }}
           - name: SPARK_MASTER_SERVICE
             value: {{ .Values.advanced.env.sparkMasterUrl }}
           - name: SPARK_OPTS
@@ -121,6 +116,12 @@ spec:
           - name: SPARK_DRIVER_CORES
             value: '1'
           {{- if ne .Values.persistentStorage.existingClaim "" }}
+          - name: XDG_CACHE_HOME
+            value: /home/{{ .Values.username }}/.cache
+          - name: HOME
+            value: /home/{{ .Values.username }}
+          - name: USER
+            value: {{ .Values.username }}
           - name: PVC_MOUNT_PATH
             value: /mnt/{{ .Values.persistentStorage.existingClaimName }}
           {{- end }}
@@ -142,9 +143,15 @@ spec:
         securityContext:
           runAsUser: {{ .Values.uid }}
         volumeMounts:
+        {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: notebook-config
           mountPath: /home/{{ .Values.username }}/.jupyter/notebook_config.py
           subPath: notebook_config.py
+        {{- else }}
+        - name: notebook-config
+          mountPath: /home/notebook/.jupyter/notebook_config.py
+          subPath: notebook_config.py
+        {{ end }}
         - name: passwd
           mountPath: /etc/passwd
           subPath: passwd
