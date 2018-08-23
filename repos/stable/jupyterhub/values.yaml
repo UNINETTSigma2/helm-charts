@@ -1,7 +1,6 @@
 persistentStorage:
   existingClaim: ""
   existingClaimName: "example-name"
-  readOnly: false
   subPath: "/"
 ingress:
   host: "paaltest.appstore-dep.ioudaas.no"
