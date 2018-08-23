@@ -143,7 +143,7 @@ spec:
           runAsUser: {{ .Values.uid }}
         volumeMounts:
         - name: notebook-config
-          mountPath: /home/notebook/.jupyter/notebook_config.py
+          mountPath: /home/{{ .Values.username }}/.jupyter/notebook_config.py
           subPath: notebook_config.py
         - name: passwd
           mountPath: /etc/passwd
