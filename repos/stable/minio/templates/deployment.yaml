@@ -30,7 +30,7 @@ spec:
             claimName: {{ .Values.persistentStorage.existingClaim }}
             readOnly: {{ .Values.persistentStorage.readOnly }}
        {{- end }}
-      {{ if ne .Values.persistentStorage.existingClaim "" and ne .Values.persistentStorage.readOnly }}
+      {{ if (ne .Values.persistentStorage.existingClaim "") and (not .Values.persistentStorage.readOnly) }}
       initContainers:
       - name: busybox
         image: busybox:1
@@ -110,7 +110,7 @@ spec:
           {{ end }}
         {{ end }}
 
-{{ if ne .Values.persistentStorage.existingClaim "" and ne .Values.persistentStorage.readOnly }}
+{{ if (ne .Values.persistentStorage.existingClaim "") and (not .Values.persistentStorage.readOnly) }}
 ---
 apiVersion: batch/v1
 kind: Job
