@@ -149,9 +149,9 @@ gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologi
 nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
 _apt:x:100:65534::/nonexistent:/bin/false
 rstudio-server:x:988:988::/home/rstudio-server:
-rstudio:x:999:999::/home/rstudio:
 shiny:x:998:998::/home/shiny:
 {{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/{{ .Values.username }}:/bin/bash
+rstudio:x:999:999::/home/rstudio:/bin/bash
 
 {{- end -}}
 
@@ -200,7 +200,6 @@ rstudio-server:x:988:
 rstudio:x:999:
 ssh:x:101:
 shiny:x:998:
-rstudio:x:999:rstudio
 nogroup:x:65534:
 {{- $firstGroup := .Values.supplementalGroups | first }}
 {{- if $firstGroup.gid }}
@@ -210,6 +209,7 @@ nogroup:x:65534:
 {{- end }}
 {{- end }}
 {{- end }}
+rstudio:x:999:rstudio
 
 {{- end -}}
 
