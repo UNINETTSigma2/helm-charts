@@ -30,7 +30,9 @@ spec:
             claimName: {{ .Values.persistentStorage.existingClaim }}
             readOnly: {{ .Values.persistentStorage.readOnly }}
        {{- end }}
-      {{ if (ne .Values.persistentStorage.existingClaim "") and (ne .Values.persistentStorage.readOnly "true") }}
+      {{- if ne .Values.persistentStorage.existingClaim "" }}
+      {{- if .Values.persistentStorage.readOnly }}
+      {{- else }}
       initContainers:
       - name: busybox
         image: busybox:1
@@ -47,6 +49,7 @@ spec:
           {{ if ne .Values.persistentStorage.subPath "/" }}
           subPath: {{ .Values.persistentStorage.subPath }}
           {{ end }}
+      {{- end }}
       {{- end }}
       securityContext:
         runAsNonRoot: true
