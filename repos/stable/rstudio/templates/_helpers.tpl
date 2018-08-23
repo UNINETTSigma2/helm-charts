@@ -150,7 +150,11 @@ nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
 _apt:x:100:65534::/nonexistent:/bin/false
 rstudio-server:x:988:988::/home/rstudio-server:
 shiny:x:998:998::/home/shiny:
+{{ if ne .Values.persistentStorage.existingClaim "" }}
 {{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/{{ .Values.username }}:/bin/bash
+{{ else }}
+{{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/rstudio:/bin/bash
+{{ end }}
 rstudio:x:999:999::/home/rstudio:/bin/bash
 
 {{- end -}}
