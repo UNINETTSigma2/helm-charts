@@ -10,7 +10,6 @@ resources:
 persistentStorage:
   existingClaim: ""
   existingClaimName: "example-name"
-  readOnly: false
   subPath: "/"
 uid: 999
 gid: 999
