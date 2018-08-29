@@ -2,8 +2,9 @@
   "packageVersions": {
     "pkg-cntk-version": "2.5.1",
     "pkg-hadoop-version": "2.7",
+    "pkg-tensorflow-probability-version": "0.3.0",
     "pkg-mxnet-version": "1.2.1",
-    "pkg-tensorflow-version": "1.10.0",
+    "pkg-tensorflow-version": "1.10.1",
     "pkg-onnx-version": "1.2.1",
     "pkg-r-version": "3.4.1",
     "pkg-toree-version": "0.2.0-incubating-rc5",

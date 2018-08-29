@@ -2,7 +2,23 @@ apiVersion: v1
 entries:
   deep-learning-tools:
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.536115794Z
+    created: 2018-08-29T17:52:23.06635987Z
+    description: A collection of various deep learning tools
+    digest: 9d806175c031004dd05714298866fca585fb87c6012357b2b7ac49d7e4a54147
+    home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
+    icon: https://upload.wikimedia.org/wikipedia/commons/8/81/Deep_learning.png
+    keywords:
+    - GPU enabled
+    - Jupyter notebook
+    maintainers:
+    - email: system@uninett.no
+      name: Uninett AS
+    name: deep-learning-tools
+    urls:
+    - https://Uninett.github.com/helm-charts/repos/stable/deep-learning-tools-0.5.0.tgz
+    version: 0.5.0
+  - apiVersion: v1
+    created: 2018-08-29T17:52:23.065863635Z
     description: A collection of various deep learning tools
     digest: 9378dd6593f472c435eb5b5aebef486fc19759f6cf76cf838761d4763483dce6
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -18,7 +34,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/deep-learning-tools-0.4.9.tgz
     version: 0.4.9
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.535458352Z
+    created: 2018-08-29T17:52:23.065399541Z
     description: A collection of various deep learning tools
     digest: e035513aff9385438c5ff2004519da6b2b0e00e27bee2c0b15c67e95d32f4b72
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -34,7 +50,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/deep-learning-tools-0.4.8.tgz
     version: 0.4.8
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.534758139Z
+    created: 2018-08-29T17:52:23.06491114Z
     description: A collection of various deep learning tools
     digest: 6f75bb15a62736a9db7bfdc7a929458a0e651671d0cf7d154c02e5343add39fa
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -50,7 +66,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/deep-learning-tools-0.4.7.tgz
     version: 0.4.7
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.534117749Z
+    created: 2018-08-29T17:52:23.064455942Z
     description: A collection of various deep learning tools
     digest: 569887f77afa8b70dfcffb013113525200e4067961d6579844de4ec386b36903
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -66,7 +82,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/deep-learning-tools-0.4.6.tgz
     version: 0.4.6
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.533470707Z
+    created: 2018-08-29T17:52:23.063981278Z
     description: A collection of various deep learning tools
     digest: 446fd8d2332f505a6f2d83278d299b36d914fb35a88f214b8ddf1caff2a9d0cb
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -82,7 +98,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/deep-learning-tools-0.4.5.tgz
     version: 0.4.5
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.532815158Z
+    created: 2018-08-29T17:52:23.063518595Z
     description: A collection of various deep learning tools
     digest: dfbc02711449ff5ad1c91ff5cdc15b6ab98f95e8541bb04ad4878caf332da0f4
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -99,7 +115,7 @@ entries:
     version: 0.4.4
   jupyter:
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.543030379Z
+    created: 2018-08-29T17:52:23.071342611Z
     description: Jupyter notebook with Dataporten integration
     digest: 0059855f0b6f6189182d88dc39903641fc753ab6821dccea30c491dedb35d325
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -116,7 +132,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/jupyter-0.8.20.tgz
     version: 0.8.20
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.542384068Z
+    created: 2018-08-29T17:52:23.070884949Z
     description: Jupyter notebook with Dataporten integration
     digest: 5e937ad2671efaf0d35fbe49bc06d3b6f953cf4646aa2a589f5f92c15f9fa23c
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -133,7 +149,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/jupyter-0.8.19.tgz
     version: 0.8.19
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.541802479Z
+    created: 2018-08-29T17:52:23.070434991Z
     description: Jupyter notebook with Dataporten integration
     digest: 3c883924c1790a3b4ca4bdee90d1ce94ad944f7db7a466d2abeab6787c870cec
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -150,7 +166,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/jupyter-0.8.18.tgz
     version: 0.8.18
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.54117318Z
+    created: 2018-08-29T17:52:23.069974974Z
     description: Jupyter notebook with Dataporten integration
     digest: eac1d05adc0e7195506365ce4291e4d0dec5e478b2d235833617e57a8385e561
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -167,7 +183,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/jupyter-0.8.17.tgz
     version: 0.8.17
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.540540415Z
+    created: 2018-08-29T17:52:23.06952745Z
     description: Jupyter notebook with Dataporten integration
     digest: 6bc27a65ea3eeb099a2af6611160b234f02e32fe8a325804d13c22ea8755df75
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -184,7 +200,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/jupyter-0.8.16.tgz
     version: 0.8.16
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.539929751Z
+    created: 2018-08-29T17:52:23.069083233Z
     description: Jupyter notebook with Dataporten integration
     digest: 19239e39e170194e284facd49117da6906c6d3f163af41a68d747d744de44c08
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -201,7 +217,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/jupyter-0.8.15.tgz
     version: 0.8.15
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.539302225Z
+    created: 2018-08-29T17:52:23.068618387Z
     description: Jupyter notebook with Dataporten integration
     digest: 06be61f7cdefb2681a648d0f96bc29a2ecfd783175c0aaaa1846040b37437d51
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -218,7 +234,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/jupyter-0.8.14.tgz
     version: 0.8.14
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.538657717Z
+    created: 2018-08-29T17:52:23.068161426Z
     description: Jupyter notebook with Dataporten integration
     digest: a1816c8b758112386d4d11f09adf5786c2a35ee5df90c0ad9b0d094366f9cd2b
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -235,7 +251,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/jupyter-0.8.13.tgz
     version: 0.8.13
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.538030021Z
+    created: 2018-08-29T17:52:23.06771776Z
     description: Jupyter notebook with Dataporten integration
     digest: 1da1eb69198927a2e2205957c88496579ef76f8d5c4b9a145f889832346d3c7d
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -252,7 +268,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/jupyter-0.8.12.tgz
     version: 0.8.12
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.537380915Z
+    created: 2018-08-29T17:52:23.067255468Z
     description: Jupyter notebook with Dataporten integration
     digest: c83269da61090c81c4ccea1686ed15b917708d8c2f2ec870606de61bb76d5f31
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -269,7 +285,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/jupyter-0.8.11.tgz
     version: 0.8.11
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.536751185Z
+    created: 2018-08-29T17:52:23.066812944Z
     description: Jupyter notebook with Dataporten integration
     digest: 5a6720fb4e69aa395b19eb52b3c812a04f3c3e7b92f3227e43eb1afea0f9900e
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -287,7 +303,7 @@ entries:
     version: 0.8.10
   jupyterhub:
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.553376137Z
+    created: 2018-08-29T17:52:23.080824421Z
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 4e7fb4c48242170f55f8fd6a5b3e98d0ceadca73c8576193a26ac3c0d6f83079
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -301,7 +317,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/jupyterhub-0.9.38.tgz
     version: 0.9.38
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.551997202Z
+    created: 2018-08-29T17:52:23.080180718Z
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 6a7c32527a6477d92860afb4c368c55db5a9cbee8922f90159f79b74bd023adf
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -315,7 +331,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/jupyterhub-0.9.37.tgz
     version: 0.9.37
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.550693559Z
+    created: 2018-08-29T17:52:23.079167849Z
     description: Multi-user Jupyter installation with Dataporten integration
     digest: e75ef33baace233fac9a42b837f169239cb80462f28ddf370d2957e0325f86ee
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -329,7 +345,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/jupyterhub-0.9.36.tgz
     version: 0.9.36
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.549135074Z
+    created: 2018-08-29T17:52:23.077078872Z
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 7ec2c64b43a5e62747610f9fce2eb0b14ccbe5eae4ae21c0409f0370fd6c00d5
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -343,7 +359,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/jupyterhub-0.9.35.tgz
     version: 0.9.35
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.547353728Z
+    created: 2018-08-29T17:52:23.07594755Z
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 96821c61d53a2e97e8627ff2918d408d8bd84cfec738acb64afa6f543775eadc
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -357,7 +373,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/jupyterhub-0.9.34.tgz
     version: 0.9.34
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.546436114Z
+    created: 2018-08-29T17:52:23.074875078Z
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 1f0ede34f901ec667907cc9478c181cf096bdf4bb1b17ea9c1e3af0983c3effe
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -371,7 +387,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/jupyterhub-0.9.33.tgz
     version: 0.9.33
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.545591208Z
+    created: 2018-08-29T17:52:23.073213346Z
     description: Multi-user Jupyter installation with Dataporten integration
     digest: ace5595b987233e97bfa73a0e48a5cd2098b09986277a482fd4da7e6c849b4ca
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -385,7 +401,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/jupyterhub-0.9.31.tgz
     version: 0.9.31
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.54473518Z
+    created: 2018-08-29T17:52:23.072584792Z
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 855b5ce8c4d346cdc15cb34c7424ba03d679a0184b63dd40e44a9cc4804b888d
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -399,7 +415,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/jupyterhub-0.9.30.tgz
     version: 0.9.30
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.543854076Z
+    created: 2018-08-29T17:52:23.071964593Z
     description: Multi-user Jupyter installation with Dataporten integration
     digest: b90d80b3e84172e3c72803ce9c102c6bcf391987e2a0cf77885947ada048fd61
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -414,7 +430,7 @@ entries:
     version: 0.9.29
   minio:
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.558939668Z
+    created: 2018-08-29T17:52:23.084257722Z
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: 01e4b4707a701bbf0a6383b298acf7340ed3cff5872938ec9d373342069d1e2c
     home: https://minio.io/
@@ -430,7 +446,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/minio-0.4.3.tgz
     version: 0.4.3
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.558367217Z
+    created: 2018-08-29T17:52:23.083874169Z
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: 463e68e0673f970bb3eced58e278ee493aea2a43f454a6f236f0bdbad3e1e4aa
     home: https://minio.io/
@@ -446,7 +462,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/minio-0.4.2.tgz
     version: 0.4.2
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.557834611Z
+    created: 2018-08-29T17:52:23.083482581Z
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: 2ad246d7ef5ec4e5e570faab921bfa7cd730084a31b8cffb9a8f04a008eb7b87
     home: https://minio.io/
@@ -462,7 +478,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/minio-0.4.1.tgz
     version: 0.4.1
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.557270896Z
+    created: 2018-08-29T17:52:23.083112594Z
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: 8300233609415668bfd759f4972d97b52afc2b796e72b1452075ff926ebd2a51
     home: https://minio.io/
@@ -478,7 +494,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/minio-0.4.0.tgz
     version: 0.4.0
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.556714755Z
+    created: 2018-08-29T17:52:23.08272884Z
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: 5331b94703e3939988811b9e13e79e13005b2bc10170ee1abd5a1647cf028aa0
     home: https://minio.io/
@@ -494,7 +510,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/minio-0.3.9.tgz
     version: 0.3.9
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.556135Z
+    created: 2018-08-29T17:52:23.082351319Z
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: e3a79ade98d6cf0d5e055b117f5b29fc4dbeafa62689f60c700950cf7e36e27a
     home: https://minio.io/
@@ -510,7 +526,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/minio-0.3.8.tgz
     version: 0.3.8
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.55557961Z
+    created: 2018-08-29T17:52:23.081980991Z
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: db8c24e53ecddaa91ec0f0b2d66978922a92d184c2e209513170a176409530af
     home: https://minio.io/
@@ -526,7 +542,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/minio-0.3.7.tgz
     version: 0.3.7
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.555011748Z
+    created: 2018-08-29T17:52:23.08160889Z
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: 315514a15f56535e219bcc3e1150739c9b65e494515d789e285cfd9bf9cbe80d
     home: https://minio.io/
@@ -542,7 +558,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/minio-0.3.6.tgz
     version: 0.3.6
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.554453553Z
+    created: 2018-08-29T17:52:23.081230316Z
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: bca880b83d6480a241705682938ad9d3520d57ef3a16bbdba3f27ec2c4bc07b7
     home: https://minio.io/
@@ -559,7 +575,7 @@ entries:
     version: 0.3.5
   rstudio:
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.564876015Z
+    created: 2018-08-29T17:52:23.088420157Z
     description: RStudio is an integrated development environment (IDE) for R
     digest: b20a2e396b89f6e4e50d1a4fd11bb5b054bd2fa4528e52a0ccf20ec72a923705
     home: https://www.rstudio.com/products/RStudio/
@@ -574,7 +590,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/rstudio-0.1.24.tgz
     version: 0.1.24
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.564203244Z
+    created: 2018-08-29T17:52:23.087954289Z
     description: RStudio is an integrated development environment (IDE) for R
     digest: bb7fc546215163ab97b11e03c5db12fe489b31a0785a43cd78ed14266526489a
     home: https://www.rstudio.com/products/RStudio/
@@ -589,7 +605,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/rstudio-0.1.23.tgz
     version: 0.1.23
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.563546333Z
+    created: 2018-08-29T17:52:23.087469365Z
     description: RStudio is an integrated development environment (IDE) for R
     digest: 88c282291336ac812a5a4b8b85db62b35eceb7d0fdb5f1f0babd40f6e232fcda
     home: https://www.rstudio.com/products/RStudio/
@@ -604,7 +620,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/rstudio-0.1.22.tgz
     version: 0.1.22
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.562877208Z
+    created: 2018-08-29T17:52:23.086986054Z
     description: RStudio is an integrated development environment (IDE) for R
     digest: 304d41121e7975254b1df7845ee003e9f6a4fb8053d3b209d32b7636d5c05877
     home: https://www.rstudio.com/products/RStudio/
@@ -619,7 +635,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/rstudio-0.1.21.tgz
     version: 0.1.21
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.562209296Z
+    created: 2018-08-29T17:52:23.086521148Z
     description: RStudio is an integrated development environment (IDE) for R
     digest: 66f8d33267d18baf09b9e91b88845d261680f9a13f77cdf69fe8df4a66afffe3
     home: https://www.rstudio.com/products/RStudio/
@@ -634,7 +650,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/rstudio-0.1.20.tgz
     version: 0.1.20
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.561545211Z
+    created: 2018-08-29T17:52:23.086053647Z
     description: RStudio is an integrated development environment (IDE) for R
     digest: 232b41423924f1dcd8f792a8dbfa4a07ec0b722bcb598e3af28319fb8b9b05a9
     home: https://www.rstudio.com/products/RStudio/
@@ -649,7 +665,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/rstudio-0.1.19.tgz
     version: 0.1.19
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.560874284Z
+    created: 2018-08-29T17:52:23.085583871Z
     description: RStudio is an integrated development environment (IDE) for R
     digest: fcfee410ddaabf12fb284efb74c2fbc358f09d489707a4bdc8d736f772b6b116
     home: https://www.rstudio.com/products/RStudio/
@@ -664,7 +680,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/rstudio-0.1.18.tgz
     version: 0.1.18
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.560181084Z
+    created: 2018-08-29T17:52:23.085107684Z
     description: RStudio is an integrated development environment (IDE) for R
     digest: 1d266cc725b8185af2cd94aa384ba0d680a6c66e84247e888c283cc63c7301b0
     home: https://www.rstudio.com/products/RStudio/
@@ -679,7 +695,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/rstudio-0.1.17.tgz
     version: 0.1.17
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.559572965Z
+    created: 2018-08-29T17:52:23.084685438Z
     description: RStudio is an integrated development environment (IDE) for R
     digest: 9661b6e75055fb9e501c19146697ee15a6b1b8e283f1a087ee334f408ecbeb98
     home: https://www.rstudio.com/products/RStudio/
@@ -695,7 +711,7 @@ entries:
     version: 0.1.16
   spark:
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.568814977Z
+    created: 2018-08-29T17:52:23.092720912Z
     description: Apache Spark is a fast and general engine for big data processing.
     digest: 41a51a8c7258666c18570983f4df6c5f96ab9dac926387e1bd262eadb2df60c7
     home: https://github.com/Uninett/helm-charts/tree/master/spark
@@ -710,7 +726,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/spark-0.9.5.tgz
     version: 0.9.5
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.568138479Z
+    created: 2018-08-29T17:52:23.091961751Z
     description: Apache Spark is a fast and general engine for big data processing.
     digest: 359b7f03d22381848b868b9c2c11ca640cbe3414751de456a723bc6a5f13ba0e
     home: https://github.com/Uninett/helm-charts/tree/master/spark
@@ -725,7 +741,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/spark-0.9.4.tgz
     version: 0.9.4
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.567484203Z
+    created: 2018-08-29T17:52:23.090897005Z
     description: Apache Spark is a fast and general engine for big data processing.
     digest: e239ee94fd1e35fa62cc274410a47b9150bf3626634b17e9e6662cb64e150256
     home: https://github.com/Uninett/helm-charts/tree/master/spark
@@ -740,7 +756,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/spark-0.9.3.tgz
     version: 0.9.3
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.566867718Z
+    created: 2018-08-29T17:52:23.08981183Z
     description: Apache Spark is a fast and general engine for big data processing.
     digest: 72169f3901cd415dc0aaf1c5d98c6a9718bd085cfb1eac46c0c73cfe6e87d05f
     home: https://github.com/Uninett/helm-charts/tree/master/spark
@@ -755,7 +771,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/spark-0.9.2.tgz
     version: 0.9.2
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.566187834Z
+    created: 2018-08-29T17:52:23.089354448Z
     description: Apache Spark is a fast and general engine for big data processing.
     digest: 86670270f6fc2dc86f4646e9db665a548c6c54e9fcdc8a912b5c528223f36e1d
     home: https://github.com/Uninett/helm-charts/tree/master/spark
@@ -770,7 +786,7 @@ entries:
     - https://Uninett.github.com/helm-charts/repos/stable/spark-0.9.1.tgz
     version: 0.9.1
   - apiVersion: v1
-    created: 2018-08-24T05:49:55.565533738Z
+    created: 2018-08-29T17:52:23.088887037Z
     description: Apache Spark is a fast and general engine for big data processing.
     digest: 7b8d2d18e0773b20a1d156b6683a887a73868eb2a52e8bc186d07c1322778be2
     home: https://github.com/Uninett/helm-charts/tree/master/spark
@@ -784,4 +800,4 @@ entries:
     urls:
     - https://Uninett.github.com/helm-charts/repos/stable/spark-0.9.0.tgz
     version: 0.9.0
-generated: 2018-08-24T05:49:55.531988767Z
+generated: 2018-08-29T17:52:23.062927411Z
