@@ -47,6 +47,12 @@ spec:
             items:
             - key: index.html
               path: index.html
+        - name: shinyserver
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: shiny-server.conf
+              path: shiny-server.conf
         {{ if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           persistentVolumeClaim:
@@ -157,6 +163,9 @@ spec:
         - name: shadow
           mountPath: /etc/shadow
           subPath: shadow
+        - name: shinyserver
+          mountPath: /etc/shiny-server/shiny-server.conf
+          subPath: shiny-server.conf
         {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}

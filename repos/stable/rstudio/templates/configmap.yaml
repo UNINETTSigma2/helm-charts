@@ -11,3 +11,4 @@ data:
   group: {{ include "group" . | quote }}
   shadow: {{ include "shadow" . | quote }}
   index.html: {{ include "indexhtml" . | quote }}
+  shiny-server.conf: {{ include "shiny-server.conf" . | quote }}
