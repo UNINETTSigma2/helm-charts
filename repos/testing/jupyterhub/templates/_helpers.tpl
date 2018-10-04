@@ -31,9 +31,8 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
     {{- printf "]" }}
 {{- end -}}
 
-{{- define "passwd" -}}
 # Create /etc/passwd file to contain UID of users we add
-
+{{- define "passwd" -}}
 daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
 bin:x:2:2:bin:/bin:/usr/sbin/nologin
 sys:x:3:3:sys:/dev:/usr/sbin/nologin
@@ -54,12 +53,12 @@ nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
 _apt:x:100:65534::/nonexistent:/usr/sbin/nologin
 jovyan:x:1000:100::/home/jovyan:/bin/bash
 {{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/notebook:/bin/bash
+notebook:x:999:999::/home/notebook:/bin/bash
 
 {{- end -}}
 
-{{- define "group" -}}
 # Create /etc/group file to contain UID of users we add
-
+{{- define "group" -}}
 root:x:0:
 daemon:x:1:
 bin:x:2:
@@ -110,5 +109,6 @@ ssh:x:101:
 {{- end }}
 {{- end }}
 {{- end }}
+notebook:x:999:
 
 {{- end -}}

@@ -1,7 +1,6 @@
 persistentStorage:
   existingClaim: ""
   existingClaimName: "example-name"
-  readOnly: false
   subPath: "/"
 ingress:
   host: "paaltest.appstore-dep.ioudaas.no"
@@ -62,7 +61,7 @@ advanced:
     enabled: false
     subPath: "data"
     readOnly: true
-  userImage: quay.io/uninett/jupyterhub-singleuser:20180703-0ff1eb6
+  userImage: quay.io/uninett/jupyterhub-singleuser:20181004-da49cf0
 appstore_generated_data:
   dataporten:
     id: ""

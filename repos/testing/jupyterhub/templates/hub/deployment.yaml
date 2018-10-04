@@ -71,24 +71,23 @@ spec:
       - name: {{ .Values.persistentStorage.existingClaimName }}
         persistentVolumeClaim:
           claimName: {{ .Values.persistentStorage.existingClaim }}
-          readOnly: {{ .Values.persistentStorage.readOnly }}
       initContainers:
       - name: busybox
         image: busybox:1
         securityContext:
           runAsUser: {{ .Values.uid }}
         args:
-          - "/bin/mkdir"
-          - "-p"
-          - "/mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ .Release.Name }}-hub"
-          - "/mnt/{{ .Values.persistentStorage.existingClaimName }}/home"
+          - /bin/sh
+          - -c
+          - -x
+          - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ .Release.Name }}-hub /mnt/{{ .Values.persistentStorage.existingClaimName }}/home && chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools /mnt/{{ .Values.persistentStorage.existingClaimName }}/home"
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
       {{- end }}
       containers:
       - name: hub-container
-        image: quay.io/uninett/jupyterhub-server:20180822-8a6afd0
+        image: quay.io/uninett/jupyterhub-server:20181004-da49cf0
         command:
           - jupyterhub
           - --config
