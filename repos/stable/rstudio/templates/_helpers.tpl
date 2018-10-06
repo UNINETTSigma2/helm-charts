@@ -130,6 +130,10 @@ server {
 # Instruct Shiny Server to run applications as the user "shiny"
 run_as {{ .Values.username }};
 
+{{- if .Values.advanced.debug }}
+preserve_logs true;
+{{- end }}
+
 # Define a server that listens on port 3838
 server {
   listen 3838;
@@ -142,10 +146,6 @@ server {
 
     # Log all Shiny output to files in this directory
     log_dir /var/log/shiny-server;
-
-    {{- if .Values.advanced.debug }}
-    preserve_logs true;
-    {{- end }}
 
     # When a user visits the base URL rather than a particular application,
     # an index of the applications available in this directory will be shown.
