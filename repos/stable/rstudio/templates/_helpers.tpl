@@ -143,6 +143,10 @@ server {
     # Log all Shiny output to files in this directory
     log_dir /var/log/shiny-server;
 
+    {{- if .Values.advanced.debug }}
+    preserve_logs true;
+    {{- end }}
+
     # When a user visits the base URL rather than a particular application,
     # an index of the applications available in this directory will be shown.
     directory_index on;
