@@ -95,13 +95,6 @@ spec:
           - --upgrade-db
         securityContext:
           runAsUser: {{ .Values.uid }}
-        lifecycle:
-          postStart:
-            exec:
-              command: ["sleep", "15"]
-          preStop:
-            exec:
-              command: ["sleep", "15"]
         volumeMounts:
           - mountPath: /etc/jupyterhub/config/
             name: config
