@@ -37,7 +37,7 @@ data:
   singleuser.storage.type: "static"
   singleuser.storage.static.pvc-name: {{ .Values.persistentStorage.existingClaim }}
   singleuser.storage.static.sub-path: 'home/{username}'
-  singleuser.init-containers: '[{"name": "busybox", "image": "busybox:1", "args": "[\"/bin/sh\", \"-c\", \"-x\", \"mkdir -p /mnt/home/{username}\"]", "security_context": "{"runAsUser": "{{ .Values.uid }}"}", "volume_mounts": "{"name": {{ .Values.persistentStorage.existingClaim }}, "mountPath": "/mnt/home", subPath: "home"}"]'
+  singleuser.init-containers: '[{"name": "busybox", "image": "busybox:1", "args": "[\"/bin/sh\", \"-c\", \"-x\", \"mkdir -p /mnt/home/{username}\"]", "security_context": "{\"runAsUser\": \"{{ .Values.uid }}\"}", "volume_mounts": "{\"name\": \"{{ .Values.persistentStorage.existingClaim }}\", \"mountPath\": \"/mnt/home\", subPath: \"home\"}"]'
   singleuser.storage.extra-volumes: '[{"name": "passwd", "configMap": { "name": "{{ template "fullname" . }}", "items": [{"key": "passwd", "path": "passwd"}] }}, {"name": "group", "configMap": { "name": "{{ template "fullname" . }}", "items": [{"key": "group", "path": "group"}] }}]'
   {{- if .Values.advanced.sharedData.enabled }}
   singleuser.storage.extra-volume-mounts: '[{"name": "home", "mountPath": "/mnt/data", "subPath": "{{.Values.advanced.sharedData.subPath}}", "readOnly": {{.Values.advanced.sharedData.readOnly}}  }, {"name": "passwd", "mountPath":"/etc/passwd", "subPath": "passwd"}, {"name": "group", "mountPath":"/etc/group", "subPath": "group"}]'
