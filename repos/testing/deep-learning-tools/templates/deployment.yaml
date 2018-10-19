@@ -55,6 +55,7 @@ spec:
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          mountPropagation: HostToContainer
       {{ end }}
       hostname: {{ template "fullname" . }}
       securityContext:
@@ -166,8 +167,10 @@ spec:
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
           {{ if ne .Values.persistentStorage.subPath "/" }}
           subPath: {{ .Values.persistentStorage.subPath }}
+          mountPropagation: HostToContainer
           {{ end }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /home/{{ .Values.username }}
           subPath: home/{{ .Values.username }}
+          mountPropagation: HostToContainer
         {{- end -}}
