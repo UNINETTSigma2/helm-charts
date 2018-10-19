@@ -1,0 +1,30 @@
+ingress:
+  host: "local-chart.example.com"
+resources:
+  requests:
+    cpu: 200m
+    memory: 200M
+  limits:
+    cpu: 400m
+    memory: 400M
+persistentStorage:
+  existingClaim: ""
+  existingClaimName: "example-name"
+  subPath: "/"
+uid: 999
+gid: 999
+username: minio
+supplementalGroups:
+  - name: ""
+    gid: ""
+appstore_generated_data:
+  dataporten:
+    scopes:
+      - ""
+    id: "0000"
+    client_secret: "0000"
+    authorized_groups:
+      - ""
+advanced:
+  accessKey: "accesskeyexample"
+  secretKey: "secretkeyexample"
