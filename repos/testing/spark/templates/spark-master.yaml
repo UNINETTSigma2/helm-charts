@@ -4,6 +4,10 @@ metadata:
   name: {{ template "fullname" . }}-master
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+        app: {{ template "fullname" . }}-master
+        group: {{ template "fullname" . }}
   template:
     metadata:
       labels:

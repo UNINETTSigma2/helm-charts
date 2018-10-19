@@ -4,6 +4,10 @@ metadata:
   name: {{ template "fullname" . }}-worker
 spec:
   replicas: {{ .Values.advanced.workers.replicas }}
+  selector:
+    matchLabels:
+        app: {{ template "fullname" . }}-worker
+        group: {{ template "fullname" . }}
   template:
     metadata:
       labels:
