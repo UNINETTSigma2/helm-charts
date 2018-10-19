@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "fullname" . }}-master
@@ -18,25 +18,44 @@ spec:
             secretName: {{ template "fullname" . }}
         - name: {{ template "fullname" . }}-rewrite-config
           configMap:
-            name: {{ template "fullname" . }}-nginx-config
+            name: {{ template "fullname" . }}
             items:
             - key: default.conf
               path: default.conf
         - name: {{ template "fullname" . }}-nginx-config
           configMap:
-            name: {{ template "fullname" . }}-nginx-config
+            name: {{ template "fullname" . }}
             items:
             - key: nginx.conf
               path: nginx.conf
+        - name: passwd
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: passwd
+              path: passwd
+        - name: group
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: group
+              path: group
         {{ if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           persistentVolumeClaim:
             claimName: {{ .Values.persistentStorage.existingClaim }}
-            readOnly: {{ .Values.persistentStorage.readOnly }}
         {{ end }}
+      hostname: {{ template "fullname" . }}-master
       securityContext:
         runAsNonRoot: true
-        fsGroup: {{ .Values.uid }}
+        fsGroup: {{ .Values.gid }}
+        {{ $firstGroup := .Values.supplementalGroups | first }}
+        {{- if $firstGroup.gid }}
+        supplementalGroups:
+          {{- range .Values.supplementalGroups }}
+          - {{ .gid }}
+          {{- end }}
+        {{- end }}
       {{- if ne .Values.persistentStorage.existingClaim "" }}
       initContainers:
       - name: busybox
@@ -44,9 +63,10 @@ spec:
         securityContext:
           runAsUser: {{ .Values.uid }}
         args:
-          - "/bin/mkdir"
-          - "-p"
-          - "/mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}/master"
+          - /bin/sh
+          - -c
+          - -x
+          - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}/master && chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools"
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
@@ -119,16 +139,31 @@ spec:
           env:
             - name: SPARK_PUBLIC_DNS
               value: {{ .Values.ingress.host }}
+            - name: SPARK_DAEMON_MEMORY
+              value: {{ .Values.advanced.master.resources.requests.memory }}
+            - name: SPARK_DAEMON_CORES
+              value: {{ .Values.advanced.master.resources.requests.cpu | quote }}
+            - name: OWNER_ID
+              value: {{ .Values.appstore_generated_data.dataporten.owner }}
           {{- if ne .Values.persistentStorage.existingClaim "" }}
             - name: SPARK_RECOVERY_DIR
               value: /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}/master
+          {{- end }}
           volumeMounts:
+          - name: passwd
+            mountPath: /etc/passwd
+            subPath: passwd
+          - name: group
+            mountPath: /etc/group
+            subPath: group
+          {{- if ne .Values.persistentStorage.existingClaim "" }}
           - name: {{ .Values.persistentStorage.existingClaimName }}
             mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
-          {{ if ne .Values.persistentStorage.subPath "/" }}
-          subPath: {{ .Values.persistentStorage.subPath }}
-          {{ end }}
+            {{ if ne .Values.persistentStorage.subPath "/" }}
+            subPath: {{ .Values.persistentStorage.subPath }}
+            {{ end }}
           {{- end }}
+
 
 {{ if ne .Values.persistentStorage.existingClaim "" }}
 ---
@@ -158,6 +193,17 @@ spec:
         persistentVolumeClaim:
           claimName: {{ .Values.persistentStorage.existingClaim }}
       restartPolicy: Never
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: {{ .Values.uid }}
+        fsGroup: {{ .Values.gid }}
+        {{ $firstGroup := .Values.supplementalGroups | first }}
+        {{- if $firstGroup.gid }}
+        supplementalGroups:
+          {{- range .Values.supplementalGroups }}
+          - {{ .gid }}
+          {{- end }}
+        {{- end }}
       containers:
       - name: cleaner-job
         image: "alpine:3.8"

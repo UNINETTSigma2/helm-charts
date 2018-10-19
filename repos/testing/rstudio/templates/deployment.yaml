@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "fullname" . }}
@@ -47,24 +47,31 @@ spec:
             items:
             - key: index.html
               path: index.html
+        - name: shinyserver
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: shiny-server.conf
+              path: shiny-server.conf
         {{ if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           persistentVolumeClaim:
             claimName: {{ .Values.persistentStorage.existingClaim }}
-            readOnly: {{ .Values.persistentStorage.readOnly }}
       initContainers:
       - name: busybox
         image: busybox:1
         securityContext:
           runAsUser: {{ .Values.uid }}
         args:
-          - "/bin/mkdir"
-          - "-p"
-          - "/mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }} /mnt/{{ .Values.persistentStorage.existingClaimName }}/home/{{ .Values.username }}"
+          - /bin/sh
+          - -c
+          - -x
+          - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }} /mnt/{{ .Values.persistentStorage.existingClaimName }}/home/{{ .Values.username }} && chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools /mnt/{{ .Values.persistentStorage.existingClaimName }}/home"
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
         {{ end }}
+      hostname: {{ template "fullname" . }}
       securityContext:
         runAsNonRoot: true
         fsGroup: {{ .Values.gid }}
@@ -134,13 +141,13 @@ spec:
         env:
         - name: TZ
           value: Europe/Oslo
+        - name: OWNER_ID
+          value: {{ .Values.appstore_generated_data.dataporten.owner }}
+        {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: HOME
           value: /home/{{ .Values.username }}
         - name: USERNAME
           value: {{ .Values.username }}
-        - name: OWNER_ID
-          value: {{ .Values.appstore_generated_data.dataporten.owner }}
-        {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: SHINY_APPS_PATH
           value: /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}/shiny-server
         - name: PVC_MOUNT_PATH
@@ -156,6 +163,9 @@ spec:
         - name: shadow
           mountPath: /etc/shadow
           subPath: shadow
+        - name: shinyserver
+          mountPath: /etc/shiny-server/shiny-server.conf
+          subPath: shiny-server.conf
         {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}

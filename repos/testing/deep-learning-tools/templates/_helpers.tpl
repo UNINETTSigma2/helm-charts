@@ -34,8 +34,8 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
     "token_type": "",
     "jwt_token_issuer": "",
     "groups_endpoint": "{{- include "all_endpoints" . }}",
-    "authorized_principals": "{{- join "," .Values.appstore_generated_data.dataporten.authorized_groups -}}",
     "xhr_endpoints": "",
+    "authorized_principals": "{{- join "," .Values.appstore_generated_data.dataporten.authorized_groups -}}",
     "twofactor": {
       "all": false,
       "principals": "",

@@ -15,4 +15,4 @@ browser.
 ### Advanced
 This application uses the following Dockerfile:
 
-- [RStudio](https://github.com/Uninett/helm-charts-dockerfiles/tree/105bf47/rstudio/server/Dockerfile)
+- [RStudio](https://github.com/Uninett/helm-charts-dockerfiles/tree/bf63352/rstudio/server/Dockerfile)

@@ -6,9 +6,6 @@ metadata:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 type: Opaque
 data:
-  default.conf: {{ include "default.conf" . | quote }}
+  notebook_config.py: {{ include "notebook-config" . | quote }}
   passwd: {{ include "passwd" . | quote }}
   group: {{ include "group" . | quote }}
-  shadow: {{ include "shadow" . | quote }}
-  index.html: {{ include "indexhtml" . | quote }}
-  shiny-server.conf: {{ include "shiny-server.conf" . | quote }}

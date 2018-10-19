@@ -1,18 +1,14 @@
 ingress:
-  host: "local-chart.example.com"
+  host: "example.localhost.com"
 resources:
   requests:
-    cpu: 200m
-    memory: 200M
+    cpu: 1
+    memory: 2Gi
+    gpu: 1
   limits:
-    cpu: 400m
-    memory: 400M
-uid: 999
-gid: 999
-username: rstudio
-supplementalGroups:
-  - name: ""
-    gid: ""
+    cpu: 2
+    memory: 4Gi
+    gpu: 1
 persistentStorage:
   existingClaim: ""
   existingClaimName: "example-name"
@@ -23,12 +19,21 @@ appstore_generated_data:
       - ""
     id: "0000"
     owner: "0000-1234"
-    client_secret: "0000"
+    client_secret: "0000-abcd"
     authorized_groups:
       - ""
+uid: 999
+gid: 999
+username: notebook
+supplementalGroups:
+  - name: ""
+    gid: ""
 advanced:
-  debug: false
-  dockerImage: quay.io/uninett/rstudio-server:20181006-bf63352
+  env:
+    sparkMasterUrl: "local[*]"
+    jupyterLab: false
+  dockerImage: quay.io/uninett/deep-learning-tools:20180901-34973e4
+  githubToken: ""
 authGroupProviders:
   - url: "https://groups-api.dataporten.no/groups/me/groups"
     scope: groups

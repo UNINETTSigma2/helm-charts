@@ -126,6 +126,35 @@ server {
 }
 {{- end -}}
 
+{{- define "shiny-server.conf" -}}
+# Instruct Shiny Server to run applications as the user "shiny"
+run_as {{ .Values.username }};
+
+{{- if .Values.advanced.debug }}
+preserve_logs true;
+{{- end }}
+
+# Define a server that listens on port 3838
+server {
+  listen 3838;
+
+  # Define a location at the base URL
+  location / {
+
+    # Host the directory of Shiny Apps stored in this directory
+    site_dir /srv/shiny-server;
+
+    # Log all Shiny output to files in this directory
+    log_dir /var/log/shiny-server;
+
+    # When a user visits the base URL rather than a particular application,
+    # an index of the applications available in this directory will be shown.
+    directory_index on;
+  }
+}
+
+{{- end -}}
+
 {{- define "passwd" -}}
 # Create /etc/passwd file to contain UID of users we add
 
@@ -149,9 +178,13 @@ gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologi
 nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
 _apt:x:100:65534::/nonexistent:/bin/false
 rstudio-server:x:988:988::/home/rstudio-server:
-rstudio:x:999:999::/home/rstudio:
 shiny:x:998:998::/home/shiny:
+{{ if ne .Values.persistentStorage.existingClaim "" }}
 {{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/{{ .Values.username }}:/bin/bash
+{{ else }}
+{{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/rstudio:/bin/bash
+{{ end }}
+rstudio:x:999:999::/home/rstudio:/bin/bash
 
 {{- end -}}
 
@@ -200,7 +233,6 @@ rstudio-server:x:988:
 rstudio:x:999:
 ssh:x:101:
 shiny:x:998:
-rstudio:x:999:rstudio
 nogroup:x:65534:
 {{- $firstGroup := .Values.supplementalGroups | first }}
 {{- if $firstGroup.gid }}
@@ -210,6 +242,7 @@ nogroup:x:65534:
 {{- end }}
 {{- end }}
 {{- end }}
+rstudio:x:999:rstudio
 
 {{- end -}}
 

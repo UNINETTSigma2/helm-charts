@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "fullname" . }}-worker
@@ -10,8 +10,20 @@ spec:
         app: {{ template "fullname" . }}-worker
         group: {{ template "fullname" . }}
     spec:
-      {{ if ne .Values.persistentStorage.existingClaim "" }}
       volumes:
+        - name: passwd
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: passwd
+              path: passwd
+        - name: group
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: group
+              path: group
+      {{ if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           persistentVolumeClaim:
             claimName: {{ .Values.persistentStorage.existingClaim }}
@@ -19,7 +31,14 @@ spec:
       {{ end }}
       securityContext:
         runAsNonRoot: true
-        fsGroup: {{ .Values.uid }}
+        fsGroup: {{ .Values.gid }}
+        {{ $firstGroup := .Values.supplementalGroups | first }}
+        {{- if $firstGroup.gid }}
+        supplementalGroups:
+          {{- range .Values.supplementalGroups }}
+          - {{ .gid }}
+          {{- end }}
+        {{- end }}
       containers:
         - name: spark-worker
           image: {{ .Values.advanced.workerImage }}
@@ -30,6 +49,8 @@ spec:
               value: {{ .Values.advanced.workers.resources.requests.memory }}
             - name: SPARK_WORKER_CORES
               value: {{ .Values.advanced.workers.resources.requests.cpu | quote }}
+            - name: OWNER_ID
+              value: {{ .Values.appstore_generated_data.dataporten.owner }}
             - name: SPARK_MASTER_SERVICE_HOST
               value: {{ template "fullname" . }}-master
           ports:
@@ -49,8 +70,14 @@ spec:
             limits:
                 cpu: {{ .Values.advanced.workers.resources.limits.cpu }}
                 memory: {{ .Values.advanced.workers.resources.limits.memory }}
-          {{- if ne .Values.persistentStorage.existingClaim "" }}
           volumeMounts:
+          - name: passwd
+            mountPath: /etc/passwd
+            subPath: passwd
+          - name: group
+            mountPath: /etc/group
+            subPath: group
+          {{- if ne .Values.persistentStorage.existingClaim "" }}
           - name: {{ .Values.persistentStorage.existingClaimName }}
             mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
             {{ if ne .Values.persistentStorage.subPath "/" }}

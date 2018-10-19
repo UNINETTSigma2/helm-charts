@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "fullname" . }}-nginx-config
+  name: {{ template "fullname" . }}
 data:
   default.conf: |
     upstream node {
@@ -58,3 +58,5 @@ data:
 
       include /etc/nginx/conf.d/*.conf;
     }
+  passwd: {{ include "passwd" . | quote }}
+  group: {{ include "group" . | quote }}

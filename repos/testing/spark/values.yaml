@@ -17,18 +17,21 @@ advanced:
       limits:
           cpu: 200m
           memory: 1500Mi
-  masterImage: quay.io/uninett/jupyter-spark:20180810-20765fe
-  workerImage: quay.io/uninett/jupyter-spark:20180810-20765fe
+  masterImage: quay.io/uninett/jupyter-spark:20180822-4fa02b9
+  workerImage: quay.io/uninett/jupyter-spark:20180822-4fa02b9
 
 uid: 999
-
+gid: 999
+username: notebook
+supplementalGroups:
+  - name: ""
+    gid: ""
 ingress:
   host: "host.example.com"
 
 persistentStorage:
   existingClaim: ""
   existingClaimName: "example-name"
-  readOnly: false
   subPath: "/"
 
 appstore_generated_data:
@@ -36,6 +39,10 @@ appstore_generated_data:
     scopes:
       - ""
     id: "0000"
+    owner: "0000-1234"
     client_secret: "0000"
     authorized_groups:
       - ""
+authGroupProviders:
+  - url: "https://groups-api.dataporten.no/groups/me/groups"
+    scope: groups
