@@ -1,6 +1,6 @@
 {
   "packageVersions": {
-    "pkg-jupyter-notebook-version": "5.5.x",
-    "pkg-jupyterhub-version": "0.9.4"
+    "pkg-jupyterhub-version": "0.9.4",
+    "pkg-jupyter-notebook-version": "5.5.x"
   }
 }
