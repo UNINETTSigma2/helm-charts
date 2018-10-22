@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "fullname" . }}
@@ -6,6 +6,9 @@ metadata:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+        app: {{ template "fullname" . }}
   template:
     metadata:
       annotations:
@@ -41,6 +44,10 @@ spec:
             items:
             - key: shadow
               path: shadow
+        - name: shm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 256M
         - name: indexhtml
           configMap:
             name: {{ template "fullname" . }}
@@ -62,6 +69,7 @@ spec:
         image: busybox:1
         securityContext:
           runAsUser: {{ .Values.uid }}
+          runAsGroup: {{ .Values.gid }}
         args:
           - /bin/sh
           - -c
@@ -70,6 +78,7 @@ spec:
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          mountPropagation: HostToContainer
         {{ end }}
       hostname: {{ template "fullname" . }}
       securityContext:
@@ -138,6 +147,7 @@ spec:
           timeoutSeconds: 30
         securityContext:
           runAsUser: {{ .Values.uid }}
+          runAsGroup: {{ .Values.gid }}
         env:
         - name: TZ
           value: Europe/Oslo
@@ -163,17 +173,21 @@ spec:
         - name: shadow
           mountPath: /etc/shadow
           subPath: shadow
+        - name: shm
+          mountPath: /dev/shm
         - name: shinyserver
           mountPath: /etc/shiny-server/shiny-server.conf
           subPath: shiny-server.conf
         {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          mountPropagation: HostToContainer
           {{ if ne .Values.persistentStorage.subPath "/" }}
           subPath: {{ .Values.persistentStorage.subPath }}
           {{ end }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /home/{{ .Values.username }}
+          mountPropagation: HostToContainer
           subPath: home/{{ .Values.username }}
         {{- end -}}
 
@@ -209,6 +223,7 @@ spec:
       securityContext:
         runAsNonRoot: true
         runAsUser: {{ .Values.uid }}
+        runAsGroup: {{ .Values.gid }}
         fsGroup: {{ .Values.gid }}
         {{ $firstGroup := .Values.supplementalGroups | first }}
         {{- if $firstGroup.gid }}

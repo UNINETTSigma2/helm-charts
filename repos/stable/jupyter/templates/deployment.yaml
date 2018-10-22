@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "fullname" . }}
@@ -6,6 +6,9 @@ metadata:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+        app: {{ template "fullname" . }}
   template:
     metadata:
       annotations:
@@ -35,6 +38,10 @@ spec:
             items:
             - key: group
               path: group
+        - name: shm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 256M
         {{ if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           persistentVolumeClaim:
@@ -44,6 +51,7 @@ spec:
         image: busybox:1
         securityContext:
           runAsUser: {{ .Values.uid }}
+          runAsGroup: {{ .Values.gid }}
         args:
           - /bin/sh
           - -c
@@ -52,6 +60,7 @@ spec:
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          mountPropagation: HostToContainer
       {{ end }}
       hostname: {{ template "fullname" . }}
       securityContext:
@@ -135,11 +144,13 @@ spec:
         - containerPort: 8888
         securityContext:
           runAsUser: {{ .Values.uid }}
+          runAsGroup: {{ .Values.gid }}
         volumeMounts:
         {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: notebook-config
           mountPath: /home/{{ .Values.username }}/.jupyter/notebook_config.py
           subPath: notebook_config.py
+          mountPropagation: HostToContainer
         {{- else }}
         - name: notebook-config
           mountPath: /home/notebook/.jupyter/notebook_config.py
@@ -151,13 +162,17 @@ spec:
         - name: group
           mountPath: /etc/group
           subPath: group
+        - name: shm
+          mountPath: /dev/shm
         {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          mountPropagation: HostToContainer
           {{ if ne .Values.persistentStorage.subPath "/" }}
           subPath: {{ .Values.persistentStorage.subPath }}
           {{ end }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /home/{{ .Values.username }}
           subPath: home/{{ .Values.username }}
+          mountPropagation: HostToContainer
         {{- end -}}

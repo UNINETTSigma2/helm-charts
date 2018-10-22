@@ -1,4 +1,4 @@
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Release.Name }}-hub
@@ -76,6 +76,7 @@ spec:
         image: busybox:1
         securityContext:
           runAsUser: {{ .Values.uid }}
+          runAsGroup: {{ .Values.gid }}
         args:
           - /bin/sh
           - -c
@@ -83,6 +84,7 @@ spec:
           - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ .Release.Name }}-hub /mnt/{{ .Values.persistentStorage.existingClaimName }}/home && chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools /mnt/{{ .Values.persistentStorage.existingClaimName }}/home"
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
+          mountPropagation: HostToContainer
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
       {{- end }}
       containers:
@@ -95,6 +97,7 @@ spec:
           - --upgrade-db
         securityContext:
           runAsUser: {{ .Values.uid }}
+          runAsGroup: {{ .Values.gid }}
         volumeMounts:
           - mountPath: /etc/jupyterhub/config/
             name: config
@@ -109,6 +112,7 @@ spec:
           {{- if ne .Values.persistentStorage.existingClaim "" }}
           - name: {{ .Values.persistentStorage.existingClaimName }}
             mountPath: /srv/jupyterhub
+            mountPropagation: HostToContainer
             subPath: .tools/{{ .Release.Name }}-hub
             {{ if ne .Values.persistentStorage.subPath "/" }}
             subPath: {{ .Values.persistentStorage.subPath }}

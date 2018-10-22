@@ -73,6 +73,7 @@ spec:
       securityContext:
         runAsNonRoot: true
         runAsUser: {{ .Values.uid }}
+        runAsGroup: {{ .Values.gid }}
         fsGroup: {{ .Values.gid }}
         {{ $firstGroup := .Values.supplementalGroups | first }}
         {{- if $firstGroup.gid }}
@@ -94,4 +95,5 @@ spec:
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          mountPropagation: HostToContainer
 {{ end }}

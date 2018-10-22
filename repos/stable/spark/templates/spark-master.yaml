@@ -1,9 +1,13 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "fullname" . }}-master
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+        app: {{ template "fullname" . }}-master
+        group: {{ template "fullname" . }}
   template:
     metadata:
       labels:
@@ -62,6 +66,7 @@ spec:
         image: busybox:1
         securityContext:
           runAsUser: {{ .Values.uid }}
+          runAsGroup: {{ .Values.gid }}
         args:
           - /bin/sh
           - -c
@@ -70,6 +75,7 @@ spec:
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          mountPropagation: HostToContainer
       {{- end }}
       containers:
         - name: proxy-rewriter
@@ -129,6 +135,7 @@ spec:
             timeoutSeconds: 30
           securityContext:
             runAsUser: {{ .Values.uid }}
+            runAsGroup: {{ .Values.gid }}
           resources:
             requests:
                 cpu: {{ .Values.advanced.master.resources.requests.cpu }}
@@ -159,6 +166,7 @@ spec:
           {{- if ne .Values.persistentStorage.existingClaim "" }}
           - name: {{ .Values.persistentStorage.existingClaimName }}
             mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+            mountPropagation: HostToContainer
             {{ if ne .Values.persistentStorage.subPath "/" }}
             subPath: {{ .Values.persistentStorage.subPath }}
             {{ end }}
@@ -196,6 +204,7 @@ spec:
       securityContext:
         runAsNonRoot: true
         runAsUser: {{ .Values.uid }}
+        runAsGroup: {{ .Values.gid }}
         fsGroup: {{ .Values.gid }}
         {{ $firstGroup := .Values.supplementalGroups | first }}
         {{- if $firstGroup.gid }}
@@ -217,4 +226,5 @@ spec:
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          mountPropagation: HostToContainer
 {{ end }}

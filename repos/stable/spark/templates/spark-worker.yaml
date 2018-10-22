@@ -1,9 +1,13 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "fullname" . }}-worker
 spec:
   replicas: {{ .Values.advanced.workers.replicas }}
+  selector:
+    matchLabels:
+        app: {{ template "fullname" . }}-worker
+        group: {{ template "fullname" . }}
   template:
     metadata:
       labels:
@@ -23,6 +27,10 @@ spec:
             items:
             - key: group
               path: group
+        - name: shm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 256M
       {{ if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           persistentVolumeClaim:
@@ -63,6 +71,7 @@ spec:
             timeoutSeconds: 30
           securityContext:
             runAsUser: {{ .Values.uid }}
+            runAsGroup: {{ .Values.gid }}
           resources:
             requests:
                 cpu: {{ .Values.advanced.workers.resources.requests.cpu }}
@@ -77,10 +86,13 @@ spec:
           - name: group
             mountPath: /etc/group
             subPath: group
+          - name: shm
+            mountPath: /dev/shm
           {{- if ne .Values.persistentStorage.existingClaim "" }}
           - name: {{ .Values.persistentStorage.existingClaimName }}
             mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
             {{ if ne .Values.persistentStorage.subPath "/" }}
             subPath: {{ .Values.persistentStorage.subPath }}
             {{ end }}
+            mountPropagation: HostToContainer
           {{- end -}}
