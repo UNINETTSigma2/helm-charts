@@ -44,6 +44,10 @@ spec:
             items:
             - key: shadow
               path: shadow
+        - name: shm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 256M
         - name: indexhtml
           configMap:
             name: {{ template "fullname" . }}
@@ -169,6 +173,8 @@ spec:
         - name: shadow
           mountPath: /etc/shadow
           subPath: shadow
+        - name: shm
+          mountPath: /dev/shm
         - name: shinyserver
           mountPath: /etc/shiny-server/shiny-server.conf
           subPath: shiny-server.conf
