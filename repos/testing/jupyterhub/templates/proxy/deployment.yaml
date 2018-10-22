@@ -70,6 +70,7 @@ spec:
                 memory: 1G
           securityContext:
             runAsUser: {{ .Values.uid }}
+            runAsGroup: {{ .Values.gid }}
           env:
             - name: CONFIGPROXY_AUTH_TOKEN
               valueFrom:

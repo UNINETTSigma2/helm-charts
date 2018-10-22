@@ -76,6 +76,7 @@ spec:
         image: busybox:1
         securityContext:
           runAsUser: {{ .Values.uid }}
+          runAsGroup: {{ .Values.gid }}
         args:
           - /bin/sh
           - -c
@@ -96,6 +97,7 @@ spec:
           - --upgrade-db
         securityContext:
           runAsUser: {{ .Values.uid }}
+          runAsGroup: {{ .Values.gid }}
         volumeMounts:
           - mountPath: /etc/jupyterhub/config/
             name: config

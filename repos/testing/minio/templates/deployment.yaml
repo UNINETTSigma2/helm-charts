@@ -38,6 +38,7 @@ spec:
         image: busybox:1
         securityContext:
           runAsUser: {{ .Values.uid }}
+          runAsGroup: {{ .Values.gid }}
         args:
           - /bin/sh
           - -c
@@ -88,6 +89,7 @@ spec:
         - containerPort: 9000
         securityContext:
           runAsUser: {{ .Values.uid }}
+          runAsGroup: {{ .Values.gid }}
         livenessProbe:
           httpGet:
             path: /minio/health/live
@@ -141,6 +143,7 @@ spec:
       securityContext:
         runAsNonRoot: true
         runAsUser: {{ .Values.uid }}
+        runAsGroup: {{ .Values.gid }}
         fsGroup: {{ .Values.gid }}
         {{ $firstGroup := .Values.supplementalGroups | first }}
         {{- if $firstGroup.gid }}

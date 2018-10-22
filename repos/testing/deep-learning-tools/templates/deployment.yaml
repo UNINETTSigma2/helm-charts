@@ -47,6 +47,7 @@ spec:
         image: busybox:1
         securityContext:
           runAsUser: {{ .Values.uid }}
+          runAsGroup: {{ .Values.gid }}
         args:
           - /bin/sh
           - -c
@@ -146,6 +147,7 @@ spec:
         - containerPort: 8888
         securityContext:
           runAsUser: {{ .Values.uid }}
+          runAsGroup: {{ .Values.gid }}
         volumeMounts:
         {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: notebook-config

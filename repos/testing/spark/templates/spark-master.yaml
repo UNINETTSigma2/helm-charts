@@ -66,6 +66,7 @@ spec:
         image: busybox:1
         securityContext:
           runAsUser: {{ .Values.uid }}
+          runAsGroup: {{ .Values.gid }}
         args:
           - /bin/sh
           - -c
@@ -134,6 +135,7 @@ spec:
             timeoutSeconds: 30
           securityContext:
             runAsUser: {{ .Values.uid }}
+            runAsGroup: {{ .Values.gid }}
           resources:
             requests:
                 cpu: {{ .Values.advanced.master.resources.requests.cpu }}
@@ -202,6 +204,7 @@ spec:
       securityContext:
         runAsNonRoot: true
         runAsUser: {{ .Values.uid }}
+        runAsGroup: {{ .Values.gid }}
         fsGroup: {{ .Values.gid }}
         {{ $firstGroup := .Values.supplementalGroups | first }}
         {{- if $firstGroup.gid }}

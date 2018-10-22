@@ -65,6 +65,7 @@ spec:
         image: busybox:1
         securityContext:
           runAsUser: {{ .Values.uid }}
+          runAsGroup: {{ .Values.gid }}
         args:
           - /bin/sh
           - -c
@@ -142,6 +143,7 @@ spec:
           timeoutSeconds: 30
         securityContext:
           runAsUser: {{ .Values.uid }}
+          runAsGroup: {{ .Values.gid }}
         env:
         - name: TZ
           value: Europe/Oslo
@@ -215,6 +217,7 @@ spec:
       securityContext:
         runAsNonRoot: true
         runAsUser: {{ .Values.uid }}
+        runAsGroup: {{ .Values.gid }}
         fsGroup: {{ .Values.gid }}
         {{ $firstGroup := .Values.supplementalGroups | first }}
         {{- if $firstGroup.gid }}
