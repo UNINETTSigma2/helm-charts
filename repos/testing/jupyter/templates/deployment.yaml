@@ -55,6 +55,7 @@ spec:
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          mountPropagation: HostToContainer
       {{ end }}
       hostname: {{ template "fullname" . }}
       securityContext:
@@ -143,6 +144,7 @@ spec:
         - name: notebook-config
           mountPath: /home/{{ .Values.username }}/.jupyter/notebook_config.py
           subPath: notebook_config.py
+          mountPropagation: HostToContainer
         {{- else }}
         - name: notebook-config
           mountPath: /home/notebook/.jupyter/notebook_config.py
@@ -157,10 +159,12 @@ spec:
         {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          mountPropagation: HostToContainer
           {{ if ne .Values.persistentStorage.subPath "/" }}
           subPath: {{ .Values.persistentStorage.subPath }}
           {{ end }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /home/{{ .Values.username }}
           subPath: home/{{ .Values.username }}
+          mountPropagation: HostToContainer
         {{- end -}}

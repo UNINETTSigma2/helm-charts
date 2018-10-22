@@ -74,6 +74,7 @@ spec:
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          mountPropagation: HostToContainer
       {{- end }}
       containers:
         - name: proxy-rewriter
@@ -163,6 +164,7 @@ spec:
           {{- if ne .Values.persistentStorage.existingClaim "" }}
           - name: {{ .Values.persistentStorage.existingClaimName }}
             mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+            mountPropagation: HostToContainer
             {{ if ne .Values.persistentStorage.subPath "/" }}
             subPath: {{ .Values.persistentStorage.subPath }}
             {{ end }}
@@ -221,4 +223,5 @@ spec:
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          mountPropagation: HostToContainer
 {{ end }}

@@ -86,5 +86,6 @@ spec:
             mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
             {{ if ne .Values.persistentStorage.subPath "/" }}
             subPath: {{ .Values.persistentStorage.subPath }}
+            mountPropagation: HostToContainer
             {{ end }}
           {{- end -}}
