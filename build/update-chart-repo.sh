@@ -12,7 +12,8 @@ do
 
     for chart_dir in "${charts[@]}"
     do
-	    ./get-labels.sh $chart_dir
+	    echo "Attempting to get image labels for $chart_dir..."
+	    ./get-labels.sh $chart_dir || true
 	    ./lint-chart.sh $chart_dir
 	    echo
     done
