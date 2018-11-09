@@ -1,0 +1,39 @@
+ingress:
+  host: "local-chart.example.com"
+resources:
+  gitea:
+    requests:
+      cpu: 500m
+      memory: 500Mi
+    limits:
+      cpu: 1000m
+      memory: 2048Mi
+  postgres:
+    requests:
+      cpu: 500m
+      memory: 500Mi
+  memcached:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+persistentStorage:
+  existingClaim: ""
+  existingClaimName: "example-name"
+  subPath: "/"
+uid: 999
+gid: 999
+username: gitea
+supplementalGroups:
+  - name: ""
+    gid: ""
+appstore_generated_data:
+  dataporten:
+    scopes:
+      - ""
+    id: "0000"
+    client_secret: "0000"
+    authorized_groups:
+      - ""
+advanced:
+  accessKey: "accesskeyexample"
+  secretKey: "secretkeyexample"
