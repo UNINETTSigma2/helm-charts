@@ -14,12 +14,17 @@ do
     do
 	    echo "Attempting to get image labels for $chart_dir..."
 	    ./get-labels.sh $chart_dir || true
-	    ./lint-chart.sh $chart_dir
+        if [[ $chart_dir == repos/testing/* ]];
+        then
+	        ./lint-chart.sh "$chart_dir" || true
+        else
+            ./lint-chart.sh "$chart_dir"
+        fi
 	    echo
     done
 
     repo_dir="docs/$repo"
-    mkdir -p $repo_dir
+    mkdir -p "$repo_dir"
     helm init -c
     for chart_dir in "${charts[@]}"
     do
