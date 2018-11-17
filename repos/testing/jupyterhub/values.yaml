@@ -3,7 +3,7 @@ persistentStorage:
   existingClaimName: "example-name"
   subPath: "/"
 ingress:
-  host: "paaltest.appstore-dep.ioudaas.no"
+  host: "test.appstore-dep.ioudaas.no"
 userNotebookType:
   resources:
     requests:
@@ -45,7 +45,7 @@ users:
         memory: 1G
 uid: 999
 gid: 999
-username: jupyterhub
+username: hub
 supplementalGroups:
   - name: ""
     gid: ""
@@ -61,7 +61,7 @@ advanced:
     enabled: false
     subPath: "data"
     readOnly: true
-  userImage: quay.io/uninett/jupyterhub-singleuser:20181022-270e4f8
+  userImage: quay.io/uninett/jupyterhub-singleuser:20181117-d19dbd4
 appstore_generated_data:
   dataporten:
     id: ""
