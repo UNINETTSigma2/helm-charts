@@ -8,6 +8,7 @@ In addition there is [Tensorboard](https://www.tensorflow.org/programmers_guide/
 
 
 ## Features
+
 - A browser accessible and user customisable Jupyter notebook
 - Various machine learning and visualization libraries
 - Pre-configured GPU drivers
@@ -15,11 +16,14 @@ In addition there is [Tensorboard](https://www.tensorflow.org/programmers_guide/
 
 ------
 
-### Advanced
-This application creates a Jupyter Notebook instance using the following Dockerfiles:
-  - [quay.io/Uninett/deep-learning-tools](https://github.com/Uninett/helm-charts-dockerfiles/tree/94b9c84/deep-learning-tools/Dockerfile)
+## Advanced
 
-#### Values
+This application creates a Jupyter Notebook instance using the following Dockerfiles:
+
+- [quay.io/Uninett/deep-learning-tools](https://github.com/Uninett/helm-charts-dockerfiles/tree/a37bfde/deep-learning-tools/Dockerfile)
+
+### Values
+
 | Value name    | Description |
 | ------------- | ----------------------------------------------------------------------------------------------------------- |
 | advanced.githubToken        | If you need to access private Github repositories, you need to specify a Github access token. |
