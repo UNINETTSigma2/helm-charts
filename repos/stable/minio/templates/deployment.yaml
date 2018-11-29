@@ -9,10 +9,12 @@ spec:
   selector:
     matchLabels:
         app: {{ template "fullname" . }}
+        release: {{ .Release.Name }}
   template:
     metadata:
       labels:
         app: {{ template "fullname" . }}
+        release: {{ .Release.Name }}
     spec:
       volumes:
         - name: passwd

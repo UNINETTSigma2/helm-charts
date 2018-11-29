@@ -8,11 +8,13 @@ spec:
     matchLabels:
         app: {{ template "fullname" . }}-worker
         group: {{ template "fullname" . }}
+        release: {{ .Release.Name }}
   template:
     metadata:
       labels:
         app: {{ template "fullname" . }}-worker
         group: {{ template "fullname" . }}
+        release: {{ .Release.Name }}
     spec:
       volumes:
         - name: passwd

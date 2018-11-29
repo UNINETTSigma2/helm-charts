@@ -8,11 +8,13 @@ spec:
     matchLabels:
         app: {{ template "fullname" . }}-master
         group: {{ template "fullname" . }}
+        release: {{ .Release.Name }}
   template:
     metadata:
       labels:
         app: {{ template "fullname" . }}-master
         group: {{ template "fullname" . }}
+        release: {{ .Release.Name }}
       annotations:
         checksum/config: {{ include "oidcconfig" . | sha256sum }}
     spec:
