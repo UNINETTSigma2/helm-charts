@@ -57,6 +57,7 @@ advanced:
   notebook:
     spawnLimit: 100
   debug: false
+  jupyterLab: false
   sharedData:
     enabled: false
     subPath: "data"
