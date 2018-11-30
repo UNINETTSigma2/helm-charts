@@ -58,6 +58,7 @@ advanced:
     spawnLimit: 100
   debug: false
   jupyterLab: false
+  additionalAdmin: ""
   sharedData:
     enabled: false
     subPath: "data"
