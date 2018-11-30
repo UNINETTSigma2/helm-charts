@@ -28,8 +28,8 @@ data:
   singleuser.scheduler-strategy: pack
   singleuser.cmd: "/usr/local/bin/start-notebook.sh"
   {{- if .Values.advanced.killIdlePods.enabled }}
-  singleuser.defaultUrl: "/lab"
-  singleuser.extraEnv.JUPYTER_ENABLE_LAB: "1"
+  singleuser.default-url: "/lab"
+  singleuser.extra-env.JUPYTER_ENABLE_LAB: "1"
   {{- end }}
   singleuser.uid: "{{ .Values.uid }}"
   singleuser.fs-gid: "{{ .Values.gid }}"
