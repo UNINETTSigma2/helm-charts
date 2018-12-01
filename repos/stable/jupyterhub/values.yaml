@@ -57,11 +57,13 @@ advanced:
   notebook:
     spawnLimit: 100
   debug: false
+  jupyterLab: false
+  additionalAdmin: ""
   sharedData:
     enabled: false
     subPath: "data"
     readOnly: true
-  userImage: quay.io/uninett/jupyterhub-singleuser:20181117-d19dbd4
+  userImage: quay.io/uninett/jupyterhub-singleuser:20181130-4da7986
 appstore_generated_data:
   dataporten:
     id: ""
