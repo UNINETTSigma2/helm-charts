@@ -8,6 +8,7 @@ metadata:
     chart: "{{.Chart.Name}}-{{.Chart.Version}}"
     group: {{ .Release.Name }}-jupyterhub
   annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
     # This is what defines this resource as a hook. Without this line, the
     # job is considered part of the release.
     "helm.sh/hook": pre-delete

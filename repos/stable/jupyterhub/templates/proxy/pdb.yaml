@@ -2,6 +2,8 @@ apiVersion: policy/v1beta1
 kind: PodDisruptionBudget
 metadata:
   name: {{ .Release.Name }}-proxy
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
   labels:
     chart: {{ .Chart.Name }}-{{ .Chart.Version }}
     component: proxy

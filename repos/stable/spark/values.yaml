@@ -35,6 +35,8 @@ persistentStorage:
   subPath: "/"
 
 appstore_generated_data:
+  appstore_meta_data:
+    contact_email: "example@uninett.no"
   dataporten:
     scopes:
       - ""

@@ -2,6 +2,8 @@ kind: Service
 apiVersion: v1
 metadata:
   name: {{ template "fullname" . }}-master
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
   labels:
     group: {{ template "fullname" . }}
 spec:
@@ -16,6 +18,8 @@ kind: Service
 apiVersion: v1
 metadata:
   name: {{ template "fullname" . }}-master-ui
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
   labels:
     group: {{ template "fullname" . }}
 spec:
