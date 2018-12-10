@@ -4,17 +4,23 @@ metadata:
   name: {{ template "fullname" . }}
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
         app: {{ template "fullname" . }}
+        release: {{ .Release.Name }}
   template:
     metadata:
       annotations:
         checksum/config: {{ include "oidcconfig" . | sha256sum }}
       labels:
         app: {{ template "fullname" . }}
+        release: {{ .Release.Name }}
     spec:
       volumes:
         - name: oidcconfig

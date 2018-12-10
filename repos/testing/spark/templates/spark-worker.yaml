@@ -2,17 +2,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "fullname" . }}-worker
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
 spec:
+  strategy:
+    type: Recreate
   replicas: {{ .Values.advanced.workers.replicas }}
   selector:
     matchLabels:
         app: {{ template "fullname" . }}-worker
         group: {{ template "fullname" . }}
+        release: {{ .Release.Name }}
   template:
     metadata:
       labels:
         app: {{ template "fullname" . }}-worker
         group: {{ template "fullname" . }}
+        release: {{ .Release.Name }}
     spec:
       volumes:
         - name: passwd

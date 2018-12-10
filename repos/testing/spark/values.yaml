@@ -17,8 +17,8 @@ advanced:
       limits:
           cpu: 200m
           memory: 1500Mi
-  masterImage: quay.io/uninett/jupyter-spark:20181022-0cb9bd3
-  workerImage: quay.io/uninett/jupyter-spark:20181022-0cb9bd3
+  masterImage: quay.io/uninett/jupyter-spark:20181124-1ccd691
+  workerImage: quay.io/uninett/jupyter-spark:20181124-1ccd691
 
 uid: 999
 gid: 999
@@ -35,6 +35,8 @@ persistentStorage:
   subPath: "/"
 
 appstore_generated_data:
+  appstore_meta_data:
+    contact_email: "example@uninett.no"
   dataporten:
     scopes:
       - ""

@@ -16,8 +16,8 @@ group, or a scientific research group.
 
 ### Advanced
 This application uses the following Dockerfile:
-  - [Jupyter Hub Server](https://github.com/Uninett/helm-charts-dockerfiles/tree/d19dbd4/jupyterhub/server/Dockerfile)
-  - [User Notebook Server](https://github.com/Uninett/helm-charts-dockerfiles/tree/d19dbd4/jupyterhub/singleuser/Dockerfile)
+  - [Jupyter Hub Server](https://github.com/Uninett/helm-charts-dockerfiles/tree/4da7986/jupyterhub/server/Dockerfile)
+  - [User Notebook Server](https://github.com/Uninett/helm-charts-dockerfiles/tree/4da7986/jupyterhub/singleuser/Dockerfile)
 
 
 #### Values
@@ -25,6 +25,8 @@ This application uses the following Dockerfile:
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | userNotebookType                        | The machine type to be used for user notebooks                                                                                                  |
 | users                                   | The number of users which will be using this applications. This is used to determine how much resources will be allocated to the proxy and hub. |
+| advanced.additionalAdmin                | Dataporten User ID who can also be admin of this instance in addition to user who is deploying this hub |
+| advanced.jupyterLab.enabled             | Whether or not run notebooks in jupyter lab interface |
 | advanced.debug                          | Whether or not to enable verbose logging.                                                                                                       |
 | advanced.userImage                      | The Docker image to use when creating a new user notebook                                                                                       |
 | advanced.killidlepods.enabled           | Whether or not idle notebooks should be killed. |

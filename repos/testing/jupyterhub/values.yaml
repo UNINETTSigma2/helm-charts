@@ -63,8 +63,10 @@ advanced:
     enabled: false
     subPath: "data"
     readOnly: true
-  userImage: quay.io/uninett/jupyterhub-singleuser:20181117-d19dbd4
+  userImage: quay.io/uninett/jupyterhub-singleuser:20181130-4da7986
 appstore_generated_data:
+  appstore_meta_data:
+    contact_email: "example@uninett.no"
   dataporten:
     id: ""
     owner: "0000-1234"
