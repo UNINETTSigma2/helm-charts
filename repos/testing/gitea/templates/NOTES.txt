@@ -1,10 +1,7 @@
--- [ Accessing Minio via WebUI or other client
+-- [ Gitea
 
-You can use the follow credentials to login to this Minio instance
+1. Gitea web is available at: {{ .Values.ingress.host }}
 
-    Access Key: {{ .Values.advanced.accessKey }}
-    Secret Key: {{ .Values.advanced.secretKey }}
-{{ if eq .Values.advanced.accessKey "exampleaccesskey" }}
-Note: Please change the default access and secret keys by going
-to Reconfigure menu on the right side and under Advanced options.
-{{ end }}
+Gitea is protected with Dataporten authentication
+and groups authorization. 
+

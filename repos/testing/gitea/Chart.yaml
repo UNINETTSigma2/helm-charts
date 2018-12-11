@@ -1,15 +1,19 @@
 apiVersion: v1
 description: Git with a cup of tea - A painless self-hosted Git service
 name: gitea
+version: 1.6.0
 maintainers:
   - name: Metacenter
     email: spteam@metacenter.no
+description: Git with a cup of tea
 home: https://gitea.io
-icon: https://avatars2.githubusercontent.com/u/12724356?s=400&v=4
-version: 1.6.0
+icon: https://docs.gitea.io/images/gitea.png
 keywords:
-  - Git
+- git
+- issue tracker
+- code review
+- wiki
 sources:
-  - https://github.com/go-gitea/gitea
-  - https://hub.docker.com/r/gitea/gitea/
+- https://github.com/go-gitea/gitea
+- https://hub.docker.com/r/gitea/gitea/
 
