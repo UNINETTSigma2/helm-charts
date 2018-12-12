@@ -7,6 +7,8 @@ metadata:
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 data:
+  passwd: {{ include "passwd" . | quote }}
+  group: {{ include "group" . | quote }}
   app.ini: |-
     ; This file lists the default values used by Gitea
     ; Copy required sections to your own app.ini (default is custom/conf/app.ini)
