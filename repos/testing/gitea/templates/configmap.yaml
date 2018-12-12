@@ -132,7 +132,7 @@ data:
     ; PROTOCOL hardcoded to http since tls is delegated to ingress
     PROTOCOL = https
     DOMAIN = {{ .Values.ingress.host }}
-    ROOT_URL = {{ .proto }}://{{ .Values.ingress.host }}/
+    ROOT_URL = https://{{ .Values.ingress.host }}/
     ; The address to listen on. Either a IPv4/IPv6 address or the path to a unix socket.
     HTTP_ADDR = 0.0.0.0
     HTTP_PORT = 3000
