@@ -40,6 +40,7 @@ spec:
         - name: gitea-config
           configMap:
             name: {{ template "fullname" . }}
+            items:
             - key: app.ini
               path: app.ini
         {{ if ne .Values.persistentStorage.existingClaim "" }}
