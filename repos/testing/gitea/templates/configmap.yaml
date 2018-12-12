@@ -130,27 +130,12 @@ data:
     ; The protocol the server listens on. One of 'http', 'https', 'unix' or 'fcgi'.
 
     ; PROTOCOL hardcoded to http since tls is delegated to ingress
-    PROTOCOL = http
-    {{- if .Values.service.http.externalHost }}
-    DOMAIN = {{ .Values.service.http.externalHost }}
-    {{- else }}
-    DOMAIN = {{ template "fullname" . }}-http.{{ .Release.Namespace }}.svc.cluster.local
-    {{- end -}}
-    {{ if .Values.ingress.tls }}
-    {{- $proto := set . "proto" "https" }}
-    {{- else -}}
-    {{- $proto := set . "proto" "http" }}
-    {{- end -}}
-    {{- if and .Values.service.http.externalHost ( .Values.service.http.externalPort ) }}
-    ROOT_URL = {{ .proto }}://{{ .Values.service.http.externalHost }}:{{ .Values.service.http.externalPort  }}/
-    {{- else if .Values.service.http.externalHost }}
-    ROOT_URL = {{ .proto }}://{{ .Values.service.http.externalHost }}/
-    {{- else }}
-    ROOT_URL = %(PROTOCOL)s://%(DOMAIN)s:%(HTTP_PORT)s/
-    {{- end -}}
+    PROTOCOL = https
+    DOMAIN = {{ .Values.ingress.host }}
+    ROOT_URL = {{ .proto }}://{{ .Values.ingress.host }}/
     ; The address to listen on. Either a IPv4/IPv6 address or the path to a unix socket.
     HTTP_ADDR = 0.0.0.0
-    HTTP_PORT = {{ .Values.service.http.port }}
+    HTTP_PORT = 3000
     ; If REDIRECT_OTHER_PORT is true, and PROTOCOL is set to https an http server
     ; will be started on PORT_TO_REDIRECT and it will redirect plain, non-secure http requests to the main
     ; ROOT_URL.  Defaults are false for REDIRECT_OTHER_PORT and 80 for
@@ -165,29 +150,29 @@ data:
     ; Do not set this variable if PROTOCOL is set to 'unix'.
     LOCAL_ROOT_URL = %(PROTOCOL)s://%(HTTP_ADDR)s:%(HTTP_PORT)s/
     ; Disable SSH feature when not available
-    DISABLE_SSH = false
+    DISABLE_SSH = true
     ; Whether to use the builtin SSH server or not.
     START_SSH_SERVER = false
     ; Username to use for the builtin SSH server. If blank, then it is the value of RUN_USER.
     BUILTIN_SSH_SERVER_USER =
-    ; Domain name to be exposed in clone URL
-    {{- if .Values.service.ssh.externalHost  }}
-    SSH_DOMAIN = {{ .Values.service.ssh.externalHost  }}
-    {{- else }}
-    SSH_DOMAIN = {{ template "fullname" . }}-ssh.{{ .Release.Namespace }}.svc.cluster.local
-    {{- end }}
-    ; THe network interface the builtin SSH server should listen on
-    SSH_LISTEN_HOST =
-    ; Port number to be exposed in clone URL
-    {{- if .Values.service.ssh.externalPort  }}
-    SSH_PORT = {{ .Values.service.ssh.externalPort  }}
-    {{- else }}
-    SSH_PORT = {{ .Values.service.ssh.port  }}
-    {{- end }}
-    ; The port number the builtin SSH server should listen on
-    SSH_LISTEN_PORT = {{ .Values.service.ssh.port  }}
-    ; Root path of SSH directory, default is '~/.ssh', but you have to use '/home/git/.ssh'.
-    SSH_ROOT_PATH =
+    ; ; Domain name to be exposed in clone URL
+    ; {{- if .Values.service.ssh.externalHost  }}
+    ; SSH_DOMAIN = {{ .Values.service.ssh.externalHost  }}
+    ; {{- else }}
+    ; SSH_DOMAIN = {{ template "fullname" . }}-ssh.{{ .Release.Namespace }}.svc.cluster.local
+    ; {{- end }}
+    ; ; THe network interface the builtin SSH server should listen on
+    ; SSH_LISTEN_HOST =
+    ; ; Port number to be exposed in clone URL
+    ; {{- if .Values.service.ssh.externalPort  }}
+    ; SSH_PORT = {{ .Values.service.ssh.externalPort  }}
+    ; {{- else }}
+    ; SSH_PORT = {{ .Values.service.ssh.port  }}
+    ; {{- end }}
+    ; ; The port number the builtin SSH server should listen on
+    ; SSH_LISTEN_PORT = {{ .Values.service.ssh.port  }}
+    ; ; Root path of SSH directory, default is '~/.ssh', but you have to use '/home/git/.ssh'.
+    ; SSH_ROOT_PATH =
     ; For the built-in SSH server, choose the ciphers to support for SSH connections,
     ; for system SSH this setting has no effect
     SSH_SERVER_CIPHERS = aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, arcfour256, arcfour128
@@ -284,13 +269,13 @@ data:
 
     [security]
     ; Whether the installer is disabled
-    INSTALL_LOCK = {{ .Values.config.disableInstaller }}
+    ; INSTALL_LOCK = {{ .Values.config.disableInstaller }}
     ; !!CHANGE THIS TO KEEP YOUR USER DATA SAFE!!
-    {{ if .Values.config.secretKey }}
-    SECRET_KEY = {{ .Values.config.secretKey }}
-    {{ else }}
+    ; {{ if .Values.config.secretKey }}
+    ; SECRET_KEY = {{ .Values.config.secretKey }}
+    ; {{ else }}
     SECRET_KEY = {{ randAlphaNum 64 | quote }}
-    {{ end }}
+    ; {{ end }}
 
 
     ; How long to remember that an user is logged in before requiring relogin (in days)
