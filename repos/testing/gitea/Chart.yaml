@@ -1,11 +1,11 @@
 apiVersion: v1
 description: Gitea chart
 name: gitea
-version: 0.1.1
+version: 0.1.2
 maintainers:
 - name: Uninett AS
   email: metacenter@sigma2.no
 home: https://github.com/Uninett/helm-charts/tree/master/jupyter
-icon: https://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
+icon: https://docs.gitea.io/images/gitea.png
 keywords:
   - Git
