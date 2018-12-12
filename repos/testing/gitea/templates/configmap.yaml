@@ -154,27 +154,6 @@ data:
     ; Whether to use the builtin SSH server or not.
     START_SSH_SERVER = false
     ; Username to use for the builtin SSH server. If blank, then it is the value of RUN_USER.
-    BUILTIN_SSH_SERVER_USER =
-    ; ; Domain name to be exposed in clone URL
-    ; {{- if .Values.service.ssh.externalHost  }}
-    ; SSH_DOMAIN = {{ .Values.service.ssh.externalHost  }}
-    ; {{- else }}
-    ; SSH_DOMAIN = {{ template "fullname" . }}-ssh.{{ .Release.Namespace }}.svc.cluster.local
-    ; {{- end }}
-    ; ; THe network interface the builtin SSH server should listen on
-    ; SSH_LISTEN_HOST =
-    ; ; Port number to be exposed in clone URL
-    ; {{- if .Values.service.ssh.externalPort  }}
-    ; SSH_PORT = {{ .Values.service.ssh.externalPort  }}
-    ; {{- else }}
-    ; SSH_PORT = {{ .Values.service.ssh.port  }}
-    ; {{- end }}
-    ; ; The port number the builtin SSH server should listen on
-    ; SSH_LISTEN_PORT = {{ .Values.service.ssh.port  }}
-    ; ; Root path of SSH directory, default is '~/.ssh', but you have to use '/home/git/.ssh'.
-    ; SSH_ROOT_PATH =
-    ; For the built-in SSH server, choose the ciphers to support for SSH connections,
-    ; for system SSH this setting has no effect
     SSH_SERVER_CIPHERS = aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, arcfour256, arcfour128
     ; For the built-in SSH server, choose the key exchange algorithms to support for SSH connections,
     ; for system SSH this setting has no effect
