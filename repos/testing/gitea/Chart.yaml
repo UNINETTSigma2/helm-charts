@@ -1,19 +1,11 @@
 apiVersion: v1
-description: Git with a cup of tea - A painless self-hosted Git service
+description: Gitea chart
 name: gitea
-version: 1.6.0
+version: 0.1.0
 maintainers:
-  - name: Metacenter
-    email: spteam@metacenter.no
-description: Git with a cup of tea
-home: https://gitea.io
-icon: https://docs.gitea.io/images/gitea.png
+- name: Uninett AS
+  email: metacenter@sigma2.no
+home: https://github.com/Uninett/helm-charts/tree/master/jupyter
+icon: https://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
 keywords:
-- git
-- issue tracker
-- code review
-- wiki
-sources:
-- https://github.com/go-gitea/gitea
-- https://hub.docker.com/r/gitea/gitea/
-
+  - Git

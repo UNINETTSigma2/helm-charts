@@ -1,35 +1,26 @@
 {{/* vim: set filetype=mustache: */}}
 
-
-{{- define "name" -}}
-{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
-{{- end -}}
-{{- define "postgresql.name" -}}
-{{- default .Chart.Name "postgres" | trunc 63 | trimSuffix "-" -}}
-{{- end -}}
-
-{{/*
-Create a default fully qualified app name.
-We truncate at 24 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
-*/}}
-{{- define "fullname" -}}
-{{- $name := default .Chart.Name .Values.nameOverride -}}
-{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
-{{- end -}}
-
 {{/*
 Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
-If release name contains chart name it will be used as a full name.
 */}}
-{{- define "postgresql.fullname" -}}
-{{- $name := default .Chart.Name "postgres" -}}
+{{- define "fullname" -}}
+{{- $name := default .Chart.Name -}}
 {{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
-{{- define "passwd" -}}
-# Create /etc/passwd file to contain UID of users we add
+{{- define "all_endpoints" -}}
+    {{- $n_groups := sub (len .Values.authGroupProviders) 1 }}
+    {{- range $index, $el := .Values.authGroupProviders }}
+	{{- printf "%s" .url }}
+	{{- if lt $index $n_groups }}
+	    {{- printf "," }}
+	{{- end }}
+    {{- end }}
+{{- end -}}
 
+# Create /etc/passwd file to contain UID of users we add
+{{- define "passwd" -}}
 daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
 bin:x:2:2:bin:/bin:/usr/sbin/nologin
 sys:x:3:3:sys:/dev:/usr/sbin/nologin
@@ -49,13 +40,13 @@ gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologi
 nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
 _apt:x:100:65534::/nonexistent:/usr/sbin/nologin
 jovyan:x:1000:100::/home/jovyan:/bin/bash
-{{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/notebook:/bin/bash
+{{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/{{ .Values.username }}:/bin/bash
+notebook:x:999:999::/home/notebook:/bin/bash
 
 {{- end -}}
 
-{{- define "group" -}}
 # Create /etc/group file to contain UID of users we add
-
+{{- define "group" -}}
 root:x:0:
 daemon:x:1:
 bin:x:2:
@@ -106,5 +97,6 @@ ssh:x:101:
 {{- end }}
 {{- end }}
 {{- end }}
+notebook:x:999:
 
 {{- end -}}

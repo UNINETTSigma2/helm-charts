@@ -1,7 +1,0 @@
--- [ Gitea
-
-1. Gitea web is available at: {{ .Values.ingress.host }}
-
-Gitea is protected with Dataporten authentication
-and groups authorization. 
-

@@ -1,23 +1,23 @@
-By installing this package, an instance of [gitea](https://gitea.io)
-will be created. After installing, you will be able to
-access gitea's web interface through a web browser.
+By installing this package, a Jupyter notebook with various pre-installed
+tools will be created. After installing, you will be able to access the
+Jupyter notebook using your web browser.
 
-[gitea](https://gitea.io) is a self-hosted Git service.
-
+A [Jupyter Notebook](http://jupyter.org/) is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more.
 
 ## Features
-- Similar to Github
-- Similar to ButBucket
-- Similar to Gitlab
+- A browser accessible and user customisable Jupyter notebook
+- Support for using Python, Scala and R within the notebook
+- Support for distributed computing using Apache Spark
 
 ------
 
 ### Advanced
-This application uses the following Dockerfile:
-
-- [gitea](https://github.com/go-gitea/gitea)
+This application creates a [Jupyter Notebook](https://github.com/Uninett/helm-charts/tree/master/jupyter) instance using the following Dockerfiles:
+  - [quay.io/uninett/jupyter-spark](https://github.com/Uninett/helm-charts-dockerfiles/tree/1ccd691/jupyter-spark/Dockerfile)
 
 #### Values
 | Value name    | Description |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|               |             |
+| ------------- | ----------------------------------------------------------------------------------------------------------- |
+| advanced.githubToken        | If you need to access private Github repositories, you need to specify a Github access token. |
+| advanced.env.jupyterLab     | Whether or not to use JupyterLab                                                              |
+| advanced.env.sparkMasterUrl | The URL to use when attempting to connect to Spark from a Jupyter notebook.                   |
