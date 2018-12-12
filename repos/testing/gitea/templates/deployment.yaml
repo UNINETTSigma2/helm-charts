@@ -101,7 +101,7 @@ spec:
           runAsGroup: {{ .Values.gid }}
         volumeMounts:
         {{- if ne .Values.persistentStorage.existingClaim "" }}
-        - name: gitea-data
+        - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /data
           mountPropagation: HostToContainer
         - name: gitea-config
