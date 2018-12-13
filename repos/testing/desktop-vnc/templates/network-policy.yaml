@@ -15,4 +15,4 @@ spec:
             name: kube-ingress
       ports:
         - protocol: TCP
-          port: 6901
+          port: 8080
