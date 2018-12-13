@@ -8,6 +8,5 @@ maintainers:
 home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
 icon: https://raw.githubusercontent.com/novnc/noVNC/master/app/images/icons/novnc-120x120.png
 keywords:
-  - Apache Spark
-  - Scala
-  - R
+  - VNC
+  - Ubuntu
