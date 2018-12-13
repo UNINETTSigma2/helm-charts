@@ -51,9 +51,9 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
     "health_port": 1337,
     "cert": "cert.pem",
     "key": "key.pem",
-    "readtimeout": 10,
-    "writetimeout": 20,
-    "idletimeout": 120,
+    "readtimeout": 3600,
+    "writetimeout": 3600,
+    "idletimeout": 3600,
     "ssl": false,
     "secure_cookie": false
   }
