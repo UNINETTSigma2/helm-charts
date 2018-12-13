@@ -43,7 +43,7 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
       "backend": ""
     },
     "logging": {
-      "level": "info"
+      "level": "debug"
     }
   },
   "server": {
