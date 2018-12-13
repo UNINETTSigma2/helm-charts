@@ -52,7 +52,7 @@ spec:
           name: oidcconfig
         workingDir: /conf
       - name: viz
-        image: consol/centos-xfce-vnc:1.3.0
+        image: consol/ubuntu-xfce-vnc:1.4.0
         imagePullPolicy: Always
         args:
         - -w
