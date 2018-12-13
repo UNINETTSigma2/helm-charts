@@ -56,6 +56,13 @@ spec:
         imagePullPolicy: Always
         args:
         - -w
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 6901
+            scheme: HTTP
+          initialDelaySeconds: 1
+          timeoutSeconds: 1
         env:
         - name: VNC_PW
           value: test

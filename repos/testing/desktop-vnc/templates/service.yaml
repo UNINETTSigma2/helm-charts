@@ -9,8 +9,12 @@ metadata:
 spec:
   ports:
   - port: 80
-    targetPort: 8080
+    targetPort: 6901
     protocol: TCP
     name: {{ template "fullname" . }}-service
+  - name: {{ template "fullname" . }}-http
+    protocol: TCP
+    port: 6901
+    targetPort: 6901
   selector:
     app: {{ template "fullname" . }}
