@@ -60,37 +60,6 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 }
 {{- end -}}
 
-{{- define "notebook-config" -}}
-# Configuration file for ipython-notebook.
-
-c = get_config()
-
-# ------------------------------------------------------------------------------
-# NotebookApp configuration
-# ------------------------------------------------------------------------------
-
-c.IPKernelApp.pylab = 'inline'
-c.NotebookApp.ip = '127.0.0.1'
-c.NotebookApp.open_browser = False
-c.NotebookApp.port = 8888
-c.NotebookApp.base_url = '/'
-c.NotebookApp.trust_xheaders = True
-c.NotebookApp.tornado_settings = {'static_url_prefix': '/static/'}
-{{ if ne .Values.persistentStorage.existingClaim "" }}
-c.NotebookApp.notebook_dir = '/home/{{ .Values.username }}'
-{{ else }}
-c.NotebookApp.notebook_dir = '/home/notebook'
-{{ end }}
-{{ if ne .Values.advanced.githubToken "" }}
-c.GitHubConfig.access_token = '{{ .Values.advanced.githubToken }}'
-{{ end }}
-c.NotebookApp.allow_origin = '*'
-c.NotebookApp.allow_remote_access = True
-c.NotebookApp.token = ''
-c.NotebookApp.password = ''
-
-{{- end -}}
-
 # Create /etc/passwd file to contain UID of users we add
 {{- define "passwd" -}}
 daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
