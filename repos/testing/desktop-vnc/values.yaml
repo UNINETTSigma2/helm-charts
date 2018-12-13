@@ -1,0 +1,39 @@
+ingress:
+  host: "local-chart.example.com"
+resources:
+  requests:
+    cpu: 100m
+    memory: 512M
+  limits:
+    cpu: 300m
+    memory: 1G
+persistentStorage:
+  existingClaim: ""
+  existingClaimName: "example-name"
+  subPath: "/"
+appstore_generated_data:
+  appstore_meta_data:
+    contact_email: "example@uninett.no"
+  dataporten:
+    scopes:
+      - ""
+    id: "0000-abc"
+    owner: "0000-1234"
+    client_secret: "0000-0000"
+    authorized_groups:
+      - ""
+uid: 999
+gid: 999
+username: notebook
+supplementalGroups:
+  - name: ""
+    gid: ""
+advanced:
+  env:
+    sparkMasterUrl: "local[*]"
+    jupyterLab: false
+  dockerImage: quay.io/uninett/jupyter-spark:20181124-1ccd691
+  githubToken: ""
+authGroupProviders:
+  - url: "https://groups-api.dataporten.no/groups/me/groups"
+    scope: groups
