@@ -52,7 +52,7 @@ spec:
           name: oidcconfig
         workingDir: /conf
       - name: viz
-        image: consol/ubuntu-xfce-vnc:1.4.0
+        image: quay.io/uninett/desktop-vnc:20181214-b24dd69
         imagePullPolicy: Always
         args:
         - -w
