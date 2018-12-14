@@ -1,7 +1,7 @@
 apiVersion: v1
 description: Gitea chart
 name: gitea
-version: 0.2.02
+version: 0.2.3
 maintainers:
 - name: Uninett AS
   email: metacenter@sigma2.no
