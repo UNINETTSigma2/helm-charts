@@ -99,6 +99,18 @@ spec:
             mountPropagation: HostToContainer
             {{ end }}
       volumes:
+      - name: passwd
+        configMap:
+          name: {{ template "fullname" . }}
+          items:
+          - key: passwd
+            path: passwd
+      - name: group
+        configMap:
+          name: {{ template "fullname" . }}
+          items:
+          - key: group
+            path: group
       - name: oidcconfig
         secret:
             secretName: {{ template "fullname" . }}
