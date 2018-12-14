@@ -29,7 +29,7 @@ supplementalGroups:
   - name: ""
     gid: ""
 advanced:
-  dockerImage: gitea/gitea:1.6
+  dockerImage: quay.io/repository/uninett/gitea:20181214-5deadfc
 authGroupProviders:
   - url: "https://groups-api.dataporten.no/groups/me/groups"
     scope: groups
