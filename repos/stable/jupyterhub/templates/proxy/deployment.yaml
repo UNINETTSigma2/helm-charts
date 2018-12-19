@@ -11,6 +11,8 @@ metadata:
     appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
   name: {{ .Release.Name }}-proxy
 spec:
+  strategy:
+    type: Recreate
   replicas: 1
   revisionHistoryLimit: 4
   selector:
