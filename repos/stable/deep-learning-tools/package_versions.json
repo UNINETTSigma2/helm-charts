@@ -9,13 +9,12 @@
     "pkg-r-version": "3.4.1",
     "pkg-toree-version": "0.3.0-incubating",
     "pkg-spylon-version": "0.4.x",
-    "pkg-pytorch-version": "1.0.0",
+    "pkg-pytorch-version": "0.4.1",
     "pkg-cuda-version": "9.2.148",
     "pkg-cudnn-version": "7.4.1.5",
     "pkg-spark-version": "2.4.0",
     "pkg-keras-version": "2.2.4",
     "pkg-caffe2-version": "0.8.dev",
-    "pkg-fastai-version": "1.0.37",
     "pkg-jupyter-notebook-version": "5.7.x",
     "pkg-theano-version": "1.0.2"
   }
