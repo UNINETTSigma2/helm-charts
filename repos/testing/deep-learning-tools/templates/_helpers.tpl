@@ -89,7 +89,7 @@ c.NotebookApp.allow_remote_access = True
 c.NotebookApp.token = ''
 c.NotebookApp.password = ''
 {{ if .Values.advanced.env.jupyterLab }}
-c.JupyterLabIFrame.iframes = ["https://tensorboard.{{ .Values.ingress.host }}"]
+c.JupyterLabIFrame.iframes = ["https://tensorboard-{{ .Values.ingress.host }}"]
 {{ end }}
 
 {{- end -}}

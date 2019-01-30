@@ -19,7 +19,7 @@ spec:
     - secretName: wildcard-tls
       hosts:
          - {{ .Values.ingress.host }}
-         - tensorboard.{{ .Values.ingress.host }}
+         - tensorboard-{{ .Values.ingress.host }}
   rules:
     - host: {{ .Values.ingress.host }}
       http:
@@ -28,7 +28,7 @@ spec:
             backend:
               serviceName: {{ template "fullname" . }}
               servicePort: 80
-    - host: tensorboard.{{ .Values.ingress.host }}
+    - host: tensorboard-{{ .Values.ingress.host }}
       http:
         paths:
           - path: /
