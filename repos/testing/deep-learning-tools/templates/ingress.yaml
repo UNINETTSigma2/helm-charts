@@ -27,3 +27,10 @@ spec:
             backend:
               serviceName: {{ template "fullname" . }}
               servicePort: 80
+    - host: tensorboard-{{ .Values.ingress.host }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: {{ template "fullname" . }}
+              servicePort: 80
