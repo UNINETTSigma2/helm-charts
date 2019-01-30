@@ -23,6 +23,18 @@ spec:
         release: {{ .Release.Name }}
     spec:
       volumes:
+        - name: {{ template "fullname" . }}-rewrite-config
+          configMap:
+            name: {{ template "fullname" . }}-proxy
+            items:
+            - key: default.conf
+              path: default.conf
+        - name: {{ template "fullname" . }}-nginx-config
+          configMap:
+            name: {{ template "fullname" . }}-proxy
+            items:
+            - key: nginx.conf
+              path: nginx.conf
         - name: oidcconfig
           secret:
             secretName: {{ template "fullname" . }}
@@ -80,6 +92,19 @@ spec:
           {{- end }}
         {{- end }}
       containers:
+      - name: proxy-rewriter
+        image: nginx:1.14-alpine
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 9001
+        securityContext:
+          runAsUser: 100
+        volumeMounts:
+          - name: {{ template "fullname" . }}-rewrite-config
+            mountPath: /etc/nginx/conf.d
+          - name: {{ template "fullname" . }}-nginx-config
+            mountPath: /etc/nginx/nginx.conf
+            subPath: nginx.conf
       - name: auth-proxy
         image: quay.io/uninett/goidc-proxy:v1.1.3
         imagePullPolicy: Always

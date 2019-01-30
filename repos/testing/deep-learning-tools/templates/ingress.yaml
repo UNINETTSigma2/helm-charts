@@ -27,7 +27,3 @@ spec:
             backend:
               serviceName: {{ template "fullname" . }}
               servicePort: 80
-          - path: /tensorboard
-            backend:
-              serviceName: {{ template "fullname" . }}-tensorboard
-              servicePort: 6006
