@@ -25,13 +25,13 @@ spec:
       volumes:
         - name: {{ template "fullname" . }}-rewrite-config
           configMap:
-            name: {{ template "fullname" . }}-proxy
+            name: {{ template "fullname" . }}-rewrite
             items:
             - key: default.conf
               path: default.conf
         - name: {{ template "fullname" . }}-nginx-config
           configMap:
-            name: {{ template "fullname" . }}-proxy
+            name: {{ template "fullname" . }}-rewrite
             items:
             - key: nginx.conf
               path: nginx.conf
