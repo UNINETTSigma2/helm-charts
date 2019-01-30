@@ -19,6 +19,7 @@ spec:
     - secretName: wildcard-tls
       hosts:
          - {{ .Values.ingress.host }}
+         - tensorboard.{{ .Values.ingress.host }}
   rules:
     - host: {{ .Values.ingress.host }}
       http:
