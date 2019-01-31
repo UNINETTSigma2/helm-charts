@@ -74,7 +74,10 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/home/{{ .Values.username }}/.jupyter && chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/home  && chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ .Release.Name }}-mlflow"
+          - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/home/{{ .Values.username }}/.jupyter && \
+            mkdir -p  /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ .Release.Name }}-mlflow && \
+            chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/home  && \
+            chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ .Release.Name }}-mlflow"
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
