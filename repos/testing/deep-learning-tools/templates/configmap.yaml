@@ -22,7 +22,7 @@ metadata:
 data:
   default.conf: |
     upstream jupyter {
-      server localhost:8080;
+      server localhost:8888;
     }
     upstream tensorboard {
       server localhost:6006;
