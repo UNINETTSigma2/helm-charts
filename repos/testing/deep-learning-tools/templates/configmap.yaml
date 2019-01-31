@@ -128,5 +128,3 @@ data:
 
       include /etc/nginx/conf.d/*.conf;
     }
-  passwd: {{ include "passwd" . | quote }}
-  group: {{ include "group" . | quote }}
