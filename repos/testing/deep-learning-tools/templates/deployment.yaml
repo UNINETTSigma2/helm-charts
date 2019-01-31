@@ -74,7 +74,7 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/home/{{ .Values.username }}/.jupyter && chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/home"
+          - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/home/{{ .Values.username }}/.jupyter && chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/home  && chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ .Release.Name }}-mlflow"
         volumeMounts:
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
@@ -164,6 +164,8 @@ spec:
             value: {{ .Values.username }}
           - name: PVC_MOUNT_PATH
             value: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          - name: MLFLOW_DATADIR
+            value: /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ .Release.Name }}-mlflow
           {{- end }}
           - name: MEM_LIMIT
             value: {{ .Values.resources.limits.memory }}
@@ -181,6 +183,7 @@ spec:
         ports:
         - containerPort: 8888
         - containerPort: 6006
+        - containerPort: 5000
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}

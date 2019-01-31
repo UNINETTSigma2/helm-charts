@@ -35,3 +35,10 @@ spec:
             backend:
               serviceName: {{ template "fullname" . }}
               servicePort: 80
+    - host: mlflow-{{ .Values.ingress.host }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: {{ template "fullname" . }}
+              servicePort: 80

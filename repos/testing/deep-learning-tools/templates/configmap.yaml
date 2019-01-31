@@ -27,6 +27,9 @@ data:
     upstream tensorboard {
       server localhost:6006;
     }
+    upstream mlflow {
+      server localhost:5000;
+    }
 
     map $http_upgrade $connection_upgrade {
             default upgrade;
@@ -69,6 +72,20 @@ data:
           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
           proxy_set_header Host tensorboard-{{ .Values.ingress.host }};
           proxy_pass http://tensorboard;
+          proxy_redirect off;
+          port_in_redirect off;
+      }
+    }
+
+    server {
+      server_name             mlflow-{{ .Values.ingress.host }};
+      listen                  9001;
+
+      location / {
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header Host mlflow-{{ .Values.ingress.host }};
+          proxy_pass http://mlflow;
           proxy_redirect off;
           port_in_redirect off;
       }
