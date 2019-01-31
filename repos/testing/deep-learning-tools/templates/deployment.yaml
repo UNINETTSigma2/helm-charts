@@ -170,6 +170,8 @@ spec:
           - name: MLFLOW_DATADIR
             value: /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ .Release.Name }}-mlflow
           {{- end }}
+          - name: MLFLOW_TRACKING_URI
+            value: http://localhost:5000
           - name: MEM_LIMIT
             value: {{ .Values.resources.limits.memory }}
           - name: OWNER_ID
