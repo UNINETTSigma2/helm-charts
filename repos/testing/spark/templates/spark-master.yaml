@@ -160,7 +160,7 @@ spec:
               value: {{ .Values.appstore_generated_data.dataporten.owner }}
           {{- if ne .Values.persistentStorage.existingClaim "" }}
             - name: SPARK_RECOVERY_DIR
-              value: /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}/master
+              value: /mnt/{{ .Values.persistentStorage.existingClaimName }}
           {{- end }}
           volumeMounts:
           - name: passwd
@@ -173,9 +173,7 @@ spec:
           - name: {{ .Values.persistentStorage.existingClaimName }}
             mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
             mountPropagation: HostToContainer
-            {{ if ne .Values.persistentStorage.subPath "/" }}
-            subPath: {{ .Values.persistentStorage.subPath }}
-            {{ end }}
+            subPath: .tools/{{ template "fullname" . }}/master
           {{- end }}
 
 
