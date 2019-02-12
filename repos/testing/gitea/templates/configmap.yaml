@@ -396,7 +396,7 @@ data:
     HOST =
     ; Time to keep items in cache if not used, default is 16 hours.
     ; Setting it to 0 disables caching
-    ITEM_TTL = 16h
+    ITEM_TTL = 0
 
     [session]
     ; Either "memory", "file", or "redis", default is "memory"
