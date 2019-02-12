@@ -108,10 +108,10 @@ spec:
           mountPath: /data
           subPath: {{ template "fullname" . }}
           mountPropagation: HostToContainer
-        - name: gitea-config
-          mountPath: /etc/gitea
-          mountPropagation: HostToContainer
         {{ end }}
+        - name: gitea-config
+          mountPath: /etc/gitea/conf
+          mountPropagation: HostToContainer
         - name: passwd
           mountPath: /etc/passwd
           subPath: passwd

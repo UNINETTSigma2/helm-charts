@@ -132,7 +132,7 @@ data:
     ; The protocol the server listens on. One of 'http', 'https', 'unix' or 'fcgi'.
 
     ; PROTOCOL hardcoded to http since tls is delegated to ingress
-    PROTOCOL = https
+    PROTOCOL = http
     DOMAIN = {{ .Values.ingress.host }}
     ROOT_URL = https://{{ .Values.ingress.host }}/
     ; The address to listen on. Either a IPv4/IPv6 address or the path to a unix socket.
@@ -177,15 +177,6 @@ data:
     ; Disable CDN even in "prod" mode
     OFFLINE_MODE = false
     DISABLE_ROUTER_LOG = false
-    ; Generate steps:
-    ; $ ./gitea cert -ca=true -duration=8760h0m0s -host=myhost.example.com
-    ;
-    ; Or from a .pfx file exported from the Windows certificate store (do
-    ; not forget to export the private key):
-    ; $ openssl pkcs12 -in cert.pfx -out cert.pem -nokeys
-    ; $ openssl pkcs12 -in cert.pfx -out key.pem -nocerts -nodes
-    CERT_FILE = custom/https/cert.pem
-    KEY_FILE = custom/https/key.pem
     ; Root directory containing templates and static files.
     ; default is the path where Gitea is executed
     STATIC_ROOT_PATH =
@@ -228,7 +219,7 @@ data:
     ; For "postgres" only, either "disable", "require" or "verify-full"
     SSL_MODE = disable
     ; For "sqlite3" and "tidb", use absolute path when you start gitea as service
-    PATH = data/gitea.db
+    PATH = /var/lib/gitea/gitea.db
     ; For "sqlite3" only. Query timeout
     SQLITE_TIMEOUT = 500
     ; For iterate buffer, default is 50
@@ -237,10 +228,10 @@ data:
     LOG_SQL = true
 
     [indexer]
-    ISSUE_INDEXER_PATH = indexers/issues.bleve
+    ISSUE_INDEXER_PATH = /var/lib/gitea/indexers/issues.bleve
     ; repo indexer by default disabled, since it uses a lot of disk space
     REPO_INDEXER_ENABLED = false
-    REPO_INDEXER_PATH = indexers/repos.bleve
+    REPO_INDEXER_PATH = /var/lib/gitea/indexers/repos.bleve
     UPDATE_BUFFER_LEN = 20
     MAX_FILE_SIZE = 1048576
 
@@ -250,6 +241,7 @@ data:
 
     [security]
     SECRET_KEY = {{ randAlphaNum 64 | quote }}
+    INSTALL_LOCK = true
 
 
     ; How long to remember that an user is logged in before requiring relogin (in days)
