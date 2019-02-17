@@ -14,8 +14,6 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-connect-timeout: "30"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
-    nginx.ingress.kubernetes.io/app-root: /p/?password=test
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   tls:
     - secretName: wildcard-tls
@@ -26,10 +24,6 @@ spec:
       http:
         paths:
           - path: /
-            backend:
-              serviceName: {{ template "fullname" . }}
-              servicePort: 80
-          - path: /p/
             backend:
               serviceName: {{ template "fullname" . }}
               servicePort: 80
