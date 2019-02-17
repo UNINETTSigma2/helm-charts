@@ -110,7 +110,7 @@ spec:
           subPath: {{ .Values.persistentStorage.subPath }}
           mountPropagation: HostToContainer
           {{ end }}
-        {{- end -}}
+        {{- end }}
         - name: gitea-config
           mountPath: /etc/gitea/conf
           mountPropagation: HostToContainer
