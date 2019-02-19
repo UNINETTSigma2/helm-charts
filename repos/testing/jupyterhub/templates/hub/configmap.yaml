@@ -70,6 +70,12 @@ data:
   {{- if .Values.userNotebookType.resources.requests.cpu }}
   singleuser.cpu.guarantee: {{ .Values.userNotebookType.resources.requests.cpu | quote}}
   {{- end }}
+  {{- if .Values.userNotebookType.resources.requests.gpu }}
+  singleuser.extra-resource.guarantees '{ "nvidia.com/gpu": {{ .Values.userNotebookType.resources.requests.gpu }} }'
+  {{- end }}
+  {{- if .Values.userNotebookType.resources.limits.gpu }}
+  singleuser.extra-resource.limit '{ "nvidia.com/gpu": {{ .Values.userNotebookType.resources.requests.gpu }} }'
+  {{- end }}
   singleuser.extra-labels: |
     hub.jupyter.org/network-access-hub: "true"
 
