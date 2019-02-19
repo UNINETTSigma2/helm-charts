@@ -68,8 +68,6 @@ spec:
           value: test
         - name: VNC_COL_DEPTH
           value: "24"
-        - name: VNC_RESOLUTION
-          value: 1024x768
         resources:
           limits:
             cpu: '4'
