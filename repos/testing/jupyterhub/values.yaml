@@ -65,7 +65,7 @@ advanced:
     enabled: false
     subPath: "data"
     readOnly: true
-  userImage: quay.io/uninett/jupyterhub-singleuser:20181130-4da7986
+  userImage: quay.io/uninett/jupyterhub-singleuser:20190219-f246e90
 appstore_generated_data:
   appstore_meta_data:
     contact_email: "example@uninett.no"
