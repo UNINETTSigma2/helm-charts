@@ -8,9 +8,9 @@ resources:
     cpu: 300m
     memory: 1G
 persistentStorage:
-  existingClaim: ""
-  existingClaimName: "example-name"
-  subPath: "/"
+  - existingClaim: ""
+    existingClaimName: "example-name"
+    subPath: "/"
 appstore_generated_data:
   appstore_meta_data:
     contact_email: "example@uninett.no"

@@ -48,10 +48,12 @@ spec:
           emptyDir:
             medium: Memory
             sizeLimit: 256M
-        {{ if ne .Values.persistentStorage.existingClaim "" }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
           persistentVolumeClaim:
-            claimName: {{ .Values.persistentStorage.existingClaim }}
+            claimName: {{ .existingClaim }}
+        {{- end }}
       initContainers:
       - name: busybox
         image: busybox:1
@@ -62,11 +64,13 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/home/{{ .Values.username }}/.jupyter && chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/home"
+          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home/{{ .Values.username }}/.jupyter && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home"
         volumeMounts:
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
+          mountPath: /mnt/{{ .existingClaimName }}
           mountPropagation: HostToContainer
+        {{- end }}
       {{ end }}
       hostname: {{ template "fullname" . }}
       securityContext:
@@ -112,7 +116,7 @@ spec:
       - name: jupyter
         image: {{ .Values.advanced.dockerImage }}
         args: ["/usr/local/bin/start-notebook.sh"]
-        {{- if ne .Values.persistentStorage.existingClaim "" }}
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
         workingDir: /home/{{ .Values.username }}
         {{ end }}
         env:
@@ -130,7 +134,7 @@ spec:
             value: 1g
           - name: SPARK_DRIVER_CORES
             value: '1'
-          {{- if ne .Values.persistentStorage.existingClaim "" }}
+          {{- if ne (first .Values.persistentStorage).existingClaim "" }}
           - name: XDG_CACHE_HOME
             value: /home/{{ .Values.username }}/.cache
           - name: HOME
@@ -138,7 +142,7 @@ spec:
           - name: USER
             value: {{ .Values.username }}
           - name: PVC_MOUNT_PATH
-            value: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+            value: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
           {{- end }}
           - name: MEM_LIMIT
             value: {{ .Values.resources.limits.memory }}
@@ -152,7 +156,7 @@ spec:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
         volumeMounts:
-        {{- if ne .Values.persistentStorage.existingClaim "" }}
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
         - name: notebook-config
           mountPath: /home/{{ .Values.username }}/.jupyter/notebook_config.py
           subPath: notebook_config.py
@@ -170,14 +174,16 @@ spec:
           subPath: group
         - name: shm
           mountPath: /dev/shm
-        {{- if ne .Values.persistentStorage.existingClaim "" }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
+          mountPath: /mnt/{{ .existingClaimName }}
           mountPropagation: HostToContainer
-          {{ if ne .Values.persistentStorage.subPath "/" }}
-          subPath: {{ .Values.persistentStorage.subPath }}
+          {{ if ne .subPath "/" }}
+          subPath: {{ .subPath }}
           {{ end }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}
+        {{- end }}
+        - name: {{ (first .Values.persistentStorage).existingClaimName }}
           mountPath: /home/{{ .Values.username }}
           subPath: home/{{ .Values.username }}
           mountPropagation: HostToContainer
