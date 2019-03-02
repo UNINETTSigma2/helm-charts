@@ -1,5 +1,7 @@
 {
   "packageVersions": {
+    "pkg-cuda-version": "9.0.176",
+    "pkg-cudnn-version": "7.2.1.38",
     "pkg-jupyter-notebook-version": "5.7.x",
     "pkg-jupyterhub-version": "0.9.4"
   }
