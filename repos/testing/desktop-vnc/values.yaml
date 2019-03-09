@@ -4,9 +4,11 @@ resources:
   requests:
     cpu: 100m
     memory: 512M
+    gpu: 0
   limits:
     cpu: 300m
     memory: 1G
+    gpu: 0
 persistentStorage:
   existingClaim: ""
   existingClaimName: "example-name"

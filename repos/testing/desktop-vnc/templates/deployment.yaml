@@ -52,7 +52,7 @@ spec:
           name: oidcconfig
         workingDir: /conf
       - name: viz
-        image: quay.io/uninett/desktop-vnc:20190218-8fbebf6
+        image: quay.io/uninett/desktop-vnc:20190308-ab154b4
         imagePullPolicy: Always
         args:
         - -w
@@ -70,11 +70,13 @@ spec:
           value: "24"
         resources:
           limits:
-            cpu: '4'
-            memory: 2Gi
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}
+            nvidia.com/gpu: {{ .Values.resources.requests.gpu }}
           requests:
-            cpu: '2'
-            memory: 2Gi
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: {{ .Values.resources.limits.memory }}
+            nvidia.com/gpu: {{ .Values.resources.limits.gpu }}
         volumeMounts:
           - name: passwd
             mountPath: /etc/passwd
