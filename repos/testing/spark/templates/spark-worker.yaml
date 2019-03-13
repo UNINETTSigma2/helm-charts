@@ -42,7 +42,9 @@ spec:
         - name: {{ .existingClaimName }}
           persistentVolumeClaim:
             claimName: {{ .existingClaim }}
+            {{- if hasKey . "readOnly" }}
             readOnly: {{ .readOnly }}
+            {{- end }}
         {{- end }}
       {{ end }}
       securityContext:
