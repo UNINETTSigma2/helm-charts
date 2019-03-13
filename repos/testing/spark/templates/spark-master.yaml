@@ -170,11 +170,11 @@ spec:
             mountPath: /etc/group
             subPath: group
           {{- if ne (first .Values.persistentStorage).existingClaim "" }}
-          - name: {{ .Values.persistentStorage.existingClaimName }}
+          - name: {{ (first .Values.persistentStorage).existingClaimName }}
             mountPath: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
             mountPropagation: HostToContainer
             subPath: .tools/{{ template "fullname" . }}/master
-          {{- range (rest .Values.persistentStorage) }}
+          {{- range .Values.persistentStorage }}
           - name: {{ .existingClaimName }}
             mountPath: /mnt/{{ .existingClaimName }}
             mountPropagation: HostToContainer

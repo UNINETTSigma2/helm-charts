@@ -136,7 +136,7 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home/{{ .Values.username }}/.jupyter && chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/home"
+          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home/{{ .Values.username }}/.jupyter && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home"
         volumeMounts:
         {{- range .Values.persistentStorage }}
         - name: {{ .existingClaimName }}
