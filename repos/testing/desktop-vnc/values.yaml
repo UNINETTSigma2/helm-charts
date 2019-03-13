@@ -10,9 +10,9 @@ resources:
     memory: 1G
     gpu: 0
 persistentStorage:
-  existingClaim: ""
-  existingClaimName: "example-name"
-  subPath: "/"
+  - existingClaim: ""
+    existingClaimName: "example-name"
+    subPath: "/"
 appstore_generated_data:
   appstore_meta_data:
     contact_email: "example@uninett.no"

@@ -219,8 +219,8 @@ data:
     ; For "postgres" only, either "disable", "require" or "verify-full"
     SSL_MODE = disable
     ; For "sqlite3" and "tidb", use absolute path when you start gitea as service
-    {{ if ne .Values.persistentStorage.existingClaim "" }}
-    PATH = /mnt/{{ .Values.persistentStorage.existingClaimName }}/{{ template "fullname" . }}/gitea.db
+    {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+    PATH = /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/{{ template "fullname" . }}/gitea.db
     {{ else }}
     PATH = /var/lib/gitea/gitea.db
     {{ end }}

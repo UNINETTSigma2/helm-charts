@@ -60,10 +60,12 @@ spec:
           emptyDir:
             medium: Memory
             sizeLimit: 256M
-      {{ if ne .Values.persistentStorage.existingClaim "" }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}
+      {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+      {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
           persistentVolumeClaim:
-            claimName: {{ .Values.persistentStorage.existingClaim }}
+            claimName: {{ .existingClaim }}
+      {{- end }}
       initContainers:
       - name: busybox
         image: busybox:1
@@ -74,16 +76,18 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/home/{{ .Values.username }}/.jupyter && \
-            mkdir -p  /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ .Release.Name }}-mlflow && \
-            mkdir -p  /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ .Release.Name }}-tensorboard && \
-            chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/home  && \
-            chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ .Release.Name }}-mlflow && \
-            chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ .Release.Name }}-tensorboard"
+          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home/{{ .Values.username }}/.jupyter && \
+            mkdir -p  /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-mlflow && \
+            mkdir -p  /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-tensorboard && \
+            chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home  && \
+            chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-mlflow && \
+            chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-tensorboard"
         volumeMounts:
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
+          mountPath: /mnt/{{ .existingClaimName }}
           mountPropagation: HostToContainer
+        {{- end }}
       {{ end }}
       hostname: {{ template "fullname" . }}
       securityContext:
@@ -142,7 +146,7 @@ spec:
       - name: jupyter
         image: {{ .Values.advanced.dockerImage }}
         args: ["/usr/local/bin/start-notebook.sh"]
-        {{- if ne .Values.persistentStorage.existingClaim "" }}
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
         workingDir: /home/{{ .Values.username }}
         {{ end }}
         env:
@@ -160,7 +164,7 @@ spec:
             value: 1g
           - name: SPARK_DRIVER_CORES
             value: '1'
-          {{- if ne .Values.persistentStorage.existingClaim "" }}
+          {{- if ne (first .Values.persistentStorage).existingClaim "" }}
           - name: XDG_CACHE_HOME
             value: /home/{{ .Values.username }}/.cache
           - name: HOME
@@ -168,11 +172,11 @@ spec:
           - name: USER
             value: {{ .Values.username }}
           - name: PVC_MOUNT_PATH
-            value: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+            value: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
           - name: MLFLOW_DATADIR
-            value: /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ .Release.Name }}-mlflow
+            value: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-mlflow
           - name: TENSORBOARD_LOGDIR
-            value: /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ .Release.Name }}-tensorboard
+            value: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-tensorboard
           {{- else }}
           - name: TENSORBOARD_LOGDIR
             value: /var/log/tensorboard/
@@ -200,7 +204,7 @@ spec:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
         volumeMounts:
-        {{- if ne .Values.persistentStorage.existingClaim "" }}
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
         - name: notebook-config
           mountPath: /home/{{ .Values.username }}/.jupyter/notebook_config.py
           subPath: notebook_config.py
@@ -217,7 +221,7 @@ spec:
           subPath: group
         - name: shm
           mountPath: /dev/shm
-        {{- if ne .Values.persistentStorage.existingClaim "" }}
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
           {{ if ne .Values.persistentStorage.subPath "/" }}
@@ -230,7 +234,7 @@ spec:
           mountPropagation: HostToContainer
         {{- end -}}
 
-{{ if ne .Values.persistentStorage.existingClaim "" }}
+{{- if ne (first .Values.persistentStorage).existingClaim "" }}
 ---
 apiVersion: batch/v1
 kind: Job
@@ -255,9 +259,11 @@ spec:
         chart: "{{.Chart.Name}}-{{.Chart.Version}}"
     spec:
       volumes:
-      - name: {{ .Values.persistentStorage.existingClaimName }}
+      {{- range .Values.persistentStorage }}
+      - name: {{ .existingClaimName }}
         persistentVolumeClaim:
-          claimName: {{ .Values.persistentStorage.existingClaim }}
+          claimName: {{ .existingClaim }}
+      {{- end }}
       restartPolicy: Never
       securityContext:
         runAsNonRoot: true
@@ -280,10 +286,12 @@ spec:
         args:
           - -c
           - -x
-          - "rm -rf /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}-mlflow && \
-             rm -rf /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}-tensorboard"
+          - "rm -rf /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }}-mlflow && \
+             rm -rf /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }}-tensorboard"
         volumeMounts:
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
+          mountPath: /mnt/{{ .existingClaimName }}
           mountPropagation: HostToContainer
+        {{- end }}
 {{ end }}

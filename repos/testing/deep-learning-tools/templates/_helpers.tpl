@@ -77,7 +77,7 @@ c.NotebookApp.port = 8888
 c.NotebookApp.base_url = '/'
 c.NotebookApp.trust_xheaders = True
 c.NotebookApp.tornado_settings = {'static_url_prefix': '/static/'}
-{{ if ne .Values.persistentStorage.existingClaim "" }}
+{{ if ne (first .Values.persistentStorage).existingClaim "" }}
 c.NotebookApp.notebook_dir = '/home/{{ .Values.username }}'
 {{ else }}
 c.NotebookApp.notebook_dir = '/home/notebook'

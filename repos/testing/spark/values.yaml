@@ -30,9 +30,9 @@ ingress:
   host: "host.example.com"
 
 persistentStorage:
-  existingClaim: ""
-  existingClaimName: "example-name"
-  subPath: "/"
+  - existingClaim: ""
+    existingClaimName: "example-name"
+    subPath: "/"
 
 appstore_generated_data:
   appstore_meta_data:

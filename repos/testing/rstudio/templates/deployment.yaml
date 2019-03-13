@@ -66,10 +66,12 @@ spec:
             items:
             - key: shiny-server.conf
               path: shiny-server.conf
-        {{ if ne .Values.persistentStorage.existingClaim "" }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}
+      {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
           persistentVolumeClaim:
-            claimName: {{ .Values.persistentStorage.existingClaim }}
+            claimName: {{ .existingClaim }}
+        {{- end }}
       initContainers:
       - name: busybox
         image: busybox:1
@@ -80,12 +82,17 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }} /mnt/{{ .Values.persistentStorage.existingClaimName }}/home/{{ .Values.username }} && chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools /mnt/{{ .Values.persistentStorage.existingClaimName }}/home"
+          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }} /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home/{{ .Values.username }} && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home"
         volumeMounts:
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
+          mountPath: /mnt/{{ .existingClaimName }}
           mountPropagation: HostToContainer
-        {{ end }}
+          {{ if ne .subPath "/" }}
+          subPath: {{ .subPath }}
+          {{ end }}
+        {{- end }}
+      {{- end }}
       hostname: {{ template "fullname" . }}
       securityContext:
         runAsNonRoot: true
@@ -159,15 +166,15 @@ spec:
           value: Europe/Oslo
         - name: OWNER_ID
           value: {{ .Values.appstore_generated_data.dataporten.owner }}
-        {{- if ne .Values.persistentStorage.existingClaim "" }}
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
         - name: HOME
           value: /home/{{ .Values.username }}
         - name: USERNAME
           value: {{ .Values.username }}
         - name: SHINY_APPS_PATH
-          value: /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}/shiny-server
+          value: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }}/shiny-server
         - name: PVC_MOUNT_PATH
-          value: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          value: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
         {{- end }}
         volumeMounts:
         - name: passwd
@@ -184,21 +191,22 @@ spec:
         - name: shinyserver
           mountPath: /etc/shiny-server/shiny-server.conf
           subPath: shiny-server.conf
-        {{- if ne .Values.persistentStorage.existingClaim "" }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
+          mountPath: /mnt/{{ .existingClaimName }}
           mountPropagation: HostToContainer
-          {{ if ne .Values.persistentStorage.subPath "/" }}
-          subPath: {{ .Values.persistentStorage.subPath }}
+          {{ if ne .subPath "/" }}
+          subPath: {{ .subPath }}
           {{ end }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}
+        {{- end }}
+        - name: {{ (first .Values.persistentStorage).existingClaimName }}
           mountPath: /home/{{ .Values.username }}
-          mountPropagation: HostToContainer
           subPath: home/{{ .Values.username }}
+          mountPropagation: HostToContainer
         {{- end -}}
 
-
-{{ if ne .Values.persistentStorage.existingClaim "" }}
+{{- if ne (first .Values.persistentStorage).existingClaim "" }}
 ---
 apiVersion: batch/v1
 kind: Job
@@ -223,9 +231,9 @@ spec:
         chart: "{{.Chart.Name}}-{{.Chart.Version}}"
     spec:
       volumes:
-      - name: {{ .Values.persistentStorage.existingClaimName }}
+      - name: {{ (first .Values.persistentStorage).existingClaimName }}
         persistentVolumeClaim:
-          claimName: {{ .Values.persistentStorage.existingClaim }}
+          claimName: {{ (first .Values.persistentStorage).existingClaim }}
       restartPolicy: Never
       securityContext:
         runAsNonRoot: true
@@ -248,8 +256,12 @@ spec:
         args:
           - -c
           - -x
-          - "rm -rf /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}"
+          - "rm -rf /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }}"
         volumeMounts:
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
-{{ end }}
+        - name: {{ (first .Values.persistentStorage).existingClaimName }}
+          mountPath: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
+          mountPropagation: HostToContainer
+          {{ if ne (first .Values.persistentStorage).subPath "/" }}
+          subPath: {{ (first .Values.persistentStorage).subPath }}
+          {{ end }}
+{{- end }}

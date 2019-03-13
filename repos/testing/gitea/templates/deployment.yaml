@@ -43,10 +43,12 @@ spec:
             items:
             - key: app.ini
               path: app.ini
-        {{ if ne .Values.persistentStorage.existingClaim "" }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}
+      {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
           persistentVolumeClaim:
-            claimName: {{ .Values.persistentStorage.existingClaim }}
+            claimName: {{ .existingClaim }}
+        {{- end }}
       initContainers:
       - name: busybox
         image: busybox:1
@@ -57,10 +59,10 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/{{ template "fullname" . }} && chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/{{ template "fullname" . }}"
+          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/{{ template "fullname" . }} && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/{{ template "fullname" . }}"
         volumeMounts:
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+        - name: {{ (first .Values.persistentStorage).existingClaimName }}
+          mountPath: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
           mountPropagation: HostToContainer
       {{ end }}
       hostname: {{ template "fullname" . }}
@@ -103,13 +105,15 @@ spec:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
         volumeMounts:
-        {{- if ne .Values.persistentStorage.existingClaim "" }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
-          {{ if ne .Values.persistentStorage.subPath "/" }}
-          subPath: {{ .Values.persistentStorage.subPath }}
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
+          mountPath: /mnt/{{ .existingClaimName }}
           mountPropagation: HostToContainer
+          {{ if ne .subPath "/" }}
+          subPath: {{ .subPath }}
           {{ end }}
+        {{- end }}
         {{- end }}
         - name: gitea-config
           mountPath: /etc/gitea/conf

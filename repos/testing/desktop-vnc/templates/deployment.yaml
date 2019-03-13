@@ -86,18 +86,20 @@ spec:
             subPath: group
           - name: shm
             mountPath: /dev/shm
-            {{- if ne .Values.persistentStorage.existingClaim "" }}
-          - name: {{ .Values.persistentStorage.existingClaimName }}
-            mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+            {{- range .Values.persistentStorage }}
+          - name: {{ .existingClaimName }}
+            mountPath: /mnt/{{ .existingClaimName }}
             mountPropagation: HostToContainer
-            {{- if ne .Values.persistentStorage.subPath "/" }}
-            subPath: {{ .Values.persistentStorage.subPath }}
+            {{ if ne .subPath "/" }}
+            subPath: {{ .subPath }}
             {{ end }}
-          - name: {{ .Values.persistentStorage.existingClaimName }}
+            {{- end }}
+          - name: {{ (first .Values.persistentStorage).existingClaimName }}
             mountPath: /home/{{ .Values.username }}
             subPath: home/{{ .Values.username }}
             mountPropagation: HostToContainer
-            {{ end }}
+          {{- end }}
       volumes:
       - name: passwd
         configMap:
@@ -118,10 +120,12 @@ spec:
         emptyDir:
           medium: Memory
           sizeLimit: 256M
-    {{ if ne .Values.persistentStorage.existingClaim "" }}
-      - name: {{ .Values.persistentStorage.existingClaimName }}
+      {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+      {{- range .Values.persistentStorage }}
+      - name: {{ .existingClaimName }}
         persistentVolumeClaim:
-          claimName: {{ .Values.persistentStorage.existingClaim }}
+          claimName: {{ .existingClaim }}
+      {{- end }}
       initContainers:
       - name: busybox
         image: busybox:1
@@ -132,9 +136,11 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/home/{{ .Values.username }}/.jupyter && chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/home"
+          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home/{{ .Values.username }}/.jupyter && chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/home"
         volumeMounts:
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
+          mountPath: /mnt/{{ .existingClaimName }}
           mountPropagation: HostToContainer
+        {{- end }}
       {{ end }}

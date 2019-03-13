@@ -33,12 +33,12 @@ spec:
             items:
             - key: group
               path: group
-       {{ if ne .Values.persistentStorage.existingClaim "" }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}
+      {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
           persistentVolumeClaim:
-            claimName: {{ .Values.persistentStorage.existingClaim }}
-       {{- end }}
-      {{- if ne .Values.persistentStorage.existingClaim "" }}
+            claimName: {{ .existingClaim }}
+        {{- end }}
       initContainers:
       - name: busybox
         image: busybox:1
@@ -49,14 +49,17 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }} && chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools"
+          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }} && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools"
         volumeMounts:
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
-          {{ if ne .Values.persistentStorage.subPath "/" }}
-          subPath: {{ .Values.persistentStorage.subPath }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
+          mountPath: /mnt/{{ .existingClaimName }}
+          mountPropagation: HostToContainer
+          {{ if ne .subPath "/" }}
+          subPath: {{ .subPath }}
           mountPropagation: HostToContainer
           {{ end }}
+        {{- end }}
       {{- end }}
       securityContext:
         runAsNonRoot: true
@@ -84,8 +87,8 @@ spec:
         - name: TZ
           value: Europe/Oslo
         image: quay.io/uninett/minio:20180901-d5aa2f9
-        {{ if ne .Values.persistentStorage.existingClaim "" }}
-        args: [ 'server', '--quiet', '--config-dir', '/mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}', '/mnt/{{ .Values.persistentStorage.existingClaimName }}' ]
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        args: [ 'server', '--quiet', '--config-dir', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }}', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}' ]
         {{ else }}
         args: [ 'server', '--quiet', '--config-dir', '/tmp/.minio', '/tmp' ]
         {{ end }}
@@ -109,17 +112,19 @@ spec:
         - name: group
           mountPath: /etc/group
           subPath: group
-        {{ if ne .Values.persistentStorage.existingClaim "" }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
+          mountPath: /mnt/{{ .existingClaimName }}
           mountPropagation: HostToContainer
-          {{ if ne .Values.persistentStorage.subPath "/" }}
-          subPath: {{ .Values.persistentStorage.subPath }}
+          {{ if ne .subPath "/" }}
+          subPath: {{ .subPath }}
           {{ end }}
+        {{- end }}
         {{ end }}
 
 
-{{- if ne .Values.persistentStorage.existingClaim "" }}
+{{- if ne (first .Values.persistentStorage).existingClaim "" }}
 ---
 apiVersion: batch/v1
 kind: Job
@@ -144,9 +149,9 @@ spec:
         chart: "{{.Chart.Name}}-{{.Chart.Version}}"
     spec:
       volumes:
-      - name: {{ .Values.persistentStorage.existingClaimName }}
+      - name: {{ (first .Values.persistentStorage).existingClaimName }}
         persistentVolumeClaim:
-          claimName: {{ .Values.persistentStorage.existingClaim }}
+          claimName: {{ (first .Values.persistentStorage).existingClaim }}
       restartPolicy: Never
       securityContext:
         runAsNonRoot: true
@@ -169,12 +174,12 @@ spec:
         args:
           - -c
           - -x
-          - "rm -rf /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }} /mnt/{{ .Values.persistentStorage.existingClaimName }}/.minio.sys /mnt/{{ .Values.persistentStorage.existingClaimName }}/.minio"
+          - "rm -rf /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }} /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.minio.sys /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.minio"
         volumeMounts:
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+        - name: {{ (first .Values.persistentStorage).existingClaimName }}
+          mountPath: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
           mountPropagation: HostToContainer
-          {{ if ne .Values.persistentStorage.subPath "/" }}
-          subPath: {{ .Values.persistentStorage.subPath }}
+          {{ if ne (first .Values.persistentStorage).subPath "/" }}
+          subPath: {{ (first .Values.persistentStorage).subPath }}
           {{ end }}
 {{ end }}
