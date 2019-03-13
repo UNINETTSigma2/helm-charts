@@ -222,13 +222,16 @@ spec:
         - name: shm
           mountPath: /dev/shm
         {{- if ne (first .Values.persistentStorage).existingClaim "" }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
-          {{ if ne .Values.persistentStorage.subPath "/" }}
-          subPath: {{ .Values.persistentStorage.subPath }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
+          mountPath: /mnt/{{ .existingClaimName }}
+          mountPropagation: HostToContainer
+          {{ if ne .subPath "/" }}
+          subPath: {{ .subPath }}
           mountPropagation: HostToContainer
           {{ end }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}
+        {{- end }}
+        - name: {{ (first .Values.persistentStorage).existingClaimName }}
           mountPath: /home/{{ .Values.username }}
           subPath: home/{{ .Values.username }}
           mountPropagation: HostToContainer
