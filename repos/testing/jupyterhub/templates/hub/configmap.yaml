@@ -89,7 +89,7 @@ data:
   hub.concurrent-spawn-limit: {{ .Values.advanced.notebook.spawnLimit | quote }}
   debug.enabled: {{ .Values.advanced.debug | quote }}
 
-{{- if .Values.advanced.sharedData.minio.enabled }}
+{{- if .Values.advanced.sharedData.enabled }}
 ---
 apiVersion: v1
 kind: ConfigMap

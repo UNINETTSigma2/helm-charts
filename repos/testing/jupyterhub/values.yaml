@@ -65,10 +65,8 @@ advanced:
     enabled: false
     subPath: "data"
     readOnly: true
-    minio:
-      enabled: false
-      accessKey: "accesskeyexample"
-      secretKey: "secretkeyexample"
+    minioAccessKey: "accesskeyexample"
+    minioSecretKey: "secretkeyexample"
   userImage: quay.io/uninett/jupyterhub-singleuser:20190219-f246e90
 appstore_generated_data:
   appstore_meta_data:

@@ -14,12 +14,12 @@ spec:
       port: 8081
       targetPort: 8081
 
-{{ if .Values.advanced.sharedData.minio.enabled }}
+{{ if .Values.advanced.sharedData.enabled }}
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "fullname" . }}-minio
+  name: {{ .Release.Name }}-minio
   annotations:
     appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
   labels:

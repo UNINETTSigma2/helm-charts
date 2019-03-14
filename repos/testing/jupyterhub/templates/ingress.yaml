@@ -22,7 +22,7 @@ spec:
             backend:
               serviceName: {{ .Release.Name }}-proxy-http
               servicePort: 8000
-    {{- if .Values.advanced.sharedData.minio.enabled }}
+    {{- if .Values.advanced.sharedData.enabled }}
     - host: minio-{{ .Values.ingress.host }}
       http:
         paths:

@@ -230,7 +230,7 @@ spec:
           {{ end }}
 {{ end }}
 
-{{- if .Values.advanced.sharedData.minio.enabled }}
+{{- if .Values.advanced.sharedData.enabled }}
 ---
 apiVersion: apps/v1
 kind: Deployment
