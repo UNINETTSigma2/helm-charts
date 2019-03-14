@@ -1,7 +1,7 @@
 persistentStorage:
-  existingClaim: ""
-  existingClaimName: "example-name"
-  subPath: "/"
+  - existingClaim: ""
+    existingClaimName: "example-name"
+    subPath: "/"
 ingress:
   host: "test.appstore-dep.ioudaas.no"
 userNotebookType:
@@ -65,6 +65,10 @@ advanced:
     enabled: false
     subPath: "data"
     readOnly: true
+    minio:
+      enabled: false
+      accessKey: "accesskeyexample"
+      secretKey: "secretkeyexample"
   userImage: quay.io/uninett/jupyterhub-singleuser:20190219-f246e90
 appstore_generated_data:
   appstore_meta_data:

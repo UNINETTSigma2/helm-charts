@@ -22,6 +22,15 @@ spec:
             backend:
               serviceName: {{ .Release.Name }}-proxy-http
               servicePort: 8000
+    {{- if .Values.advanced.sharedData.minio.enabled }}
+    - host: minio-{{ .Values.ingress.host }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: {{ .Release.Name }}-minio
+              servicePort: 9000
+    {{- end }}
   tls:
     - secretName: wildcard-tls
       hosts:

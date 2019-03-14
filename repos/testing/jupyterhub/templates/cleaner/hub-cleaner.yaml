@@ -43,7 +43,7 @@ spec:
           - "kubectl --namespace=${NAMESPACE} --selector=release=${RELEASE},component=hub delete pod"
 
 
-{{ if ne .Values.persistentStorage.existingClaim "" }}
+{{ if ne (first .Values.persistentStorage).existingClaim "" }}
 ---
 apiVersion: batch/v1
 kind: Job
@@ -68,9 +68,9 @@ spec:
         chart: "{{.Chart.Name}}-{{.Chart.Version}}"
     spec:
       volumes:
-      - name: {{ .Values.persistentStorage.existingClaimName }}
+      - name: {{ (first .Values.persistentStorage).existingClaimName }}
         persistentVolumeClaim:
-          claimName: {{ .Values.persistentStorage.existingClaim }}
+          claimName: {{ (first .Values.persistentStorage).existingClaim }}
       restartPolicy: Never
       securityContext:
         runAsNonRoot: true
@@ -93,9 +93,9 @@ spec:
         args:
           - -c
           - -x
-          - "rm -rf /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}-hub"
+          - "rm -rf /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }}-hub"
         volumeMounts:
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+        - name: {{ (first .Values.persistentStorage).existingClaimName }}
+          mountPath: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
           mountPropagation: HostToContainer
 {{ end }}
