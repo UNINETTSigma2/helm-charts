@@ -247,10 +247,12 @@ spec:
   selector:
     matchLabels:
         app: {{ template "fullname" . }}-minio
+        group: {{ .Release.Name }}-jupyterhub
         release: {{ .Release.Name }}
   template:
     metadata:
       labels:
+        group: {{ .Release.Name }}-jupyterhub
         app: {{ template "fullname" . }}-minio
         release: {{ .Release.Name }}
     spec:
