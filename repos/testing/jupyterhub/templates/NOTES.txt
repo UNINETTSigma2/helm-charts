@@ -11,7 +11,3 @@ Note: Please change the default access and secret keys by going
 to Reconfigure menu on the right side and under Advanced options.
 {{ end }}
 {{- end }}
-
-{{- /* Helm does not like empty files */ -}}
-{{- println "" -}}
-
