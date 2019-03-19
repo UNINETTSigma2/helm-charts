@@ -59,7 +59,7 @@ spec:
         {{- end }}
       containers:
         - name: spark-worker
-          image: {{ .Values.advanced.workerImage }}
+          image: {{ .Values.advanced.dockerImage }}
           imagePullPolicy: Always
           args: ["/usr/local/bin/start-worker.sh"]
           env:

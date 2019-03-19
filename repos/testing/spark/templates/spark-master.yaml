@@ -127,7 +127,7 @@ spec:
               mountPath: /conf
           workingDir: /conf
         - name: spark-master
-          image: {{ .Values.advanced.masterImage }}
+          image: {{ .Values.advanced.dockerImage }}
           imagePullPolicy: Always
           args: ["/usr/local/bin/start-master.sh"]
           ports:
