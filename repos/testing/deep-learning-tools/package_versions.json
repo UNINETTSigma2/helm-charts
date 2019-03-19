@@ -1,17 +1,17 @@
 {
   "packageVersions": {
     "pkg-hadoop-version": "2.7",
-    "pkg-tensorflow-version": "1.12.0",
-    "pkg-cuda-version": "9.0.176",
+    "pkg-tensorflow-version": "1.13.1",
+    "pkg-cuda-version": "10.0.130",
     "pkg-r-version": "3.5.1",
     "pkg-toree-version": "0.3.0-incubating",
     "pkg-tensorflow-probability-version": "0.4.0",
     "pkg-pytorch-version": "1.0.1",
     "pkg-catboost-version": "0.12.2",
-    "pkg-cudnn-version": "7.2.1.38",
+    "pkg-cudnn-version": "7.5.0.56",
     "pkg-spark-version": "2.4.0",
     "pkg-keras-version": "2.2.4",
-    "pkg-fastai-version": "1.0.45",
+    "pkg-fastai-version": "1.0.49",
     "pkg-jupyter-notebook-version": "5.7.x",
     "pkg-lightgbm-version": "2.2.3",
     "pkg-xgboost-version": "0.81"

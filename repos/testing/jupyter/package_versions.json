@@ -1,9 +1,8 @@
 {
   "packageVersions": {
     "pkg-hadoop-version": "2.7",
-    "pkg-r-version": "3.4.1",
+    "pkg-r-version": "3.5.1",
     "pkg-toree-version": "0.3.0-incubating",
-    "pkg-spylon-version": "0.4.x",
     "pkg-spark-version": "2.4.0",
     "pkg-jupyter-notebook-version": "5.7.x"
   }
