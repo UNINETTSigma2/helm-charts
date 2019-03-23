@@ -21,6 +21,8 @@ spec:
         release: {{ .Release.Name }}
     spec:
       volumes:
+        - name: shared
+          emptyDir: {}
         - name: passwd
           configMap:
             name: {{ template "fullname" . }}
@@ -57,6 +59,8 @@ spec:
           {{- end }}
           "
         volumeMounts:
+        - name: shared
+          mountPath: /shared
         {{- range .Values.persistentStorage }}
         - name: {{ .existingClaimName }}
           mountPath: /mnt/{{ .existingClaimName }}
@@ -112,6 +116,8 @@ spec:
           initialDelaySeconds: 30
           timeoutSeconds: 30
         volumeMounts:
+        - name: shared
+          mountPath: /shared
         - name: passwd
           mountPath: /etc/passwd
           subPath: passwd
