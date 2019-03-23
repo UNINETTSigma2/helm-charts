@@ -21,8 +21,6 @@ spec:
         release: {{ .Release.Name }}
     spec:
       volumes:
-        - name: shared
-          emptyDir: {}
         - name: passwd
           configMap:
             name: {{ template "fullname" . }}
@@ -51,16 +49,8 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }} &&
-          chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools &&
-          mkdir -p /shared
-          {{- range .Values.persistentStorage }}
-          && ln -s /mnt/{{ .existingClaimName }} /shared/{{ .existingClaimName }}
-          {{- end }}
-          "
+          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }} && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools"
         volumeMounts:
-        - name: shared
-          mountPath: /shared
         {{- range .Values.persistentStorage }}
         - name: {{ .existingClaimName }}
           mountPath: /mnt/{{ .existingClaimName }}
@@ -98,7 +88,7 @@ spec:
           value: Europe/Oslo
         image: quay.io/uninett/minio:20180901-d5aa2f9
         {{- if ne (first .Values.persistentStorage).existingClaim "" }}
-        args: [ 'server', '--quiet', '--config-dir', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }}', '/shared' ]
+        args: [ 'server', '--quiet', '--config-dir', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }}', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}' ]
         {{ else }}
         args: [ 'server', '--quiet', '--config-dir', '/tmp/.minio', '/tmp' ]
         {{ end }}
@@ -116,8 +106,6 @@ spec:
           initialDelaySeconds: 30
           timeoutSeconds: 30
         volumeMounts:
-        - name: shared
-          mountPath: /shared
         - name: passwd
           mountPath: /etc/passwd
           subPath: passwd
