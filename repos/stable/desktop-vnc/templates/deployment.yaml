@@ -1,0 +1,146 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+        app: {{ template "fullname" . }}
+        release: {{ .Release.Name }}
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include "oidcconfig" . | sha256sum }}
+      labels:
+        app: {{ template "fullname" . }}
+        release: {{ .Release.Name }}
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+      - image: quay.io/uninett/goidc-proxy:v1.1.3
+        imagePullPolicy: Always
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 30
+        name: auth-proxy
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 150m
+            memory: 100Mi
+          requests:
+            cpu: 50m
+            memory: 50Mi
+        volumeMounts:
+        - mountPath: /conf
+          name: oidcconfig
+        workingDir: /conf
+      - name: viz
+        image: quay.io/uninett/desktop-vnc:20190308-ab154b4
+        imagePullPolicy: Always
+        args:
+        - -w
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 6901
+            scheme: HTTP
+          initialDelaySeconds: 1
+          timeoutSeconds: 1
+        env:
+        - name: VNC_PW
+          value: test
+        - name: VNC_COL_DEPTH
+          value: "24"
+        resources:
+          requests:
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}
+            nvidia.com/gpu: {{ .Values.resources.requests.gpu }}
+          limits:
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: {{ .Values.resources.limits.memory }}
+            nvidia.com/gpu: {{ .Values.resources.limits.gpu }}
+        volumeMounts:
+          - name: passwd
+            mountPath: /etc/passwd
+            subPath: passwd
+          - name: group
+            mountPath: /etc/group
+            subPath: group
+          - name: shm
+            mountPath: /dev/shm
+          {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+            {{- range .Values.persistentStorage }}
+          - name: {{ .existingClaimName }}
+            mountPath: /mnt/{{ .existingClaimName }}
+            mountPropagation: HostToContainer
+            {{ if ne .subPath "/" }}
+            subPath: {{ .subPath }}
+            {{ end }}
+            {{- end }}
+          - name: {{ (first .Values.persistentStorage).existingClaimName }}
+            mountPath: /home/{{ .Values.username }}
+            subPath: home/{{ .Values.username }}
+            mountPropagation: HostToContainer
+          {{- end }}
+      volumes:
+      - name: passwd
+        configMap:
+          name: {{ template "fullname" . }}
+          items:
+          - key: passwd
+            path: passwd
+      - name: group
+        configMap:
+          name: {{ template "fullname" . }}
+          items:
+          - key: group
+            path: group
+      - name: oidcconfig
+        secret:
+            secretName: {{ template "fullname" . }}
+      - name: shm
+        emptyDir:
+          medium: Memory
+          sizeLimit: 256M
+      {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+      {{- range .Values.persistentStorage }}
+      - name: {{ .existingClaimName }}
+        persistentVolumeClaim:
+          claimName: {{ .existingClaim }}
+      {{- end }}
+      initContainers:
+      - name: busybox
+        image: busybox:1
+        securityContext:
+          runAsUser: {{ .Values.uid }}
+          runAsGroup: {{ .Values.gid }}
+        args:
+          - /bin/sh
+          - -c
+          - -x
+          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home/{{ .Values.username }}/.jupyter && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home"
+        volumeMounts:
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
+          mountPath: /mnt/{{ .existingClaimName }}
+          mountPropagation: HostToContainer
+        {{- end }}
+      {{ end }}
