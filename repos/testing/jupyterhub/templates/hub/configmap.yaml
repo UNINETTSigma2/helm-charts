@@ -99,7 +99,6 @@ metadata:
     appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
-type: Opaque
 data:
   passwd: {{ include "minio-passwd" . | quote }}
   group: {{ include "minio-group" . | quote }}
