@@ -7,7 +7,7 @@ echo "Running Helm lint..."
 helm lint --strict $1 | grep -vE "linted|Lint"
 helm template $1 > deployment.yaml
 echo "Running kubeval lint..."
-kubeval --strict <deployment.yaml | (grep -v " valid" || true)
+kubeval -v 1.12.0 --strict <deployment.yaml | (grep -v " valid" || true)
 echo "Running kubetest lint..."
 kubetest --verbose <deployment.yaml | (grep -v "info" || true)
 echo "Yay, no errors when linting $1"
