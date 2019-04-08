@@ -3,22 +3,21 @@ advanced:
     replicas: 1
     resources:
       requests:
-          cpu: 100m
-          memory: 1Gi
+          cpu: 2
+          memory: 4G
       limits:
-          cpu: 200m
-          memory: 1500Mi
+          cpu: 4
+          memory: 4G
 
   master:
     resources:
       requests:
-          cpu: 100m
-          memory: 1Gi
+          cpu: 2
+          memory: 4G
       limits:
-          cpu: 200m
-          memory: 1500Mi
-  masterImage: quay.io/uninett/jupyter-spark:20181124-1ccd691
-  workerImage: quay.io/uninett/jupyter-spark:20181124-1ccd691
+          cpu: 2
+          memory: 4G
+  dockerImage: quay.io/uninett/jupyter-spark:20190318-144efc8
 
 uid: 999
 gid: 999
@@ -30,9 +29,9 @@ ingress:
   host: "host.example.com"
 
 persistentStorage:
-  existingClaim: ""
-  existingClaimName: "example-name"
-  subPath: "/"
+  - existingClaim: ""
+    existingClaimName: "example-name"
+    subPath: "/"
 
 appstore_generated_data:
   appstore_meta_data:

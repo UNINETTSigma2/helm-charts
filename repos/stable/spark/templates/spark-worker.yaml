@@ -37,11 +37,15 @@ spec:
           emptyDir:
             medium: Memory
             sizeLimit: 256M
-      {{ if ne .Values.persistentStorage.existingClaim "" }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}
+      {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
           persistentVolumeClaim:
-            claimName: {{ .Values.persistentStorage.existingClaim }}
-            readOnly: {{ .Values.persistentStorage.readOnly }}
+            claimName: {{ .existingClaim }}
+            {{- if hasKey . "readOnly" }}
+            readOnly: {{ .readOnly }}
+            {{- end }}
+        {{- end }}
       {{ end }}
       securityContext:
         runAsNonRoot: true
@@ -55,7 +59,7 @@ spec:
         {{- end }}
       containers:
         - name: spark-worker
-          image: {{ .Values.advanced.workerImage }}
+          image: {{ .Values.advanced.dockerImage }}
           imagePullPolicy: Always
           args: ["/usr/local/bin/start-worker.sh"]
           env:
@@ -94,11 +98,13 @@ spec:
             subPath: group
           - name: shm
             mountPath: /dev/shm
-          {{- if ne .Values.persistentStorage.existingClaim "" }}
-          - name: {{ .Values.persistentStorage.existingClaimName }}
-            mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
-            {{ if ne .Values.persistentStorage.subPath "/" }}
-            subPath: {{ .Values.persistentStorage.subPath }}
-            {{ end }}
+          {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+          {{- range .Values.persistentStorage }}
+          - name: {{ .existingClaimName }}
+            mountPath: /mnt/{{ .existingClaimName }}
             mountPropagation: HostToContainer
-          {{- end -}}
+            {{ if ne .subPath "/" }}
+            subPath: {{ .subPath }}
+            {{ end }}
+          {{- end }}
+          {{- end }}

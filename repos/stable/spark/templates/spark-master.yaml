@@ -22,6 +22,17 @@ spec:
       annotations:
         checksum/config: {{ include "oidcconfig" . | sha256sum }}
     spec:
+      hostname: {{ template "fullname" . }}-master
+      securityContext:
+        runAsNonRoot: true
+        fsGroup: {{ .Values.gid }}
+        {{ $firstGroup := .Values.supplementalGroups | first }}
+        {{- if $firstGroup.gid }}
+        supplementalGroups:
+          {{- range .Values.supplementalGroups }}
+          - {{ .gid }}
+          {{- end }}
+        {{- end }}
       volumes:
         - name: oidcconfig
           secret:
@@ -50,23 +61,12 @@ spec:
             items:
             - key: group
               path: group
-        {{ if ne .Values.persistentStorage.existingClaim "" }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}
+      {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
           persistentVolumeClaim:
-            claimName: {{ .Values.persistentStorage.existingClaim }}
-        {{ end }}
-      hostname: {{ template "fullname" . }}-master
-      securityContext:
-        runAsNonRoot: true
-        fsGroup: {{ .Values.gid }}
-        {{ $firstGroup := .Values.supplementalGroups | first }}
-        {{- if $firstGroup.gid }}
-        supplementalGroups:
-          {{- range .Values.supplementalGroups }}
-          - {{ .gid }}
-          {{- end }}
+            claimName: {{ .existingClaim }}
         {{- end }}
-      {{- if ne .Values.persistentStorage.existingClaim "" }}
       initContainers:
       - name: busybox
         image: busybox:1
@@ -77,10 +77,10 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}/master && chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools"
+          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }}/master && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools"
         volumeMounts:
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+        - name: {{ (first .Values.persistentStorage).existingClaimName }}
+          mountPath: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
           mountPropagation: HostToContainer
       {{- end }}
       containers:
@@ -127,7 +127,7 @@ spec:
               mountPath: /conf
           workingDir: /conf
         - name: spark-master
-          image: {{ .Values.advanced.masterImage }}
+          image: {{ .Values.advanced.dockerImage }}
           imagePullPolicy: Always
           args: ["/usr/local/bin/start-master.sh"]
           ports:
@@ -158,9 +158,9 @@ spec:
               value: {{ .Values.advanced.master.resources.requests.cpu | quote }}
             - name: OWNER_ID
               value: {{ .Values.appstore_generated_data.dataporten.owner }}
-          {{- if ne .Values.persistentStorage.existingClaim "" }}
+          {{- if ne (first .Values.persistentStorage).existingClaim "" }}
             - name: SPARK_RECOVERY_DIR
-              value: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+              value: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
           {{- end }}
           volumeMounts:
           - name: passwd
@@ -169,15 +169,23 @@ spec:
           - name: group
             mountPath: /etc/group
             subPath: group
-          {{- if ne .Values.persistentStorage.existingClaim "" }}
-          - name: {{ .Values.persistentStorage.existingClaimName }}
-            mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+          - name: {{ (first .Values.persistentStorage).existingClaimName }}
+            mountPath: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
             mountPropagation: HostToContainer
             subPath: .tools/{{ template "fullname" . }}/master
+          {{- range (rest .Values.persistentStorage) }}
+          - name: {{ .existingClaimName }}
+            mountPath: /mnt/{{ .existingClaimName }}
+            mountPropagation: HostToContainer
+            {{- if ne .subPath "/" }}
+            subPath: {{ .subPath }}
+            {{- end }}
+          {{- end }}
           {{- end }}
 
 
-{{ if ne .Values.persistentStorage.existingClaim "" }}
+{{- if ne (first .Values.persistentStorage).existingClaim "" }}
 ---
 apiVersion: batch/v1
 kind: Job
@@ -191,7 +199,7 @@ metadata:
     appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
     "helm.sh/hook": post-delete
     "helm.sh/hook-weight": "2"
-    "helm.sh/hook-delete-policy": hook-succeeded,hook-failed
+    "helm.sh/hook-delete-policy": hook-succeeded
 spec:
   template:
     metadata:
@@ -202,9 +210,9 @@ spec:
         chart: "{{.Chart.Name}}-{{.Chart.Version}}"
     spec:
       volumes:
-      - name: {{ .Values.persistentStorage.existingClaimName }}
+      - name: {{ (first .Values.persistentStorage).existingClaimName }}
         persistentVolumeClaim:
-          claimName: {{ .Values.persistentStorage.existingClaim }}
+          claimName: {{ (first .Values.persistentStorage).existingClaim }}
       restartPolicy: Never
       securityContext:
         runAsNonRoot: true
@@ -227,9 +235,12 @@ spec:
         args:
           - -c
           - -x
-          - "rm -rf /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}"
+          - "rm -rf /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }}"
         volumeMounts:
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+        - name: {{ (first .Values.persistentStorage).existingClaimName }}
+          mountPath: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
           mountPropagation: HostToContainer
+          {{ if ne (first .Values.persistentStorage).subPath "/" }}
+          subPath: {{ (first .Values.persistentStorage).subPath }}
+          {{ end }}
 {{ end }}
