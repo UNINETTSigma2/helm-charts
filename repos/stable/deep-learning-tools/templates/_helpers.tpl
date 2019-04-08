@@ -22,19 +22,20 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- define "oidcconfig" -}}
 {
   "proxy": {
-    "target": "http://localhost:8888"
+    "target": "http://localhost:9001"
   },
   "engine": {
     "client_id": "{{ .Values.appstore_generated_data.dataporten.id }}",
     "client_secret": "{{ .Values.appstore_generated_data.dataporten.client_secret }}",
     "issuer_url": "https://auth.dataporten.no",
-    "redirect_url": "https://{{ .Values.ingress.host }}/oauth2/callback",
+    "redirect_url": "https://{{ .Values.ingress.host }}/oauth2/callback,https://tensorboard-{{ .Values.ingress.host }}/oauth2/callback,https://mlflow-{{ .Values.ingress.host }}/oauth2/callback",
     "scopes": "{{- join "," .Values.appstore_generated_data.dataporten.scopes -}}",
     "signkey": "{{ randAlphaNum 60 }}",
     "token_type": "",
     "jwt_token_issuer": "",
     "groups_endpoint": "{{- include "all_endpoints" . }}",
     "xhr_endpoints": "",
+    "use_request_host": true,
     "authorized_principals": "{{- join "," .Values.appstore_generated_data.dataporten.authorized_groups -}}",
     "twofactor": {
       "all": false,
@@ -76,7 +77,7 @@ c.NotebookApp.port = 8888
 c.NotebookApp.base_url = '/'
 c.NotebookApp.trust_xheaders = True
 c.NotebookApp.tornado_settings = {'static_url_prefix': '/static/'}
-{{ if ne .Values.persistentStorage.existingClaim "" }}
+{{ if ne (first .Values.persistentStorage).existingClaim "" }}
 c.NotebookApp.notebook_dir = '/home/{{ .Values.username }}'
 {{ else }}
 c.NotebookApp.notebook_dir = '/home/notebook'
@@ -89,7 +90,7 @@ c.NotebookApp.allow_remote_access = True
 c.NotebookApp.token = ''
 c.NotebookApp.password = ''
 {{ if .Values.advanced.env.jupyterLab }}
-c.JupyterLabIFrame.iframes = ["https://{{ .Values.ingress.host }}/tensorboard"]
+c.JupyterLabIFrame.iframes = ["https://tensorboard-{{ .Values.ingress.host }}"]
 {{ end }}
 
 {{- end -}}

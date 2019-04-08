@@ -23,6 +23,18 @@ spec:
         release: {{ .Release.Name }}
     spec:
       volumes:
+        - name: {{ template "fullname" . }}-rewrite-config
+          configMap:
+            name: {{ template "fullname" . }}-rewrite
+            items:
+            - key: default.conf
+              path: default.conf
+        - name: {{ template "fullname" . }}-nginx-config
+          configMap:
+            name: {{ template "fullname" . }}-rewrite
+            items:
+            - key: nginx.conf
+              path: nginx.conf
         - name: oidcconfig
           secret:
             secretName: {{ template "fullname" . }}
@@ -48,10 +60,12 @@ spec:
           emptyDir:
             medium: Memory
             sizeLimit: 256M
-      {{ if ne .Values.persistentStorage.existingClaim "" }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}
+      {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+      {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
           persistentVolumeClaim:
-            claimName: {{ .Values.persistentStorage.existingClaim }}
+            claimName: {{ .existingClaim }}
+      {{- end }}
       initContainers:
       - name: busybox
         image: busybox:1
@@ -62,11 +76,18 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/home/{{ .Values.username }}/.jupyter && chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/home"
+          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home/{{ .Values.username }}/.jupyter && \
+            mkdir -p  /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-mlflow && \
+            mkdir -p  /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-tensorboard && \
+            chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home  && \
+            chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-mlflow && \
+            chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-tensorboard"
         volumeMounts:
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
+          mountPath: /mnt/{{ .existingClaimName }}
           mountPropagation: HostToContainer
+        {{- end }}
       {{ end }}
       hostname: {{ template "fullname" . }}
       securityContext:
@@ -80,8 +101,21 @@ spec:
           {{- end }}
         {{- end }}
       containers:
+      - name: proxy-rewriter
+        image: nginx:1.14-alpine
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 9001
+        securityContext:
+          runAsUser: 100
+        volumeMounts:
+          - name: {{ template "fullname" . }}-rewrite-config
+            mountPath: /etc/nginx/conf.d
+          - name: {{ template "fullname" . }}-nginx-config
+            mountPath: /etc/nginx/nginx.conf
+            subPath: nginx.conf
       - name: auth-proxy
-        image: quay.io/uninett/goidc-proxy:v1.1.3
+        image: quay.io/uninett/goidc-proxy:v1.1.4
         imagePullPolicy: Always
         env:
           - name: DATAPORTEN_CLIENTID
@@ -112,7 +146,7 @@ spec:
       - name: jupyter
         image: {{ .Values.advanced.dockerImage }}
         args: ["/usr/local/bin/start-notebook.sh"]
-        {{- if ne .Values.persistentStorage.existingClaim "" }}
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
         workingDir: /home/{{ .Values.username }}
         {{ end }}
         env:
@@ -130,7 +164,7 @@ spec:
             value: 1g
           - name: SPARK_DRIVER_CORES
             value: '1'
-          {{- if ne .Values.persistentStorage.existingClaim "" }}
+          {{- if ne (first .Values.persistentStorage).existingClaim "" }}
           - name: XDG_CACHE_HOME
             value: /home/{{ .Values.username }}/.cache
           - name: HOME
@@ -138,8 +172,17 @@ spec:
           - name: USER
             value: {{ .Values.username }}
           - name: PVC_MOUNT_PATH
-            value: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+            value: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
+          - name: MLFLOW_DATADIR
+            value: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-mlflow
+          - name: TENSORBOARD_LOGDIR
+            value: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-tensorboard
+          {{- else }}
+          - name: TENSORBOARD_LOGDIR
+            value: /var/log/tensorboard/
           {{- end }}
+          - name: MLFLOW_TRACKING_URI
+            value: http://localhost:5000
           - name: MEM_LIMIT
             value: {{ .Values.resources.limits.memory }}
           - name: OWNER_ID
@@ -155,11 +198,13 @@ spec:
             nvidia.com/gpu: {{ .Values.resources.limits.gpu }}
         ports:
         - containerPort: 8888
+        - containerPort: 6006
+        - containerPort: 5000
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
         volumeMounts:
-        {{- if ne .Values.persistentStorage.existingClaim "" }}
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
         - name: notebook-config
           mountPath: /home/{{ .Values.username }}/.jupyter/notebook_config.py
           subPath: notebook_config.py
@@ -176,15 +221,80 @@ spec:
           subPath: group
         - name: shm
           mountPath: /dev/shm
-        {{- if ne .Values.persistentStorage.existingClaim "" }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
-          {{ if ne .Values.persistentStorage.subPath "/" }}
-          subPath: {{ .Values.persistentStorage.subPath }}
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
+          mountPath: /mnt/{{ .existingClaimName }}
+          mountPropagation: HostToContainer
+          {{ if ne .subPath "/" }}
+          subPath: {{ .subPath }}
           mountPropagation: HostToContainer
           {{ end }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}
+        {{- end }}
+        - name: {{ (first .Values.persistentStorage).existingClaimName }}
           mountPath: /home/{{ .Values.username }}
           subPath: home/{{ .Values.username }}
           mountPropagation: HostToContainer
         {{- end -}}
+
+{{- if ne (first .Values.persistentStorage).existingClaim "" }}
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{.Release.Name}}-cleaner"
+  labels:
+    heritage: {{.Release.Service | quote }}
+    release: {{.Release.Name | quote }}
+    chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+    "helm.sh/hook": post-delete
+    "helm.sh/hook-weight": "2"
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  template:
+    metadata:
+      name: "{{.Release.Name}}-cleaner"
+      labels:
+        heritage: {{.Release.Service | quote }}
+        release: {{.Release.Name | quote }}
+        chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    spec:
+      volumes:
+      {{- range .Values.persistentStorage }}
+      - name: {{ .existingClaimName }}
+        persistentVolumeClaim:
+          claimName: {{ .existingClaim }}
+      {{- end }}
+      restartPolicy: Never
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: {{ .Values.uid }}
+        runAsGroup: {{ .Values.gid }}
+        fsGroup: {{ .Values.gid }}
+        {{ $firstGroup := .Values.supplementalGroups | first }}
+        {{- if $firstGroup.gid }}
+        supplementalGroups:
+          {{- range .Values.supplementalGroups }}
+          - {{ .gid }}
+          {{- end }}
+        {{- end }}
+      containers:
+      - name: cleaner-job
+        image: "alpine:3.9"
+        imagePullPolicy: Always
+        command:
+          - /bin/sh
+        args:
+          - -c
+          - -x
+          - "rm -rf /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }}-mlflow && \
+             rm -rf /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }}-tensorboard"
+        volumeMounts:
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
+          mountPath: /mnt/{{ .existingClaimName }}
+          mountPropagation: HostToContainer
+        {{- end }}
+{{ end }}
