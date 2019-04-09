@@ -96,8 +96,8 @@ spec:
             {{ end }}
             {{- end }}
           - name: {{ (first .Values.persistentStorage).existingClaimName }}
-            mountPath: /home/{{ .Values.username }}
-            subPath: home/{{ .Values.username }}
+            mountPath: /home/vncuser
+            subPath: home/vncuser
             mountPropagation: HostToContainer
           {{- end }}
       volumes:
@@ -148,7 +148,7 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home/{{ .Values.username }}/.jupyter && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home"
+          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home/vncuser/.vnc && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home"
         volumeMounts:
         {{- range .Values.persistentStorage }}
         - name: {{ .existingClaimName }}

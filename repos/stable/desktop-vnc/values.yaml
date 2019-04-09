@@ -26,7 +26,7 @@ appstore_generated_data:
       - ""
 uid: 999
 gid: 999
-username: notebook
+username: vncuser
 supplementalGroups:
   - name: ""
     gid: ""
