@@ -81,8 +81,7 @@ gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologi
 nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
 _apt:x:100:65534::/nonexistent:/usr/sbin/nologin
 vncdesktop:x:1000:100::/home/vncdesktop:/bin/bash
-{{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/{{ .Values.username }}:/bin/bash
-vncuser:x:999:999::/home/vncuser:/bin/bash
+vncuser:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/vncuser:/bin/bash
 
 {{- end -}}
 
@@ -129,7 +128,7 @@ users:x:100:vncuser
 nogroup:x:65534:
 wheel:x:11:
 ssh:x:101:
-{{ .Values.username }}:x:{{ .Values.gid }}:
+vncuser:x:{{ .Values.gid }}:
 {{- $firstGroup := .Values.supplementalGroups | first }}
 {{- if $firstGroup.gid }}
 {{- range .Values.supplementalGroups }}
@@ -138,6 +137,5 @@ ssh:x:101:
 {{- end }}
 {{- end }}
 {{- end }}
-vncuser:x:999:
 
 {{- end -}}
