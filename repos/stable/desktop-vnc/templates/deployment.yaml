@@ -52,7 +52,7 @@ spec:
           name: oidcconfig
         workingDir: /conf
       - name: viz
-        image: quay.io/uninett/desktop-vnc:20190308-ab154b4
+        image: quay.io/uninett/desktop-vnc:20190411-224b417
         imagePullPolicy: Always
         args:
         - -w
