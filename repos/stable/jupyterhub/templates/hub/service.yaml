@@ -13,3 +13,23 @@ spec:
     - protocol: TCP
       port: 8081
       targetPort: 8081
+
+{{ if .Values.advanced.sharedData.enabled }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-minio
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  ports:
+  - port: 9000
+    targetPort: 9000
+    protocol: TCP
+    name: {{ template "fullname" . }}-minio-service
+  selector:
+    app: {{ template "fullname" . }}-minio
+{{ end }}

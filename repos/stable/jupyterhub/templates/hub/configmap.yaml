@@ -43,9 +43,9 @@ data:
   singleuser.service-account-name: "default"
   singleuser.pod-name-template: "{{.Release.Name}}-jupyter-{username}"
   singleuser.node-selector: "{}"
-  {{- if ne .Values.persistentStorage.existingClaim "" }}
+  {{- if ne (first .Values.persistentStorage).existingClaim "" }}
   singleuser.storage.type: "static"
-  singleuser.storage.static.pvc-name: {{ .Values.persistentStorage.existingClaim }}
+  singleuser.storage.static.pvc-name: {{ (first .Values.persistentStorage).existingClaim }}
   singleuser.storage.static.sub-path: 'home/{username}'
   singleuser.init-containers: '[{"name": "busybox", "image": "busybox:1", "args": ["/bin/sh", "-c", "-x", "mkdir -p /mnt/home/{username}"], "security_context": {"runAsUser": {{ .Values.uid }}, "runAsGroup": {{ .Values.gid }}}, "volume_mounts": [{"name": "home", "mountPath": "/mnt/home", "subPath": "home"}]}]'
   singleuser.storage.extra-volumes: '[{"name": "passwd", "configMap": { "name": "{{ template "fullname" . }}", "items": [{"key": "passwd", "path": "passwd"}] }}, {"name": "group", "configMap": { "name": "{{ template "fullname" . }}", "items": [{"key": "group", "path": "group"}] }}]'
@@ -70,6 +70,12 @@ data:
   {{- if .Values.userNotebookType.resources.requests.cpu }}
   singleuser.cpu.guarantee: {{ .Values.userNotebookType.resources.requests.cpu | quote}}
   {{- end }}
+  {{- if .Values.userNotebookType.resources.requests.gpu }}
+  singleuser.extra-resource.guarantees: '{ "nvidia.com/gpu": {{ .Values.userNotebookType.resources.requests.gpu }} }'
+  {{- end }}
+  {{- if .Values.userNotebookType.resources.limits.gpu }}
+  singleuser.extra-resource.limits: '{ "nvidia.com/gpu": {{ .Values.userNotebookType.resources.requests.gpu }} }'
+  {{- end }}
   singleuser.extra-labels: |
     hub.jupyter.org/network-access-hub: "true"
 
@@ -82,3 +88,18 @@ data:
   hub.db_url: "sqlite:///jupyterhub.sqlite" # Use in memory
   hub.concurrent-spawn-limit: {{ .Values.advanced.notebook.spawnLimit | quote }}
   debug.enabled: {{ .Values.advanced.debug | quote }}
+
+{{- if .Values.advanced.sharedData.enabled }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "fullname" . }}-minio
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+data:
+  passwd: {{ include "minio-passwd" . | quote }}
+  group: {{ include "minio-group" . | quote }}
+{{- end }}

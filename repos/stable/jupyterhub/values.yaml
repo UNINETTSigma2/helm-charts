@@ -1,7 +1,7 @@
 persistentStorage:
-  existingClaim: ""
-  existingClaimName: "example-name"
-  subPath: "/"
+  - existingClaim: ""
+    existingClaimName: "example-name"
+    subPath: "/"
 ingress:
   host: "test.appstore-dep.ioudaas.no"
 userNotebookType:
@@ -9,9 +9,11 @@ userNotebookType:
     requests:
       cpu: "1"
       memory: 1G
+      gpu: 0
     limits:
       cpu: "2"
       memory: 1G
+      gpu: 0
 users:
   resources:
     options:
@@ -63,7 +65,9 @@ advanced:
     enabled: false
     subPath: "data"
     readOnly: true
-  userImage: quay.io/uninett/jupyterhub-singleuser:20181130-4da7986
+    minioAccessKey: "accesskeyexample"
+    minioSecretKey: "secretkeyexample"
+  userImage: quay.io/uninett/jupyterhub-singleuser:20190424-9e165df
 appstore_generated_data:
   appstore_meta_data:
     contact_email: "example@uninett.no"
