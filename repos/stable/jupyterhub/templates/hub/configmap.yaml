@@ -33,6 +33,7 @@ data:
   singleuser.default-url: "/lab"
   singleuser.extra-env: |
     JUPYTER_ENABLE_LAB: "1"
+    JUPYTER_HUB: "1"
   {{- end }}
   singleuser.uid: "{{ .Values.uid }}"
   singleuser.fs-gid: "{{ .Values.gid }}"

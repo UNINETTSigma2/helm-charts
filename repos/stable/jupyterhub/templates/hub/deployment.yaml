@@ -85,7 +85,14 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-hub /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home"
+          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-hub && \
+            mkdir -p  /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-mlflow && \
+            mkdir -p  /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-tensorboard && \
+            mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home && \
+            chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-mlflow && \
+            chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-tensorboard && \
+            chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools && \
+            chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home"
         volumeMounts:
         - name: {{ (first .Values.persistentStorage).existingClaimName }}
           mountPropagation: HostToContainer
@@ -133,8 +140,17 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        - name: JUPYTER_HUB
-          value: "TRUE"
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        - name: MLFLOW_DATADIR
+          value: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-mlflow
+        - name: TENSORBOARD_LOGDIR
+          value: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-tensorboard
+        {{- else }}
+        - name: MLFLOW_DATADIR
+          value: /tmp/mlflow/
+        - name: TENSORBOARD_LOGDIR
+          value: /tmp/tensorboard/
+        {{- end }}
         - name: OWNER_ID
           value: {{ .Values.appstore_generated_data.dataporten.owner }}
         - name: PROXY_PUBLIC_SERVICE_NAME
