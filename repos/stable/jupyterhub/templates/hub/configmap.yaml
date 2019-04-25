@@ -31,9 +31,11 @@ data:
   singleuser.cmd: "/usr/local/bin/start-notebook.sh"
   {{- if .Values.advanced.jupyterLab }}
   singleuser.default-url: "/lab"
+  {{- end }}
   singleuser.extra-env: |
-    JUPYTER_ENABLE_LAB: "1"
     JUPYTER_HUB: "1"
+  {{- if .Values.advanced.jupyterLab }}
+    JUPYTER_ENABLE_LAB: "1"
   {{- end }}
   singleuser.uid: "{{ .Values.uid }}"
   singleuser.fs-gid: "{{ .Values.gid }}"
