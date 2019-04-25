@@ -29,7 +29,7 @@ data:
   singleuser.image-pull-policy: IfNotPresent
   singleuser.scheduler-strategy: pack
   singleuser.cmd: "/usr/local/bin/start-notebook.sh"
-  {{- if .Values.advanced.killIdlePods.enabled }}
+  {{- if .Values.advanced.jupyterLab }}
   singleuser.default-url: "/lab"
   singleuser.extra-env: |
     JUPYTER_ENABLE_LAB: "1"

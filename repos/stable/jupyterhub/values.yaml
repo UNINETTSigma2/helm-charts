@@ -59,7 +59,7 @@ advanced:
   notebook:
     spawnLimit: 100
   debug: false
-  jupyterLab: false
+  jupyterLab: true
   additionalAdmin: ""
   sharedData:
     enabled: false
