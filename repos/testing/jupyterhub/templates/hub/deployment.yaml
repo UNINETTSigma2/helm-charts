@@ -75,7 +75,12 @@ spec:
       - name: {{ (first .Values.persistentStorage).existingClaimName }}
         persistentVolumeClaim:
           claimName: {{ (first .Values.persistentStorage).existingClaim }}
+      {{- end }}
       initContainers:
+      - name: init-myservice
+        image: busybox:1.28
+        command: ['sh', '-c', 'until nslookup {{ .Release.Name }}-proxy-api; do echo waiting for proxy; sleep 5; done;']
+      {{- if ne (first .Values.persistentStorage).existingClaim "" }}
       - name: busybox
         image: busybox:1
         securityContext:
