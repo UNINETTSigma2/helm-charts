@@ -86,4 +86,4 @@ spec:
               name: proxy-public
             - containerPort: 8001
               name: api
-      terminationGracePeriodSeconds: 60
+      terminationGracePeriodSeconds: 10
