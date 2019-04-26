@@ -34,6 +34,7 @@ data:
   {{- end }}
   singleuser.extra-env: |
     JUPYTER_HUB: "1"
+    PVC_MOUNT_PATH: /mnt/data
   {{- if .Values.advanced.jupyterLab }}
     JUPYTER_ENABLE_LAB: "1"
   {{- end }}

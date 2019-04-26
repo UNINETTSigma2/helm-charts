@@ -140,17 +140,6 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
-        - name: MLFLOW_DATADIR
-          value: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-mlflow
-        - name: TENSORBOARD_LOGDIR
-          value: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-tensorboard
-        {{- else }}
-        - name: MLFLOW_DATADIR
-          value: /tmp/mlflow/
-        - name: TENSORBOARD_LOGDIR
-          value: /tmp/tensorboard/
-        {{- end }}
         - name: OWNER_ID
           value: {{ .Values.appstore_generated_data.dataporten.owner }}
         - name: PROXY_PUBLIC_SERVICE_NAME
