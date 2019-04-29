@@ -52,11 +52,11 @@ data:
   singleuser.storage.static.pvc-name: {{ (first .Values.persistentStorage).existingClaim }}
   singleuser.storage.static.sub-path: 'home/{username}'
   singleuser.init-containers: '[{"name": "busybox", "image": "busybox:1", "args": ["/bin/sh", "-c", "-x", "mkdir -p /mnt/home/{username}"], "security_context": {"runAsUser": {{ .Values.uid }}, "runAsGroup": {{ .Values.gid }}}, "volume_mounts": [{"name": "home", "mountPath": "/mnt/home", "subPath": "home"}]}]'
-  singleuser.storage.extra-volumes: '[{"name": "passwd", "configMap": { "name": "{{ template "fullname" . }}", "items": [{"key": "passwd", "path": "passwd"}] }}, {"name": "group", "configMap": { "name": "{{ template "fullname" . }}", "items": [{"key": "group", "path": "group"}] }}]'
+  singleuser.storage.extra-volumes: '[{"name": "passwd", "configMap": { "name": "{{ template "fullname" . }}", "items": [{"key": "passwd", "path": "passwd"}] }}, {"name": "group", "configMap": { "name": "{{ template "fullname" . }}", "items": [{"key": "group", "path": "group"}] }}, { "name": "shm", "emptyDir": {"medium": "Memory", "sizeLimit": "256M"}} ]'
   {{- if .Values.advanced.sharedData.enabled }}
-  singleuser.storage.extra-volume-mounts: '[{"name": "home", "mountPath": "/mnt/data", "mountPropagation": "HostToContainer", "subPath": "{{.Values.advanced.sharedData.subPath}}", "readOnly": {{.Values.advanced.sharedData.readOnly}}  }, {"name": "passwd", "mountPath":"/etc/passwd", "subPath": "passwd"}, {"name": "group", "mountPath":"/etc/group", "subPath": "group"}]'
+  singleuser.storage.extra-volume-mounts: '[{"name": "home", "mountPath": "/mnt/data", "mountPropagation": "HostToContainer", "subPath": "{{.Values.advanced.sharedData.subPath}}", "readOnly": {{.Values.advanced.sharedData.readOnly}}  }, {"name": "passwd", "mountPath":"/etc/passwd", "subPath": "passwd"}, {"name": "group", "mountPath":"/etc/group", "subPath": "group"}, {"name": "shm", "mountPath":"/dev/shm"}]'
   {{- else }}
-  singleuser.storage.extra-volume-mounts: '[{"name": "passwd", "mountPath":"/etc/passwd", "subPath": "passwd"}, {"name": "group", "mountPath":"/etc/group", "subPath": "group"}]'
+  singleuser.storage.extra-volume-mounts: '[{"name": "passwd", "mountPath":"/etc/passwd", "subPath": "passwd"}, {"name": "group", "mountPath":"/etc/group", "subPath": "group"}, {"name": "shm", "mountPath":"/dev/shm"}]'
   {{- end }}
   {{- else }}
   singleuser.storage.type: "none"
