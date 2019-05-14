@@ -33,3 +33,5 @@ supplementalGroups:
 authGroupProviders:
   - url: "https://groups-api.dataporten.no/groups/me/groups"
     scope: groups
+advanced:
+  dockerImage: quay.io/uninett/desktop-vnc:20190411-224b417

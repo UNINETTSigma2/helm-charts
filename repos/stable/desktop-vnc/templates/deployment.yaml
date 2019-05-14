@@ -52,7 +52,7 @@ spec:
           name: oidcconfig
         workingDir: /conf
       - name: viz
-        image: quay.io/uninett/desktop-vnc:20190411-224b417
+        image: {{ .Values.advanced.dockerImage }}
         imagePullPolicy: Always
         args:
         - -w
