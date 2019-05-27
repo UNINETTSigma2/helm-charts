@@ -128,7 +128,7 @@ spec:
             mountPath: /conf
         workingDir: /conf
       - name: rstudio-proxy
-        image: quay.io/uninett/rstudio-proxy:20180629-e906891
+        image: quay.io/uninett/rstudio-proxy:20190527-acb965d
         imagePullPolicy: Always
         volumeMounts:
           - name: proxy-config
