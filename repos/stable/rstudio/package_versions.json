@@ -1,7 +1,7 @@
 {
   "packageVersions": {
-    "pkg-rstudio-version": "1.1.447",
-    "pkg-shiny-version": "1.5.7.907",
-    "pkg-r-version": "3.4.4"
+    "pkg-rstudio-version": "1.2.1335",
+    "pkg-shiny-version": "1.5.9.923",
+    "pkg-r-version": "3.5.3"
   }
 }
