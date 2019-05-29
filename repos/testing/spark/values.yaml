@@ -17,7 +17,7 @@ advanced:
       limits:
           cpu: 2
           memory: 4G
-  dockerImage: quay.io/uninett/jupyter-spark:20190318-144efc8
+  dockerImage: quay.io/uninett/jupyter-spark:20190527-1bc373e
 
 uid: 999
 gid: 999
