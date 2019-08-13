@@ -95,10 +95,6 @@ spec:
             subPath: {{ .subPath }}
             {{ end }}
             {{- end }}
-          - name: {{ (first .Values.persistentStorage).existingClaimName }}
-            mountPath: /home/vncuser
-            subPath: home/vncuser
-            mountPropagation: HostToContainer
           {{- end }}
       volumes:
       - name: passwd
@@ -137,22 +133,5 @@ spec:
           {{- range .Values.supplementalGroups }}
           - {{ .gid }}
           {{- end }}
-        {{- end }}
-      initContainers:
-      - name: busybox
-        image: busybox:1
-        securityContext:
-          runAsUser: {{ .Values.uid }}
-          runAsGroup: {{ .Values.gid }}
-        args:
-          - /bin/sh
-          - -c
-          - -x
-          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home/vncuser/.vnc && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home"
-        volumeMounts:
-        {{- range .Values.persistentStorage }}
-        - name: {{ .existingClaimName }}
-          mountPath: /mnt/{{ .existingClaimName }}
-          mountPropagation: HostToContainer
         {{- end }}
       {{ end }}
