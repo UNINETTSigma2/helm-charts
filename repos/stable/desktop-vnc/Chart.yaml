@@ -1,7 +1,7 @@
 apiVersion: v1
 description: Desktop VNC with Ubuntu
 name: desktop-vnc
-version: 1.0.6
+version: 1.0.7
 maintainers:
 - name: Uninett AS
   email: system@uninett.no
