@@ -38,7 +38,7 @@ data:
   {{- if .Values.advanced.jupyterLab }}
     JUPYTER_ENABLE_LAB: "1"
   {{- end }}
-  singleuser.uid: "{{ .Values.uid }}"
+  singleuser.uid: "999"
   singleuser.fs-gid: "{{ .Values.gid }}"
   {{ $firstGroup := .Values.supplementalGroups | first }}
   {{- if $firstGroup.gid }}
