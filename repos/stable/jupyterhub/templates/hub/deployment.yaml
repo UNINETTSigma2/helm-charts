@@ -227,7 +227,7 @@ spec:
         args:
           - -c
           - -x
-          - "rm -rf /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }} /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.minio.sys /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.minio"
+          - "rm -rf /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }} /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.minio.sys /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.minio || true"
         volumeMounts:
         - name: {{ (first .Values.persistentStorage).existingClaimName }}
           mountPath: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
