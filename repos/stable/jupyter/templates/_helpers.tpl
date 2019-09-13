@@ -84,7 +84,7 @@ c.NotebookApp.notebook_dir = '/home/notebook'
 {{ if ne .Values.advanced.githubToken "" }}
 c.GitHubConfig.access_token = '{{ .Values.advanced.githubToken }}'
 {{ end }}
-c.NotebookApp.allow_origin = '*'
+c.NotebookApp.allow_origin = 'https://{{ .Values.ingress.host }}'
 c.NotebookApp.allow_remote_access = True
 c.NotebookApp.token = ''
 c.NotebookApp.password = ''
