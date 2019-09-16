@@ -19,6 +19,49 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
     {{- end }}
 {{- end -}}
 
+{{- define "subPath" -}}
+  {{- if eq (first .Values.persistentStorage).subPath "/" }}
+    {{- printf "" }}
+  {{- else }}
+    {{- printf "%s/" (first .Values.persistentStorage).subPath }}
+  {{- end }}
+{{- end -}}
+
+
+{{- define "singleuser-volumes" -}}
+[
+  {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+  {"name": "shared", "persistentVolumeClaim": {"claimName": "{{ (first .Values.persistentStorage).existingClaim }}" }},
+  {{- end }}
+  {"name": "passwd", "configMap": { "name": "{{ template "fullname" . }}", "items": [{"key": "passwd", "path": "passwd"}] }},
+  {"name": "group", "configMap": { "name": "{{ template "fullname" . }}", "items": [{"key": "group", "path": "group"}] }},
+  { "name": "shm", "emptyDir": {"medium": "Memory", "sizeLimit": "256M"}}
+]
+{{- end -}}
+
+{{- define "singleuser-volume-mounts" -}}
+[
+  {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+  {{- if .Values.advanced.sharedData.enabled }}
+
+  {"name": "shared", "mountPath": "/mnt/data", "mountPropagation": "HostToContainer",
+   "subPath": "{{ template "subPath" . }}{{ .Values.advanced.sharedData.subPath }}",
+   "readOnly": {{ .Values.advanced.sharedData.readOnly }}
+  },
+  {{- end }}
+  {{- end }}
+  {
+    "name": "passwd",
+    "mountPath": "/etc/passwd",
+    "subPath": "passwd"
+  },
+  {
+    "name": "shm",
+    "mountPath": "/dev/shm"
+  }
+]
+{{- end -}}
+
 {{- define "supplemental_groups_list" -}}
     {{- $n_groups := sub (len .Values.supplementalGroups) 1 }}
     {{- printf "[" }}

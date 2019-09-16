@@ -47,16 +47,9 @@ data:
   singleuser.service-account-name: "default"
   singleuser.pod-name-template: "{{.Release.Name}}-jupyter-{username}"
   singleuser.node-selector: "{}"
-  {{- if ne (first .Values.persistentStorage).existingClaim "" }}
-  singleuser.storage.extra-volumes: '[ {"name": "shared", "persistentVolumeClaim": {"claimName": "{{ (first .Values.persistentStorage).existingClaim }}" }}, {"name": "passwd", "configMap": { "name": "{{ template "fullname" . }}", "items": [{"key": "passwd", "path": "passwd"}] }}, {"name": "group", "configMap": { "name": "{{ template "fullname" . }}", "items": [{"key": "group", "path": "group"}] }}, { "name": "shm", "emptyDir": {"medium": "Memory", "sizeLimit": "256M"}} ]'
-  {{- if .Values.advanced.sharedData.enabled }}
-  singleuser.storage.extra-volume-mounts: '[{"name": "shared", "mountPath": "/mnt/data", "mountPropagation": "HostToContainer", "subPath": "{{.Values.advanced.sharedData.subPath}}", "readOnly": {{.Values.advanced.sharedData.readOnly}}  }, {"name": "passwd", "mountPath":"/etc/passwd", "subPath": "passwd"}, {"name": "group", "mountPath":"/etc/group", "subPath": "group"}, {"name": "shm", "mountPath":"/dev/shm"}]'
-  {{- else }}
-  singleuser.storage.extra-volume-mounts: '[{"name": "passwd", "mountPath":"/etc/passwd", "subPath": "passwd"}, {"name": "group", "mountPath":"/etc/group", "subPath": "group"}, {"name": "shm", "mountPath":"/dev/shm"}]'
-  {{- end }}
-  {{- else }}
+  singleuser.storage.extra-volumes: '{{ include "singleuser-volumes" . }}'
+  singleuser.storage.extra-volume-mounts: '{{ include "singleuser-volume-mounts" . }}'
   singleuser.storage.type: "none"
-  {{- end }}
   singleuser.storage.home_mount_path: "/home/notebook"
   {{- if .Values.userNotebookType.resources.limits.memory }}
   singleuser.memory.limit: {{ .Values.userNotebookType.resources.limits.memory | quote}}
