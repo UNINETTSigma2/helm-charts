@@ -25,7 +25,7 @@ data:
   auth.type: "dataporten"
 
   {{- /* Singleuser */}}
-  singleuser.start-timeout: "300"
+  singleuser.start-timeout: "600"
   singleuser.image-pull-policy: IfNotPresent
   singleuser.scheduler-strategy: pack
   {{- if .Values.advanced.jupyterLab }}
