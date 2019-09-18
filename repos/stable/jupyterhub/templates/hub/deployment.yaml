@@ -100,7 +100,7 @@ spec:
       {{- end }}
       containers:
       - name: hub-container
-        image: quay.io/uninett/jupyterhub-server:20181008-1855e02
+        image: quay.io/uninett/jupyterhub-server:20190918-162d51d
         command:
           - jupyterhub
           - --config
@@ -125,9 +125,6 @@ spec:
             mountPath: /srv/jupyterhub
             mountPropagation: HostToContainer
             subPath: .tools/{{ .Release.Name }}-hub
-            {{ if ne (first .Values.persistentStorage).subPath "/" }}
-            subPath: {{ (first .Values.persistentStorage).subPath }}
-            {{ end }}
           {{- end }}
         resources:
 {{ toYaml .Values.users.resources.selected | indent 12 }}
@@ -140,6 +137,10 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        - name: COOKIE_SECRET_FILE_PATH
+          value: /srv/jupyterhub/jupyterhub_cookie_secret
+        {{- end }}
         - name: OWNER_ID
           value: {{ .Values.appstore_generated_data.dataporten.owner }}
         - name: PROXY_PUBLIC_SERVICE_NAME

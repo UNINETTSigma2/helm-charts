@@ -28,7 +28,6 @@ data:
   singleuser.start-timeout: "300"
   singleuser.image-pull-policy: IfNotPresent
   singleuser.scheduler-strategy: pack
-  singleuser.cmd: "/usr/local/bin/start-notebook.sh"
   {{- if .Values.advanced.jupyterLab }}
   singleuser.default-url: "/lab"
   {{- end }}
@@ -49,7 +48,12 @@ data:
   singleuser.node-selector: "{}"
   singleuser.storage.extra-volumes: '{{ include "singleuser-volumes" . }}'
   singleuser.storage.extra-volume-mounts: '{{ include "singleuser-volume-mounts" . }}'
+  {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+  singleuser.storage.type: "static"
+  singleuser.storage.static.sub-path: "{{ template "subPath" . }}{{ .Values.advanced.userHomeSubPath }}/{username}"
+  {{- else }}
   singleuser.storage.type: "none"
+  {{- end }}
   singleuser.storage.home_mount_path: "/home/notebook"
   {{- if .Values.userNotebookType.resources.limits.memory }}
   singleuser.memory.limit: {{ .Values.userNotebookType.resources.limits.memory | quote}}
