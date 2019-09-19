@@ -62,6 +62,7 @@ advanced:
   jupyterLab: true
   userHomeSubPath: "dataporten-home"
   additionalAdmin: ""
+  startTimeout: 1200
   sharedData:
     enabled: false
     subPath: "data"
