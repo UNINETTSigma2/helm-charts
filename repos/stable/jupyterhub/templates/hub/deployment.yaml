@@ -56,6 +56,9 @@ spec:
       - name: config
         configMap:
           name: {{ .Release.Name }}-hub-config
+          items:
+          - key: values.yaml
+            path: values.yaml
       - name: secret
         secret:
           secretName: {{ .Release.Name }}-hub-secret
@@ -100,7 +103,7 @@ spec:
       {{- end }}
       containers:
       - name: hub-container
-        image: quay.io/uninett/jupyterhub-server:20190918-162d51d
+        image: quay.io/uninett/jupyterhub-server:20190921-e279b95
         command:
           - jupyterhub
           - --config
@@ -110,9 +113,11 @@ spec:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
         volumeMounts:
-          - mountPath: /etc/jupyterhub/config/
+          - mountPath: /etc/jupyterhub/config/values.yaml
+            subPath: values.yaml
             name: config
-          - mountPath: /etc/jupyterhub/secret/
+          - mountPath: /etc/jupyterhub/secret/values.yaml
+            subPath: values.yaml
             name: secret
           - name: passwd
             mountPath: /etc/passwd

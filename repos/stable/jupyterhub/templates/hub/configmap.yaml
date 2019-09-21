@@ -5,88 +5,180 @@ metadata:
   annotations:
     appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
 data:
-  {{- /* Cull */}}
-  {{- if .Values.advanced.killIdlePods.enabled }}
-  cull.enabled: "true"
-  cull.users: "false"
-  cull.timeout: {{ .Values.advanced.killIdlePods.timeout | quote }}
-  cull.every: "600"
-  cull.concurrency: {{ .Values.advanced.killIdlePods.concurrency | quote }}
-  {{- end }}
+  values.yaml: |
+    {{- /* Auth */}}
+    auth:
+      type: "dataporten"
+      state:
+        enabled: false
+      admin:
+        access: true
+        users:
+          - {{ .Values.appstore_generated_data.dataporten.owner }}
+          {{- if ne (first .Values.advanced.additionalAdmin) "" }}
+          {{- range .Values.advanced.additionalAdmin }}
+          - {{ . }}
+          {{- end }}
+          {{- end }}
 
-  {{- /* Auth */}}
-  auth.state.enabled: "false"
-  auth.admin.access: "true"
-  auth.admin.users: |
-    - {{ .Values.appstore_generated_data.dataporten.owner }}
-    {{- if ne .Values.advanced.additionalAdmin "" }}
-    - {{ .Values.advanced.additionalAdmin }}
+    {{- /* Cull */}}
+    {{- if .Values.advanced.killIdlePods.enabled }}
+    cull:
+      enabled: "true"
+      users: "false"
+      timeout: {{ .Values.advanced.killIdlePods.timeout | quote }}
+      every: "600"
+      concurrency: {{ .Values.advanced.killIdlePods.concurrency | quote }}
     {{- end }}
-  auth.type: "dataporten"
 
-  {{- /* Singleuser */}}
-  singleuser.start-timeout: {{ .Values.advanced.startTimeout | quote }}
-  singleuser.image-pull-policy: IfNotPresent
-  singleuser.scheduler-strategy: pack
-  {{- if .Values.advanced.jupyterLab }}
-  singleuser.default-url: "/lab"
-  {{- end }}
-  singleuser.extra-env: |
-    JUPYTER_HUB: "1"
-    PVC_MOUNT_PATH: /mnt/data
-  {{- if .Values.advanced.jupyterLab }}
-    JUPYTER_ENABLE_LAB: "1"
-  {{- end }}
-  singleuser.uid: "999"
-  singleuser.fs-gid: "{{ .Values.gid }}"
-  {{ $firstGroup := .Values.supplementalGroups | first }}
-  {{- if $firstGroup.gid }}
-  singleuser.supplemental-gids: "{{ include "supplemental_groups_list" . }}"
-  {{- end }}
-  singleuser.service-account-name: "default"
-  singleuser.pod-name-template: "{{.Release.Name}}-jupyter-{username}"
-  singleuser.node-selector: "{}"
-  singleuser.storage.extra-volumes: '{{ include "singleuser-volumes" . }}'
-  singleuser.storage.extra-volume-mounts: '{{ include "singleuser-volume-mounts" . }}'
-  {{- if ne (first .Values.persistentStorage).existingClaim "" }}
-  singleuser.storage.type: "static"
-  singleuser.storage.static.sub-path: "{{ template "subPath" . }}{{ .Values.advanced.userHomeSubPath }}/{username}"
-  {{- else }}
-  singleuser.storage.type: "none"
-  {{- end }}
-  singleuser.storage.home_mount_path: "/home/notebook"
-  {{- if .Values.userNotebookType.resources.limits.memory }}
-  singleuser.memory.limit: {{ .Values.userNotebookType.resources.limits.memory | quote}}
-  {{- end }}
-  {{- if .Values.userNotebookType.resources.requests.memory }}
-  singleuser.memory.guarantee: {{ .Values.userNotebookType.resources.requests.memory | quote}}
-  {{- end }}
-  {{- if .Values.userNotebookType.resources.limits.cpu }}
-  singleuser.cpu.limit: {{ .Values.userNotebookType.resources.limits.cpu | quote}}
-  {{- end }}
-  {{- if .Values.userNotebookType.resources.requests.cpu }}
-  singleuser.cpu.guarantee: {{ .Values.userNotebookType.resources.requests.cpu | quote}}
-  {{- end }}
-  {{- if .Values.userNotebookType.resources.requests.gpu }}
-  singleuser.extra-resource.guarantees: '{ "nvidia.com/gpu": {{ .Values.userNotebookType.resources.requests.gpu }} }'
-  {{- end }}
-  {{- if .Values.userNotebookType.resources.limits.gpu }}
-  singleuser.extra-resource.limits: '{ "nvidia.com/gpu": {{ .Values.userNotebookType.resources.requests.gpu }} }'
-  {{- end }}
-  singleuser.extra-labels: |
-    hub.jupyter.org/network-access-hub: "true"
+    {{- /* Singleuser */}}
+    singleuser:
+      image:
+        name: "{{ .Values.advanced.userImage }}"
+        pullPolicy: IfNotPresent
+      startTimeout: {{ .Values.advanced.startTimeout }}
+      scheduler-strategy: pack
+      uid: 999
+      fsGid: {{ .Values.gid }}
+    {{- if .Values.advanced.jupyterLab }}
+      defaultUrl: "/lab"
+    {{- end }}
+      extraEnv:
+        JUPYTER_HUB: "1"
+        PVC_MOUNT_PATH: /mnt/data
+    {{- if .Values.advanced.jupyterLab }}
+        JUPYTER_ENABLE_LAB: "1"
+    {{- end }}
+      {{ $firstGroup := .Values.supplementalGroups | first }}
+      {{- if $firstGroup.gid }}
+      supplemental-gids:
+        {{- range .Values.supplementalGroups }}
+        - {{ .gid }}
+        {{- end }}
+      {{- end }}
+      serviceAccountName: "default"
+      pod-name-template: "{{.Release.Name}}-jupyter-{username}"
+      nodeSelector: {}
+      storage:
+        extraVolumes:
+          - name: "passwd"
+            configMap:
+              name: "{{ template "fullname" . }}"
+              items:
+                - key: "passwd"
+                  path: "passwd"
+          - name: "group"
+            configMap:
+              name: "{{ template "fullname" . }}"
+              items:
+                - key: "group"
+                  path: "group"
+          - name: "shm"
+            emptyDir:
+              medium: "Memory"
+              sizeLimit: "256M"
+          {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+          - name: "shared"
+            persistentVolumeClaim:
+              claimName: "{{ (first .Values.persistentStorage).existingClaim }}"
+          {{- end }}
+        extraVolumeMounts:
+          - name: "passwd"
+            mountPath: "/etc/passwd"
+            subPath: "passwd"
+          - name: "shm"
+            mountPath: "/dev/shm"
+          {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+          {{- if .Values.advanced.sharedData.enabled }}
+          - name: "shared"
+            mountPath: "/mnt/data"
+            mountPropagation: "HostToContainer"
+            subPath: "{{ template "subPath" . }}{{ .Values.advanced.sharedData.subPath }}"
+            readOnly: {{ .Values.advanced.sharedData.readOnly }}
+          {{- end }}
+          {{- end }}
+    {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        type: "static"
+        static:
+          subPath: "{{ template "subPath" . }}{{ .Values.advanced.userHomeSubPath }}/{username}"
+    {{- else }}
+        type: "none"
+    {{- end }}
+        homeMountPath: "/home/notebook"
+      {{- if .Values.userNotebookType.resources.limits.memory }}
+      memory:
+        limit: {{ .Values.userNotebookType.resources.limits.memory | quote }}
+      {{- end }}
+      {{- if .Values.userNotebookType.resources.requests.memory }}
+        guarantee: {{ .Values.userNotebookType.resources.requests.memory | quote}}
+      {{- end }}
+      {{- if .Values.userNotebookType.resources.limits.cpu }}
+      cpu:
+        limit: {{ .Values.userNotebookType.resources.limits.cpu }}
+      {{- end }}
+      {{- if .Values.userNotebookType.resources.requests.cpu }}
+        guarantee: {{ .Values.userNotebookType.resources.requests.cpu }}
+      {{- end }}
+      {{- if .Values.userNotebookType.resources.requests.gpu }}
+      extraResource:
+        guarantees:
+          nvidia.com/gpu: {{ .Values.userNotebookType.resources.requests.gpu }}
+      {{- end }}
+      {{- if .Values.userNotebookType.resources.limits.gpu }}
+        limits:
+          nvidia.com/gpu: {{ .Values.userNotebookType.resources.requests.gpu }}
+      {{- end }}
+      extraLabels:
+        hub.jupyter.org/network-access-hub: "true"
 
-  kubespawner.common-labels: |
-    group: {{ .Release.Name }}-jupyterhub
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+      {{- if .Values.advanced.vnc.enabled }}
+      extra-containers:
+        - name: "viz"
+          image: "{{ .Values.advanced.vnc.image }}"
+          args: ["-w"]
+          env:
+            - name: "VNC_PW"
+              value: "test"
+            - name: "HOME"
+              value: "/home/vncuser"
+          volumeMounts:
+            - name: "passwd"
+              mountPath: "/etc/passwd"
+              subPath: "passwd"
+            - name: "group"
+              mountPath: "/etc/group"
+              subPath: "group"
+            - name: "shm"
+              mountPath: "/dev/shm"
+              {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+            - name: "shared"
+              mountPath: "/home/notebook"
+              mountPropagation: "HostToContainer"
+              subPath: "{{ template "subPath" . }}{{ .Values.advanced.userHomeSubPath }}/{username}"
+              {{- end }}
+          resources:
+            requests:
+              cpu: "{{ .Values.advanced.vnc.resources.requests.cpu }}"
+              memory: "{{ .Values.advanced.vnc.resources.requests.memory }}"
+            limits:
+              cpu: "{{ .Values.advanced.vnc.resources.limits.cpu }}"
+              memory: "{{ .Values.advanced.vnc.resources.limits.memory }}"
+      {{- end }}
 
-  hub.base_url: "/"
-  hub.db_url: "sqlite:///jupyterhub.sqlite" # Use in memory
-  hub.concurrent-spawn-limit: {{ .Values.advanced.notebook.spawnLimit | quote }}
-  debug.enabled: {{ .Values.advanced.debug | quote }}
+    custom:
+      common-labels:
+        group: {{ .Release.Name }}-jupyterhub
+        release: {{ .Release.Name }}
+        heritage: {{ .Release.Service }}
 
-{{- if .Values.advanced.sharedData.enabled }}
+    hub:
+      base_url: "/"
+      db_url: "sqlite:///jupyterhub.sqlite" # Use in memory
+      concurrent-spawn-limit: {{ .Values.advanced.notebook.spawnLimit | quote }}
+    debug:
+      enabled: {{ .Values.advanced.debug | quote }}
+
+{{- if ne (first .Values.persistentStorage).existingClaim "" }}
 ---
 apiVersion: v1
 kind: ConfigMap
