@@ -61,7 +61,8 @@ advanced:
   debug: false
   jupyterLab: true
   userHomeSubPath: "dataporten-home"
-  additionalAdmin: ""
+  additionalAdmin:
+    - ""
   startTimeout: 1200
   vnc:
     enabled: false
