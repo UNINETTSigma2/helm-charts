@@ -82,7 +82,7 @@ advanced:
     enabled: false
     minioAccessKey: "accesskeyexample"
     minioSecretKey: "secretkeyexample"
-  userImage: quay.io/uninett/jupyterhub-singleuser:20190920-d7d7cd3
+  userImage: quay.io/uninett/jupyterhub-singleuser:20191002-cd26778
 appstore_generated_data:
   appstore_meta_data:
     contact_email: "example@uninett.no"

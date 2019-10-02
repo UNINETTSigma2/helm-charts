@@ -20,10 +20,10 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- end -}}
 
 {{- define "subPath" -}}
-  {{- if eq (first .Values.persistentStorage).subPath "/" }}
+  {{- if eq .subPath "/" }}
     {{- printf "" }}
   {{- else }}
-    {{- printf "%s/" (first .Values.persistentStorage).subPath }}
+    {{- printf "%s/" .subPath }}
   {{- end }}
 {{- end -}}
 

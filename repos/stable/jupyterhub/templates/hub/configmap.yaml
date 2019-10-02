@@ -77,11 +77,13 @@ data:
             emptyDir:
               medium: "Memory"
               sizeLimit: "256M"
-          {{- if ne (first .Values.persistentStorage).existingClaim "" }}
-          - name: "shared"
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        {{- range .Values.persistentStorage }}
+          - name: {{ .existingClaimName }}
             persistentVolumeClaim:
-              claimName: "{{ (first .Values.persistentStorage).existingClaim }}"
-          {{- end }}
+              claimName: {{ .existingClaim }}
+        {{- end }}
+        {{- end }}
         extraVolumeMounts:
           - name: "passwd"
             mountPath: "/etc/passwd"
@@ -89,18 +91,23 @@ data:
           - name: "shm"
             mountPath: "/dev/shm"
           {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+          {{- $sharedSubPath := .Values.advanced.sharedData.subPath }}
+          {{- $sharedReadOnly := .Values.advanced.sharedData.readOnly }}
           {{- if .Values.advanced.sharedData.enabled }}
-          - name: "shared"
-            mountPath: "/mnt/data"
+          {{- range .Values.persistentStorage }}
+          - name: "{{ .existingClaimName }}"
+            mountPath: "/mnt/{{ .existingClaimName }}"
             mountPropagation: "HostToContainer"
-            subPath: "{{ template "subPath" . }}{{ .Values.advanced.sharedData.subPath }}"
-            readOnly: {{ .Values.advanced.sharedData.readOnly }}
+            subPath: "{{ template "subPath" . }}{{ $sharedSubPath }}"
+            readOnly: {{ $sharedReadOnly }}
+          {{- end }}
           {{- end }}
           {{- end }}
     {{- if ne (first .Values.persistentStorage).existingClaim "" }}
         type: "static"
         static:
-          subPath: "{{ template "subPath" . }}{{ .Values.advanced.userHomeSubPath }}/{username}"
+          pvcName: "{{ (first .Values.persistentStorage).existingClaimName }}"
+          subPath: "{{ template "subPath" (first .Values.persistentStorage) }}{{ .Values.advanced.userHomeSubPath }}/{username}"
     {{- else }}
         type: "none"
     {{- end }}
@@ -151,10 +158,10 @@ data:
             - name: "shm"
               mountPath: "/dev/shm"
               {{- if ne (first .Values.persistentStorage).existingClaim "" }}
-            - name: "shared"
+            - name: {{ (first .Values.persistentStorage).existingClaimName }}
               mountPath: "/home/notebook"
               mountPropagation: "HostToContainer"
-              subPath: "{{ template "subPath" . }}{{ .Values.advanced.userHomeSubPath }}/{username}"
+              subPath: "{{ template "subPath" (first .Values.persistentStorage) }}{{ .Values.advanced.userHomeSubPath }}/{username}"
               {{- end }}
           resources:
             requests:
