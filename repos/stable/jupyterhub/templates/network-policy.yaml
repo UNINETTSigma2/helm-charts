@@ -56,3 +56,22 @@ spec:
         - protocol: TCP
           port: 9000
         {{- end }}
+
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ .Release.Name }}-jupyterhub-ipyparallel
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+spec:
+  podSelector:
+    matchLabels:
+      release: {{ .Release.Name }}
+  ingress:
+    - from:
+      - namespaceSelector:
+          matchLabels:
+            name: {{ .Release.Namespace }}
+      ports:
+        - protocol: TCP

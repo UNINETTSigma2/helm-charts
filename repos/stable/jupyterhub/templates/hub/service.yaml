@@ -33,3 +33,69 @@ spec:
   selector:
     app: {{ template "fullname" . }}-minio
 {{ end }}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-ipycontroller
+  labels:
+    release: {{ .Release.Name }}
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+spec:
+  selector:
+    app: {{ template "fullname" . }}-ipycontroller
+  ports:
+    - protocol: TCP
+      port: 9001
+      targetPort: 9001
+      name: registration
+    - protocol: TCP
+      port: 9002
+      targetPort: 9002
+      name: control
+    - protocol: TCP
+      port: 9003
+      targetPort: 9003
+      name: mux
+    - protocol: TCP
+      port: 9004
+      targetPort: 9004
+      name: nb-ping
+    - protocol: TCP
+      port: 9005
+      targetPort: 9005
+      name: nb-pong
+    - protocol: TCP
+      port: 9006
+      targetPort: 9006
+      name: task
+    - protocol: TCP
+      port: 9007
+      targetPort: 9007
+      name: iopub
+    - protocol: TCP
+      port: 9008
+      targetPort: 9008
+      name: notification
+    - protocol: TCP
+      port: 10002
+      targetPort: 10002
+      name: client-control
+    - protocol: TCP
+      port: 10003
+      targetPort: 10003
+      name: client-mux
+    - protocol: TCP
+      port: 10004
+      targetPort: 10004
+      name: client-task
+    - protocol: TCP
+      port: 10005
+      targetPort: 10005
+      name: client-iopub
+    - protocol: TCP
+      port: 10006
+      targetPort: 10006
+      name: client-notification

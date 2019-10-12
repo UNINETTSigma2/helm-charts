@@ -44,6 +44,7 @@ data:
       defaultUrl: "/lab"
     {{- end }}
       extraEnv:
+        HOME: "/home/$JUPYTERHUB_USER"
         JUPYTER_HUB: "1"
         PVC_MOUNT_PATH: /mnt/data
     {{- if .Values.advanced.jupyterLab }}
@@ -77,6 +78,11 @@ data:
             emptyDir:
               medium: "Memory"
               sizeLimit: "256M"
+        {{- if .Values.advanced.ipyparallel.enabled }}
+          - name: ipyparallel-config
+            secret:
+              secretName: {{ .Release.Name }}-ipyparallel-config
+        {{- end }}
         {{- if ne (first .Values.persistentStorage).existingClaim "" }}
         {{- range .Values.persistentStorage }}
           - name: {{ .existingClaimName }}
@@ -90,6 +96,13 @@ data:
             subPath: "passwd"
           - name: "shm"
             mountPath: "/dev/shm"
+          {{- if .Values.advanced.ipyparallel.enabled }}
+          - name: ipyparallel-config
+            mountPath: /tmp/ipcontroller-client.json
+            mountPropagation: "HostToContainer"
+            subPath: ipcontroller-client.json
+            readOnly: true
+          {{- end }}
           {{- if ne (first .Values.persistentStorage).existingClaim "" }}
           {{- $sharedSubPath := .Values.advanced.sharedData.subPath }}
           {{- $sharedReadOnly := .Values.advanced.sharedData.readOnly }}
@@ -111,7 +124,7 @@ data:
     {{- else }}
         type: "none"
     {{- end }}
-        homeMountPath: "/home/notebook"
+        homeMountPath: "/home/{username}"
       {{- if .Values.userNotebookType.resources.limits.memory }}
       memory:
         limit: {{ .Values.userNotebookType.resources.limits.memory | quote }}

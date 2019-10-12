@@ -103,7 +103,7 @@ spec:
       {{- end }}
       containers:
       - name: hub-container
-        image: quay.io/uninett/jupyterhub-server:20191001-98eac52
+        image: quay.io/uninett/jupyterhub-server:20191012-9a3627d
         command:
           - jupyterhub
           - --config
@@ -376,4 +376,145 @@ spec:
           {{ end }}
         {{- end }}
         {{ end }}
+{{- end }}
+
+{{- if .Values.advanced.ipyparallel.enabled }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}-ipyworkers
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  strategy:
+    type: Recreate
+  replicas: {{ .Values.advanced.ipyparallel.workers }}
+  selector:
+    matchLabels:
+        app: {{ template "fullname" . }}-ipyworkers
+        group: {{ .Release.Name }}-jupyterhub
+        release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        group: {{ .Release.Name }}-jupyterhub
+        app: {{ template "fullname" . }}-ipyworkers
+        release: {{ .Release.Name }}
+    spec:
+      volumes:
+      - name: ipyparallel-config
+        secret:
+          secretName: {{ .Release.Name }}-ipyparallel-config
+    {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+      {{- range .Values.persistentStorage }}
+      - name: {{ .existingClaimName }}
+        persistentVolumeClaim:
+          claimName: {{ .existingClaim }}
+      {{- end }}
+    {{- end }}
+      securityContext:
+        runAsNonRoot: true
+        fsGroup: 65534
+      containers:
+      - name: worker
+        command:
+          - /bin/sh
+          - -c
+          - -x
+          - 'mkdir -p /tmp/.ipython/profile_default/security && cp /tmp/ipcontroller-*.json /tmp/.ipython/profile_default/security/ && sleep 15 && /opt/conda/bin/ipengine --timeout=30 --ipython-dir=/tmp/.ipython --location={{ .Release.Name }}-ipycontroller --port=9001'
+        image: {{ .Values.advanced.ipyparallel.image }}
+        resources:
+          requests:
+            cpu: {{ .Values.advanced.ipyparallel.resources.requests.cpu }}
+            memory: {{ .Values.advanced.ipyparallel.resources.requests.memory }}
+            nvidia.com/gpu: {{ .Values.advanced.ipyparallel.resources.requests.gpu }}
+          limits:
+            cpu: {{ .Values.advanced.ipyparallel.resources.limits.cpu }}
+            memory: {{ .Values.advanced.ipyparallel.resources.limits.memory }}
+            nvidia.com/gpu: {{ .Values.advanced.ipyparallel.resources.limits.gpu }}
+        securityContext:
+          runAsUser: 65534
+          runAsGroup: 65534
+        volumeMounts:
+          - mountPath: /tmp/ipcontroller-engine.json
+            subPath: ipcontroller-engine.json
+            name: ipyparallel-config
+          - mountPath: /tmp/ipcontroller-client.json
+            subPath: ipcontroller-client.json
+            name: ipyparallel-config
+          {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+          - name: {{ (first .Values.persistentStorage).existingClaimName }}
+            mountPath: /home/
+            mountPropagation: HostToContainer
+            subPath: "{{ template "subPath" (first .Values.persistentStorage) }}{{ .Values.advanced.userHomeSubPath }}"
+          {{- range .Values.persistentStorage }}
+          - name: {{ .existingClaimName }}
+            mountPath: /mnt/{{ .existingClaimName }}
+            mountPropagation: HostToContainer
+            {{ if ne .subPath "/" }}
+            subPath: {{ .subPath }}
+            {{ end }}
+          {{- end }}
+          {{ end }}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}-ipycontroller
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+        app: {{ template "fullname" . }}-ipycontroller
+        group: {{ .Release.Name }}-jupyterhub
+        release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        group: {{ .Release.Name }}-jupyterhub
+        app: {{ template "fullname" . }}-ipycontroller
+        release: {{ .Release.Name }}
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        fsGroup: 65534
+      volumes:
+      - name: ipyparallel-config
+        secret:
+          secretName: {{ .Release.Name }}-ipyparallel-config
+      containers:
+      - name: worker
+        volumeMounts:
+          - mountPath: /tmp/ipcontroller-engine.json
+            subPath: ipcontroller-engine.json
+            name: ipyparallel-config
+          - mountPath: /tmp/ipcontroller-client.json
+            subPath: ipcontroller-client.json
+            name: ipyparallel-config
+        command:
+          - /bin/sh
+          - -c
+          - -x
+          - "mkdir -p /tmp/.ipython/profile_default/security && chmod -R g+w /tmp/.ipython && cp /tmp/ipcontroller-*.json /tmp/.ipython/profile_default/security/ && /opt/conda/bin/ipcontroller --ipython-dir=/tmp/.ipython --reuse --ip=* --port 9001"
+        image: {{ .Values.advanced.ipyparallel.image }}
+        resources:
+          requests:
+            cpu: 500m
+            memory: 512M
+          limits:
+            cpu: "1"
+            memory: 512M
+        securityContext:
+          runAsUser: 65534
+          runAsGroup: 65534
 {{- end }}
