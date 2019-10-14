@@ -426,6 +426,7 @@ spec:
           - -x
           - 'mkdir -p /tmp/.ipython/profile_default/security && cp /tmp/ipcontroller-*.json /tmp/.ipython/profile_default/security/ && sleep 15 && /opt/conda/bin/ipengine --timeout=30 --ipython-dir=/tmp/.ipython --location={{ .Release.Name }}-ipycontroller --port=9001'
         image: {{ .Values.advanced.ipyparallel.image }}
+        workingDir: /tmp
         resources:
           requests:
             cpu: {{ .Values.advanced.ipyparallel.resources.requests.cpu }}
