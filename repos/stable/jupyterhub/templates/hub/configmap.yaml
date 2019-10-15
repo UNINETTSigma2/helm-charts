@@ -120,7 +120,11 @@ data:
         type: "static"
         static:
           pvcName: "{{ (first .Values.persistentStorage).existingClaimName }}"
+          {{- if .Values.advanced.userHomeAddStorageSubPath }}
           subPath: "{{ template "subPath" (first .Values.persistentStorage) }}{{ .Values.advanced.userHomeSubPath }}/{username}"
+          {{- else }}
+          subPath: "{{ .Values.advanced.userHomeSubPath }}/{username}"
+          {{- end }}
     {{- else }}
         type: "none"
     {{- end }}

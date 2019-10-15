@@ -60,6 +60,7 @@ advanced:
     spawnLimit: 100
   debug: false
   jupyterLab: true
+  userHomeAddStorageSubPath: true
   userHomeSubPath: "dataporten-home"
   additionalAdmin:
     - ""
