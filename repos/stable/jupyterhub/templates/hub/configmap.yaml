@@ -44,7 +44,6 @@ data:
       defaultUrl: "/lab"
     {{- end }}
       extraEnv:
-        HOME: "/home/$JUPYTERHUB_USER"
         JUPYTER_HUB: "1"
         PVC_MOUNT_PATH: /mnt/data
     {{- if .Values.advanced.jupyterLab }}
