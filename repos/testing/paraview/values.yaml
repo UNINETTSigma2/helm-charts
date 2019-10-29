@@ -1,0 +1,38 @@
+ingress:
+  host: "local-chart.example.com"
+resources:
+  requests:
+    cpu: 4
+    memory: 4G
+    gpu: 1
+  limits:
+    cpu: 8
+    memory: 4G
+    gpu: 1
+persistentStorage:
+  - existingClaim: ""
+    existingClaimName: "example-name"
+    subPath: "/"
+appstore_generated_data:
+  appstore_meta_data:
+    contact_email: "example@uninett.no"
+  dataporten:
+    scopes:
+      - ""
+    id: "0000-abc"
+    owner: "0000-1234"
+    client_secret: "0000-0000"
+    authorized_groups:
+      - ""
+uid: 999
+gid: 999
+username: paraview
+supplementalGroups:
+  - name: ""
+    gid: ""
+advanced:
+  dockerImage: nvcr.io/nvidia-hpcvis/paraview-index:5.6.0-egl-pvw
+  githubToken: ""
+authGroupProviders:
+  - url: "https://groups-api.dataporten.no/groups/me/groups"
+    scope: groups

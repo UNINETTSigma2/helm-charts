@@ -1,0 +1,166 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+        app: {{ template "fullname" . }}
+        release: {{ .Release.Name }}
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include "oidcconfig" . | sha256sum }}
+      labels:
+        app: {{ template "fullname" . }}
+        release: {{ .Release.Name }}
+    spec:
+      volumes:
+        - name: oidcconfig
+          secret:
+            secretName: {{ template "fullname" . }}
+        - name: passwd
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: passwd
+              path: passwd
+        - name: group
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: group
+              path: group
+        - name: shm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 256M
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
+          persistentVolumeClaim:
+            claimName: {{ .existingClaim }}
+        {{- end }}
+      initContainers:
+      - name: busybox
+        image: busybox:1
+        securityContext:
+          runAsUser: {{ .Values.uid }}
+          runAsGroup: {{ .Values.gid }}
+        args:
+          - /bin/sh
+          - -c
+          - -x
+          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home/{{ .Values.username }}/.jupyter && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home"
+        volumeMounts:
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
+          mountPath: /mnt/{{ .existingClaimName }}
+          mountPropagation: HostToContainer
+        {{- end }}
+      {{ end }}
+      hostname: {{ template "fullname" . }}
+      securityContext:
+        runAsNonRoot: true
+        fsGroup: {{ .Values.gid }}
+        {{ $firstGroup := .Values.supplementalGroups | first }}
+        {{- if $firstGroup.gid }}
+        supplementalGroups:
+          {{- range .Values.supplementalGroups }}
+          - {{ .gid }}
+          {{- end }}
+        {{- end }}
+      containers:
+      - name: auth-proxy
+        image: paalka/goidc
+        imagePullPolicy: Always
+        env:
+          - name: DATAPORTEN_CLIENTID
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "fullname" . }}
+                key: dataporten_client_id
+          - name: DATAPORTEN_CLIENTSECRET
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "fullname" . }}
+                key: dataporten_client_secret
+        ports:
+          - containerPort: 8081
+        securityContext:
+          runAsUser: 65534
+          readOnlyRootFilesystem: true
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8081
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+        volumeMounts:
+          - name: oidcconfig
+            mountPath: /conf
+        workingDir: /conf
+      - name: paraview
+        image: {{ .Values.advanced.dockerImage }}
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        workingDir: /home/{{ .Values.username }}
+        {{ end }}
+        env:
+          - name: TZ
+            value: Europe/Oslo
+          {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+          - name: XDG_CACHE_HOME
+            value: /home/{{ .Values.username }}/.cache
+          - name: HOME
+            value: /home/{{ .Values.username }}
+          - name: USER
+            value: {{ .Values.username }}
+          - name: PVC_MOUNT_PATH
+            value: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
+          {{- end }}
+          - name: OWNER_ID
+            value: {{ .Values.appstore_generated_data.dataporten.owner }}
+        resources:
+          requests:
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}
+            nvidia.com/gpu: {{ .Values.resources.requests.gpu }}
+          limits:
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: {{ .Values.resources.limits.memory }}
+            nvidia.com/gpu: {{ .Values.resources.limits.gpu }}
+        ports:
+        - containerPort: 8080
+        securityContext:
+          runAsUser: {{ .Values.uid }}
+          runAsGroup: {{ .Values.gid }}
+        volumeMounts:
+        - name: passwd
+          mountPath: /etc/passwd
+          subPath: passwd
+        - name: group
+          mountPath: /etc/group
+          subPath: group
+        - name: shm
+          mountPath: /dev/shm
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
+          mountPath: /mnt/{{ .existingClaimName }}
+          mountPropagation: HostToContainer
+          {{ if ne .subPath "/" }}
+          subPath: {{ .subPath }}
+          {{ end }}
+        {{- end }}
+        - name: {{ (first .Values.persistentStorage).existingClaimName }}
+          mountPath: /home/{{ .Values.username }}
+          subPath: home/{{ .Values.username }}
+          mountPropagation: HostToContainer
+        {{- end -}}
