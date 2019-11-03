@@ -5,7 +5,10 @@ metadata:
   annotations:
     appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
   labels:
+    app: {{ template "fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
 spec:
   strategy:
     type: Recreate
@@ -18,9 +21,12 @@ spec:
     metadata:
       annotations:
         checksum/config: {{ include "oidcconfig" . | sha256sum }}
+        appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
       labels:
         app: {{ template "fullname" . }}
-        release: {{ .Release.Name }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
     spec:
       volumes:
         - name: oidcconfig

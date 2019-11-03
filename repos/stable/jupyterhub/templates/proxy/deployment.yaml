@@ -7,6 +7,7 @@ metadata:
     group: {{ .Release.Name }}-jupyterhub
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
+    app: {{ template "fullname" . }}
   annotations:
     appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
   name: {{ .Release.Name }}-proxy
@@ -21,12 +22,14 @@ spec:
       component: proxy
       group: {{ .Release.Name }}-jupyterhub
       heritage: {{ .Release.Service }}
+      app: {{ template "fullname" . }}
       release: {{ .Release.Name }}
       hub.jupyter.org/network-access-hub: "true"
       hub.jupyter.org/network-access-singleuser: "true"
   template:
     metadata:
       annotations:
+        appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
         checksum/hub-secret: {{ include (print $.Template.BasePath "/hub/secret.yaml") . | sha256sum }}
       labels:
         name: {{ .Release.Name }}-proxy
@@ -34,6 +37,7 @@ spec:
         group: {{ .Release.Name }}-jupyterhub
         release: {{ .Release.Name }}
         heritage: {{ .Release.Service }}
+        app: {{ template "fullname" . }}
         chart: {{ .Chart.Name }}-{{ .Chart.Version }}
         hub.jupyter.org/network-access-hub: "true"
         hub.jupyter.org/network-access-singleuser: "true"

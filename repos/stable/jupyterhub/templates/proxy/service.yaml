@@ -5,8 +5,11 @@ metadata:
   annotations:
     appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
   labels:
-    release: {{ .Release.Name }}
     group: {{ .Release.Name }}-jupyterhub
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
 spec:
   selector:
     name: {{ .Release.Name }}-proxy
@@ -21,9 +24,14 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ .Release.Name }}-proxy-http
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
   labels:
-    release: {{ .Release.Name }}
     group: {{ .Release.Name }}-jupyterhub
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
 spec:
   type: ClusterIP
   selector:

@@ -4,12 +4,18 @@ metadata:
   name: {{ .Release.Name }}-hub
   annotations:
     appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
 spec:
   strategy:
     type: Recreate
   replicas: 1
   selector:
     matchLabels:
+      app: {{ template "fullname" . }}
       name: {{ .Release.Name }}-hub
       group: {{ .Release.Name }}-jupyterhub
       component: hub
@@ -18,15 +24,18 @@ spec:
   template:
     metadata:
       labels:
+        app: {{ template "fullname" . }}
         name: {{ .Release.Name }}-hub
         group: {{ .Release.Name }}-jupyterhub
         component: hub
         release: {{ .Release.Name }}
         heritage: {{ .Release.Service }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
       annotations:
         # This lets us autorestart when the configmap changes!
         checksum/config-map: {{ include (print $.Template.BasePath "/hub/configmap.yaml") . | sha256sum }}
         checksum/secret: {{ include (print $.Template.BasePath "/hub/secret.yaml") . | sha256sum }}
+        appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
     spec:
       affinity:
         podAffinity:
@@ -193,6 +202,8 @@ metadata:
     heritage: {{.Release.Service | quote }}
     release: {{.Release.Name | quote }}
     chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
   annotations:
     appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
     "helm.sh/hook": post-delete
@@ -206,6 +217,7 @@ spec:
         heritage: {{.Release.Service | quote }}
         release: {{.Release.Name | quote }}
         chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+        app: {{ template "fullname" . }}
     spec:
       volumes:
       - name: {{ (first .Values.persistentStorage).existingClaimName }}
@@ -262,12 +274,16 @@ spec:
         app: {{ template "fullname" . }}-minio
         group: {{ .Release.Name }}-jupyterhub
         release: {{ .Release.Name }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
   template:
     metadata:
+      annotations:
+        appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
       labels:
         group: {{ .Release.Name }}-jupyterhub
         app: {{ template "fullname" . }}-minio
         release: {{ .Release.Name }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
     spec:
       volumes:
         - name: passwd
@@ -387,7 +403,10 @@ metadata:
   annotations:
     appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
   labels:
+    app: {{ template "fullname" . }}-ipyworkers
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
 spec:
   strategy:
     type: Recreate
@@ -399,10 +418,14 @@ spec:
         release: {{ .Release.Name }}
   template:
     metadata:
+      annotations:
+        appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
       labels:
         group: {{ .Release.Name }}-jupyterhub
         app: {{ template "fullname" . }}-ipyworkers
-        release: {{ .Release.Name }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
     spec:
       volumes:
       - name: ipyparallel-config
@@ -469,7 +492,10 @@ metadata:
   annotations:
     appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
   labels:
+    app: {{ template "fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
 spec:
   strategy:
     type: Recreate
@@ -481,10 +507,14 @@ spec:
         release: {{ .Release.Name }}
   template:
     metadata:
+      annotations:
+        appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
       labels:
         group: {{ .Release.Name }}-jupyterhub
         app: {{ template "fullname" . }}-ipycontroller
         release: {{ .Release.Name }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+        heritage: "{{ .Release.Service }}"
     spec:
       securityContext:
         runAsNonRoot: true
