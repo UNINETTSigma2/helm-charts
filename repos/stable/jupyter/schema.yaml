@@ -1,0 +1,159 @@
+type: object
+properties:
+  advanced:
+    type: object
+    properties:
+      dockerImage:
+        type: string
+        examples:
+        - quay.io/uninett/jupyter-spark:20190815-ea0ec80
+      env:
+        type: object
+        properties:
+          jupyterLab:
+            type: boolean
+            description: "Whether or not to enable the JupyterLab frontend."
+            examples:
+            - false
+          sparkMasterUrl:
+            type: string
+            description: "The Spark master URL to use when connecting to Spark clusters."
+            examples:
+            - local[*]
+      githubToken:
+        type: string
+        description: "The oauth token to pass to the Jupyter GitHub integration."
+        examples:
+        - ""
+  appstore_generated_data:
+    type: object
+    properties:
+      appstore_meta_data:
+        type: object
+        properties:
+          contact_email:
+            type: string
+            examples:
+            - example@uninett.no
+      dataporten:
+        type: object
+        properties:
+          authorized_groups:
+            type: array
+            items:
+              type: string
+              examples:
+              - ""
+          client_secret:
+            type: string
+            examples:
+            - 0000-0000
+          id:
+            type: string
+            examples:
+            - 0000-abc
+          owner:
+            type: string
+            examples:
+            - 0000-1234
+          scopes:
+            type: array
+            items:
+              type: string
+              examples:
+              - ""
+  authGroupProviders:
+    type: array
+    items:
+      type: object
+      properties:
+        scope:
+          type: string
+          examples:
+          - groups
+        url:
+          type: string
+          examples:
+          - https://groups-api.dataporten.no/groups/me/groups
+  gid:
+    type: integer
+    examples:
+    - 999
+  ingress:
+    type: object
+    properties:
+      host:
+        type: string
+        examples:
+        - local-chart.example.com
+  persistentStorage:
+    type: array
+    items:
+      type: object
+      properties:
+        existingClaim:
+          type: string
+          examples:
+          - ""
+        existingClaimName:
+          type: string
+          examples:
+          - example-name
+        subPath:
+          type: string
+          examples:
+          - /
+  resources:
+    type: object
+    properties:
+      limits:
+        type: object
+        properties:
+          cpu:
+            type: integer
+            examples:
+            - 2
+          gpu:
+            type: integer
+            examples:
+            - 0
+          memory:
+            type: string
+            examples:
+            - 1G
+      requests:
+        type: object
+        properties:
+          cpu:
+            type: integer
+            examples:
+            - 1
+          gpu:
+            type: integer
+            examples:
+            - 0
+          memory:
+            type: string
+            examples:
+            - 1G
+  supplementalGroups:
+    type: array
+    items:
+      type: object
+      properties:
+        gid:
+          type: string
+          examples:
+          - ""
+        name:
+          type: string
+          examples:
+          - ""
+  uid:
+    type: integer
+    examples:
+    - 999
+  username:
+    type: string
+    examples:
+    - notebook

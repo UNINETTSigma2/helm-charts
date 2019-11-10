@@ -52,19 +52,19 @@ supplementalGroups:
   - name: ""
     gid: ""
 advanced:
-  killIdlePods:
-    enabled: true
-    timeout: 3600
-    concurrency: 10
-  notebook:
-    spawnLimit: 100
   debug: false
   jupyterLab: true
   userHomeAddStorageSubPath: true
   userHomeSubPath: "dataporten-home"
+  startTimeout: 1200
+  notebook:
+    spawnLimit: 100
   additionalAdmin:
     - ""
-  startTimeout: 1200
+  killIdlePods:
+    enabled: true
+    timeout: 3600
+    concurrency: 10
   ipyparallel:
     enabled: false
     workers: 2

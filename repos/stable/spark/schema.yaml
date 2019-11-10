@@ -1,0 +1,168 @@
+type: object
+properties:
+  advanced:
+    type: object
+    properties:
+      dockerImage:
+        type: string
+        examples:
+        - quay.io/uninett/jupyter-spark:20190527-1bc373e
+      master:
+        type: object
+        properties:
+          resources:
+            type: object
+            properties:
+              limits:
+                type: object
+                properties:
+                  cpu:
+                    type: integer
+                    examples:
+                    - 2
+                  memory:
+                    type: string
+                    examples:
+                    - 4G
+              requests:
+                type: object
+                properties:
+                  cpu:
+                    type: integer
+                    examples:
+                    - 2
+                  memory:
+                    type: string
+                    examples:
+                    - 4G
+      workers:
+        type: object
+        properties:
+          replicas:
+            type: integer
+            examples:
+            - 1
+          resources:
+            type: object
+            properties:
+              limits:
+                type: object
+                properties:
+                  cpu:
+                    type: integer
+                    examples:
+                    - 4
+                  memory:
+                    type: string
+                    examples:
+                    - 4G
+              requests:
+                type: object
+                properties:
+                  cpu:
+                    type: integer
+                    examples:
+                    - 2
+                  memory:
+                    type: string
+                    examples:
+                    - 4G
+  appstore_generated_data:
+    type: object
+    properties:
+      appstore_meta_data:
+        type: object
+        properties:
+          contact_email:
+            type: string
+            examples:
+            - example@uninett.no
+      dataporten:
+        type: object
+        properties:
+          authorized_groups:
+            type: array
+            items:
+              type: string
+              examples:
+              - ""
+          client_secret:
+            type: string
+            examples:
+            - "0000"
+          id:
+            type: string
+            examples:
+            - "0000"
+          owner:
+            type: string
+            examples:
+            - 0000-1234
+          scopes:
+            type: array
+            items:
+              type: string
+              examples:
+              - ""
+  authGroupProviders:
+    type: array
+    items:
+      type: object
+      properties:
+        scope:
+          type: string
+          examples:
+          - groups
+        url:
+          type: string
+          examples:
+          - https://groups-api.dataporten.no/groups/me/groups
+  gid:
+    type: integer
+    examples:
+    - 999
+  ingress:
+    type: object
+    properties:
+      host:
+        type: string
+        examples:
+        - host.example.com
+  persistentStorage:
+    type: array
+    items:
+      type: object
+      properties:
+        existingClaim:
+          type: string
+          examples:
+          - ""
+        existingClaimName:
+          type: string
+          examples:
+          - example-name
+        subPath:
+          type: string
+          examples:
+          - /
+  supplementalGroups:
+    type: array
+    items:
+      type: object
+      properties:
+        gid:
+          type: string
+          examples:
+          - ""
+        name:
+          type: string
+          examples:
+          - ""
+  uid:
+    type: integer
+    examples:
+    - 999
+  username:
+    type: string
+    examples:
+    - notebook

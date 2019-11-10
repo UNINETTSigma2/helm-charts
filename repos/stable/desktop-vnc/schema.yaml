@@ -1,0 +1,141 @@
+type: object
+properties:
+  advanced:
+    type: object
+    properties:
+      dockerImage:
+        type: string
+        examples:
+        - quay.io/uninett/desktop-vnc:20190814-ee92d37
+  appstore_generated_data:
+    type: object
+    properties:
+      appstore_meta_data:
+        type: object
+        properties:
+          contact_email:
+            type: string
+            examples:
+            - example@uninett.no
+      dataporten:
+        type: object
+        properties:
+          authorized_groups:
+            type: array
+            items:
+              type: string
+              examples:
+              - ""
+          client_secret:
+            type: string
+            examples:
+            - 0000-0000
+          id:
+            type: string
+            examples:
+            - 0000-abc
+          owner:
+            type: string
+            examples:
+            - 0000-1234
+          scopes:
+            type: array
+            items:
+              type: string
+              examples:
+              - ""
+  authGroupProviders:
+    type: array
+    items:
+      type: object
+      properties:
+        scope:
+          type: string
+          examples:
+          - groups
+        url:
+          type: string
+          examples:
+          - https://groups-api.dataporten.no/groups/me/groups
+  gid:
+    type: integer
+    examples:
+    - 999
+  ingress:
+    type: object
+    properties:
+      host:
+        type: string
+        examples:
+        - local-chart.example.com
+  persistentStorage:
+    type: array
+    items:
+      type: object
+      properties:
+        existingClaim:
+          type: string
+          examples:
+          - ""
+        existingClaimName:
+          type: string
+          examples:
+          - example-name
+        subPath:
+          type: string
+          examples:
+          - /
+  resources:
+    type: object
+    properties:
+      limits:
+        type: object
+        properties:
+          cpu:
+            type: string
+            examples:
+            - 300m
+          gpu:
+            type: integer
+            examples:
+            - 0
+          memory:
+            type: string
+            examples:
+            - 1G
+      requests:
+        type: object
+        properties:
+          cpu:
+            type: string
+            examples:
+            - 100m
+          gpu:
+            type: integer
+            examples:
+            - 0
+          memory:
+            type: string
+            examples:
+            - 512M
+  supplementalGroups:
+    type: array
+    items:
+      type: object
+      properties:
+        gid:
+          type: string
+          examples:
+          - ""
+        name:
+          type: string
+          examples:
+          - ""
+  uid:
+    type: integer
+    examples:
+    - 999
+  username:
+    type: string
+    examples:
+    - vncuser
