@@ -89,6 +89,22 @@ c.NotebookApp.allow_remote_access = True
 c.NotebookApp.token = ''
 c.NotebookApp.password = ''
 
+c.ServerProxy.servers = { 
+  'code-server': {
+    'command': [
+      'code-server',
+        '--auth=none',
+        '--disable-telemetry',
+        '--port={port}'
+    ],  
+    'timeout': 20, 
+    'launcher_entry': {
+      'title': 'VS Code IDE'
+    }
+  }
+}
+
+
 {{- end -}}
 
 # Create /etc/passwd file to contain UID of users we add
