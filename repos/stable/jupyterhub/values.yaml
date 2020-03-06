@@ -56,7 +56,7 @@ advanced:
   jupyterLab: true
   userHomeAddStorageSubPath: true
   userHomeSubPath: "dataporten-home"
-  startTimeout: 1200
+  startTimeout: 300
   notebook:
     spawnLimit: 100
   additionalAdmin:
