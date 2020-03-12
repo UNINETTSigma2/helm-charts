@@ -49,6 +49,7 @@ data:
       defaultUrl: "/lab"
     {{- end }}
       extraEnv:
+        RELEASE_NAME: "{{ .Release.Name }}"
         JUPYTER_HUB: "1"
         PVC_MOUNT_PATH: /mnt/data
     {{- if .Values.advanced.jupyterLab }}
