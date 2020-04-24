@@ -34,7 +34,7 @@ advanced:
   env:
     sparkMasterUrl: "local[*]"
     jupyterLab: false
-  dockerImage: quay.io/uninett/jupyter-spark:20191129-11a74c2
+  dockerImage: quay.io/uninett/jupyter-spark:20200420-1131dd2
   githubToken: ""
 authGroupProviders:
   - url: "https://groups-api.dataporten.no/groups/me/groups"
