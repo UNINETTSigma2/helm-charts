@@ -32,7 +32,7 @@ spec:
       serviceAccountName: {{.Release.Name}}-pod-cleaner
       containers:
       - name: pod-clean-job
-        image: "gurvin/kubectl:1.10.5"
+        image: "bitnami/kubectl:1.15.3"
         imagePullPolicy: IfNotPresent
         env:
         - name: RELEASE
