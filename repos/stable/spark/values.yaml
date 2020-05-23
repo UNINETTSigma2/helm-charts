@@ -4,19 +4,19 @@ advanced:
     resources:
       requests:
           cpu: 2
-          memory: 4G
+          memory: 2G
       limits:
           cpu: 4
-          memory: 4G
+          memory: 2G
 
   master:
     resources:
       requests:
           cpu: 2
-          memory: 4G
+          memory: 2G
       limits:
-          cpu: 2
-          memory: 4G
+          cpu: 4
+          memory: 2G
   dockerImage: quay.io/uninett/jupyter-spark:20200420-1131dd2
 
 uid: 999

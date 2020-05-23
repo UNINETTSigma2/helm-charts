@@ -2,11 +2,11 @@ ingress:
   host: "local-chart.example.com"
 resources:
   requests:
-    cpu: 200m
-    memory: 200M
+    cpu: 2
+    memory: 2G
   limits:
-    cpu: 400m
-    memory: 400M
+    cpu: 4
+    memory: 2G
 uid: 999
 gid: 999
 username: rstudio
