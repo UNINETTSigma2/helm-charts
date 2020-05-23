@@ -17,7 +17,7 @@ properties:
                 type: object
                 properties:
                   cpu:
-                    type: integer
+                    type: string
                     examples:
                     - 2
                   memory:
@@ -28,7 +28,7 @@ properties:
                 type: object
                 properties:
                   cpu:
-                    type: integer
+                    type: string
                     examples:
                     - 2
                   memory:
@@ -49,7 +49,7 @@ properties:
                 type: object
                 properties:
                   cpu:
-                    type: integer
+                    type: string
                     examples:
                     - 4
                   memory:
@@ -60,7 +60,7 @@ properties:
                 type: object
                 properties:
                   cpu:
-                    type: integer
+                    type: string
                     examples:
                     - 2
                   memory:
