@@ -2,11 +2,11 @@ ingress:
   host: "local-chart.example.com"
 resources:
   requests:
-    cpu: 2
+    cpu: "2"
     memory: 2G
     gpu: 0
   limits:
-    cpu: 4
+    cpu: "4"
     memory: 2G
     gpu: 0
 persistentStorage:

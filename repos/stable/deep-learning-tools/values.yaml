@@ -2,11 +2,11 @@ ingress:
   host: "example.localhost.com"
 resources:
   requests:
-    cpu: 4
+    cpu: "4"
     memory: 4Gi
     gpu: 1
   limits:
-    cpu: 8
+    cpu: "8"
     memory: 4Gi
     gpu: 1
 persistentStorage:
