@@ -996,9 +996,9 @@ entries:
     version: 0.8.10
   jupyterhub:
   - apiVersion: v1
-    created: 2020-05-28T15:54:35.286502074+02:00
+    created: 2020-06-02T19:42:03.406798623+02:00
     description: Multi-user Jupyter installation with Dataporten integration
-    digest: 03b500c7a200b079cdfcdc14c7ec02c51182805010b15f96134edb9e7c86da17
+    digest: 08e9dd59d36c75a6d56431b6b08d4a6e91c023436761a53b486dd578e64aa249
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
     keywords:
     - Jupyter notebook server
