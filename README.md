@@ -12,6 +12,8 @@ To add the stable repo to a local helm client, run:
 helm repo add researchlab https://uninett.github.io/helm-charts/repos/stable
 ```
 
+The primary Docker files used in this repo is hosted in the following [repo](https://github.com/Uninett/helm-charts-dockerfiles), which uses [quay.io/uninett](https://quay.io/organization/uninett) to host the actual images.
+
 ### Documentation
 - [Wiki](https://github.com/Uninett/helm-charts/wiki/)
 - [Adding a new package](https://github.com/Uninett/helm-charts/wiki/Creating-a-new-package)
