@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: NetworkPolicy
+metadata:
+  name: aiida-postgres-test
+  namespace: scratch
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: scratch
+    ports:
+    - protocol: TCP
+  podSelector:
+    matchLabels:
+      app: aiida-postgres
+  policyTypes:
+  - Ingress

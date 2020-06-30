@@ -1,7 +1,7 @@
 apiVersion: v1
 description: Jupyter notebook with Dataporten integration
 name: jupyter
-version: 0.10.1
+version: 0.10.10
 maintainers:
 - name: Uninett AS
   email: system@uninett.no
@@ -11,3 +11,4 @@ keywords:
   - Apache Spark
   - Scala
   - R
+  - VS code

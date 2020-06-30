@@ -1,0 +1,225 @@
+---
+# Source: jupyter/templates/secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: navn-her
+  annotations:
+    appstore.uninett.no/contact_email: example@uninett.no
+  labels:
+    app: navn-her
+type: Opaque
+data:
+  dataporten_client_id: MDAwMC1hYmM=
+  dataporten_client_secret: MDAwMC0wMDAw
+
+---
+# Source: jupyter/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: navn-her
+  annotations:
+    appstore.uninett.no/contact_email: example@uninett.no
+  labels:
+    app: navn-her
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+    name: navn-her-service
+  selector:
+    app: navn-her
+
+---
+# Source: jupyter/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: navn-her
+  labels:
+    app: navn-her
+  annotations:
+    appstore.uninett.no/contact_email: example@uninett.no
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+        app: navn-her
+        release: RELEASE-NAME
+  template:
+    metadata:
+      annotations:
+        checksum/config: fae80a233475915e568c72cda2ecf3226eac26c9683d5c8fe58b052497ea4c55
+        appstore.uninett.no/contact_email: example@uninett.no
+      labels:
+        app: navn-her
+    spec:
+      volumes:
+        - name: oidcconfig
+          secret:
+            secretName: navn-her-oidcconfig
+      hostname: navn-her
+      securityContext:
+        runAsNonRoot: true
+        fsGroup: 999
+        
+      containers:
+      - name: auth-proxy
+        image: quay.io/uninett/goidc-proxy:v1.1.3
+        imagePullPolicy: Always
+        env:
+          - name: DATAPORTEN_CLIENTID
+            valueFrom:
+              secretKeyRef:
+                name: navn-her
+                key: dataporten_client_id
+          - name: DATAPORTEN_CLIENTSECRET
+            valueFrom:
+              secretKeyRef:
+                name: navn-her
+                key: dataporten_client_secret
+        ports:
+          - containerPort: 8080
+        securityContext:
+          runAsUser: 65534
+          readOnlyRootFilesystem: true
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+        volumeMounts:
+          - name: oidcconfig
+            mountPath: /conf
+        workingDir: /conf
+      - name: jupyter
+        image: quay.io/uninett/jupyter-spark:20191129-11a74c2
+        env:
+          
+          - name: TZ
+            value: Europe/Oslo
+          - name: SPARK_MASTER_SERVICE
+            value: local[*]
+          - name: SPARK_OPTS
+            value: --master=local[*]
+          - name: SPARK_DRIVER_MEMORY   # Need to set these values according to allocated resources
+            value: 1g
+          - name: SPARK_DRIVER_CORES
+            value: '1'
+          - name: MEM_LIMIT
+            value: 1G
+          - name: OWNER_ID
+            value: 0000-1234
+        resources:
+          requests:
+            cpu: 1
+            memory: 1G
+            nvidia.com/gpu: 0
+          limits:
+            cpu: 2
+            memory: 1G
+            nvidia.com/gpu: 0
+        ports:
+        - containerPort: 8888
+        securityContext:
+          runAsUser: 999
+          runAsGroup: 999
+---
+# Source: jupyter/templates/ingress.yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: navn-her
+  labels:
+    app: navn-her
+  annotations:
+    appstore.uninett.no/contact_email: example@uninett.no
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "30"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+spec:
+  tls:
+    - secretName: wildcard-tls
+      hosts:
+         - local-chart.example.com
+  rules:
+    - host: local-chart.example.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: navn-her
+              servicePort: 80
+
+---
+# Source: jupyter/templates/network-policy.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: navn-her
+  annotations:
+    appstore.uninett.no/contact_email: example@uninett.no
+  labels:
+    app: navn-her
+spec:
+  podSelector:
+    matchLabels:
+      app: navn-her
+  ingress:
+    - from:
+      - namespaceSelector:
+          matchLabels:
+            name: kube-ingress
+      ports:
+        - protocol: TCP
+          port: 8080
+
+---
+# kubectl create secret generic navn-her-oidcconfig --from-file=./goidc.json
+# Source: goidc.json
+{
+  "proxy": {
+    "target": "http://localhost:8888"
+  },
+  "engine": {
+    "client_id": "0000-abc",
+    "client_secret": "0000-0000",
+    "issuer_url": "https://auth.dataporten.no",
+    "redirect_url": "https://local-chart.example.com/oauth2/callback",
+    "scopes": "",
+    "signkey": "9xYWnQ9YnEb7CvxhRpa3Qk0A7oNNr6SuqT6WPqEYo6pnWzYAyCcB6W6h9fSi",
+    "token_type": "",
+    "jwt_token_issuer": "",
+    "groups_endpoint": "https://groups-api.dataporten.no/groups/me/groups",
+    "authorized_principals": "",
+    "xhr_endpoints": "",
+    "twofactor": {
+      "all": false,
+      "principals": "",
+      "acr_values": "",
+      "backend": ""
+    },
+    "logging": {
+      "level": "info"
+    }
+  },
+  "server": {
+    "port": 8080,
+    "health_port": 1337,
+    "cert": "cert.pem",
+    "key": "key.pem",
+    "readtimeout": 10,
+    "writetimeout": 20,
+    "idletimeout": 120,
+    "ssl": false,
+    "secure_cookie": false
+  }
+}
+

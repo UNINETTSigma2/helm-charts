@@ -2,15 +2,15 @@ ingress:
   host: "local-chart.example.com"
 resources:
   requests:
-    cpu: 200m
-    memory: 200M
+    cpu: "2"
+    memory: 2G
   limits:
-    cpu: 400m
-    memory: 400M
+    cpu: "4"
+    memory: 2G
 persistentStorage:
-  - existingClaim: ""
-    existingClaimName: "example-name"
-    subPath: "/"
+  existingClaim: ""
+  existingClaimName: "example-name"
+  subPath: "/"
 uid: 999
 gid: 999
 username: minio
@@ -30,3 +30,4 @@ appstore_generated_data:
 advanced:
   accessKey: "accesskeyexample"
   secretKey: "secretkeyexample"
+  dockerImage: quay.io/uninett/minio:20200518-40c49d0

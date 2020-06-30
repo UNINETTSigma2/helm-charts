@@ -6,6 +6,7 @@
     "pkg-cuda-version": "10.0.130",
     "pkg-cudnn-version": "7.5.0.56",
     "pkg-spark-version": "2.4.0",
-    "pkg-jupyter-notebook-version": "5.7.x"
+    "pkg-jupyter-notebook-version": "5.7.x",
+    "pkg-vs-code-version": "2.1692-vsc1.39.2"
   }
 }

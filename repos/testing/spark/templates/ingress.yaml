@@ -9,6 +9,10 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
   labels:
     group: {{ template "fullname" . }}
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
 spec:
   tls:
     - hosts:

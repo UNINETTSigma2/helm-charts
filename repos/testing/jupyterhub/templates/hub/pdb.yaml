@@ -9,6 +9,7 @@ metadata:
     component: hub
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
+    app: {{ template "fullname" . }}
 spec:
   minAvailable: 1
   selector:

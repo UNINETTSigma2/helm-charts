@@ -7,6 +7,7 @@ metadata:
     release: {{.Release.Name | quote }}
     chart: "{{.Chart.Name}}-{{.Chart.Version}}"
     group: {{ .Release.Name }}-jupyterhub
+    app: {{ template "fullname" . }}
   annotations:
     appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
     # This is what defines this resource as a hook. Without this line, the
@@ -18,17 +19,20 @@ spec:
   template:
     metadata:
       name: "{{.Release.Name}}-user-pod"
+      annotations:
+        appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
       labels:
         heritage: {{.Release.Service | quote }}
         release: {{.Release.Name | quote }}
         chart: "{{.Chart.Name}}-{{.Chart.Version}}"
         group: {{ .Release.Name }}-jupyterhub
+        app: {{ template "fullname" . }}
     spec:
       restartPolicy: Never
       serviceAccountName: {{.Release.Name}}-pod-cleaner
       containers:
       - name: pod-clean-job
-        image: "gurvin/kubectl:1.10.5"
+        image: "bitnami/kubectl:1.15.3"
         imagePullPolicy: IfNotPresent
         env:
         - name: RELEASE

@@ -4,6 +4,11 @@ metadata:
   name: {{ template "fullname" . }}-master
   annotations:
     appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
 spec:
   strategy:
     type: Recreate
@@ -16,11 +21,14 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ template "fullname" . }}-master
         group: {{ template "fullname" . }}
-        release: {{ .Release.Name }}
+        app: {{ template "fullname" . }}-master
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
       annotations:
         checksum/config: {{ include "oidcconfig" . | sha256sum }}
+        appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
     spec:
       hostname: {{ template "fullname" . }}-master
       securityContext:

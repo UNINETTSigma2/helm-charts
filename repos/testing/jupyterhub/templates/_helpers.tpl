@@ -19,6 +19,52 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
     {{- end }}
 {{- end -}}
 
+{{- define "ipcontroller_config" -}}
+{
+  "ssh": "",
+  "interface": "tcp://*",
+  "registration": 9001,
+  "control": 9002,
+  "mux": 9003,
+  "hb_ping": 9004,
+  "hb_pong": 9005,
+  "task": 9006,
+  "iopub": 9007,
+  "key": "{{ .randomKey }}",
+  "location": "{{  .Release.Name }}-ipycontroller",
+  "pack": "json",
+  "unpack": "json",
+  "signature_scheme": "hmac-sha256"
+}
+{{- end -}}
+
+{{- define "ipcontroller_client_config" -}}
+{
+  "ssh": "",
+  "interface": "tcp://*",
+  "registration": 9001,
+  "control": 10002,
+  "mux": 10003,
+  "task": 10004,
+  "iopub": 10005,
+  "task_scheme": "leastload",
+  "notification": 10006,
+  "key": "{{ .randomKey }}",
+  "location": "{{  .Release.Name }}-ipycontroller",
+  "pack": "json",
+  "unpack": "json",
+  "signature_scheme": "hmac-sha256"
+}
+{{- end -}}
+
+{{- define "subPath" -}}
+  {{- if eq .subPath "/" }}
+    {{- printf "" }}
+  {{- else }}
+    {{- printf "%s/" .subPath }}
+  {{- end }}
+{{- end -}}
+
 {{- define "supplemental_groups_list" -}}
     {{- $n_groups := sub (len .Values.supplementalGroups) 1 }}
     {{- printf "[" }}

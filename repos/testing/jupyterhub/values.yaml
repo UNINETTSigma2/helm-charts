@@ -52,22 +52,51 @@ supplementalGroups:
   - name: ""
     gid: ""
 advanced:
+  debug: false
+  jupyterLab: true
+  userHomeAddStorageSubPath: true
+  userHomeSubPath: "dataporten-home"
+  startTimeout: 300
+  notebook:
+    spawnLimit: 100
+  additionalAdmin:
+    - ""
   killIdlePods:
     enabled: true
     timeout: 3600
     concurrency: 10
-  notebook:
-    spawnLimit: 100
-  debug: false
-  jupyterLab: false
-  additionalAdmin: ""
+  ipyparallel:
+    enabled: false
+    workers: 2
+    image: "quay.io/uninett/jupyterhub-singleuser:20200519-4d8716b"
+    resources:
+      requests:
+        cpu: "1"
+        memory: 1G
+        gpu: 0
+      limits:
+        cpu: "2"
+        memory: 1G
+        gpu: 0
+  vnc:
+    enabled: false
+    image: "quay.io/uninett/desktop-vnc:20200518-9fef810"
+    resources:
+      requests:
+        cpu: "1"
+        memory: 1G
+      limits:
+        cpu: "2"
+        memory: 1G
   sharedData:
     enabled: false
     subPath: "data"
     readOnly: true
+  minio:
+    enabled: false
     minioAccessKey: "accesskeyexample"
     minioSecretKey: "secretkeyexample"
-  userImage: quay.io/uninett/jupyterhub-singleuser:20190219-f246e90
+  userImage: quay.io/uninett/jupyterhub-singleuser:20200519-4d8716b
 appstore_generated_data:
   appstore_meta_data:
     contact_email: "example@uninett.no"

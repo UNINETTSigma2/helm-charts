@@ -3,7 +3,10 @@ kind: Deployment
 metadata:
   name: {{ template "fullname" . }}
   labels:
+    app: {{ template "fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
   annotations:
     appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
 spec:
@@ -18,9 +21,12 @@ spec:
     metadata:
       annotations:
         checksum/config: {{ include "oidcconfig" . | sha256sum }}
+        appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
       labels:
         app: {{ template "fullname" . }}
-        release: {{ .Release.Name }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
     spec:
       volumes:
         - name: oidcconfig
@@ -85,7 +91,7 @@ spec:
         {{- end }}
       containers:
       - name: auth-proxy
-        image: quay.io/uninett/goidc-proxy:v1.1.3
+        image: quay.io/uninett/goidc-proxy:v1.1.4
         imagePullPolicy: Always
         env:
           - name: DATAPORTEN_CLIENTID
@@ -149,7 +155,14 @@ spec:
           - name: OWNER_ID
             value: {{ .Values.appstore_generated_data.dataporten.owner }}
         resources:
-{{ toYaml .Values.resources | indent 10 }}
+          requests:
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}
+            nvidia.com/gpu: {{ .Values.resources.requests.gpu }}
+          limits:
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: {{ .Values.resources.limits.memory }}
+            nvidia.com/gpu: {{ .Values.resources.limits.gpu }}
         ports:
         - containerPort: 8888
         securityContext:

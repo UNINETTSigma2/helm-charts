@@ -3,7 +3,10 @@ kind: Deployment
 metadata:
   name: {{ template "fullname" . }}
   labels:
+    app: {{ template "fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
   annotations:
     appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
 spec:
@@ -18,9 +21,12 @@ spec:
     metadata:
       annotations:
         checksum/config: {{ include "oidcconfig" . | sha256sum }}
+        appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
       labels:
         app: {{ template "fullname" . }}
-        release: {{ .Release.Name }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
     spec:
       terminationGracePeriodSeconds: 5
       containers:
@@ -52,7 +58,7 @@ spec:
           name: oidcconfig
         workingDir: /conf
       - name: viz
-        image: quay.io/uninett/desktop-vnc:20190308-ab154b4
+        image: {{ .Values.advanced.dockerImage }}
         imagePullPolicy: Always
         args:
         - -w
@@ -95,10 +101,6 @@ spec:
             subPath: {{ .subPath }}
             {{ end }}
             {{- end }}
-          - name: {{ (first .Values.persistentStorage).existingClaimName }}
-            mountPath: /home/vncuser
-            subPath: home/vncuser
-            mountPropagation: HostToContainer
           {{- end }}
       volumes:
       - name: passwd
@@ -126,6 +128,7 @@ spec:
         persistentVolumeClaim:
           claimName: {{ .existingClaim }}
       {{- end }}
+      {{ end }}
       securityContext:
         runAsNonRoot: true
         runAsUser: {{ .Values.uid }}
@@ -138,21 +141,3 @@ spec:
           - {{ .gid }}
           {{- end }}
         {{- end }}
-      initContainers:
-      - name: busybox
-        image: busybox:1
-        securityContext:
-          runAsUser: {{ .Values.uid }}
-          runAsGroup: {{ .Values.gid }}
-        args:
-          - /bin/sh
-          - -c
-          - -x
-          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home/vncuser/.vnc && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home"
-        volumeMounts:
-        {{- range .Values.persistentStorage }}
-        - name: {{ .existingClaimName }}
-          mountPath: /mnt/{{ .existingClaimName }}
-          mountPropagation: HostToContainer
-        {{- end }}
-      {{ end }}

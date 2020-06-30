@@ -9,6 +9,8 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
     component: image-puller
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
   selector:
     matchLabels:
@@ -27,6 +29,8 @@ spec:
         release: {{ .Release.Name }}
         heritage: {{ .Release.Service }}
         component: image-puller
+        app: {{ template "fullname" . }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
     spec:
       terminationGracePeriodSeconds: 0
       automountServiceAccountToken: false

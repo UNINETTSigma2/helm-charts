@@ -4,12 +4,18 @@ metadata:
   name: {{ .Release.Name }}-hub
   annotations:
     appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
 spec:
   strategy:
     type: Recreate
   replicas: 1
   selector:
     matchLabels:
+      app: {{ template "fullname" . }}
       name: {{ .Release.Name }}-hub
       group: {{ .Release.Name }}-jupyterhub
       component: hub
@@ -18,15 +24,18 @@ spec:
   template:
     metadata:
       labels:
+        app: {{ template "fullname" . }}
         name: {{ .Release.Name }}-hub
         group: {{ .Release.Name }}-jupyterhub
         component: hub
         release: {{ .Release.Name }}
         heritage: {{ .Release.Service }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
       annotations:
         # This lets us autorestart when the configmap changes!
         checksum/config-map: {{ include (print $.Template.BasePath "/hub/configmap.yaml") . | sha256sum }}
         checksum/secret: {{ include (print $.Template.BasePath "/hub/secret.yaml") . | sha256sum }}
+        appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
     spec:
       affinity:
         podAffinity:
@@ -56,6 +65,9 @@ spec:
       - name: config
         configMap:
           name: {{ .Release.Name }}-hub-config
+          items:
+          - key: values.yaml
+            path: values.yaml
       - name: secret
         secret:
           secretName: {{ .Release.Name }}-hub-secret
@@ -75,12 +87,7 @@ spec:
       - name: {{ (first .Values.persistentStorage).existingClaimName }}
         persistentVolumeClaim:
           claimName: {{ (first .Values.persistentStorage).existingClaim }}
-      {{- end }}
       initContainers:
-      - name: init-myservice
-        image: busybox:1.28
-        command: ['sh', '-c', 'until nslookup {{ .Release.Name }}-proxy-api; do echo waiting for proxy; sleep 5; done;']
-      {{- if ne (first .Values.persistentStorage).existingClaim "" }}
       - name: busybox
         image: busybox:1
         securityContext:
@@ -90,7 +97,14 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-hub /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home"
+          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-hub && \
+            mkdir -p  /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-mlflow && \
+            mkdir -p  /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-tensorboard && \
+            mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home && \
+            chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-mlflow && \
+            chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ .Release.Name }}-tensorboard && \
+            chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools && \
+            chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home"
         volumeMounts:
         - name: {{ (first .Values.persistentStorage).existingClaimName }}
           mountPropagation: HostToContainer
@@ -98,7 +112,7 @@ spec:
       {{- end }}
       containers:
       - name: hub-container
-        image: quay.io/uninett/jupyterhub-server:20181008-1855e02
+        image: quay.io/uninett/jupyterhub-server:20200520-4fef605
         command:
           - jupyterhub
           - --config
@@ -108,9 +122,11 @@ spec:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
         volumeMounts:
-          - mountPath: /etc/jupyterhub/config/
+          - mountPath: /etc/jupyterhub/config/values.yaml
+            subPath: values.yaml
             name: config
-          - mountPath: /etc/jupyterhub/secret/
+          - mountPath: /etc/jupyterhub/secret/values.yaml
+            subPath: values.yaml
             name: secret
           - name: passwd
             mountPath: /etc/passwd
@@ -123,9 +139,6 @@ spec:
             mountPath: /srv/jupyterhub
             mountPropagation: HostToContainer
             subPath: .tools/{{ .Release.Name }}-hub
-            {{ if ne (first .Values.persistentStorage).subPath "/" }}
-            subPath: {{ (first .Values.persistentStorage).subPath }}
-            {{ end }}
           {{- end }}
         resources:
 {{ toYaml .Values.users.resources.selected | indent 12 }}
@@ -138,6 +151,10 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        - name: COOKIE_SECRET_FILE_PATH
+          value: /srv/jupyterhub/jupyterhub_cookie_secret
+        {{- end }}
         - name: OWNER_ID
           value: {{ .Values.appstore_generated_data.dataporten.owner }}
         - name: PROXY_PUBLIC_SERVICE_NAME
@@ -185,6 +202,8 @@ metadata:
     heritage: {{.Release.Service | quote }}
     release: {{.Release.Name | quote }}
     chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
   annotations:
     appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
     "helm.sh/hook": post-delete
@@ -198,6 +217,7 @@ spec:
         heritage: {{.Release.Service | quote }}
         release: {{.Release.Name | quote }}
         chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+        app: {{ template "fullname" . }}
     spec:
       volumes:
       - name: {{ (first .Values.persistentStorage).existingClaimName }}
@@ -225,7 +245,7 @@ spec:
         args:
           - -c
           - -x
-          - "rm -rf /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }} /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.minio.sys /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.minio"
+          - "rm -rf /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }} /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.minio.sys /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.minio || true"
         volumeMounts:
         - name: {{ (first .Values.persistentStorage).existingClaimName }}
           mountPath: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
@@ -235,7 +255,7 @@ spec:
           {{ end }}
 {{ end }}
 
-{{- if .Values.advanced.sharedData.enabled }}
+{{- if .Values.advanced.minio.enabled }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -254,12 +274,16 @@ spec:
         app: {{ template "fullname" . }}-minio
         group: {{ .Release.Name }}-jupyterhub
         release: {{ .Release.Name }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
   template:
     metadata:
+      annotations:
+        appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
       labels:
         group: {{ .Release.Name }}-jupyterhub
         app: {{ template "fullname" . }}-minio
         release: {{ .Release.Name }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
     spec:
       volumes:
         - name: passwd
@@ -368,4 +392,160 @@ spec:
           {{ end }}
         {{- end }}
         {{ end }}
+{{- end }}
+
+{{- if .Values.advanced.ipyparallel.enabled }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}-ipyworkers
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+  labels:
+    app: {{ template "fullname" . }}-ipyworkers
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  strategy:
+    type: Recreate
+  replicas: {{ .Values.advanced.ipyparallel.workers }}
+  selector:
+    matchLabels:
+        app: {{ template "fullname" . }}-ipyworkers
+        group: {{ .Release.Name }}-jupyterhub
+        release: {{ .Release.Name }}
+  template:
+    metadata:
+      annotations:
+        appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+      labels:
+        group: {{ .Release.Name }}-jupyterhub
+        app: {{ template "fullname" . }}-ipyworkers
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
+    spec:
+      volumes:
+      - name: ipyparallel-config
+        secret:
+          secretName: {{ .Release.Name }}-ipyparallel-config
+    {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+      {{- range .Values.persistentStorage }}
+      - name: {{ .existingClaimName }}
+        persistentVolumeClaim:
+          claimName: {{ .existingClaim }}
+      {{- end }}
+    {{- end }}
+      securityContext:
+        runAsNonRoot: true
+        fsGroup: 65534
+      containers:
+      - name: worker
+        command:
+          - /bin/sh
+          - -c
+          - -x
+          - 'mkdir -p /tmp/.ipython/profile_default/security && cp /tmp/ipcontroller-*.json /tmp/.ipython/profile_default/security/ && sleep 15 && /opt/conda/bin/ipengine --timeout=30 --ipython-dir=/tmp/.ipython --location={{ .Release.Name }}-ipycontroller --port=9001'
+        image: {{ .Values.advanced.ipyparallel.image }}
+        workingDir: /tmp
+        resources:
+          requests:
+            cpu: {{ .Values.advanced.ipyparallel.resources.requests.cpu }}
+            memory: {{ .Values.advanced.ipyparallel.resources.requests.memory }}
+            nvidia.com/gpu: {{ .Values.advanced.ipyparallel.resources.requests.gpu }}
+          limits:
+            cpu: {{ .Values.advanced.ipyparallel.resources.limits.cpu }}
+            memory: {{ .Values.advanced.ipyparallel.resources.limits.memory }}
+            nvidia.com/gpu: {{ .Values.advanced.ipyparallel.resources.limits.gpu }}
+        securityContext:
+          runAsUser: 65534
+          runAsGroup: 65534
+        volumeMounts:
+          - mountPath: /tmp/ipcontroller-engine.json
+            subPath: ipcontroller-engine.json
+            name: ipyparallel-config
+          - mountPath: /tmp/ipcontroller-client.json
+            subPath: ipcontroller-client.json
+            name: ipyparallel-config
+          {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+          - name: {{ (first .Values.persistentStorage).existingClaimName }}
+            mountPath: /home/
+            mountPropagation: HostToContainer
+            subPath: "{{ template "subPath" (first .Values.persistentStorage) }}{{ .Values.advanced.userHomeSubPath }}"
+          {{- range .Values.persistentStorage }}
+          - name: {{ .existingClaimName }}
+            mountPath: /mnt/{{ .existingClaimName }}
+            mountPropagation: HostToContainer
+            {{ if ne .subPath "/" }}
+            subPath: {{ .subPath }}
+            {{ end }}
+          {{- end }}
+          {{ end }}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}-ipycontroller
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+        app: {{ template "fullname" . }}-ipycontroller
+        group: {{ .Release.Name }}-jupyterhub
+        release: {{ .Release.Name }}
+  template:
+    metadata:
+      annotations:
+        appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+      labels:
+        group: {{ .Release.Name }}-jupyterhub
+        app: {{ template "fullname" . }}-ipycontroller
+        release: {{ .Release.Name }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+        heritage: "{{ .Release.Service }}"
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        fsGroup: 65534
+      volumes:
+      - name: ipyparallel-config
+        secret:
+          secretName: {{ .Release.Name }}-ipyparallel-config
+      containers:
+      - name: worker
+        volumeMounts:
+          - mountPath: /tmp/ipcontroller-engine.json
+            subPath: ipcontroller-engine.json
+            name: ipyparallel-config
+          - mountPath: /tmp/ipcontroller-client.json
+            subPath: ipcontroller-client.json
+            name: ipyparallel-config
+        command:
+          - /bin/sh
+          - -c
+          - -x
+          - "mkdir -p /tmp/.ipython/profile_default/security && chmod -R g+w /tmp/.ipython && cp /tmp/ipcontroller-*.json /tmp/.ipython/profile_default/security/ && /opt/conda/bin/ipcontroller --ipython-dir=/tmp/.ipython --reuse --ip=* --port 9001"
+        image: {{ .Values.advanced.ipyparallel.image }}
+        resources:
+          requests:
+            cpu: 500m
+            memory: 512M
+          limits:
+            cpu: "1"
+            memory: 512M
+        securityContext:
+          runAsUser: 65534
+          runAsGroup: 65534
 {{- end }}

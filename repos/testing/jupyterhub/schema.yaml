@@ -1,0 +1,390 @@
+type: object
+properties:
+  advanced:
+    type: object
+    properties:
+      additionalAdmin:
+        type: array
+        description: "The Dataporten IDs of users which should have Jupyterhub admin access. Example: aaaaaaaa-1111-2222-3333-44444bc55555"
+        items:
+          type: string
+          examples:
+          - ""
+      debug:
+        type: boolean
+        description: "Whether or not to enable more verbose logging."
+        examples:
+        - false
+      notebook:
+        type: object
+        properties:
+          spawnLimit:
+            description: "How many notebooks to at most spawn."
+            type: integer
+            examples:
+            - 100
+      ipyparallel:
+        type: object
+        description: "ipyparallel allows the user to distribute the execution of notebook cells to remote workers. Useful for sharing GPUs among users"
+        properties:
+          enabled:
+            type: boolean
+            examples:
+            - false
+          image:
+            type: string
+            description: "Which image to use when spawning the ipyparallel workers."
+            examples:
+            - quay.io/uninett/jupyterhub-singleuser:20191012-5691f5c
+          resources:
+            type: object
+            properties:
+              limits:
+                type: object
+                properties:
+                  cpu:
+                    type: string
+                    examples:
+                    - "2"
+                  gpu:
+                    type: integer
+                    examples:
+                    - 0
+                  memory:
+                    type: string
+                    examples:
+                    - 1G
+              requests:
+                type: object
+                properties:
+                  cpu:
+                    type: string
+                    examples:
+                    - "1"
+                  gpu:
+                    type: integer
+                    examples:
+                    - 0
+                  memory:
+                    type: string
+                    examples:
+                    - 1G
+          workers:
+            type: integer
+            examples:
+            - 2
+      jupyterLab:
+        type: boolean
+        description: "Whether or not to enable the JupyterLab frontend in Jupyter notebooks."
+        examples:
+        - true
+      killIdlePods:
+        description: "Stop user notebooks that have been idle for a specific amount of time."
+        type: object
+        properties:
+          concurrency:
+            description: "How many notebooks to at most kill at the same time."
+            type: integer
+            examples:
+            - 10
+          enabled:
+            type: boolean
+            examples:
+            - true
+          timeout:
+            description: "The idle timeout is the maximum time (in seconds) a server can be inactive before it will be culled. "
+            type: integer
+            examples:
+            - 3600
+      minio:
+        description: "Create an instance of minio, which can be used to share data"
+        type: object
+        properties:
+          enabled:
+            type: boolean
+            examples:
+            - false
+          minioAccessKey:
+            description: "The username to use when accessing minio."
+            type: string
+            examples:
+            - accesskeyexample
+          minioSecretKey:
+            description: "The password to use when accessing minio."
+            type: string
+            examples:
+            - secretkeyexample
+      sharedData:
+        description: "Make the selected storage available to all users"
+        type: object
+        properties:
+          enabled:
+            type: boolean
+            examples:
+            - false
+          readOnly:
+            type: boolean
+            examples:
+            - true
+          subPath:
+            type: string
+            description: "Which subpath within the storage to share"
+            examples:
+            - data
+      startTimeout:
+        description: "Timeout (in seconds) before giving up on starting of single-user server."
+        type: integer
+        examples:
+        - 1200
+      userHomeAddStorageSubPath:
+        description: "Whether or not to use the selected storage subfolder as a prefix in users home directory."
+        type: boolean
+        examples:
+        - true
+      userHomeSubPath:
+        description: "The subfolder to use when storing the users home directories."
+        type: string
+        examples:
+        - dataporten-home
+      userImage:
+        description: "Which docker image to use when spawning user notebooks."
+        type: string
+        examples:
+        - quay.io/uninett/jupyterhub-singleuser:20191012-5691f5c
+      vnc:
+        description: "Make a VNC server available to each user"
+        type: object
+        properties:
+          enabled:
+            type: boolean
+            examples:
+            - false
+          image:
+            type: string
+            description: "Which docker image to use when creating the VNC server."
+            examples:
+            - quay.io/uninett/desktop-vnc:20190921-c096454
+          resources:
+            type: object
+            properties:
+              limits:
+                type: object
+                properties:
+                  cpu:
+                    type: string
+                    examples:
+                    - "2"
+                  memory:
+                    type: string
+                    examples:
+                    - 1G
+              requests:
+                type: object
+                properties:
+                  cpu:
+                    type: string
+                    examples:
+                    - "1"
+                  memory:
+                    type: string
+                    examples:
+                    - 1G
+  appstore_generated_data:
+    type: object
+    properties:
+      appstore_meta_data:
+        type: object
+        properties:
+          contact_email:
+            type: string
+            examples:
+            - example@uninett.no
+      dataporten:
+        type: object
+        properties:
+          authorized_groups:
+            type: array
+            items:
+              type: string
+              examples:
+              - ""
+          client_secret:
+            type: string
+            examples:
+            - ""
+          id:
+            type: string
+            examples:
+            - ""
+          owner:
+            type: string
+            examples:
+            - 0000-1234
+  authGroupProviders:
+    type: array
+    items:
+      type: object
+      properties:
+        scope:
+          type: string
+          examples:
+          - groups
+        url:
+          type: string
+          examples:
+          - https://groups-api.dataporten.no/groups/me/groups
+  gid:
+    type: integer
+    examples:
+    - 999
+  ingress:
+    type: object
+    properties:
+      host:
+        type: string
+        examples:
+        - test.appstore-dep.ioudaas.no
+  persistentStorage:
+    type: array
+    items:
+      type: object
+      properties:
+        existingClaim:
+          type: string
+          examples:
+          - ""
+        existingClaimName:
+          type: string
+          examples:
+          - example-name
+        subPath:
+          type: string
+          examples:
+          - /
+  supplementalGroups:
+    type: array
+    items:
+      type: object
+      properties:
+        gid:
+          type: string
+          examples:
+          - ""
+        name:
+          type: string
+          examples:
+          - ""
+  uid:
+    type: integer
+    examples:
+    - 999
+  userInfoURL:
+    type: string
+    examples:
+    - https://auth.dataporten.no/openid/userinfo
+  userNotebookType:
+    type: object
+    properties:
+      resources:
+        type: object
+        properties:
+          approxUsers:
+            type: integer
+            examples:
+            - 5
+          limits:
+            type: object
+            properties:
+              cpu:
+                type: string
+                examples:
+                - "2"
+              gpu:
+                type: integer
+                examples:
+                - 0
+              memory:
+                type: string
+                examples:
+                - 1G
+          requests:
+            type: object
+            properties:
+              cpu:
+                type: string
+                examples:
+                - "1"
+              gpu:
+                type: integer
+                examples:
+                - 0
+              memory:
+                type: string
+                examples:
+                - 1G
+  username:
+    type: string
+    examples:
+    - hub
+  users:
+    type: object
+    properties:
+      resources:
+        type: object
+        properties:
+          options:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  examples:
+                  - < 200
+                limits:
+                  type: object
+                  properties:
+                    cpu:
+                      type: string
+                      examples:
+                      - "1"
+                    memory:
+                      type: string
+                      examples:
+                      - 1G
+                requests:
+                  type: object
+                  properties:
+                    cpu:
+                      type: string
+                      examples:
+                      - "0.5"
+                    memory:
+                      type: string
+                      examples:
+                      - 512M
+          selected:
+            type: object
+            properties:
+              limits:
+                type: object
+                properties:
+                  cpu:
+                    type: string
+                    examples:
+                    - "1"
+                  memory:
+                    type: string
+                    examples:
+                    - 1G
+              requests:
+                type: object
+                properties:
+                  cpu:
+                    type: string
+                    examples:
+                    - "0.5"
+                  memory:
+                    type: string
+                    examples:
+                    - 512M

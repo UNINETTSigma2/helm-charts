@@ -5,7 +5,10 @@ metadata:
   annotations:
     appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
   labels:
+    app: {{ template "fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
 spec:
   strategy:
     type: Recreate
@@ -16,9 +19,13 @@ spec:
         release: {{ .Release.Name }}
   template:
     metadata:
+      annotations:
+        appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
       labels:
         app: {{ template "fullname" . }}
-        release: {{ .Release.Name }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
     spec:
       volumes:
         - name: passwd
@@ -33,12 +40,12 @@ spec:
             items:
             - key: group
               path: group
-      {{- if ne (first .Values.persistentStorage).existingClaim "" }}
-        {{- range .Values.persistentStorage }}
-        - name: {{ .existingClaimName }}
+       {{ if ne .Values.persistentStorage.existingClaim "" }}
+        - name: {{ .Values.persistentStorage.existingClaimName }}
           persistentVolumeClaim:
-            claimName: {{ .existingClaim }}
-        {{- end }}
+            claimName: {{ .Values.persistentStorage.existingClaim }}
+       {{- end }}
+      {{- if ne .Values.persistentStorage.existingClaim "" }}
       initContainers:
       - name: busybox
         image: busybox:1
@@ -49,17 +56,14 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }} && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools"
+          - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }} && chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools"
         volumeMounts:
-        {{- range .Values.persistentStorage }}
-        - name: {{ .existingClaimName }}
-          mountPath: /mnt/{{ .existingClaimName }}
-          mountPropagation: HostToContainer
-          {{ if ne .subPath "/" }}
-          subPath: {{ .subPath }}
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          {{ if ne .Values.persistentStorage.subPath "/" }}
+          subPath: {{ .Values.persistentStorage.subPath }}
           mountPropagation: HostToContainer
           {{ end }}
-        {{- end }}
       {{- end }}
       securityContext:
         runAsNonRoot: true
@@ -86,9 +90,9 @@ spec:
               key: MINIO_SECRET_KEY
         - name: TZ
           value: Europe/Oslo
-        image: quay.io/uninett/minio:20180901-d5aa2f9
-        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
-        args: [ 'server', '--quiet', '--config-dir', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }}', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}' ]
+        image: {{ .Values.advanced.dockerImage }}
+        {{ if ne .Values.persistentStorage.existingClaim "" }}
+        args: [ 'server', '--quiet', '--config-dir', '/mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}', '/mnt/{{ .Values.persistentStorage.existingClaimName }}' ]
         {{ else }}
         args: [ 'server', '--quiet', '--config-dir', '/tmp/.minio', '/tmp' ]
         {{ end }}
@@ -112,19 +116,17 @@ spec:
         - name: group
           mountPath: /etc/group
           subPath: group
-        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
-        {{- range .Values.persistentStorage }}
-        - name: {{ .existingClaimName }}
-          mountPath: /mnt/{{ .existingClaimName }}
+        {{ if ne .Values.persistentStorage.existingClaim "" }}
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
           mountPropagation: HostToContainer
-          {{ if ne .subPath "/" }}
-          subPath: {{ .subPath }}
+          {{ if ne .Values.persistentStorage.subPath "/" }}
+          subPath: {{ .Values.persistentStorage.subPath }}
           {{ end }}
-        {{- end }}
         {{ end }}
 
 
-{{- if ne (first .Values.persistentStorage).existingClaim "" }}
+{{- if ne .Values.persistentStorage.existingClaim "" }}
 ---
 apiVersion: batch/v1
 kind: Job
@@ -149,9 +151,9 @@ spec:
         chart: "{{.Chart.Name}}-{{.Chart.Version}}"
     spec:
       volumes:
-      - name: {{ (first .Values.persistentStorage).existingClaimName }}
+      - name: {{ .Values.persistentStorage.existingClaimName }}
         persistentVolumeClaim:
-          claimName: {{ (first .Values.persistentStorage).existingClaim }}
+          claimName: {{ .Values.persistentStorage.existingClaim }}
       restartPolicy: Never
       securityContext:
         runAsNonRoot: true
@@ -174,12 +176,12 @@ spec:
         args:
           - -c
           - -x
-          - "rm -rf /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }} /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.minio.sys /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.minio"
+          - "rm -rf /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }} /mnt/{{ .Values.persistentStorage.existingClaimName }}/.minio.sys /mnt/{{ .Values.persistentStorage.existingClaimName }}/.minio"
         volumeMounts:
-        - name: {{ (first .Values.persistentStorage).existingClaimName }}
-          mountPath: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
           mountPropagation: HostToContainer
-          {{ if ne (first .Values.persistentStorage).subPath "/" }}
-          subPath: {{ (first .Values.persistentStorage).subPath }}
+          {{ if ne .Values.persistentStorage.subPath "/" }}
+          subPath: {{ .Values.persistentStorage.subPath }}
           {{ end }}
 {{ end }}

@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aiida-postgres-test-conf
+  namespace: scratch
+  labels:
+    app: aiida-postgres
+data:
+  POSTGRES_DB: aiida
+  POSTGRES_USER: aiida
+  POSTGRES_PASSWORD: aiida_db_passwd
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aiida-postgres-test
+  namespace: scratch
+  labels:
+    app: aiida-postgres
+spec:
+  ports:
+  - port: 5432
+    name: postgres
+  clusterIP: None
+  selector:
+    app: aiida-postgres
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aiida-postgres-test
+  namespace: scratch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aiida-postgres
+  template:
+    metadata:
+      labels:
+        app: aiida-postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:latest
+        envFrom:
+          - configMapRef:
+              name: aiida-postgres-test-conf
+        ports:
+        - containerPort: 5432
+          name: postgredb

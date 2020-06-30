@@ -2,12 +2,12 @@ ingress:
   host: "local-chart.example.com"
 resources:
   requests:
-    cpu: 100m
-    memory: 512M
+    cpu: "2"
+    memory: 2G
     gpu: 0
   limits:
-    cpu: 300m
-    memory: 1G
+    cpu: "4"
+    memory: 2G
     gpu: 0
 persistentStorage:
   - existingClaim: ""
@@ -33,3 +33,5 @@ supplementalGroups:
 authGroupProviders:
   - url: "https://groups-api.dataporten.no/groups/me/groups"
     scope: groups
+advanced:
+  dockerImage: quay.io/uninett/desktop-vnc:20200518-9fef810
