@@ -85,6 +85,10 @@ properties:
           type: string
           examples:
           - /
+        readOnly:
+          type: boolean
+          examples:
+          - false
   resources:
     type: object
     properties:
