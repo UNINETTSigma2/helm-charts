@@ -180,12 +180,14 @@ spec:
           {{- if ne (first .Values.persistentStorage).existingClaim "" }}
           - name: {{ (first .Values.persistentStorage).existingClaimName }}
             mountPath: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
+            readOnly:  (first .Values.persistentStorage).readOnly }}
             mountPropagation: HostToContainer
             subPath: .tools/{{ template "fullname" . }}/master
           {{- range (rest .Values.persistentStorage) }}
           - name: {{ .existingClaimName }}
             mountPath: /mnt/{{ .existingClaimName }}
             mountPropagation: HostToContainer
+            readOnly: {{ .readOnly }}
             {{- if ne .subPath "/" }}
             subPath: {{ .subPath }}
             {{- end }}
