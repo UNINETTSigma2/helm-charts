@@ -1,0 +1,52 @@
+ingress:
+  host: "local-chart.example.com"
+
+dockerImage: "paalka/jup-test"
+resources:
+  requests:
+    cpu: "1"
+    memory: 1G
+    gpu: 0
+  limits:
+    cpu: "2"
+    memory: 1G
+    gpu: 0
+
+persistentStorage:
+  - existingClaim: ""
+    existingClaimName: "example-name"
+    subPath: "/"
+    readOnly: false
+
+appstore_generated_data:
+  appstore_meta_data:
+    contact_email: "example@uninett.no"
+  dataporten:
+    scopes:
+      - ""
+    id: "0000-abc"
+    owner: "0000-1234"
+    client_secret: "0000-0000"
+    authorized_groups:
+      - ""
+uid: 999
+gid: 999
+username: notebook
+
+supplementalGroups:
+  - name: ""
+    gid: ""
+
+authGroupProviders:
+  - url: "https://groups-api.dataporten.no/groups/me/groups"
+    scope: groups
+
+mainHttpPort: 8080
+
+dataportenLoginProxy:
+  enabled: true
+
+advanced:
+  customCommand: ""
+  customEnv: []
+  customArgs: []

@@ -1,0 +1,12 @@
+apiVersion: v1
+description: Custom image
+name: custom-image
+version: 0.1.0
+maintainers:
+- name: Uninett AS
+  email: system@uninett.no
+home: https://github.com/Uninett/helm-charts/tree/master/repos/testing/custom-image
+icon: https://www.docker.com/sites/default/files/d8/2019-07/vertical-logo-monochromatic.png
+keywords:
+  - docker
+  - custom images

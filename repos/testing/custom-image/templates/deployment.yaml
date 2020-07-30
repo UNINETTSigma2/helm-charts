@@ -1,0 +1,133 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+        app: {{ template "fullname" . }}
+        release: {{ .Release.Name }}
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include "oidcconfig" . | sha256sum }}
+        appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+      labels:
+        app: {{ template "fullname" . }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
+    spec:
+      volumes:
+       {{- if .Values.dataportenLoginProxy.enabled }}
+        - name: oidcconfig
+          secret:
+            secretName: {{ template "fullname" . }}
+        {{- end }}
+        - name: shm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 256M
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
+          persistentVolumeClaim:
+            claimName: {{ .existingClaim }}
+        {{- end }}
+      {{- end }}
+      containers:
+      {{- if .Values.dataportenLoginProxy.enabled }}
+      - name: auth-proxy
+        image: quay.io/uninett/goidc-proxy:v1.1.4
+        imagePullPolicy: Always
+        env:
+          - name: DATAPORTEN_CLIENTID
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "fullname" . }}
+                key: dataporten_client_id
+          - name: DATAPORTEN_CLIENTSECRET
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "fullname" . }}
+                key: dataporten_client_secret
+        ports:
+          - containerPort: 60123
+        securityContext:
+          runAsUser: 65534
+          readOnlyRootFilesystem: true
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 60123
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+        volumeMounts:
+          - name: oidcconfig
+            mountPath: /conf
+        workingDir: /conf
+        {{- end }}
+      - name: custom
+        image: {{ .Values.dockerImage }}
+        {{- if ne (.Values.advanced.customCommand) "" }}
+        command: [{{ .Values.advanced.customCommand | quote }}]
+        {{- end }}
+        {{- if gt (len .Values.advanced.customArgs) 0   }}
+        args:
+          {{- range .Values.advanced.customArgs }}
+          - {{ . }}
+          {{- end }}
+        {{- end }}
+        env:
+          - name: OWNER_ID
+            value: {{ .Values.appstore_generated_data.dataporten.owner }}
+          - name: MEM_LIMIT
+            value: {{ .Values.resources.limits.memory }}
+          {{- range .Values.advanced.customEnv }}
+          - name: {{ .name }}
+            value: {{ .value }}
+          {{- end }}
+          {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+          - name: PVC_MOUNT_PATH
+            value: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
+          {{- end }}
+        resources:
+          requests:
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}
+            nvidia.com/gpu: {{ .Values.resources.requests.gpu }}
+          limits:
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: {{ .Values.resources.limits.memory }}
+            nvidia.com/gpu: {{ .Values.resources.limits.gpu }}
+        securityContext:
+          runAsUser: {{ .Values.uid }}
+          runAsGroup: {{ .Values.gid }}
+        volumeMounts:
+        - name: shm
+          mountPath: /dev/shm
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
+          mountPath: /mnt/{{ .existingClaimName }}
+          mountPropagation: HostToContainer
+          readOnly: {{ .readOnly }}
+          {{ if ne .subPath "/" }}
+          subPath: {{ .subPath }}
+          {{ end }}
+        {{- end }}
+        - name: {{ (first .Values.persistentStorage).existingClaimName }}
+          mountPath: /home/{{ .Values.username }}
+          subPath: home/{{ .Values.username }}
+          mountPropagation: HostToContainer
+        {{- end -}}
