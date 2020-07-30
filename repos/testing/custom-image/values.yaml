@@ -43,10 +43,9 @@ authGroupProviders:
 
 mainHttpPort: 8080
 
-dataportenLoginProxy:
-  enabled: true
-
 advanced:
   customCommand: ""
   customEnv: []
   customArgs: []
+  dataportenLoginProxy:
+    enabled: true

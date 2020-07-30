@@ -3,6 +3,11 @@ properties:
   advanced:
     type: object
     properties:
+      dataportenLoginProxy:
+        type: object
+        properties:
+          enabled:
+            type: boolean
       customEnv:
         type: array
         items:
@@ -167,8 +172,3 @@ properties:
     type: string
     examples:
       - "paalka/jup-test"
-  dataportenLoginProxy:
-    type: object
-    properties:
-      enabled:
-        type: boolean

@@ -29,7 +29,7 @@ spec:
         heritage: "{{ .Release.Service }}"
     spec:
       volumes:
-       {{- if .Values.dataportenLoginProxy.enabled }}
+       {{- if .Values.advanced.dataportenLoginProxy.enabled }}
         - name: oidcconfig
           secret:
             secretName: {{ template "fullname" . }}
@@ -46,7 +46,7 @@ spec:
         {{- end }}
       {{- end }}
       containers:
-      {{- if .Values.dataportenLoginProxy.enabled }}
+      {{- if .Values.advanced.dataportenLoginProxy.enabled }}
       - name: auth-proxy
         image: quay.io/uninett/goidc-proxy:v1.1.4
         imagePullPolicy: Always
