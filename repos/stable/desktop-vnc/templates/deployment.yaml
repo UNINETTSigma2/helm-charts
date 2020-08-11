@@ -103,10 +103,6 @@ spec:
             {{ end }}
             {{- end }}
           {{- end }}
-          - name: matlab
-            mountPath: /mnt/matlab
-            mountPropagation: HostToContainer
-            readOnly: True
       volumes:
       - name: passwd
         configMap:
@@ -134,9 +130,6 @@ spec:
           claimName: {{ .existingClaim }}
       {{- end }}
       {{ end }}
-      - name: matlab
-        persistentVolumeClaim:
-          claimName: matlab2019a-pvc
       securityContext:
         runAsNonRoot: true
         runAsUser: {{ .Values.uid }}
