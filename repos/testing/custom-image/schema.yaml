@@ -171,4 +171,4 @@ properties:
   dockerImage:
     type: string
     examples:
-      - "paalka/jup-test"
+      - "nginxinc/nginx-unprivileged"
