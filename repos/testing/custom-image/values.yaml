@@ -1,7 +1,7 @@
 ingress:
   host: "local-chart.example.com"
 
-dockerImage: "paalka/jup-test"
+dockerImage: "nginxinc/nginx-unprivileged"
 resources:
   requests:
     cpu: "1"
