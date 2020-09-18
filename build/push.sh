@@ -33,6 +33,10 @@ fi
 setup_git
 commit_files
 
+echo "changes are:"
+changes
+echo "-------------"
+
 # Only push changes if more than the index changed this build.
 if changes | grep -vE 'index.yaml|.*.sh|.travis|README|LICENSE|build'; then
   upload_files
