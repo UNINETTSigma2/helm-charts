@@ -192,6 +192,7 @@ spec:
         - name: {{ .existingClaimName }}
           mountPath: /mnt/{{ .existingClaimName }}
           mountPropagation: HostToContainer
+          readOnly: {{ .readOnly }}
           {{ if ne .subPath "/" }}
           subPath: {{ .subPath }}
           {{ end }}
