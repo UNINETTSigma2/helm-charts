@@ -13,6 +13,7 @@ persistentStorage:
   - existingClaim: ""
     existingClaimName: "example-name"
     subPath: "/"
+    readOnly: false
 appstore_generated_data:
   appstore_meta_data:
     contact_email: "example@uninett.no"
@@ -34,4 +35,4 @@ authGroupProviders:
   - url: "https://groups-api.dataporten.no/groups/me/groups"
     scope: groups
 advanced:
-  dockerImage: quay.io/uninett/desktop-vnc:20200518-9fef810
+  dockerImage: quay.io/uninett/desktop-vnc:20200629-39665cb
