@@ -39,10 +39,10 @@ properties:
             description: "Whether or not a non HTTP port on the application will be accessible externally. (By using a load balancer.)"
           port:
             type: integer
-            description: "The external port number to use"
+            description: "The external port number to use."
           targetPort:
             type: integer
-            description: "The internal port of the service you wish to expose externally"
+            description: "The internal port of the service you wish to expose externally."
   appstore_generated_data:
     type: object
     properties:
