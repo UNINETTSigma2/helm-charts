@@ -49,3 +49,5 @@ advanced:
   customArgs: []
   dataportenLoginProxy:
     enabled: true
+  externalPort:
+    enabled: false

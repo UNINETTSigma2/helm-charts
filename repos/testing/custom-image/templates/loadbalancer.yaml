@@ -1,4 +1,4 @@
-{{- if .Values.advanced.loadbalancer.enabled }}
+{{- if .Values.advanced.externalPort.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -14,8 +14,8 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-    - port: {{ .Values.advanced.loadbalancer.port }}
-      targetPort: {{ .Values.advanced.loadbalancer.target_port }}
+    - port: {{ .Values.advanced.externalPort.port }}
+      targetPort: {{ .Values.advanced.externalPort.targetPort }}
       protocol: TCP
       name: {{ template "fullname" . }}-loadbalancer
   selector:
