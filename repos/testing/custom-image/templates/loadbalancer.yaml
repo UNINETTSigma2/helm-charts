@@ -1,0 +1,23 @@
+{{- if .Values.advanced.loadbalancer.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "fullname" . }}
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+    use-uninett-load-balancer: true
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  type: LoadBalancer
+  ports:
+    - port: {{ .Values.advanced.loadbalancer.port }}
+      targetPort: {{ .Values.advanced.loadbalancer.target_port }}
+      protocol: TCP
+      name: {{ template "fullname" . }}-loadbalancer
+  selector:
+    app: {{ template "fullname" . }}-loadbalancer
+{{- end }}
