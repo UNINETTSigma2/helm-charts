@@ -36,7 +36,7 @@ properties:
         properties:
           enabled:
             type: boolean
-            description: "Whether or not a non HTTP port on the application will be accessible externally. (By using a load balancer.)"
+            description: "Whether or not a port on the application will be accessible externally by using a load balancer."
           port:
             type: integer
             description: "The external port number to use."
