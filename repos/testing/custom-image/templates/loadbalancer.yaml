@@ -5,7 +5,7 @@ metadata:
   name: {{ template "fullname" . }}-loadbalancer
   annotations:
     appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
-    use-uninett-load-balancer: true
+    appstore.uninett.no/use_uninett_load_balancer: "true"
   labels:
     app: {{ template "fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
