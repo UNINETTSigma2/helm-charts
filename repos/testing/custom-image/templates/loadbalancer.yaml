@@ -19,5 +19,5 @@ spec:
       protocol: TCP
       name: {{ template "fullname" . }}-loadbalancer
   selector:
-    app: {{ template "fullname" . }}-loadbalancer
+    app: {{ template "fullname" . }}
 {{- end }}
