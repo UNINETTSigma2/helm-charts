@@ -1,12 +1,12 @@
 {
   "packageVersions": {
     "pkg-hadoop-version": "2.7",
-    "pkg-r-version": "3.5.1",
+    "pkg-r-version": "4.0.3",
     "pkg-toree-version": "0.3.0-incubating",
     "pkg-cuda-version": "10.0.130",
-    "pkg-cudnn-version": "7.5.0.56",
-    "pkg-spark-version": "2.4.0",
-    "pkg-jupyter-notebook-version": "5.7.x",
+    "pkg-cudnn-version": "7.6.2.24-1",
+    "pkg-spark-version": "2.4.5",
+    "pkg-jupyter-notebook-version": "6.2.x",
     "pkg-vs-code-version": "2.1692-vsc1.39.2"
   }
 }
