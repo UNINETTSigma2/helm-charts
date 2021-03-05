@@ -80,7 +80,7 @@ spec:
       containers:
       - name: auth-proxy
         image: paalka/goidc
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         env:
           - name: DATAPORTEN_CLIENTID
             valueFrom:

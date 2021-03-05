@@ -92,7 +92,7 @@ spec:
       containers:
       - name: auth-proxy
         image: quay.io/uninett/goidc-proxy:v1.1.4
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         env:
           - name: DATAPORTEN_CLIENTID
             valueFrom:

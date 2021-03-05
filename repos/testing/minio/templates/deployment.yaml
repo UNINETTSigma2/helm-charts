@@ -172,7 +172,7 @@ spec:
       containers:
       - name: cleaner-job
         image: "alpine:3.8"
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         command:
           - /bin/sh
         args:

@@ -94,7 +94,7 @@ spec:
       containers:
         - name: proxy-rewriter
           image: nginx:1.14-alpine
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9001
           securityContext:
@@ -107,7 +107,7 @@ spec:
               subPath: nginx.conf
         - name: auth-proxy
           image: quay.io/uninett/goidc-proxy:v1.1.3
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             - name: DATAPORTEN_CLIENTID
               valueFrom:
@@ -136,7 +136,7 @@ spec:
           workingDir: /conf
         - name: spark-master
           image: {{ .Values.advanced.dockerImage }}
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           args: ["/usr/local/bin/start-master.sh"]
           ports:
             - containerPort: 7077
@@ -237,7 +237,7 @@ spec:
       containers:
       - name: cleaner-job
         image: "alpine:3.8"
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         command:
           - /bin/sh
         args:
