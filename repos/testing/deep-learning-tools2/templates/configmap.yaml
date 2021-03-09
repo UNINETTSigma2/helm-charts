@@ -1,0 +1,153 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+data:
+  notebook_config.py: {{ include "notebook-config" . | quote }}
+  passwd: {{ include "passwd" . | quote }}
+  group: {{ include "group" . | quote }}
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "fullname" . }}-rewrite
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+data:
+  default.conf: |
+    upstream jupyter {
+      server localhost:8888;
+    }
+    upstream tensorboard {
+      server localhost:6006;
+    }
+    upstream mlflow {
+      server localhost:5000;
+    }
+
+    map $http_upgrade $connection_upgrade {
+            default upgrade;
+            ''      close;
+    }
+
+    server {
+      server_name             {{ .Values.ingress.host }};
+      listen                  9001;
+
+      location / {
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header Host {{ .Values.ingress.host }};
+          proxy_pass http://jupyter;
+          client_max_body_size 0;
+          proxy_redirect off;
+          port_in_redirect off;
+          proxy_connect_timeout  30s;
+          proxy_send_timeout     3600s;
+          proxy_read_timeout     3600s;
+      }
+
+
+      location ~* /(api/kernels/[^/]+/(channels|iopub|shell|stdin)|terminals/websocket)/? {
+            proxy_pass http://jupyter;
+
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header Host $host;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            client_max_body_size 0;
+            # WebSocket support
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection $connection_upgrade;
+            proxy_connect_timeout  30s;
+            proxy_send_timeout     3600s;
+            proxy_read_timeout     3600s;
+      }
+    }
+
+    server {
+      server_name             tensorboard-{{ .Values.ingress.host }};
+      listen                  9001;
+
+      location / {
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header Host tensorboard-{{ .Values.ingress.host }};
+          proxy_pass http://tensorboard;
+          proxy_redirect off;
+          client_max_body_size 0;
+          port_in_redirect off;
+          proxy_connect_timeout  30s;
+          proxy_send_timeout     3600s;
+          proxy_read_timeout     3600s;
+      }
+    }
+
+    server {
+      server_name             mlflow-{{ .Values.ingress.host }};
+      listen                  9001;
+
+      location / {
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header Host mlflow-{{ .Values.ingress.host }};
+          proxy_pass http://mlflow;
+          proxy_redirect off;
+          client_max_body_size 0;
+          port_in_redirect off;
+          proxy_connect_timeout  30s;
+          proxy_send_timeout     3600s;
+          proxy_read_timeout     3600s;
+      }
+    }
+  nginx.conf: |
+    pid   /tmp/nginx.pid;
+
+    worker_processes 1;
+
+    events {
+      worker_connections 1024;
+    }
+
+    http {
+      # Set an array of temp and cache file options that will otherwise default to
+      # restricted locations accessible only to root.
+      client_body_temp_path /tmp/client_body;
+      fastcgi_temp_path /tmp/fastcgi_temp;
+      proxy_temp_path /tmp/proxy_temp;
+      scgi_temp_path /tmp/scgi_temp;
+      uwsgi_temp_path /tmp/uwsgi_temp;
+
+      tcp_nopush on;
+      tcp_nodelay on;
+      keepalive_timeout 65;
+      types_hash_max_size 2048;
+      server_names_hash_bucket_size 128;
+
+      log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                          '$status $body_bytes_sent "$http_referer" '
+                          '"$http_user_agent" "$http_x_forwarded_for"';
+
+      include /etc/nginx/mime.types;
+      index index.html index.htm index.php;
+      default_type  application/octet-stream;
+
+      # Disable access log and error log to stderr
+      access_log  /dev/null;
+      error_log  /dev/stderr;
+
+      include /etc/nginx/conf.d/*.conf;
+    }

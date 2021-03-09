@@ -1,0 +1,41 @@
+ingress:
+  host: "example.localhost.com"
+resources:
+  requests:
+    cpu: "4"
+    memory: 4Gi
+    gpu: 1
+  limits:
+    cpu: "8"
+    memory: 4Gi
+    gpu: 1
+persistentStorage:
+  - existingClaim: ""
+    existingClaimName: "example-name"
+    subPath: "/"
+appstore_generated_data:
+  appstore_meta_data:
+    contact_email: "example@uninett.no"
+  dataporten:
+    scopes:
+      - ""
+    id: "0000"
+    owner: "0000-1234"
+    client_secret: "0000-abcd"
+    authorized_groups:
+      - ""
+uid: 999
+gid: 999
+username: notebook
+supplementalGroups:
+  - name: ""
+    gid: ""
+advanced:
+  env:
+    sparkMasterUrl: "local[*]"
+    jupyterLab: false
+  dockerImage: quay.io/uninett/deep-learning-tools2:20210309-78999cf
+  githubToken: ""
+authGroupProviders:
+  - url: "https://groups-api.dataporten.no/groups/me/groups"
+    scope: groups
