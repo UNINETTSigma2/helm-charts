@@ -90,6 +90,7 @@ spec:
       initContainers:
       - name: busybox
         image: busybox:1
+        imagePullPolicy: IfNotPresent
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
@@ -307,6 +308,7 @@ spec:
       initContainers:
       - name: busybox
         image: busybox:1
+        imagePullPolicy: IfNotPresent
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
