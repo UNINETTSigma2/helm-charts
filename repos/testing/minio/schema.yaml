@@ -58,20 +58,22 @@ properties:
         examples:
         - local-chart.example.com
   persistentStorage:
-    type: object
-    properties:
-      existingClaim:
-        type: string
-        examples:
-        - ""
-      existingClaimName:
-        type: string
-        examples:
-        - example-name
-      subPath:
-        type: string
-        examples:
-        - /
+    type: array
+    items:
+      type: object
+      properties:
+        existingClaim:
+          type: string
+          examples:
+          - ""
+        existingClaimName:
+          type: string
+          examples:
+          - example-name
+        subPath:
+          type: string
+          examples:
+          - /
   resources:
     type: object
     properties:
