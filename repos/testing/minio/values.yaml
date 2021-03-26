@@ -8,10 +8,10 @@ resources:
     cpu: "4"
     memory: 2G
 persistentStorage:
-  existingClaim: ""
-  existingClaimName: "example-name"
-  subPath: "/"
-  readOnly: false
+  - existingClaim: ""
+    existingClaimName: "example-name"
+    subPath: "/"
+    readOnly: false
 uid: 999
 gid: 999
 username: minio
