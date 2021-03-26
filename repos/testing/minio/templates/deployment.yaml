@@ -119,17 +119,17 @@ spec:
         - name: group
           mountPath: /etc/group
           subPath: group
-          {{- if ne (first .Values.persistentStorage).existingClaim "" }}
-            {{- range .Values.persistentStorage }}
-          - name: {{ .existingClaimName }}
-            mountPath: /mnt/{{ .existingClaimName }}
-            mountPropagation: HostToContainer
-            readOnly: {{ .readOnly }}
-            {{ if ne .subPath "/" }}
-            subPath: {{ .subPath }}
-            {{ end }}
-            {{- end }}
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
+          mountPath: /mnt/{{ .existingClaimName }}
+          mountPropagation: HostToContainer
+          readOnly: {{ .readOnly }}
+          {{ if ne .subPath "/" }}
+          subPath: {{ .subPath }}
+          {{ end }}
           {{- end }}
+        {{- end }}
 
 {{- if ne (first .Values.persistentStorage).existingClaim "" }}
 ---
