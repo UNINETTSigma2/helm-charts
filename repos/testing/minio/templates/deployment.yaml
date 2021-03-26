@@ -131,7 +131,7 @@ spec:
             {{- end }}
           {{- end }}
 
-{{- if ne .Values.persistentStorage.existingClaim "" }}
+{{- if ne (first .Values.persistentStorage).existingClaim "" }}
 ---
 apiVersion: batch/v1
 kind: Job
@@ -156,9 +156,9 @@ spec:
         chart: "{{.Chart.Name}}-{{.Chart.Version}}"
     spec:
       volumes:
-      - name: {{ .Values.persistentStorage.existingClaimName }}
+      - name: {{ (first .Values.persistentStorage).existingClaimName }}
         persistentVolumeClaim:
-          claimName: {{ .Values.persistentStorage.existingClaim }}
+          claimName: {{ (first .Values.persistentStorage).existingClaim }}
       restartPolicy: Never
       securityContext:
         runAsNonRoot: true
@@ -181,7 +181,7 @@ spec:
         args:
           - -c
           - -x
-          - "rm -rf /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }} /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.minio.sys /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.minio"
+          - "rm -rf /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }} /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.minio.sys /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.minio"
         volumeMounts:
         - name: {{ (first .Values.persistentStorage).existingClaimName }}
           mountPath: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
