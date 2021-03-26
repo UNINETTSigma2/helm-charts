@@ -42,9 +42,9 @@ spec:
               path: group
       {{- if ne (first .Values.persistentStorage).existingClaim "" }}
       {{- range .Values.persistentStorage }}
-      - name: {{ .existingClaimName }}
-        persistentVolumeClaim:
-          claimName: {{ .existingClaim }}
+        - name: {{ .existingClaimName }}
+          persistentVolumeClaim:
+            claimName: {{ .existingClaim }}
       {{- end }}
       {{ end }}
       {{- if ne (first .Values.persistentStorage).existingClaim "" }}
