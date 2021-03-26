@@ -40,12 +40,14 @@ spec:
             items:
             - key: group
               path: group
-       {{ if ne .Values.persistentStorage.existingClaim "" }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          persistentVolumeClaim:
-            claimName: {{ .Values.persistentStorage.existingClaim }}
-       {{- end }}
-      {{- if ne .Values.persistentStorage.existingClaim "" }}
+      {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+      {{- range .Values.persistentStorage }}
+      - name: {{ .existingClaimName }}
+        persistentVolumeClaim:
+          claimName: {{ .existingClaim }}
+      {{- end }}
+      {{ end }}
+      {{- if ne (first .Values.persistentStorage).existingClaim "" }}
       initContainers:
       - name: busybox
         image: busybox:1
@@ -56,13 +58,13 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }} && chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools"
+          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }} && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools"
         volumeMounts:
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+        - name: {{ (first .Values.persistentStorage).existingClaimName }}
+          mountPath: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
           readOnly: {{ .readOnly }}
-          {{ if ne .Values.persistentStorage.subPath "/" }}
-          subPath: {{ .Values.persistentStorage.subPath }}
+          {{ if ne (first .Values.persistentStorage).subPath "/" }}
+          subPath: {{ (first .Values.persistentStorage).subPath }}
           mountPropagation: HostToContainer
           {{ end }}
       {{- end }}
@@ -117,16 +119,17 @@ spec:
         - name: group
           mountPath: /etc/group
           subPath: group
-        {{ if ne .Values.persistentStorage.existingClaim "" }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
-          mountPropagation: HostToContainer
-          readOnly: {{ .readOnly }}
-          {{ if ne .Values.persistentStorage.subPath "/" }}
-          subPath: {{ .Values.persistentStorage.subPath }}
-          {{ end }}
-        {{ end }}
-
+          {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+            {{- range .Values.persistentStorage }}
+          - name: {{ .existingClaimName }}
+            mountPath: /mnt/{{ .existingClaimName }}
+            mountPropagation: HostToContainer
+            readOnly: {{ .readOnly }}
+            {{ if ne .subPath "/" }}
+            subPath: {{ .subPath }}
+            {{ end }}
+            {{- end }}
+          {{- end }}
 
 {{- if ne .Values.persistentStorage.existingClaim "" }}
 ---
@@ -178,12 +181,12 @@ spec:
         args:
           - -c
           - -x
-          - "rm -rf /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }} /mnt/{{ .Values.persistentStorage.existingClaimName }}/.minio.sys /mnt/{{ .Values.persistentStorage.existingClaimName }}/.minio"
+          - "rm -rf /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }} /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.minio.sys /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.minio"
         volumeMounts:
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+        - name: {{ (first .Values.persistentStorage).existingClaimName }}
+          mountPath: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
           mountPropagation: HostToContainer
-          {{ if ne .Values.persistentStorage.subPath "/" }}
-          subPath: {{ .Values.persistentStorage.subPath }}
+          {{ if ne (first .Values.persistentStorage).subPath "/" }}
+          subPath: {{ (first .Values.persistentStorage).subPath }}
           {{ end }}
 {{ end }}
