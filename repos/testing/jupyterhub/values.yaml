@@ -68,7 +68,7 @@ advanced:
   ipyparallel:
     enabled: false
     workers: 2
-    image: "quay.io/uninett/jupyterhub-singleuser:20200519-4d8716b"
+    image: "quay.io/uninett/jupyterhub-singleuser:20210324-27d46e5"
     resources:
       requests:
         cpu: "1"
@@ -80,7 +80,7 @@ advanced:
         gpu: 0
   vnc:
     enabled: false
-    image: "quay.io/uninett/desktop-vnc:20200518-9fef810"
+    image: "quay.io/uninett/desktop-vnc:20210215-73add71"
     resources:
       requests:
         cpu: "1"
@@ -96,7 +96,7 @@ advanced:
     enabled: false
     minioAccessKey: "accesskeyexample"
     minioSecretKey: "secretkeyexample"
-  userImage: quay.io/uninett/jupyterhub-singleuser:20200519-4d8716b
+  userImage: quay.io/uninett/jupyterhub-singleuser:20210324-27d46e5
 appstore_generated_data:
   appstore_meta_data:
     contact_email: "example@uninett.no"
