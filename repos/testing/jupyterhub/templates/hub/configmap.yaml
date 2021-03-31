@@ -99,9 +99,6 @@ data:
           - name: "passwd"
             mountPath: "/etc/passwd"
             subPath: "passwd"
-          - name: "group"
-            mountPath: "/etc/group"
-            subPath: "group"
           - name: "shm"
             mountPath: "/dev/shm"
           {{- if .Values.advanced.ipyparallel.enabled }}
