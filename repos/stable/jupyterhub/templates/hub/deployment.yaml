@@ -89,7 +89,7 @@ spec:
           claimName: {{ (first .Values.persistentStorage).existingClaim }}
       initContainers:
       - name: busybox
-        image: busybox:1.33.0.33.0
+        image: busybox:1.33.0
         imagePullPolicy: IfNotPresent
         securityContext:
           runAsUser: {{ .Values.uid }}
@@ -113,7 +113,7 @@ spec:
       {{- end }}
       containers:
       - name: hub-container
-        image: quay.io/uninett/jupyterhub-server:20200520-4fef605
+        image: quay.io/uninett/jupyterhub-server:20210211-4a4b359
         command:
           - jupyterhub
           - --config
@@ -307,7 +307,7 @@ spec:
         {{- end }}
       initContainers:
       - name: busybox
-        image: busybox:1.33.0.33.0
+        image: busybox:1.33.0
         imagePullPolicy: IfNotPresent
         securityContext:
           runAsUser: {{ .Values.uid }}
@@ -353,7 +353,7 @@ spec:
               key: MINIO_SECRET_KEY
         - name: TZ
           value: Europe/Oslo
-        image: quay.io/uninett/minio:20180901-d5aa2f9
+        image: quay.io/uninett/minio:20210326-f69fa09
         {{- if ne (first .Values.persistentStorage).existingClaim "" }}
         args: [ 'server', '--quiet', '--config-dir', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }}', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}' ]
         {{ else }}
