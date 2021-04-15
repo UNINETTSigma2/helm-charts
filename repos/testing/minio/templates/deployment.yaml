@@ -50,7 +50,7 @@ spec:
       {{- if ne (first .Values.persistentStorage).existingClaim "" }}
       initContainers:
       - name: busybox
-        image: busybox:1
+        image: busybox:1.33.0
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}

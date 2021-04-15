@@ -48,7 +48,7 @@ spec:
       {{- if ne .Values.persistentStorage.existingClaim "" }}
       initContainers:
       - name: busybox
-        image: busybox:1
+        image: busybox:1.33.0
         imagePullPolicy: IfNotPresent
         securityContext:
           runAsUser: {{ .Values.uid }}
