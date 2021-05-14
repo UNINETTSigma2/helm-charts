@@ -2,7 +2,7 @@
   "packageVersions": {
     "pkg-hadoop-version": "${hadoop-version}",
     "pkg-vs-code-version": "2.1692-vsc1.39.2",
-    "pkg-r-version": "4.0.5",
+    "pkg-r-version": "4.0.3",
     "pkg-toree-version": "0.3.0-incubating",
     "pkg-cuda-version": "10.0",
     "pkg-cudnn-version": "7.6.2.24-1",
