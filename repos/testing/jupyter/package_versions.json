@@ -7,6 +7,6 @@
     "pkg-cuda-version": "10.0",
     "pkg-cudnn-version": "7.6.2.24-1",
     "pkg-spark-version": "${apache-spark-version}",
-    "pkg-jupyter-notebook-version": "6.2.x"
+    "pkg-jupyter-notebook-version": "6.3.x"
   }
 }

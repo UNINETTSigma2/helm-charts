@@ -1,11 +1,11 @@
 apiVersion: v1
 description: ParaviewWeb Visualizer
 name: paraview
-version: 0.0.1
+version: 0.0.2
 maintainers:
 - name: Uninett AS
   email: system@uninett.no
-home: https://github.com/Uninett/helm-charts/tree/master/paraview
+home: https://github.com/Uninett/helm-charts/tree/master/repos/testing/paraview
 icon: https://upload.wikimedia.org/wikipedia/commons/c/c9/Antu_paraview.svg
 keywords:
   - Paraview
