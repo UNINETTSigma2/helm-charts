@@ -69,7 +69,7 @@ spec:
       containers:
         - name: spark-worker
           image: {{ .Values.advanced.dockerImage }}
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           args: ["/usr/local/bin/start-worker.sh"]
           env:
             - name: SPARK_WORKER_MEMORY

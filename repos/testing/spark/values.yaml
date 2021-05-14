@@ -32,6 +32,7 @@ persistentStorage:
   - existingClaim: ""
     existingClaimName: "example-name"
     subPath: "/"
+    readOnly: false
 
 appstore_generated_data:
   appstore_meta_data:
