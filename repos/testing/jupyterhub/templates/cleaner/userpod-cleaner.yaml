@@ -32,7 +32,7 @@ spec:
       serviceAccountName: {{.Release.Name}}-pod-cleaner
       containers:
       - name: pod-clean-job
-        image: "bitnami/kubectl:1.15.3"
+        image: "registry.uninett.no/public/bitnami-kubectl:1.20.7"
         imagePullPolicy: IfNotPresent
         env:
         - name: RELEASE

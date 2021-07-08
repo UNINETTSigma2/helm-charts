@@ -62,7 +62,7 @@ spec:
         {{- end }}
       initContainers:
       - name: busybox
-        image: busybox:1.33.0
+        image: registry.uninett.no/public/busybox:1.33.1-glibc
         imagePullPolicy: IfNotPresent
         securityContext:
           runAsUser: {{ .Values.uid }}

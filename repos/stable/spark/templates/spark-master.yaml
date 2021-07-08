@@ -77,7 +77,7 @@ spec:
         {{- end }}
       initContainers:
       - name: busybox
-        image: busybox:1.33.0
+        image: registry.uninett.no/public/busybox:1.33.1-glibc
         imagePullPolicy: IfNotPresent
         securityContext:
           runAsUser: {{ .Values.uid }}
@@ -94,7 +94,7 @@ spec:
       {{- end }}
       containers:
         - name: proxy-rewriter
-          image: nginx:1.14-alpine
+          image: registry.uninett.no/public/nginx:1.21.0-alpine
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9001
@@ -239,7 +239,7 @@ spec:
         {{- end }}
       containers:
       - name: cleaner-job
-        image: "alpine:3.8"
+        image: "registry.uninett.no/public/alpine:3.13.5"
         imagePullPolicy: IfNotPresent
         command:
           - /bin/sh

@@ -50,7 +50,7 @@ spec:
       {{- if ne (first .Values.persistentStorage).existingClaim "" }}
       initContainers:
       - name: busybox
-        image: busybox:1.33.0
+        image: registry.uninett.no/public/busybox:1.33.1-glibc
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
@@ -174,7 +174,7 @@ spec:
         {{- end }}
       containers:
       - name: cleaner-job
-        image: "alpine:3.8"
+        image: "registry.uninett.no/public/alpine:3.13.5"
         imagePullPolicy: IfNotPresent
         command:
           - /bin/sh
