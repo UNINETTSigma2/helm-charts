@@ -15,10 +15,10 @@ jobs:
     - name: before_script
       run: |
         export HELM_VERSION="v3.2.4"
-        export KUBEVAL_VERSION="0.16.1"
+        export KUBEVAL_VERSION="v0.16.1"
         export CONFTEST_VERSION="0.28.1"
         pip install yq jsonschema pyyaml
-        wget "https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz"
+        wget "https://https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz"
         tar zxf helm-${HELM_VERSION}-linux-amd64.tar.gz
         mkdir bin
         mv linux-amd64/helm ./bin/helm
