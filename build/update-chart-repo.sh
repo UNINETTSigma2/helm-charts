@@ -25,7 +25,8 @@ do
 
     repo_dir="docs/$repo"
     mkdir -p "$repo_dir"
-    helm init -c
+# No init in helm3
+#    helm init -c
     for chart_dir in "${charts[@]}"
     do
 	echo "Packaging $chart_dir..."
