@@ -18,17 +18,18 @@ jobs:
         export KUBEVAL_VERSION="v0.16.1"
         export CONFTEST_VERSION="0.28.1"
         pip install yq jsonschema pyyaml
-        wget "https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz"
+        wget -q "https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz"
         tar zxf helm-${HELM_VERSION}-linux-amd64.tar.gz
         mkdir bin
         mv linux-amd64/helm ./bin/helm
-        wget "https://github.com/instrumenta/kubeval/releases/download/${KUBEVAL_VERSION}/kubeval-linux-amd64.tar.gz"
+        wget -q "https://github.com/instrumenta/kubeval/releases/download/${KUBEVAL_VERSION}/kubeval-linux-amd64.tar.gz"
         tar zxf kubeval-linux-amd64.tar.gz
-        mv kubeval ./bin/
-        wget "https://github.com/instrumenta/conftest/releases/download/v${CONFTEST_VERSION}/conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz"
+        mv kubeval ./bin/kubeval
+        wget -q "https://github.com/instrumenta/conftest/releases/download/v${CONFTEST_VERSION}/conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz"
         tar zxf conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz
-        mv conftest ./bin/
+        mv conftest ./bin/conftest
         export PATH=$PATH:$PWD/bin/
+        which kubeval
     - name: Run build script
       run: ./build/update-chart-repo.sh
               
