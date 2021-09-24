@@ -35,4 +35,4 @@ do
     helm repo index $repo_dir --url https://Uninett.github.io/helm-charts/$repo
 done
 
-helm list
+helm repo list
