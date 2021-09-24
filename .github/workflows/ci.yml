@@ -29,6 +29,7 @@ jobs:
         tar zxf conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz
         mv conftest ./bin/conftest
         export PATH=$PATH:$PWD/bin/
+        which helm
         which kubeval
     - name: Run build script
       run: ./build/update-chart-repo.sh

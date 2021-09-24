@@ -2,6 +2,7 @@
 set -e
 set -o pipefail
 
+echo $PATH
 which helm
 which kubeval
 echo "Linting $1..."
