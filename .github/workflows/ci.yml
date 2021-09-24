@@ -12,9 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2 
-    - name: before_script
+    - name: build
       run: |
-        ls
         export HELM_VERSION="v3.2.4"
         export KUBEVAL_VERSION="v0.16.1"
         export CONFTEST_VERSION="0.28.1"
@@ -30,8 +29,5 @@ jobs:
         tar zxf conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz
         mv conftest ./bin/conftest
         export PATH=$PATH:$PWD/bin/
-        which helm
-        which kubeval
-    - name: Run build script
-      run: ./build/update-chart-repo.sh
+        ./build/update-chart-repo.sh
               
