@@ -18,7 +18,7 @@ jobs:
         export KUBEVAL_VERSION="v0.16.1"
         export CONFTEST_VERSION="0.28.1"
         pip install yq jsonschema pyyaml
-        wget "https://https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz"
+        wget "https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz"
         tar zxf helm-${HELM_VERSION}-linux-amd64.tar.gz
         mkdir bin
         mv linux-amd64/helm ./bin/helm
