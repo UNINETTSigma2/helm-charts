@@ -1,0 +1,34 @@
+# Build container images according to https://github.com/marketplace/actions/build-and-push-docker-images
+name: ci
+#on: [push, pull_request]
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  matrix:
+    # Generate matrix for linting (essentially locating all Dockerfile directories)
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2 
+    - name: before_script
+      run: |
+        export HELM_VERSION="v3.2.4"
+        export KUBEVAL_VERSION="0.16.1"
+        export CONFTEST_VERSION="0.28.1"
+        pip install yq jsonschema pyyaml
+        wget "https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz"
+        tar zxf helm-${HELM_VERSION}-linux-amd64.tar.gz
+        mkdir bin
+        mv linux-amd64/helm ./bin/helm
+        wget "https://github.com/instrumenta/kubeval/releases/download/${KUBEVAL_VERSION}/kubeval-linux-amd64.tar.gz"
+        tar zxf kubeval-linux-amd64.tar.gz
+        mv kubeval ./bin/
+        wget "https://github.com/instrumenta/conftest/releases/download/v${CONFTEST_VERSION}/conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz"
+        tar zxf conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz
+        mv conftest ./bin/
+        export PATH=$PATH:$PWD/bin/
+    - name: Run build script
+        run: ./build/update-chart-repo.sh
+              
