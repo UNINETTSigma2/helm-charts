@@ -32,6 +32,7 @@ do
 	   echo "Packaging $chart_dir..."
 	   helm package $chart_dir --destination $repo_dir
     done
-    helm repo index repos/$repo_dir --url https://Uninett.github.io/helm-charts/$repo
+    echo $PWD
+    helm repo index . --url https://Uninett.github.io/helm-charts/$repo
 done
 
