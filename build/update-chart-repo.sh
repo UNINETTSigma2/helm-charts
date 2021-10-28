@@ -29,10 +29,9 @@ do
 #    helm init -c
     for chart_dir in "${charts[@]}"
     do
-	echo "Packaging $chart_dir..."
-	helm package $chart_dir --destination $repo_dir
+	   echo "Packaging $chart_dir..."
+	   helm package $chart_dir --destination $repo_dir
     done
-    helm repo index $repo_dir --url https://Uninett.github.io/helm-charts/$repo
+    helm repo index repos/$repo_dir --url https://Uninett.github.io/helm-charts/$repo
 done
 
-helm repo list
