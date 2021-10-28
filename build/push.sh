@@ -23,12 +23,12 @@ changes() {
   git diff --name-only --diff-filter=ADMR @~..@
 }
 
-if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
-   exit 0;
-fi
-if [ "$TRAVIS_BRANCH" != "master" ]; then
-   exit 0;
-fi
+#if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
+#   exit 0;
+#fi
+#if [ "$TRAVIS_BRANCH" != "master" ]; then
+#   exit 0;
+#fi
 
 setup_git
 commit_files
@@ -38,6 +38,6 @@ changes
 echo "-------------"
 
 # Only push changes if more than the index changed this build.
-if changes | grep -vE 'index.yaml|.*.sh|.travis|README|LICENSE|build'; then
+if changes | grep -vE 'index.yaml|.*.sh|.travis|.github|README|LICENSE|build'; then
   upload_files
 fi

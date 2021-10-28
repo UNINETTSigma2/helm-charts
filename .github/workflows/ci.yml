@@ -30,4 +30,5 @@ jobs:
         mv conftest ./bin/conftest
         export PATH=$PATH:$PWD/bin/
         ./build/update-chart-repo.sh
+        ./build/push.sh
               
