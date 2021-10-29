@@ -31,4 +31,4 @@ appstore_generated_data:
 advanced:
   accessKey: "accesskeyexample"
   secretKey: "secretkeyexample"
-  dockerImage: quay.io/uninett/minio:20210326-f69fa09
+  dockerImage: quay.io/nird-toolkit/minio:20211012-6e9787a
