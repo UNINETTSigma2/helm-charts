@@ -33,6 +33,7 @@ do
 	   helm package $chart_dir --destination $repo_dir
     done
     echo $PWD
+    echo "Make index.yaml for repo $repo"
     helm repo index $repo --url https://Uninett.github.io/helm-charts/$repo
 done
 
