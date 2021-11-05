@@ -131,7 +131,7 @@ spec:
           runAsGroup: 999
 ---
 # Source: jupyter/templates/ingress.yaml
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: navn-her
@@ -155,8 +155,10 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: navn-her
-              servicePort: 80
+              service:
+                name: navn-her
+              port: 
+                number: 80
 
 ---
 # Source: jupyter/templates/network-policy.yaml

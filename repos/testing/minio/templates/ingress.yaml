@@ -24,5 +24,7 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: {{ template "fullname" . }}
-              servicePort: 9000
+              service:
+                name: {{ template "fullname" . }}
+              port: 
+                number: 9000

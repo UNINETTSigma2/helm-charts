@@ -24,12 +24,16 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: {{ template "fullname" . }}
-              servicePort: 8080
+              service:
+                name: {{ template "fullname" . }}
+              port: 
+                number: 8080
     - host: shiny-{{ .Values.ingress.host }}
       http:
         paths:
           - path: /
             backend:
-              serviceName: {{ template "fullname" . }}
-              servicePort: 3838
+              service:
+                name: {{ template "fullname" . }}
+              port: 
+                number: 3838

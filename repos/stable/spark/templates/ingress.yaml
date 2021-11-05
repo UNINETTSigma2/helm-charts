@@ -24,5 +24,7 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: {{ template "fullname" . }}-master-ui
-          servicePort: 80
+          service:
+            name: {{ template "fullname" . }}-master-ui
+          port: 
+            number: 80
