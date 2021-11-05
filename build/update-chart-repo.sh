@@ -33,6 +33,6 @@ do
 	   helm package $chart_dir --destination $repo_dir
     done
     echo $PWD
-    helm repo index . --url https://Uninett.github.io/helm-charts/$repo
+    helm repo index $repo --url https://Uninett.github.io/helm-charts/$repo
 done
 
