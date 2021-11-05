@@ -4,14 +4,14 @@ set -e
 
 setup_git() {
   git config --global user.email "travis@travis-ci.org"
-  git config --global user.name "Travis CI"
+  git config --global user.name "GA - CI"
 }
 
 commit_files() {
   git checkout master
   git add docs/
   git add repos/*/*/package_versions.json
-  git commit --message "Travis build: $TRAVIS_BUILD_NUMBER [skip ci]"
+  git commit --message "GA build: $GITHIB_RUN_ID"
 }
 
 upload_files() {
