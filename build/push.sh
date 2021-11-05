@@ -11,7 +11,7 @@ commit_files() {
   git checkout master
   git add docs/
   git add repos/*/*/package_versions.json
-  git commit --message "GA build: $GITHIB_RUN_ID"
+  git commit --message "GA build: $GITHUB_RUN_ID"
 }
 
 upload_files() {

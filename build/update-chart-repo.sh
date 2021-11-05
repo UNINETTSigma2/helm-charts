@@ -32,8 +32,8 @@ do
 	   echo "Packaging $chart_dir..."
 	   helm package $chart_dir --destination $repo_dir
     done
-    echo $PWD
+    ls $PWD/$repo_dir
     echo "Make index.yaml for repo $repo"
-    helm repo index $repo --url https://Uninett.github.io/helm-charts/$repo
+    helm repo index $repo_dir --url https://Uninett.github.io/helm-charts/$repo
 done
 
