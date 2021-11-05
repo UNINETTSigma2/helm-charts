@@ -26,5 +26,5 @@ spec:
             backend:
               service:
                 name: {{ template "fullname" . }}
-              port: 
-                number: 9000
+                port: 
+                  number: 9000

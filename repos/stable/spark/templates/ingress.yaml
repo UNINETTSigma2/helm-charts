@@ -26,5 +26,5 @@ spec:
         backend:
           service:
             name: {{ template "fullname" . }}-master-ui
-          port: 
-            number: 80
+            port: 
+              number: 80
