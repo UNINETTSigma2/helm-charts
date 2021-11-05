@@ -4,6 +4,6 @@ name: dokuwiki
 maintainers:
 - name: Uninett AS
   email: system@uninett.no
-version: 0.4.2
+version: 0.4.3
 home: https://github.com/Uninett/appstore-app-dokuwiki
 icon: https://bitnami.com/assets/stacks/dokuwiki/img/dokuwiki-stack-110x117.png

@@ -20,21 +20,23 @@ spec:
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
               service:
                 name: {{ .Release.Name }}-proxy-http
-              port: 
-                number: 8000
+                port: 
+                  number: 8000
     {{- if .Values.advanced.minio.enabled }}
     - host: minio-{{ .Values.ingress.host }}
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
               service:
                 name: {{ .Release.Name }}-minio
-              port: 
-                number: 9000
+                port: 
+                  number: 9000
     {{- end }}
   tls:
     - secretName: wildcard-tls

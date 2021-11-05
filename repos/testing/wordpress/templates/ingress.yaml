@@ -19,8 +19,9 @@ spec:
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
               service:
                 name: {{ template "fullname" . }}
-              port: 
-                number: 80
+                port: 
+                  number: 80

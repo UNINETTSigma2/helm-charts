@@ -23,8 +23,9 @@ spec:
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
           service:
             name: {{ template "fullname" . }}-master-ui
-          port: 
-            number: 80
+            port: 
+              number: 80

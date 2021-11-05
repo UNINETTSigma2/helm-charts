@@ -25,26 +25,29 @@ spec:
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
               service:
                 name: {{ template "fullname" . }}
-              port: 
-                number: 80
+                port: 
+                  number: 80
     - host: tensorboard-{{ .Values.ingress.host }}
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
               service:
                 name: {{ template "fullname" . }}
-              port: 
-                number: 80
+                port: 
+                  number: 80
     - host: mlflow-{{ .Values.ingress.host }}
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
               service:
                 name: {{ template "fullname" . }}
-              port: 
-                number: 80
+                port: 
+                  number: 80
