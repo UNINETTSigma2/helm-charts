@@ -34,6 +34,6 @@ do
     done
     ls $PWD/$repo_dir
     echo "Make index.yaml for repo $repo"
-    helm repo index $repo_dir --url https://Uninett.github.io/helm-charts/$repo
+    helm repo index $repo_dir --url https://uninettsigma2.github.io/helm-charts/$repo
 done
 
