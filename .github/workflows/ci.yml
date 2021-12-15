@@ -29,6 +29,8 @@ jobs:
         tar zxf conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz
         mv conftest ./bin/conftest
         export PATH=$PATH:$PWD/bin/
+        echo "Running update chart repo"
         ./build/update-chart-repo.sh
+        echo "Running push"
         ./build/push.sh
               
