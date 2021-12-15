@@ -28,7 +28,10 @@ jobs:
         wget -q "https://github.com/instrumenta/conftest/releases/download/v${CONFTEST_VERSION}/conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz"
         tar zxf conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz
         mv conftest ./bin/conftest
-        export PATH=$PATH:$PWD/bin/
+        export PATH=$PWD/bin:$PATH
+        helm version
+        kubeval --version
+        conftest --version
         echo "Running update chart repo"
         ./build/update-chart-repo.sh
         echo "Running push"
