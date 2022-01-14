@@ -10,6 +10,6 @@ metadata:
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 data:
-  jupyter_server_config.py: {{ include "jupyter-server-config" . | quote }}
+  notebook_config.py: {{ include "notebook-config" . | quote }}
   passwd: {{ include "passwd" . | quote }}
   group: {{ include "group" . | quote }}

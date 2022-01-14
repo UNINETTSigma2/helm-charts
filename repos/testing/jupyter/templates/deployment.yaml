@@ -32,12 +32,12 @@ spec:
         - name: oidcconfig
           secret:
             secretName: {{ template "fullname" . }}
-        - name: jupyter-server-config
+        - name: notebook-config
           configMap:
             name: {{ template "fullname" . }}
             items:
-            - key: jupyter_server_config.py
-              path: jupyter_server_config.py
+            - key: notebook_config.py
+              path: notebook_config.py
         - name: passwd
           configMap:
             name: {{ template "fullname" . }}
@@ -170,14 +170,14 @@ spec:
           runAsGroup: {{ .Values.gid }}
         volumeMounts:
         {{- if ne (first .Values.persistentStorage).existingClaim "" }}
-        - name: jupyter-server-config
-          mountPath: /home/{{ .Values.username }}/.jupyter/jupyter_server_config.py
-          subPath: jupyter_server_config.py
+        - name: notebook-config
+          mountPath: /home/{{ .Values.username }}/.jupyter/notebook_config.py
+          subPath: notebook_config.py
           mountPropagation: HostToContainer
         {{- else }}
-        - name: jupyter-server-config
-          mountPath: /home/notebook/.jupyter/jupyter_server_config.py
-          subPath: jupyter_server_config.py
+        - name: notebook-config
+          mountPath: /home/notebook/.jupyter/notebook_config.py
+          subPath: notebook_config.py
         {{ end }}
         - name: passwd
           mountPath: /etc/passwd
