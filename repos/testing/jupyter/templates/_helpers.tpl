@@ -60,7 +60,7 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 }
 {{- end -}}
 
-{{- define "notebook-config" -}}
+{{- define "jupyter-server-config" -}}
 # Configuration file for ipython-notebook.
 
 c = get_config()
@@ -89,15 +89,15 @@ c.NotebookApp.allow_remote_access = True
 c.NotebookApp.token = ''
 c.NotebookApp.password = ''
 
-c.ServerProxy.servers = { 
+c.ServerProxy.servers = {
   'code-server': {
     'command': [
       'code-server',
         '--auth=none',
         '--disable-telemetry',
         '--port={port}'
-    ],  
-    'timeout': 20, 
+    ],
+    'timeout': 20,
     'launcher_entry': {
       'title': 'VS Code IDE'
     }
