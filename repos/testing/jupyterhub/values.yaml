@@ -68,7 +68,7 @@ advanced:
   ipyparallel:
     enabled: false
     workers: 2
-    image: "quay.io/uninett/jupyterhub-singleuser:20210324-27d46e5"
+    image: "quay.io/nird-toolkit/jupyterhub-singleuser:20220120-b3171c6"
     resources:
       requests:
         cpu: "1"
@@ -96,7 +96,7 @@ advanced:
     enabled: false
     minioAccessKey: "accesskeyexample"
     minioSecretKey: "secretkeyexample"
-  userImage: quay.io/uninett/jupyterhub-singleuser:20210324-27d46e5
+  userImage: quay.io/nird-toolkit/jupyterhub-singleuser:20220120-b3171c6
 appstore_generated_data:
   appstore_meta_data:
     contact_email: "example@uninett.no"
