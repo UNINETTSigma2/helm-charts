@@ -155,8 +155,8 @@ spec:
           httpGet:
             path: /
             port: 8787
-          initialDelaySeconds: 30
-          timeoutSeconds: 30
+          initialDelaySeconds: 300
+          timeoutSeconds: 300
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
