@@ -91,7 +91,7 @@ spec:
       containers:
       - name: cleaner-job
         image: "registry.uninett.no/public/alpine:3.13.5"
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         command:
           - /bin/sh
         args:
