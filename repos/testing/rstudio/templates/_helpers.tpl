@@ -117,6 +117,7 @@ server {
     proxy_redirect https://backend/ https://{{ .Values.ingress.host }}/;
     root /usr/share/nginx/html;
     proxy_read_timeout 20d;
+    proxy_set_header X-RStudio-Request https://{{ .Values.ingress.host }}:$server_port$request_uri;
   }
 
   error_page   500 502 503 504  /50x.html;
