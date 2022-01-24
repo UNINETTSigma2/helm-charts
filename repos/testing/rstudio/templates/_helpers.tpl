@@ -291,12 +291,14 @@ rstudio-server:!:17652::::::
               if (xhr.readyState == 4) {
                  if (xhr.status != 200) {
                     var errorMessage;
-                    if (xhr.status == 0)
+                    if (xhr.status == 0) {
                        document.write(0);
                        errorMessage = "Error: Could not reach server--check your internet connection";
-                    else
+                    }
+                    else {
                        document.write(1);
                        errorMessage = "Error: " + xhr.statusText;
+                    }
 
                     var errorDiv = document.getElementById('errorpanel');
                     errorDiv.innerHTML = '';
