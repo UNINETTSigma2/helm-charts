@@ -292,11 +292,13 @@ rstudio-server:!:17652::::::
                  if (xhr.status != 200) {
                     var errorMessage;
                     if (xhr.status == 0) {
-                       document.write(0);
+                       document.write('First');
+                       document.write(xhr.status);
                        errorMessage = "Error: Could not reach server--check your internet connection";
                     }
                     else {
-                       document.write(1);
+                       document.write('Second');
+                       document.write(xhr.status);
                        errorMessage = "Error: " + xhr.statusText;
                     }
 
@@ -311,7 +313,8 @@ rstudio-server:!:17652::::::
                     errorDiv.style.display = 'block';
                  }
                  else {
-                    document.write(2);
+                    document.write('Third');
+                    document.write(xhr.status);
                     var response = xhr.responseText;
                     var chunks = response.split(':', 2);
                     var exp = chunks[0];
@@ -324,13 +327,13 @@ rstudio-server:!:17652::::::
                  }
               }
            } catch (exception) {
-              document.write(3);
+              document.write('Fourth');
               alert("Error: " + exception);
            }
         };
         xhr.send(null);
      } catch (exception) {
-        document.write(4);
+        document.write('Fifth');
         alert("Error: " + exception);
      }
   }
