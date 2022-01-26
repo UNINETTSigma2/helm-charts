@@ -170,6 +170,8 @@ spec:
           value: /home/{{ .Values.username }}
         - name: USERNAME
           value: {{ .Values.username }}
+        - name: RSTUDIO_DATA_HOME
+          value: /home/{{ .Values.username }}/.rstudio
         - name: SHINY_APPS_PATH
           value: /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}/shiny-server
         - name: PVC_MOUNT_PATH
