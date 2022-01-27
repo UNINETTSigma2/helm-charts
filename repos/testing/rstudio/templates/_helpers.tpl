@@ -316,10 +316,11 @@ rstudio-server:!:17652::::::
                     document.getElementById('persist').value = "1";
                     document.getElementById('package').value = encrypted;
                     document.getElementById('clientPath').value = window.location.pathname;
-                    document.write("Else");
-                    document.write("xhr.readyState");
-                    document.write("xhr.status");
+                    document.write("Elsebef");
                     document.realform.submit();
+                    document.write("Elseaft");
+                    document.write(xhr.readyState);
+                    document.write(xhr.status);
                  }
               }
            } catch (exception) {
@@ -333,8 +334,9 @@ rstudio-server:!:17652::::::
   }
   window.onload =  function() {
      if (prepare()) {
-        document.write("prepare is true");
+        document.write("Prepbef");
         document.realform.submit();
+        document.write("Prepaft");
      }
   }
 </script>
