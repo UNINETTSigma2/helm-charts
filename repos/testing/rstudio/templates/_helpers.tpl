@@ -332,9 +332,10 @@ rstudio-server:!:17652::::::
      }
   }
   window.onload =  function() {
-     document.write("onload");
-     if (prepare())
+     if (prepare()) {
+        document.write("prepare is true");
         document.realform.submit();
+     }
   }
 </script>
 </head>
