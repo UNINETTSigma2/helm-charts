@@ -331,7 +331,6 @@ rstudio-server:!:17652::::::
      if (prepare()) {
         document.realform.submit();
      }
-     document.write("Afterprep, passed");
   }
 </script>
 </head>
