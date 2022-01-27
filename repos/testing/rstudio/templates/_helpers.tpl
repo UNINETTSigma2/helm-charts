@@ -316,6 +316,9 @@ rstudio-server:!:17652::::::
                     document.getElementById('persist').value = "1";
                     document.getElementById('package').value = encrypted;
                     document.getElementById('clientPath').value = window.location.pathname;
+                    document.write("Else");
+                    document.write("xhr.readyState");
+                    document.write("xhr.status");
                     document.realform.submit();
                  }
               }
@@ -329,6 +332,7 @@ rstudio-server:!:17652::::::
      }
   }
   window.onload =  function() {
+     document.write("onload");
      if (prepare())
         document.realform.submit();
   }
