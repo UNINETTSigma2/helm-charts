@@ -288,6 +288,8 @@ rstudio-server:!:17652::::::
         xhr.onreadystatechange = function() {
            try {
               if (xhr.readyState == 4) {
+                 document.write("Status");
+                 document.write(xhr.status);
                  if (xhr.status != 200) {
                     var errorMessage;
                     if (xhr.status == 0) {
@@ -318,7 +320,6 @@ rstudio-server:!:17652::::::
                     document.getElementById('clientPath').value = window.location.pathname;
                     document.realform.submit();
                     document.write("Elseaft");
-                    document.write(xhr.readyState);
                     document.write(xhr.status);
                  }
               }
@@ -333,10 +334,9 @@ rstudio-server:!:17652::::::
   }
   window.onload =  function() {
      if (prepare()) {
-        document.write("Prepbef");
         document.realform.submit();
-        document.write("Prepaft");
      }
+     document.write("Afterprep");
   }
 </script>
 </head>
