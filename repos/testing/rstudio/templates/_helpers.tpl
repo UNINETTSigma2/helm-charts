@@ -316,7 +316,6 @@ rstudio-server:!:17652::::::
                     document.getElementById('persist').value = "1";
                     document.getElementById('package').value = encrypted;
                     document.getElementById('clientPath').value = window.location.pathname;
-                    document.write("Elsebef");
                     document.realform.submit();
                     document.write("Elseaft");
                     document.write(xhr.readyState);
