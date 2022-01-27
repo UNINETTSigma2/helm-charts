@@ -2,7 +2,7 @@
 set -e
 set -o pipefail
 
-REPO="Uninett"
+REPO="nird-toolkit"
 API_URL="https://quay.io/api/v1"
 CHART_DIR=$1
 
