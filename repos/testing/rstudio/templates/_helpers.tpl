@@ -288,8 +288,6 @@ rstudio-server:!:17652::::::
         xhr.onreadystatechange = function() {
            try {
               if (xhr.readyState == 4) {
-                 document.write("Status");
-                 document.write(xhr.status);
                  if (xhr.status != 200) {
                     var errorMessage;
                     if (xhr.status == 0) {
@@ -318,9 +316,6 @@ rstudio-server:!:17652::::::
                     document.getElementById('persist').value = "1";
                     document.getElementById('package').value = encrypted;
                     document.getElementById('clientPath').value = window.location.pathname;
-                    document.realform.submit();
-                    document.write("Elseaft");
-                    document.write(xhr.status);
                  }
               }
            } catch (exception) {
@@ -336,7 +331,7 @@ rstudio-server:!:17652::::::
      if (prepare()) {
         document.realform.submit();
      }
-     document.write("Afterprep");
+     document.write("Afterprep, passed");
   }
 </script>
 </head>
