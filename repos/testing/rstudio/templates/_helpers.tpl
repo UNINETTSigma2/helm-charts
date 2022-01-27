@@ -100,25 +100,23 @@ server {
 
   location / {
     if ($state = IU) {
-	add_header Set-Cookie "hostid={{ $hostid }}";
-	add_header Set-Cookie "user-id=deleted; Expires=Thu, 01-Jan-1970 00:00:01 GMT";
+	    add_header Set-Cookie "hostid={{ $hostid }}; X-Forwarded-Host={{ .Values.ingress.host }}; X-Forwarded-Proto=https";
+	    add_header Set-Cookie "user-id=deleted; Expires=Thu, 01-Jan-1970 00:00:01 GMT";
     }
 
     if ($state = U) {
-	add_header Set-Cookie "hostid={{ $hostid }}";
-	proxy_pass   http://backend$request_uri;
-	break;
+	    add_header Set-Cookie "hostid={{ $hostid }}; X-Forwarded-Host={{ .Values.ingress.host }}; X-Forwarded-Proto=https";
+	    proxy_pass   http://backend$request_uri;
+	    break;
     }
 
-    add_header Set-Cookie "hostid={{ $hostid }}";
+    add_header Set-Cookie "hostid={{ $hostid }}; X-Forwarded-Host={{ .Values.ingress.host }}; X-Forwarded-Proto=https";
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "Upgrade";
     proxy_redirect https://backend/ https://{{ .Values.ingress.host }}/;
     root /usr/share/nginx/html;
     proxy_read_timeout 20d;
-    proxy_set_header X-Forwarded-Host {{ .Values.ingress.host }};
-    proxy_set_header X-Forwarded-Proto https;
   }
 
   error_page   500 502 503 504  /50x.html;
