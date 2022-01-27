@@ -91,6 +91,7 @@ server {
   location /auth-do-sign-in {
     proxy_pass   http://backend$request_uri;
     proxy_redirect http://backend/ https://{{ .Values.ingress.host }}/;
+    proxy_redirect https://backend/ https://{{ .Values.ingress.host }}/;
     break;
   }
   location /auth-sign-in {
@@ -115,6 +116,7 @@ server {
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "Upgrade";
     proxy_redirect http://backend/ https://{{ .Values.ingress.host }}/;
+    proxy_redirect https://backend/ https://{{ .Values.ingress.host }}/;
     root /usr/share/nginx/html;
     proxy_read_timeout 20d;
   }
