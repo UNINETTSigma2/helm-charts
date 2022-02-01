@@ -186,7 +186,7 @@ shiny:x:998:998::/home/shiny:
 {{ else }}
 {{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/rstudio:/bin/bash
 {{ end }}
-rstudio:x:999:999::/home/rstudio:/bin/bash
+rstudio:x:1000:1000::/home/rstudio:/bin/bash
 
 {{- end -}}
 
@@ -232,7 +232,7 @@ games:x:60:
 users:x:100:
 nogroup:x:65534:
 rstudio-server:x:988:
-rstudio:x:999:
+rstudio:x:1000:
 ssh:x:101:
 shiny:x:998:
 nogroup:x:65534:
@@ -244,7 +244,7 @@ nogroup:x:65534:
 {{- end }}
 {{- end }}
 {{- end }}
-rstudio:x:999:rstudio
+rstudio:x:1000:rstudio
 
 {{- end -}}
 

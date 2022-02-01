@@ -7,8 +7,8 @@ resources:
   limits:
     cpu: "4"
     memory: 2G
-uid: 999
-gid: 999
+uid: 1000
+gid: 1000
 username: rstudio
 supplementalGroups:
   - name: ""
