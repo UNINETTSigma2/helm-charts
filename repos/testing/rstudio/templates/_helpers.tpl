@@ -179,7 +179,7 @@ irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
 gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
 nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
 _apt:x:100:65534::/nonexistent:/bin/false
-rstudio-server:x:988:988::/home/rstudio-server:
+rstudio-server:x:999:999::/home/rstudio-server:
 shiny:x:998:998::/home/shiny:
 {{ if ne .Values.persistentStorage.existingClaim "" }}
 {{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/{{ .Values.username }}:/bin/bash
@@ -231,7 +231,7 @@ staff:x:50:rstudio
 games:x:60:
 users:x:100:
 nogroup:x:65534:
-rstudio-server:x:988:
+rstudio-server:x:999:
 rstudio:x:1000:
 ssh:x:101:
 shiny:x:998:
