@@ -181,14 +181,14 @@ irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
 gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
 nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
 _apt:x:100:65534::/nonexistent:/bin/false
-rstudio-server:x:999:999::/home/rstudio-server:
+rstudio-server:x:988:988::/home/rstudio-server:
 shiny:x:998:998::/home/shiny:
 {{ if ne .Values.persistentStorage.existingClaim "" }}
 {{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/{{ .Values.username }}:/bin/bash
 {{ else }}
 {{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/rstudio:/bin/bash
 {{ end }}
-rstudio:x:1000:1000::/home/rstudio:/bin/bash
+rstudio:x:999:999::/home/rstudio:/bin/bash
 
 {{- end -}}
 
@@ -233,8 +233,8 @@ staff:x:50:rstudio
 games:x:60:
 users:x:100:
 nogroup:x:65534:
-rstudio-server:x:999:
-rstudio:x:1000:
+rstudio-server:x:988:
+rstudio:x:999:
 ssh:x:101:
 shiny:x:998:
 nogroup:x:65534:
@@ -246,7 +246,7 @@ nogroup:x:65534:
 {{- end }}
 {{- end }}
 {{- end }}
-rstudio:x:1000:rstudio
+rstudio:x:999:rstudio
 
 {{- end -}}
 
@@ -294,12 +294,10 @@ rstudio-server:!:17652::::::
               if (xhr.readyState == 4) {
                  if (xhr.status != 200) {
                     var errorMessage;
-                    if (xhr.status == 0) {
+                    if (xhr.status == 0)
                        errorMessage = "Error: Could not reach server--check your internet connection";
-                    }
-                    else {
+                    else
                        errorMessage = "Error: " + xhr.statusText;
-                    }
 
                     var errorDiv = document.getElementById('errorpanel');
                     errorDiv.innerHTML = '';
@@ -333,9 +331,8 @@ rstudio-server:!:17652::::::
      }
   }
   window.onload =  function() {
-     if (prepare()) {
+     if (prepare())
         document.realform.submit();
-     }
   }
 </script>
 </head>
