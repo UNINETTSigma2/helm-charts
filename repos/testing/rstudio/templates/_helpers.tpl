@@ -118,7 +118,7 @@ server {
 	    proxy_pass   http://backend$request_uri;
 	    break;
     }
-
+    index index.htm
     add_header Set-Cookie "hostid={{ $hostid }}";
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
