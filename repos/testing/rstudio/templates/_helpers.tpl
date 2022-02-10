@@ -79,26 +79,37 @@ server {
   if ($cookie_user-id) {
     set $state "${state}U";
   }
-  location /favicon.ico {
-    proxy_pass   http://backend$request_uri;
-    break;
-  }
+
   location /js/encrypt.min.js {
+    proxy_set_header X-Forwarded-Host {{ .Values.ingress.host }};
+    proxy_set_header X-Forwarded-Proto https;
     proxy_pass   http://backend$request_uri;
     break;
   }
   location /auth-public-key {
+    proxy_set_header X-Forwarded-Host {{ .Values.ingress.host }};
+    proxy_set_header X-Forwarded-Proto https;
     proxy_pass   http://backend$request_uri;
     break;
   }
   location /auth-do-sign-in {
+    proxy_set_header X-Forwarded-Host {{ .Values.ingress.host }};
+    proxy_set_header X-Forwarded-Proto https;
     proxy_pass   http://backend$request_uri;
     proxy_redirect http://backend/ https://{{ .Values.ingress.host }}/;
     proxy_redirect https://backend/ https://{{ .Values.ingress.host }}/;
     break;
   }
   location /auth-sign-in {
+    proxy_set_header X-Forwarded-Host {{ .Values.ingress.host }};
+    proxy_set_header X-Forwarded-Proto https;
     return 301 https://{{ .Values.ingress.host }}/oauth2/logout;
+    break;
+  }
+  location /favicon.ico {
+    proxy_set_header X-Forwarded-Host {{ .Values.ingress.host }};
+    proxy_set_header X-Forwarded-Proto https;
+    proxy_pass   http://backend$request_uri;
     break;
   }
 
