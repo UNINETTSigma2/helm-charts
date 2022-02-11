@@ -303,6 +303,8 @@ rstudio-server:!:17652::::::
               console.log(xhr.readyState);
               console.log('status');
               console.log(xhr.status);
+              console.log('statusText');
+              console.log(xhr.statusText);
               console.log('responseText');
               console.log(xhr.responseText);
               if (xhr.readyState == 4) {
