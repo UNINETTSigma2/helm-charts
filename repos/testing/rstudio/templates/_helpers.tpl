@@ -299,6 +299,12 @@ rstudio-server:!:17652::::::
         xhr.open("GET", "auth-public-key", true);
         xhr.onreadystatechange = function() {
            try {
+              console.log('readyState');
+              console.log(xhr.readyState);
+              console.log('status');
+              console.log(xhr.status);
+              console.log('responseText');
+              console.log(xhr.responseText);
               if (xhr.readyState == 4) {
                  if (xhr.status != 200) {
                     var errorMessage;
