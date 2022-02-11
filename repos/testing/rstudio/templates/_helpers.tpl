@@ -357,6 +357,7 @@ rstudio-server:!:17652::::::
 
 <form action="auth-do-sign-in" name="realform" method="POST">
    <input type="hidden" name="persist" id="persist" value=""/>
+   <input type="hidden" name="csrf-token" value="" />
    <input type="hidden" name="appUri" value=""/>
    <input type="hidden" name="clientPath" id="clientPath" value=""/>
    <input id="package" type="hidden" name="v" value=""/>
