@@ -106,6 +106,12 @@ server {
     return 301 https://{{ .Values.ingress.host }}/oauth2/logout;
     break;
   }
+  location /favicon.ico {
+    proxy_set_header X-Forwarded-Host {{ .Values.ingress.host }};
+    proxy_set_header X-Forwarded-Proto https;
+    proxy_pass   http://backend$request_uri;
+    break;
+  }
 
   location / {
     if ($state = IU) {
@@ -286,10 +292,12 @@ rstudio-server:!:17652::::::
 # Create index.html file to specific user to be authenticated as
 {{- define "indexhtml" -}}
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="en">
 
+<head>
+<meta charset="UTF-8" />
 <title>RStudio Sign In</title>
+
 <script type="text/javascript" src="js/encrypt.min.js"></script>
 <script type="text/javascript">
   function prepare() {
