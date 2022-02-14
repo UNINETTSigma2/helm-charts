@@ -298,6 +298,7 @@ rstudio-server:!:17652::::::
 <meta charset="UTF-8" />
 <title>RStudio Sign In</title>
 
+<link rel="shortcut icon" href="images/favicon.ico" />
 <script type="text/javascript" src="js/encrypt.min.js"></script>
 <script type="text/javascript">
   function prepare() {
