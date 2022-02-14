@@ -2,9 +2,9 @@ apiVersion: v1
 entries:
   custom-image:
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.760335285Z"
+    created: "2022-02-14T12:03:24.063755024Z"
     description: Custom image
-    digest: 6acba87580bf5e647d46f7e808569fdcc5b2466ac28961655a089cb47bbd6a12
+    digest: 9dd4c5525a0f9c00776115e933eed64f82709a6aa73c9fc6621eeeda9212d6b1
     home: https://github.com/Uninett/helm-charts/tree/master/repos/testing/custom-image
     icon: https://www.docker.com/sites/default/files/d8/2019-07/vertical-logo-monochromatic.png
     keywords:
@@ -18,7 +18,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/custom-image-0.1.6.tgz
     version: 0.1.6
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.759597787Z"
+    created: "2022-02-14T12:03:24.062968323Z"
     description: Custom image
     digest: 776478ed3bd9a8e6ef657e255d6b266b326b2c6dcf3430e85c3050a6ce44ebb3
     home: https://github.com/Uninett/helm-charts/tree/master/repos/testing/custom-image
@@ -34,7 +34,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/custom-image-0.1.5.tgz
     version: 0.1.5
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.75879319Z"
+    created: "2022-02-14T12:03:24.062213322Z"
     description: Custom image
     digest: 45f278afd7260709fb9a025d808e822262fc145cda02142b2ee23be320d4c367
     home: https://github.com/Uninett/helm-charts/tree/master/repos/testing/custom-image
@@ -50,7 +50,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/custom-image-0.1.4.tgz
     version: 0.1.4
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.758103692Z"
+    created: "2022-02-14T12:03:24.061303421Z"
     description: Custom image
     digest: e730a91e54ecf44db82746c85ced8e83b45d5be29cf6033bbbe91e06c389e195
     home: https://github.com/Uninett/helm-charts/tree/master/repos/testing/custom-image
@@ -66,7 +66,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/custom-image-0.1.3.tgz
     version: 0.1.3
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.757507394Z"
+    created: "2022-02-14T12:03:24.06047672Z"
     description: Custom image
     digest: a396e6282e6db6a83f1b1ef65409df351030f22116d9cdf34bd3fd3fd08d1ecc
     home: https://github.com/Uninett/helm-charts/tree/master/repos/testing/custom-image
@@ -82,7 +82,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/custom-image-0.1.2.tgz
     version: 0.1.2
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.756844397Z"
+    created: "2022-02-14T12:03:24.059719019Z"
     description: Custom image
     digest: ffc0e393a6e77f7a4ec9eede0a7ee3f2f726c4bc312ca474182ad5d60b0d081e
     home: https://github.com/Uninett/helm-charts/tree/master/repos/testing/custom-image
@@ -98,7 +98,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/custom-image-0.1.1.tgz
     version: 0.1.1
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.756232499Z"
+    created: "2022-02-14T12:03:24.059033718Z"
     description: Custom image
     digest: 6aceb430c4df153c359f8e1b16dd597875da2bf4b16cda543e2a7e7123135bbb
     home: https://github.com/Uninett/helm-charts/tree/master/repos/testing/custom-image
@@ -115,9 +115,9 @@ entries:
     version: 0.1.0
   deep-learning-tools:
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.789232984Z"
+    created: "2022-02-14T12:03:24.099577175Z"
     description: A collection of various deep learning tools
-    digest: 7aa79f976b13ea40a322bdbb4686d3fafee8529c302b1e949fefa8a13f276ccd
+    digest: d5e5cda44f5607bd8e0b4d9842cc2442e8f259e7f5d5f7358f1151c7acc59f30
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
     icon: https://upload.wikimedia.org/wikipedia/commons/8/81/Deep_learning.png
     keywords:
@@ -131,7 +131,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.8.2.tgz
     version: 0.8.2
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.788461387Z"
+    created: "2022-02-14T12:03:24.098688874Z"
     description: A collection of various deep learning tools
     digest: b516974e8c070c22afef3fae0d78cf576a995c7cc30a54cb919e893536c7dc43
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -147,7 +147,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.8.1.tgz
     version: 0.8.1
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.787625889Z"
+    created: "2022-02-14T12:03:24.097756772Z"
     description: A collection of various deep learning tools
     digest: 06b85f76e97be4ba1e011f83fc97cb99e8f53542cc158d443b376cd15cd92dd2
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -163,7 +163,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.8.0.tgz
     version: 0.8.0
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.786850592Z"
+    created: "2022-02-14T12:03:24.096888171Z"
     description: A collection of various deep learning tools
     digest: a3a84be14dadf733ff336d75956fe391041a5fc0146c15a9ebc96840768b635b
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -179,7 +179,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.7.9.tgz
     version: 0.7.9
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.786164295Z"
+    created: "2022-02-14T12:03:24.09588167Z"
     description: A collection of various deep learning tools
     digest: 0a923bdc0f8d518cc9231b1b03b900667a4a63b9a140e722126102deee2c8655
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -195,7 +195,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.7.8.tgz
     version: 0.7.8
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.785482997Z"
+    created: "2022-02-14T12:03:24.095023769Z"
     description: A collection of various deep learning tools
     digest: 0dd5fb88e8a9b16d77d7fafafbb2868426c3faac8ee391519fe9578269dcd19a
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -211,7 +211,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.7.7.tgz
     version: 0.7.7
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.7847245Z"
+    created: "2022-02-14T12:03:24.094145267Z"
     description: A collection of various deep learning tools
     digest: 1c9ab02d97092cf4b8884fe8c3bd7153010e78241c2b606f62266d3632470686
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -227,7 +227,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.7.6.tgz
     version: 0.7.6
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.783892802Z"
+    created: "2022-02-14T12:03:24.093296266Z"
     description: A collection of various deep learning tools
     digest: 7dcd5c2b762a562859a6dc5a17774f67553110fb707afaa82c26af4a1b21a6be
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -243,7 +243,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.7.5.tgz
     version: 0.7.5
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.782960606Z"
+    created: "2022-02-14T12:03:24.092480365Z"
     description: A collection of various deep learning tools
     digest: a87cab7e9d0e24e4ee00a7b7133912662f0c81805d8a7b37576fa9ba1d33373e
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -259,7 +259,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.7.4.tgz
     version: 0.7.4
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.782196808Z"
+    created: "2022-02-14T12:03:24.091523664Z"
     description: A collection of various deep learning tools
     digest: b2d4757af77c2ccd187dcd3fa58da733df07a5559ce1c87c3766ac7e4e827523
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -275,7 +275,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.7.3.tgz
     version: 0.7.3
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.781099012Z"
+    created: "2022-02-14T12:03:24.090662562Z"
     description: A collection of various deep learning tools
     digest: aea65f17bc262adb10f82701a04c09907c4e99065024cdb97ba9d8df4aacdc00
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -291,7 +291,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.7.2.tgz
     version: 0.7.2
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.780315815Z"
+    created: "2022-02-14T12:03:24.089799361Z"
     description: A collection of various deep learning tools
     digest: fa3582a02ad7140d9582479d5b0dfad6a66fc66d6677339d3171ab4be4a25e3a
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -307,7 +307,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.7.1.tgz
     version: 0.7.1
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.779346818Z"
+    created: "2022-02-14T12:03:24.08899186Z"
     description: A collection of various deep learning tools
     digest: b4e9c488e9d467b4fa39ef44d3bdbdfd388eeae2995fe09e2c66b8cde9b58552
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -323,7 +323,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.7.0.tgz
     version: 0.7.0
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.774420236Z"
+    created: "2022-02-14T12:03:24.083253052Z"
     description: A collection of various deep learning tools
     digest: 53145b01f3f7b4dd81fd23a4e53003c56c51eaf3628307b1922be78152e35370
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -339,7 +339,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.6.25.tgz
     version: 0.6.25
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.773565738Z"
+    created: "2022-02-14T12:03:24.082344451Z"
     description: A collection of various deep learning tools
     digest: ccfa7b19b7c84dc61070bfeaf0d7d652f55f25c821559b06fd2c0be86ccfd478
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -355,7 +355,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.6.24.tgz
     version: 0.6.24
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.772847141Z"
+    created: "2022-02-14T12:03:24.081339249Z"
     description: A collection of various deep learning tools
     digest: 378256b44a313190479cad50e0363e5ce16e45e07ae51f19f68213cafe0cc0a1
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -371,7 +371,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.6.23.tgz
     version: 0.6.23
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.772215343Z"
+    created: "2022-02-14T12:03:24.080551248Z"
     description: A collection of various deep learning tools
     digest: ef601309a99e3c6a2f8fba9481b129a47a3fc8a6f89a598f9d0c2c9642ad4829
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -387,7 +387,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.6.22.tgz
     version: 0.6.22
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.771644845Z"
+    created: "2022-02-14T12:03:24.079683147Z"
     description: A collection of various deep learning tools
     digest: 4283a43023d311473afab80babd832540442e62578027d6e3a2b080180ed8804
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -403,7 +403,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.6.21.tgz
     version: 0.6.21
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.771004847Z"
+    created: "2022-02-14T12:03:24.078865746Z"
     description: A collection of various deep learning tools
     digest: 04cc7dce31c7956b13cedb0d514baef5acb80645d7d3a5ccb045c424f7a16ffd
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -419,7 +419,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.6.20.tgz
     version: 0.6.20
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.769812552Z"
+    created: "2022-02-14T12:03:24.077060843Z"
     description: A collection of various deep learning tools
     digest: 8ea2471e0ec05f6a0477099a793611c632c97f0c5253470cdc8883200745ec05
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -435,7 +435,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.6.19.tgz
     version: 0.6.19
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.769148454Z"
+    created: "2022-02-14T12:03:24.076220742Z"
     description: A collection of various deep learning tools
     digest: ec3876355c7342e4133a0306c3a5727f8f38f04f6c7f44db9fa6995037e617db
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -451,7 +451,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.6.18.tgz
     version: 0.6.18
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.768533256Z"
+    created: "2022-02-14T12:03:24.075382241Z"
     description: A collection of various deep learning tools
     digest: 2968ff5570ac1ebb78ced82bd62f434f92ee554f27411649352211da4e259bf9
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -467,7 +467,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.6.17.tgz
     version: 0.6.17
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.767909358Z"
+    created: "2022-02-14T12:03:24.07458714Z"
     description: A collection of various deep learning tools
     digest: 3131ce0a3530d70088061de65b735274521c47d92a96bbac5c5ec7e1968c7de7
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -483,7 +483,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.6.16.tgz
     version: 0.6.16
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.76726586Z"
+    created: "2022-02-14T12:03:24.073246438Z"
     description: A collection of various deep learning tools
     digest: 77b2354b25350830cdb4c64e81ccc8cf9ced1d8d5cceeba8d2922114435715dd
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -499,7 +499,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.6.15.tgz
     version: 0.6.15
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.766480263Z"
+    created: "2022-02-14T12:03:24.072227636Z"
     description: A collection of various deep learning tools
     digest: 2b6a4e6248e38554068215ad4d13910680679e0fe106509741932f01e42dcd36
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -515,7 +515,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.6.14.tgz
     version: 0.6.14
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.765606366Z"
+    created: "2022-02-14T12:03:24.070541834Z"
     description: A collection of various deep learning tools
     digest: 49e2aade077e88873883639ff25fbdf2d43696f2c7446a984c730d99c93eb7c9
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -531,7 +531,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.6.13.tgz
     version: 0.6.13
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.763924472Z"
+    created: "2022-02-14T12:03:24.069116832Z"
     description: A collection of various deep learning tools
     digest: eec7d7ac43359e4cb79b3ef3eb507677fde318584d5d69c57e86380507858a4b
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -547,7 +547,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.6.12.tgz
     version: 0.6.12
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.763014675Z"
+    created: "2022-02-14T12:03:24.068372031Z"
     description: A collection of various deep learning tools
     digest: 8b1775f8bee65b950b8aeec690168e5ef1c17794d7ac6baa360fe6a979491d2a
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -563,7 +563,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.6.11.tgz
     version: 0.6.11
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.762381077Z"
+    created: "2022-02-14T12:03:24.06747763Z"
     description: A collection of various deep learning tools
     digest: 6817eddcf32906e032ce7f4a0379259fc81967d8b9251618985d6b64c865d897
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -579,7 +579,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.6.10.tgz
     version: 0.6.10
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.778389322Z"
+    created: "2022-02-14T12:03:24.087851358Z"
     description: A collection of various deep learning tools
     digest: c5ee4005ba947f0b62fd4d8ec4243f755c0fb9a62df60f4b4ff5c6a74804f38c
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -595,7 +595,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.6.9.tgz
     version: 0.6.9
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.777475825Z"
+    created: "2022-02-14T12:03:24.086795857Z"
     description: A collection of various deep learning tools
     digest: 311e056e78d060aca7c6655848c03098bfe853500cd5c56f821858bc815a9ff4
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -611,7 +611,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.6.8.tgz
     version: 0.6.8
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.776397929Z"
+    created: "2022-02-14T12:03:24.085524955Z"
     description: A collection of various deep learning tools
     digest: a857e22dfdb02b5aaf9d3e0b7403353bab6b42134a9e0fdb58e5621c511bd5e9
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -627,7 +627,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.6.7.tgz
     version: 0.6.7
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.775715131Z"
+    created: "2022-02-14T12:03:24.084797054Z"
     description: A collection of various deep learning tools
     digest: e905b16d09d8e383f837c1acd8cf3027f34d3836f46b7a4ffc3455356eb9adf3
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -643,7 +643,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.6.4.tgz
     version: 0.6.4
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.775142633Z"
+    created: "2022-02-14T12:03:24.084082953Z"
     description: A collection of various deep learning tools
     digest: 071650f8a6612fa7545ca1b9807f976beb631a7e6dc891d4d6a09ea3b941c779
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -659,7 +659,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.6.3.tgz
     version: 0.6.3
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.77037155Z"
+    created: "2022-02-14T12:03:24.077857444Z"
     description: A collection of various deep learning tools
     digest: 13522b2da587c12bdd2ae1fc3ea5c94e4de36f1d8f5dcbd121b543a10660f7f4
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -675,7 +675,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.6.2.tgz
     version: 0.6.2
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.76174878Z"
+    created: "2022-02-14T12:03:24.066713829Z"
     description: A collection of various deep learning tools
     digest: a3705e354d3b842c815624fe39fca0ecce34cb17d37305645e5d2b071d64a4d9
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -691,7 +691,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools-0.6.1.tgz
     version: 0.6.1
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.761002982Z"
+    created: "2022-02-14T12:03:24.064457325Z"
     description: A collection of various deep learning tools
     digest: abc92b4981194ec8c3fa2c939ef83532cd83a439177b2a6ac1086b9013e798d0
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -708,9 +708,9 @@ entries:
     version: 0.6.0
   deep-learning-tools2:
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.791394976Z"
+    created: "2022-02-14T12:03:24.10340998Z"
     description: A collection of various deep learning tools
-    digest: 1616136f2dd3cbe743e623f1c668d9d420fb02a7d65cc4e7ef24a7698fc09505
+    digest: 2174c32903ffb4b782717976be401e40455ae059e0d6fc102035c6843ab7fc27
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
     icon: https://upload.wikimedia.org/wikipedia/commons/8/81/Deep_learning.png
     keywords:
@@ -724,7 +724,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools2-0.1.2.tgz
     version: 0.1.2
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.790719079Z"
+    created: "2022-02-14T12:03:24.101954378Z"
     description: A collection of various deep learning tools
     digest: 77b6a0fc7046700e62f8f174012d8e3c657b35b8e6b443ee306a8e51362d6fda
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -740,7 +740,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/deep-learning-tools2-0.1.1.tgz
     version: 0.1.1
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.790006181Z"
+    created: "2022-02-14T12:03:24.100764277Z"
     description: A collection of various deep learning tools
     digest: 5f2c415260cd4a9f91c0408485664fb3e923358fc4ce9e5802b1bbf9b59de28c
     home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
@@ -757,9 +757,9 @@ entries:
     version: 0.1.0
   desktop-vnc:
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.817677385Z"
+    created: "2022-02-14T12:03:24.132087621Z"
     description: Desktop VNC with Ubuntu
-    digest: decb9b36770c418f5bfbc695673fed548b41e6ca9f31e60eb1f3e505d6dead66
+    digest: 14cbbddefb8da828139e89f2894c601fb4a4f32c635a661075eb39ee65f258bd
     home: https://github.com/Uninett/helm-charts/tree/master/repos/testing/desktop-vnc
     icon: https://raw.githubusercontent.com/novnc/noVNC/master/app/images/icons/novnc-120x120.png
     keywords:
@@ -773,7 +773,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-1.0.19.tgz
     version: 1.0.19
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.817116487Z"
+    created: "2022-02-14T12:03:24.13132992Z"
     description: Desktop VNC with Ubuntu
     digest: 9b8801056c8b70a8a4b4f9ccc441e6363caecf328c4c20b5c58e372e3d7d46b0
     home: https://github.com/Uninett/helm-charts/tree/master/repos/testing/desktop-vnc
@@ -789,7 +789,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-1.0.18.tgz
     version: 1.0.18
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.816549389Z"
+    created: "2022-02-14T12:03:24.130630319Z"
     description: Desktop VNC with Ubuntu
     digest: 6f903954629bdc2ecca3ccf28ca141b826c5195622b830450303c23377a508c3
     home: https://github.com/Uninett/helm-charts/tree/master/repos/testing/desktop-vnc
@@ -805,7 +805,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-1.0.17.tgz
     version: 1.0.17
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.815883191Z"
+    created: "2022-02-14T12:03:24.128371316Z"
     description: Desktop VNC with Ubuntu
     digest: 085374bdfad87c37746bf208f9f10063092067cf33ae7bc0473114568994bd86
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -821,7 +821,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-1.0.16.tgz
     version: 1.0.16
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.815230793Z"
+    created: "2022-02-14T12:03:24.127629215Z"
     description: Desktop VNC with Ubuntu
     digest: b6ca0a92ee78ba3716a7829e633cb3b4263dac532a8202316546f10d97b8ba00
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -837,7 +837,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-1.0.15.tgz
     version: 1.0.15
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.814648295Z"
+    created: "2022-02-14T12:03:24.125850512Z"
     description: Desktop VNC with Ubuntu
     digest: 985d5802c94bd6329803aa662e90d1ec55cb7f872acefb7e470841bdfaf89090
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -853,7 +853,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-1.0.11.tgz
     version: 1.0.11
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.818275183Z"
+    created: "2022-02-14T12:03:24.132875622Z"
     description: Desktop VNC with Ubuntu
     digest: bf8e5a783d29485b1332661d688df66f248d43b25ae8b5b78404faab171ac92f
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -869,7 +869,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-1.0.2.tgz
     version: 1.0.2
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.814025797Z"
+    created: "2022-02-14T12:03:24.125070811Z"
     description: Desktop VNC with Ubuntu
     digest: 08099ddaeb3861b4bacf2f74b53c9bf67afdb8fb557383154471c0670e8ff821
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -885,7 +885,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-1.0.0.tgz
     version: 1.0.0
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.806780423Z"
+    created: "2022-02-14T12:03:24.1175887Z"
     description: Desktop VNC with Ubuntu
     digest: 9f1a579931dc89911cd04828366ead695f59db34013a7f7b2d9b144675fb0dc1
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -901,7 +901,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-0.1.24.tgz
     version: 0.1.24
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.805816726Z"
+    created: "2022-02-14T12:03:24.116412199Z"
     description: Desktop VNC with Ubuntu
     digest: aab49de77f4aa95a58959e336a487e2a61743b9ebd17fce56f19f237971fb270
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -917,7 +917,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-0.1.23.tgz
     version: 0.1.23
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.805185428Z"
+    created: "2022-02-14T12:03:24.115718098Z"
     description: Desktop VNC with Ubuntu
     digest: 8d967b771fdc19e9bca3ec4108398387c315918fb5787ef6f92715aee310ec98
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -933,7 +933,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-0.1.22.tgz
     version: 0.1.22
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.804508331Z"
+    created: "2022-02-14T12:03:24.114937397Z"
     description: Desktop VNC with Ubuntu
     digest: 692a2c0bea48446d327dae98f5a904474d9c3fb98db9df6fcb2ef8c5a89a38db
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -949,7 +949,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-0.1.21.tgz
     version: 0.1.21
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.803446534Z"
+    created: "2022-02-14T12:03:24.114226496Z"
     description: Desktop VNC with Ubuntu
     digest: be761a7c3647fcec540a0641e1b841c91f5b8d812b05d94bd168af4b9a923f99
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -965,7 +965,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-0.1.20.tgz
     version: 0.1.20
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.802239239Z"
+    created: "2022-02-14T12:03:24.112557493Z"
     description: Desktop VNC with Ubuntu
     digest: 9abb2a94861f39394702bd48287113bdfa1a0170a3f833ccdc4318ee7fbcf80a
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -981,7 +981,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-0.1.19.tgz
     version: 0.1.19
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.801573241Z"
+    created: "2022-02-14T12:03:24.111754392Z"
     description: Desktop VNC with Ubuntu
     digest: 3af1ebb4fab30d17831fb83040a7508bca035f5bc5b01e2aee4a3ecbb8520d6d
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -997,7 +997,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-0.1.18.tgz
     version: 0.1.18
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.800978243Z"
+    created: "2022-02-14T12:03:24.110955691Z"
     description: Desktop VNC with Ubuntu
     digest: 6fafa4b4e157da30cc91367576baeb2020d23c99b95af71cd16e2bdcb8dce524
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -1013,7 +1013,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-0.1.17.tgz
     version: 0.1.17
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.800368745Z"
+    created: "2022-02-14T12:03:24.11018569Z"
     description: Desktop VNC with Ubuntu
     digest: de279bfd8ed4fd27ac67a9d5f5f35be12fc7d7fa3fe62f43e7790e189e1520e2
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -1029,7 +1029,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-0.1.16.tgz
     version: 0.1.16
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.799631848Z"
+    created: "2022-02-14T12:03:24.109472689Z"
     description: Desktop VNC with Ubuntu
     digest: 30a3c204f9a9be1dde232fc84b0ceb467f1d23666dda0a8b220137ddd8ae7476
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -1045,7 +1045,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-0.1.15.tgz
     version: 0.1.15
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.798719551Z"
+    created: "2022-02-14T12:03:24.108728788Z"
     description: Desktop VNC with Ubuntu
     digest: acbfce38cbea0a2b73800d8275052e252e9693acfd00e3f36bc4af76b69db917
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -1061,7 +1061,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-0.1.14.tgz
     version: 0.1.14
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.797944753Z"
+    created: "2022-02-14T12:03:24.107945687Z"
     description: Desktop VNC with Ubuntu
     digest: 7adc3e5b859403b10ee6076aa264d026446c5b9db48174834c4626eb77b2961f
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -1077,7 +1077,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-0.1.13.tgz
     version: 0.1.13
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.796586458Z"
+    created: "2022-02-14T12:03:24.107306186Z"
     description: Desktop VNC with Ubuntu
     digest: 5d23b3dc3db624fb628fb8e2b40fa29188f94e1b53f94c07fd7733757024dd8d
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -1093,7 +1093,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-0.1.12.tgz
     version: 0.1.12
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.793541269Z"
+    created: "2022-02-14T12:03:24.106556985Z"
     description: Desktop VNC with Ubuntu
     digest: 816ccbddbc5a8e0e30de38eff8ce7bbcc80bf60e76d1df0cd09b862bcf1e04eb
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -1109,7 +1109,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-0.1.11.tgz
     version: 0.1.11
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.792948371Z"
+    created: "2022-02-14T12:03:24.105823284Z"
     description: Desktop VNC with Ubuntu
     digest: 0090288eff90a695e84547578099044c0a6e7c272a6eff50a595bda7ab47c680
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -1125,7 +1125,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-0.1.10.tgz
     version: 0.1.10
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.8133596Z"
+    created: "2022-02-14T12:03:24.12433021Z"
     description: Desktop VNC with Ubuntu
     digest: a9669cdb333382893fc46be1364fb8a3b538402244101a244a603fac876df7a3
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -1141,7 +1141,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-0.1.9.tgz
     version: 0.1.9
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.812523903Z"
+    created: "2022-02-14T12:03:24.123577209Z"
     description: Desktop VNC with Ubuntu
     digest: 49724819eb73dfddb6d3c2164058eac51b81b844ff422f9f624bad562518b735
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -1157,7 +1157,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-0.1.8.tgz
     version: 0.1.8
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.811869405Z"
+    created: "2022-02-14T12:03:24.122833308Z"
     description: Desktop VNC with Ubuntu
     digest: cd557cb8c406cc6b99cc60577b37779aa51ef443e642db7609644e49296f49eb
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -1174,7 +1174,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-0.1.7.tgz
     version: 0.1.7
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.810145811Z"
+    created: "2022-02-14T12:03:24.121852006Z"
     description: Desktop VNC with Ubuntu
     digest: 457209d946982f2c05486da15cfc21a5413367f0f17841564e8adc9c53779885
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -1191,7 +1191,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-0.1.6.tgz
     version: 0.1.6
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.809267214Z"
+    created: "2022-02-14T12:03:24.121141605Z"
     description: Desktop VNC with Ubuntu
     digest: a480c7c28d8269a032de99d541ca788d67403b11270299b13f9c165d679ee67c
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -1208,7 +1208,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-0.1.5.tgz
     version: 0.1.5
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.808126018Z"
+    created: "2022-02-14T12:03:24.119786803Z"
     description: Desktop VNC with Ubuntu
     digest: 380f862be50f073557e917bedd3725192c5ac41f762f52a7027f722b621ff324
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -1225,7 +1225,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-0.1.4.tgz
     version: 0.1.4
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.80745542Z"
+    created: "2022-02-14T12:03:24.118635202Z"
     description: Desktop VNC with Ubuntu
     digest: 28a9f4fbedfdb15b92c36084cf0ec242b56a8cfb2f8eb22b94ce6f0095e4f4bd
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -1242,7 +1242,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-0.1.3.tgz
     version: 0.1.3
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.802805037Z"
+    created: "2022-02-14T12:03:24.113346194Z"
     description: Desktop VNC with Ubuntu
     digest: 240e1709d1c4d95d00288cdc153904e700a1ea84996a30f517ef5c46ac8267af
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -1259,7 +1259,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-0.1.2.tgz
     version: 0.1.2
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.792430073Z"
+    created: "2022-02-14T12:03:24.105147683Z"
     description: Desktop VNC with Ubuntu
     digest: ab725d966370ebbb566af4b40636e784abfe3f868754cf4833fc07cc2477abff
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -1276,7 +1276,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/desktop-vnc-0.1.1.tgz
     version: 0.1.1
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.791907375Z"
+    created: "2022-02-14T12:03:24.104435482Z"
     description: Desktop VNC with Ubuntu
     digest: dd83d207a05405835bdc4756b6eb249120ff6a48da4fd891ba8c62904f409987
     home: https://github.com/Uninett/helm-charts/tree/master/desktop-vnc
@@ -1294,9 +1294,9 @@ entries:
     version: 0.1.0
   dokuwiki:
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.820239876Z"
+    created: "2022-02-14T12:03:24.140315332Z"
     description: Dokuwiki with oauth support
-    digest: 817878c339b9c7b7aaad7c1af5be82db14deedf0581899f56e74f6b902ac3194
+    digest: edc7860456118571f5996a93a894462d6c3c19e14565a98f01d2bc8657a07278
     home: https://github.com/Uninett/appstore-app-dokuwiki
     icon: https://bitnami.com/assets/stacks/dokuwiki/img/dokuwiki-stack-110x117.png
     maintainers:
@@ -1307,7 +1307,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/dokuwiki-0.4.3.tgz
     version: 0.4.3
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.819816077Z"
+    created: "2022-02-14T12:03:24.137549529Z"
     description: Dokuwiki with oauth support
     digest: f7edb72e3404a2dbdcb46f4ae0b9d8c5f7862d29226d043318138b30e9b60b93
     home: https://github.com/Uninett/appstore-app-dokuwiki
@@ -1320,7 +1320,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/dokuwiki-0.4.2.tgz
     version: 0.4.2
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.819447279Z"
+    created: "2022-02-14T12:03:24.136202427Z"
     description: Dokuwiki with oauth support
     digest: 5049847258fd429f4fc9c81ce286c99ff9e6e957147c136162f5631c236527f4
     home: https://github.com/Uninett/appstore-app-dokuwiki
@@ -1333,7 +1333,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/dokuwiki-0.4.1.tgz
     version: 0.4.1
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.81908088Z"
+    created: "2022-02-14T12:03:24.135626726Z"
     description: Dokuwiki with oauth support
     digest: 32a92a1e37325f78299688b6ecb2c0b0487818fc6fa9402ac15f5768abb6a5a6
     home: https://github.com/Uninett/appstore-app-dokuwiki
@@ -1346,7 +1346,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/dokuwiki-0.4.0.tgz
     version: 0.4.0
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.818711181Z"
+    created: "2022-02-14T12:03:24.133376323Z"
     description: Dokuwiki with oauth support
     digest: dace7a478e396cd5bc124d9643509632a700921023fdd3afc5396dc8c2b6584b
     home: https://github.com/Uninett/appstore-app-dokuwiki
@@ -1360,9 +1360,9 @@ entries:
     version: 0.3.3
   etherpad:
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.822872167Z"
+    created: "2022-02-14T12:03:24.144706939Z"
     description: Etherpad + Dataporten
-    digest: 4917495aa0ef673be80f9de59b45d06e4640f4034f516857294789bd7ebebf44
+    digest: 75788912bb2162c65b4322a5d31bc140e976c1343a9d89da75461b1f7035ca60
     home: https://github.com/Uninett/appstore-app-etherpad
     icon: https://translatewiki.net/images/thumb/6/6f/Etherpad_lite.svg/200px-Etherpad_lite.svg.png
     maintainers:
@@ -1373,7 +1373,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/etherpad-1.2.3.tgz
     version: 1.2.3
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.822317068Z"
+    created: "2022-02-14T12:03:24.144023438Z"
     description: Etherpad + Dataporten
     digest: e3d2ea34a13d76cec1708adc9bacd78a30dea2b8acbde0df6f4564a2fa182fcf
     home: https://github.com/Uninett/appstore-app-etherpad
@@ -1386,7 +1386,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/etherpad-1.2.2.tgz
     version: 1.2.2
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.82180227Z"
+    created: "2022-02-14T12:03:24.143334337Z"
     description: Etherpad + Dataporten
     digest: 2af2a5cb69526f3c32c24a11c88449fd038e3b8475fa30b370fc881bc532663f
     home: https://github.com/Uninett/appstore-app-etherpad
@@ -1399,7 +1399,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/etherpad-1.2.1.tgz
     version: 1.2.1
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.821032673Z"
+    created: "2022-02-14T12:03:24.142350835Z"
     description: Etherpad + Dataporten
     digest: 63d0efa847f5fbd2d1de786f738f183a3291ffc5b01feb89bc7cb5babce19b31
     home: https://github.com/Uninett/appstore-app-etherpad
@@ -1412,7 +1412,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/etherpad-1.2.0.tgz
     version: 1.2.0
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.820645674Z"
+    created: "2022-02-14T12:03:24.140941133Z"
     description: Etherpad + Dataporten
     digest: 640580378c41a24c0cd9066f97b04809027e8b08cc433a5687f5a785403cdef5
     home: https://github.com/Uninett/appstore-app-etherpad
@@ -1426,9 +1426,9 @@ entries:
     version: 1.1.3
   gitea:
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.841576401Z"
+    created: "2022-02-14T12:03:24.16701157Z"
     description: Gitea chart
-    digest: 3ac1f614e46515d4b36dd4ebda266349c55a166f0cca1b053e66279583fb6f8e
+    digest: d38174b79ec2fb1f7b31ca026ebe0106143c15f27dde2cc4f7129a199f555b3a
     home: https://github.com/Uninett/helm-charts/tree/master/repos/testing/gitea
     icon: https://docs.gitea.io/images/gitea.png
     keywords:
@@ -1441,7 +1441,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/gitea-0.2.15.tgz
     version: 0.2.15
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.840639205Z"
+    created: "2022-02-14T12:03:24.165490568Z"
     description: Gitea chart
     digest: f71b93dc47f91f960a1c10f6f24d6bfe0500fe9c291680f27449ab39af1f28da
     home: https://github.com/Uninett/helm-charts/tree/master/repos/testing/gitea
@@ -1456,7 +1456,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/gitea-0.2.14.tgz
     version: 0.2.14
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.839725908Z"
+    created: "2022-02-14T12:03:24.164412566Z"
     description: Gitea chart
     digest: 74909b9592eedb7767327a91a4f5ace003b748b197c1bb8c414a181432cf32b0
     home: https://github.com/Uninett/helm-charts/tree/master/repos/testing/gitea
@@ -1471,7 +1471,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/gitea-0.2.13.tgz
     version: 0.2.13
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.838343513Z"
+    created: "2022-02-14T12:03:24.163382865Z"
     description: Gitea chart
     digest: c959865a2b86c2e9872358f7e812ea616a7b7fe36591304b0d6fc9884377a25f
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1486,7 +1486,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/gitea-0.2.12.tgz
     version: 0.2.12
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.837049917Z"
+    created: "2022-02-14T12:03:24.162185663Z"
     description: Gitea chart
     digest: d742bf8f640f70957b10e5e10de5b99d9250268f91e15c86a67d37018225e6f0
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1501,7 +1501,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/gitea-0.2.11.tgz
     version: 0.2.11
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.83615662Z"
+    created: "2022-02-14T12:03:24.161152762Z"
     description: Gitea chart
     digest: 581c7aff9e962cdb2cb0e165722e6d8ebcde3ca159d095a2c5d2fa44387abf1e
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1516,7 +1516,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/gitea-0.2.10.tgz
     version: 0.2.10
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.845293388Z"
+    created: "2022-02-14T12:03:24.172317078Z"
     description: Gitea chart
     digest: 3f5feb0bce73384f164c4e8fcf794c329ca3b3989ed1383f69bbb888aeaa03af
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1531,7 +1531,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/gitea-0.2.9.tgz
     version: 0.2.9
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.844391292Z"
+    created: "2022-02-14T12:03:24.171207476Z"
     description: Gitea chart
     digest: 0cca771097e2454922cf8259a9189ab405f5ae79de74ca5e3318567e081235b3
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1546,7 +1546,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/gitea-0.2.8.tgz
     version: 0.2.8
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.843301595Z"
+    created: "2022-02-14T12:03:24.170051474Z"
     description: Gitea chart
     digest: 3fc4a2dfbf2604d3e70f390c313334d843549a452469a1998cccb4dd873977fd
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1561,7 +1561,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/gitea-0.2.7.tgz
     version: 0.2.7
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.842491898Z"
+    created: "2022-02-14T12:03:24.168280772Z"
     description: Gitea chart
     digest: fb3df322047a0e2137f179c3d055839a24048e2f4d4ae9a975cc9e1ebed4ba2d
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1576,7 +1576,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/gitea-0.2.5.tgz
     version: 0.2.5
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.834989624Z"
+    created: "2022-02-14T12:03:24.16001196Z"
     description: Gitea chart
     digest: a1488150c5c7d1d91cd0538ecff07bf5a93cefb20c56288e13bee83b0a109913
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1591,7 +1591,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/gitea-0.2.02.tgz
     version: 0.2.02
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.833713129Z"
+    created: "2022-02-14T12:03:24.158918259Z"
     description: Gitea chart
     digest: c48919903461982757d6151a83048cf6671090291724b68bb4721925e782acd4
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1606,7 +1606,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/gitea-0.2.01.tgz
     version: 0.2.01
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.826506454Z"
+    created: "2022-02-14T12:03:24.150244446Z"
     description: Gitea chart
     digest: db1b23f42a8fe89f5b981727d2d09b1e63e762b20fca2b2c590383bd184cf2cc
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1621,7 +1621,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/gitea-0.1.10.tgz
     version: 0.1.10
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.832884432Z"
+    created: "2022-02-14T12:03:24.157831857Z"
     description: Gitea chart
     digest: 7a4b113767d05cd9cef7724c2e8bc43dd5874f3735ccb8851eb83358cf3fc015
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1636,7 +1636,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/gitea-0.1.9.tgz
     version: 0.1.9
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.832021935Z"
+    created: "2022-02-14T12:03:24.156817456Z"
     description: Gitea chart
     digest: 190b8839f204000c0140cb6a96c3fc9299771e8084cb086884007e8a376375c3
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1651,7 +1651,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/gitea-0.1.8.tgz
     version: 0.1.8
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.831202338Z"
+    created: "2022-02-14T12:03:24.155785654Z"
     description: Gitea chart
     digest: 5b28049e7df6a6ee2e31577408f902c2755ba9f2b4cf66d2d1bd3e72343b063b
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1666,7 +1666,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/gitea-0.1.7.tgz
     version: 0.1.7
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.83038104Z"
+    created: "2022-02-14T12:03:24.154722453Z"
     description: Gitea chart
     digest: 4c3cdbc67fc50ad5076fe746ead5ff552385f8c7d75bf40a2ae2e4189224f92b
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1681,7 +1681,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/gitea-0.1.6.tgz
     version: 0.1.6
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.829515143Z"
+    created: "2022-02-14T12:03:24.153618251Z"
     description: Gitea chart
     digest: e7a3b7a06bc0270ea179c31c332774a2e927daa86a68e3a1c695b0c0941a0210
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1696,7 +1696,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/gitea-0.1.4.tgz
     version: 0.1.4
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.828568647Z"
+    created: "2022-02-14T12:03:24.15239525Z"
     description: Gitea chart
     digest: 0fcc9a52a1a971ae4a0cda1cc01fc15078125a9f90a9468db5833fa4213946b6
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1711,7 +1711,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/gitea-0.1.3.tgz
     version: 0.1.3
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.827418251Z"
+    created: "2022-02-14T12:03:24.151336948Z"
     description: Gitea chart
     digest: 5350c9281d3dfc402b92e69e07b3eed5f9da60286cee983b4daf9b847ff4b6f9
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1726,7 +1726,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/gitea-0.1.2.tgz
     version: 0.1.2
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.825415258Z"
+    created: "2022-02-14T12:03:24.148275544Z"
     description: Gitea chart
     digest: 77d23eecdc9297f930320a631f06fb0d0c749e748927217c5481d382ca3b4cbc
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1741,7 +1741,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/gitea-0.1.1.tgz
     version: 0.1.1
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.824531761Z"
+    created: "2022-02-14T12:03:24.146283641Z"
     description: Gitea chart
     digest: 921d7d0ab4290c8f5801570490e8d0a1e401428f1c3b0a07db738df096fc5b4c
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1757,9 +1757,9 @@ entries:
     version: 0.1.0
   jupyter:
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.851425067Z"
+    created: "2022-02-14T12:03:24.179228787Z"
     description: Jupyter notebook with Dataporten integration
-    digest: fd9727533f56ed6dce4d6c835c8127b249e9c490f4127db6e3b19e586ec3bf73
+    digest: 85f8ba5458e7296bc48b41ebe9bf59048aa00244216c27fb7146307dfb0786fc
     home: https://github.com/Uninett/helm-charts/tree/master/repos/testing/jupyter
     icon: https://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
     keywords:
@@ -1775,7 +1775,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyter-0.10.16.tgz
     version: 0.10.16
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.850169571Z"
+    created: "2022-02-14T12:03:24.178344086Z"
     description: Jupyter notebook with Dataporten integration
     digest: d97bb9b42249371469d95e7dfdf3370af20576a91fa44bbcc3e4c10649634f4a
     home: https://github.com/Uninett/helm-charts/tree/master/repos/testing/jupyter
@@ -1793,7 +1793,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyter-0.10.15.tgz
     version: 0.10.15
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.849382974Z"
+    created: "2022-02-14T12:03:24.177543285Z"
     description: Jupyter notebook with Dataporten integration
     digest: 786a35cdbca129f3a7ecaa0e615a95c104c8e40114a218c2aa6cda9a78d0e2cb
     home: https://github.com/Uninett/helm-charts/tree/master/repos/testing/jupyter
@@ -1811,7 +1811,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyter-0.10.14.tgz
     version: 0.10.14
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.848727476Z"
+    created: "2022-02-14T12:03:24.176752784Z"
     description: Jupyter notebook with Dataporten integration
     digest: 9160a47f42d416671abec81b93e0b38a414ebde1b2aba856315d51542debedb4
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1829,7 +1829,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyter-0.10.13.tgz
     version: 0.10.13
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.848079979Z"
+    created: "2022-02-14T12:03:24.175941283Z"
     description: Jupyter notebook with Dataporten integration
     digest: a9ec57b7b3ff7a74e9c87863a1bf639b89b8feb7c96297aefa91b4967af3c374
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1847,7 +1847,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyter-0.10.12.tgz
     version: 0.10.12
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.847294481Z"
+    created: "2022-02-14T12:03:24.175024981Z"
     description: Jupyter notebook with Dataporten integration
     digest: fe15eeaf4e043268a3b136fb11029ec46d8edf7ec2c01a510901b31bb62c4c8d
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1865,7 +1865,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyter-0.10.10.tgz
     version: 0.10.10
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.846583184Z"
+    created: "2022-02-14T12:03:24.17431678Z"
     description: Jupyter notebook with Dataporten integration
     digest: aa35cb185d3cf00adf2c9112927a3e1458a7714ad6650b8a11f7b71d36e39d6e
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1882,7 +1882,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyter-0.10.1.tgz
     version: 0.10.1
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.845956786Z"
+    created: "2022-02-14T12:03:24.173484179Z"
     description: Jupyter notebook with Dataporten integration
     digest: 6a82586aef8d28c447f6148d1e1603d9cdbf87af39b23d16465b2d1e7fb35269
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1899,7 +1899,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyter-0.10.0.tgz
     version: 0.10.0
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.860197036Z"
+    created: "2022-02-14T12:03:24.1879226Z"
     description: Jupyter notebook with Dataporten integration
     digest: 34ec9dc3e48b66e41108d4d501373ee9a040353561ce7a549d08d8ccc1d9807b
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1916,7 +1916,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyter-0.9.6.tgz
     version: 0.9.6
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.859515039Z"
+    created: "2022-02-14T12:03:24.187134599Z"
     description: Jupyter notebook with Dataporten integration
     digest: 72d169204a494b12e4a1ac9859229682b006e9d31c7b722e88e4a743b438267b
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1933,7 +1933,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyter-0.9.5.tgz
     version: 0.9.5
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.858846741Z"
+    created: "2022-02-14T12:03:24.186410998Z"
     description: Jupyter notebook with Dataporten integration
     digest: 5f12ba12be1a3ea587197873d323f64903ef7cf092dd2be04ddeca1c2e4b9a09
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1950,7 +1950,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyter-0.9.3.tgz
     version: 0.9.3
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.858177343Z"
+    created: "2022-02-14T12:03:24.185377396Z"
     description: Jupyter notebook with Dataporten integration
     digest: 1ba56c58bb3839c8199fbdeeab55d4d0d275094e43a9a2e220712c396a9aec54
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1967,7 +1967,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyter-0.9.2.tgz
     version: 0.9.2
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.857387646Z"
+    created: "2022-02-14T12:03:24.184416095Z"
     description: Jupyter notebook with Dataporten integration
     digest: 7d5e884ff826f7e764f9700905d75223e34429c5d435554dbc0304ac6a09d4d3
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -1984,7 +1984,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyter-0.9.1.tgz
     version: 0.9.1
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.856729749Z"
+    created: "2022-02-14T12:03:24.183447193Z"
     description: Jupyter notebook with Dataporten integration
     digest: eeb65cc4e4ab279fbca79f3caf7a6a6d3b005418198c5828f23d4320154ac6c7
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -2001,7 +2001,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyter-0.9.0.tgz
     version: 0.9.0
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.856037151Z"
+    created: "2022-02-14T12:03:24.182045291Z"
     description: Jupyter notebook with Dataporten integration
     digest: 0367f7151f80452356fc366edbf83167d9b92d95d75c5eb005b3e8d057970329
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -2018,7 +2018,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyter-0.8.9.tgz
     version: 0.8.9
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.855334253Z"
+    created: "2022-02-14T12:03:24.18130099Z"
     description: Jupyter notebook with Dataporten integration
     digest: 5324cc26c23bd758a0848e8ee88200acb084372238995744e80348bc5ddce511
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -2035,7 +2035,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyter-0.8.8.tgz
     version: 0.8.8
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.854521756Z"
+    created: "2022-02-14T12:03:24.180627589Z"
     description: Jupyter notebook with Dataporten integration
     digest: 9808d184dd2d5d2816368c26931056facf04a58aa653a1619d85ed20f7effe80
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -2052,7 +2052,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyter-0.8.7.tgz
     version: 0.8.7
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.852617363Z"
+    created: "2022-02-14T12:03:24.179888488Z"
     description: Jupyter notebook with Dataporten integration
     digest: 0eaed95a2ef5fa3965554c1427e980577ae03d5dc0287be609251dda896148c5
     home: https://github.com/Uninett/helm-charts/tree/master/jupyter
@@ -2070,9 +2070,9 @@ entries:
     version: 0.8.5
   jupyterhub:
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.893871019Z"
+    created: "2022-02-14T12:03:24.224086651Z"
     description: Multi-user Jupyter installation with Dataporten integration
-    digest: 4018b02a0997a88406356092f9c5c9364161406fcfbfc8ce98b428b8357c459c
+    digest: ed7c81a13ddc73aafdf89de356c9428448ea1a9fb2e419df378f337db7788a48
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
     keywords:
     - Jupyter notebook server
@@ -2084,7 +2084,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.16.13.tgz
     version: 0.16.13
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.892423424Z"
+    created: "2022-02-14T12:03:24.222261148Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 43ffc9208eb7b1806d2ca27c5c3c1c7e27eedd89722d6989b1f58e1e35ec7331
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2098,7 +2098,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.16.12.tgz
     version: 0.16.12
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.891086229Z"
+    created: "2022-02-14T12:03:24.220499046Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: cf2d78d6b5845e5091f31b9a0a26c8102fb3b064197d1f3e1bca805e9a6e1cb5
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2112,7 +2112,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.16.11.tgz
     version: 0.16.11
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.889687534Z"
+    created: "2022-02-14T12:03:24.218508543Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: ff3f29c4ff0facc0fa1b7370e7fdc8dffb25356c71cb8827bc0dcd5887e98797
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2126,7 +2126,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.16.10.tgz
     version: 0.16.10
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.900121697Z"
+    created: "2022-02-14T12:03:24.227481656Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: c037e6063376d65f807b8a16b7274e28ea3201e5994a910ec10627c6bc29a0c4
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2140,7 +2140,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.16.9.tgz
     version: 0.16.9
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.897883505Z"
+    created: "2022-02-14T12:03:24.225818453Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: e5cce2239870d5fbdb7f93fd14376808221884b1d7f4fdd7988b423317b3c5df
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2154,7 +2154,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.16.8.tgz
     version: 0.16.8
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.879401369Z"
+    created: "2022-02-14T12:03:24.208422529Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: cf6de9458ab1ddd9a931e5d46843059f9b5a1179324913cf3b7057ed7f333c1e
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2168,7 +2168,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.11.14.tgz
     version: 0.11.14
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.888134139Z"
+    created: "2022-02-14T12:03:24.21647264Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 918ed33c59e322cf719f89ebbb71d5e7b4305c2a095d3c652281ea22aea30c1a
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2182,7 +2182,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.11.7.tgz
     version: 0.11.7
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.887121143Z"
+    created: "2022-02-14T12:03:24.214834538Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 5c1bb8b9e92c7937d642d2809b6c487c3076f49539ef2bdb866d30df8a414a05
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2196,7 +2196,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.11.6.tgz
     version: 0.11.6
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.886039646Z"
+    created: "2022-02-14T12:03:24.213584536Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 69371d1c383f3f6ae90f73de4950b382f609c06c4666ec17e57b40c0ba97cf9d
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2210,7 +2210,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.11.5.tgz
     version: 0.11.5
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.884045653Z"
+    created: "2022-02-14T12:03:24.212199434Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 099facc7b074b0e9af6822f5de48a65cb7963ec4fae6105205f9fb7eaa4a8f03
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2224,7 +2224,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.11.4.tgz
     version: 0.11.4
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.881886861Z"
+    created: "2022-02-14T12:03:24.210844832Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: a7d1ba2ec9f7d6324df344292326b9611c0a9405bb6c8141b4c3ca75f3f1ec1c
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2238,7 +2238,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.11.3.tgz
     version: 0.11.3
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.880594065Z"
+    created: "2022-02-14T12:03:24.20965983Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 5c271320ba1cebb7f557ad68062cc4545fd320c27c3773282cad21ee5e12c711
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2252,7 +2252,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.11.2.tgz
     version: 0.11.2
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.878223174Z"
+    created: "2022-02-14T12:03:24.207251627Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 5eba90a2de324a5693f22081bfb30cea9bcc98e00a297c12f9e34f05c881f78d
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2266,7 +2266,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.11.1.tgz
     version: 0.11.1
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.877036578Z"
+    created: "2022-02-14T12:03:24.205905125Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: de9a54c5f4f0a72cab086d09dfa6c2212028eec4890d93efba9783d637828a8e
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2280,7 +2280,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.11.0.tgz
     version: 0.11.0
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.865676717Z"
+    created: "2022-02-14T12:03:24.193843508Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: c5b41f8450fb0b7c69042cb317d221f0b09f67491608045b04001295222c33c8
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2294,7 +2294,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.10.12.tgz
     version: 0.10.12
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.864384622Z"
+    created: "2022-02-14T12:03:24.192642906Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 4fd7c5be24a06cf64a62874991d726c2096ea31d0b67d57f23cee00536b2118d
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2308,7 +2308,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.10.11.tgz
     version: 0.10.11
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.863367225Z"
+    created: "2022-02-14T12:03:24.191512305Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: c34468e1d79c252f239e3bae84d0e358f6bd8c3bc54a8da55930682bf37def5e
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2322,7 +2322,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.10.10.tgz
     version: 0.10.10
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.875799182Z"
+    created: "2022-02-14T12:03:24.204715123Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 97bfa7b30af4022feeafcb10992d6ae7e7d8b9e8e4bb04fe5298c67de2d2558a
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2336,7 +2336,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.10.9.tgz
     version: 0.10.9
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.874470387Z"
+    created: "2022-02-14T12:03:24.203612022Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: e8a743c224c14af243e9dee62d035740c7dcd14e7e6bc53b7c57cbf41b8d3ef3
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2350,7 +2350,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.10.8.tgz
     version: 0.10.8
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.873239991Z"
+    created: "2022-02-14T12:03:24.201691519Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 956629610273e2447d2de27380cb460d73462c6dcfddb4e6d8455f588fb65c2b
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2364,7 +2364,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.10.7.tgz
     version: 0.10.7
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.872149195Z"
+    created: "2022-02-14T12:03:24.200227717Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 01b5ffb285f1395b212bcbce560e3c8cbef6a4b8aa4862d5205f3d071159a8de
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2378,7 +2378,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.10.6.tgz
     version: 0.10.6
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.871129398Z"
+    created: "2022-02-14T12:03:24.198617815Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 8dde46a3e7ffff22e7f05e91b4641e2a1fe89f7c423c4344d5466f427b990a25
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2392,7 +2392,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.10.5.tgz
     version: 0.10.5
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.870143702Z"
+    created: "2022-02-14T12:03:24.197259213Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: d1aa8423f9f746986f9b19dd1c7205889f66e41b45ae81dc92eed04e11603f4b
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2406,7 +2406,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.10.4.tgz
     version: 0.10.4
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.868412208Z"
+    created: "2022-02-14T12:03:24.196088911Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: eedf0da2c0e14123ec83b5b67cca2325dac95e6fcdf17b365a09440a3b5ba160
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2420,7 +2420,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.10.3.tgz
     version: 0.10.3
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.867088912Z"
+    created: "2022-02-14T12:03:24.19499491Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 8024b227a2db026f3be1006e1b53cf35010897893818a316021461cd19a31d2b
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2434,7 +2434,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.10.2.tgz
     version: 0.10.2
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.862230729Z"
+    created: "2022-02-14T12:03:24.190348603Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: cfcd2675df231f12b9e305d93e256e09b7c486343ddedc4ec4a17f65a84dd866
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2448,7 +2448,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.10.1.tgz
     version: 0.10.1
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.861201033Z"
+    created: "2022-02-14T12:03:24.189122101Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 96239ce9dbbc0b20e3441dd3e5174be1c001a82631dff1ee9663e78425acfa81
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2462,7 +2462,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.10.0.tgz
     version: 0.10.0
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.912859953Z"
+    created: "2022-02-14T12:03:24.240072673Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 754912e119efbedc9270af0a0d1e3c6f808567d2b56683aaadd5e2147287fc8d
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2476,7 +2476,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.9.46.tgz
     version: 0.9.46
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.911828256Z"
+    created: "2022-02-14T12:03:24.239022572Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 580cde865d196831a9f8225a761b78909f35d1d7408facaa484d6b6cb8ef1053
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2490,7 +2490,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.9.45.tgz
     version: 0.9.45
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.91084726Z"
+    created: "2022-02-14T12:03:24.23791157Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 8d1ef1101becd2ec1c97134950f1f7e0f28003e4e9ceb31c688cb93160bac7d5
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2504,7 +2504,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.9.44.tgz
     version: 0.9.44
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.909815163Z"
+    created: "2022-02-14T12:03:24.236883169Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 59b817ee1337eeb91e48cbd6b94f852126bc212d1888babbeebe3247f8bbd3a5
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2518,7 +2518,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.9.43.tgz
     version: 0.9.43
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.908808467Z"
+    created: "2022-02-14T12:03:24.235581167Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 57a7d86878175ceed28c4ffb70939977f5d58fb47a22ff9025fa656402b4775b
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2532,7 +2532,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.9.42.tgz
     version: 0.9.42
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.907749571Z"
+    created: "2022-02-14T12:03:24.234137865Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: d4eeb78f5de95bedb6c6f4aa7f933e28797135d2c17fd8f5d85e33a77a8777c8
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2546,7 +2546,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.9.39.tgz
     version: 0.9.39
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.906634174Z"
+    created: "2022-02-14T12:03:24.232083562Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 1f0ede34f901ec667907cc9478c181cf096bdf4bb1b17ea9c1e3af0983c3effe
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2560,7 +2560,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.9.33.tgz
     version: 0.9.33
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.905494678Z"
+    created: "2022-02-14T12:03:24.23099616Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: 24902a5d3a8dd24a8dc59957cf57ec389ade2acf393c43d7406b2b6dc7f57c93
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2574,7 +2574,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.9.32.tgz
     version: 0.9.32
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.903988184Z"
+    created: "2022-02-14T12:03:24.229737659Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: e45ac8480031faa4abb02260a522bdcd1d3bd48c0be38c43e21dbe5bba1a38e7
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2588,7 +2588,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/jupyterhub-0.9.31.tgz
     version: 0.9.31
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.902506489Z"
+    created: "2022-02-14T12:03:24.228556557Z"
     description: Multi-user Jupyter installation with Dataporten integration
     digest: ca60dd4198cb3e6055905906d741cac967903a15539296d04c4e0ebbe90dcb51
     icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
@@ -2603,9 +2603,9 @@ entries:
     version: 0.9.17
   minio:
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.921566122Z"
+    created: "2022-02-14T12:03:24.249586887Z"
     description: Minio is a object storage server, designed for private cloud infrastructure.
-    digest: 0c84528ec6ee734202f65696d9b11d662e280f2d79d3ed1185759ae126b4cc89
+    digest: ed4c9fe4725247a287d17acacbda66c27d8404dfeb0e632eedf311113b2797ee
     home: https://minio.io/
     icon: https://secure.gravatar.com/avatar/2a5ff6e3cc19dfd93b2e9e5c790449d3.jpg
     keywords:
@@ -2619,7 +2619,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/minio-0.7.10.tgz
     version: 0.7.10
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.927005703Z"
+    created: "2022-02-14T12:03:24.256626597Z"
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: 8bf4d6fb160598d3b1e937c09d83ec53254c9d9ae5fbbbea42a0e81612c11fa5
     home: https://minio.io/
@@ -2635,7 +2635,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/minio-0.7.9.tgz
     version: 0.7.9
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.926390506Z"
+    created: "2022-02-14T12:03:24.255929096Z"
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: f3956bbea717f98739690eb9bd86eb1c2a98fbafe44dc887b47a396972e6c9e0
     home: https://minio.io/
@@ -2651,7 +2651,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/minio-0.7.8.tgz
     version: 0.7.8
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.925860707Z"
+    created: "2022-02-14T12:03:24.255251595Z"
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: 69568366131af8aaf8f8e1376b7ddb7c3417f7cab779aa2deba212646a4a4e33
     home: https://minio.io/
@@ -2667,7 +2667,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/minio-0.7.7.tgz
     version: 0.7.7
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.925276509Z"
+    created: "2022-02-14T12:03:24.254619394Z"
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: 58c7c6b78628bea1920fe1824a656155ed3cfc8e92ec9596f89c9df48a364d0d
     home: https://minio.io/
@@ -2683,7 +2683,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/minio-0.7.6.tgz
     version: 0.7.6
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.924689912Z"
+    created: "2022-02-14T12:03:24.253899593Z"
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: 0693d09baee45ad86f6346208c662f936d993238030b620169b81732c04f8826
     home: https://minio.io/
@@ -2699,7 +2699,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/minio-0.7.5.tgz
     version: 0.7.5
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.924146513Z"
+    created: "2022-02-14T12:03:24.253103992Z"
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: e5e2d20424ca44ee8f533fd94ca7b3529a186c357f03fa64b0edd20ae9adfa67
     home: https://minio.io/
@@ -2715,7 +2715,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/minio-0.7.4.tgz
     version: 0.7.4
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.923511716Z"
+    created: "2022-02-14T12:03:24.25157769Z"
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: 237271013ac2069f5e73ef58e09d47db4a8edeb3d2291082e3512119552ff21f
     home: https://minio.io/
@@ -2731,7 +2731,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/minio-0.7.3.tgz
     version: 0.7.3
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.922561519Z"
+    created: "2022-02-14T12:03:24.250549588Z"
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: f29e95ac80bd1c70aaa1f2a45352696624359cc86b2bf1c9717ac7d156edf8fd
     home: https://minio.io/
@@ -2747,7 +2747,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/minio-0.7.2.tgz
     version: 0.7.2
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.920695425Z"
+    created: "2022-02-14T12:03:24.248599985Z"
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: 940ec37422decd26a98f01928cb1947914bea16417ebd073b07eefa8280b08b4
     home: https://minio.io/
@@ -2763,7 +2763,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/minio-0.7.1.tgz
     version: 0.7.1
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.919825928Z"
+    created: "2022-02-14T12:03:24.247799284Z"
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: 8fc7799fd8d86c3420fa5704e19cdfe98ad9d9b943ffb54686a56f62e099f4f9
     home: https://minio.io/
@@ -2779,7 +2779,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/minio-0.7.0.tgz
     version: 0.7.0
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.919209731Z"
+    created: "2022-02-14T12:03:24.247049183Z"
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: 8cb906daa40c9fbc5d98df4f89d3d706b8ada00d9b4e538f37106ba0d0a7884e
     home: https://minio.io/
@@ -2795,7 +2795,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/minio-0.5.9.tgz
     version: 0.5.9
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.918590933Z"
+    created: "2022-02-14T12:03:24.246298582Z"
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: fba669771ee5111a53f99ad16e3762ee62d17099921a6356596c508c01ef2d82
     home: https://minio.io/
@@ -2811,7 +2811,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/minio-0.5.8.tgz
     version: 0.5.8
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.917846735Z"
+    created: "2022-02-14T12:03:24.245552181Z"
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: 55e0d249c238481bcbb7d1f4bf06ccc091a16427bd600299ebfd8bef76f475b8
     home: https://minio.io/
@@ -2827,7 +2827,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/minio-0.5.7.tgz
     version: 0.5.7
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.917127338Z"
+    created: "2022-02-14T12:03:24.24493638Z"
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: 07eb9b3704f9f9fdb0e86ab2d04e874d859680766250a613e330f56d2f17e9fb
     home: https://minio.io/
@@ -2843,7 +2843,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/minio-0.5.6.tgz
     version: 0.5.6
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.91657724Z"
+    created: "2022-02-14T12:03:24.244310479Z"
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: 406f09c969f0688bf95d0dc1d76a026a0c59abf4eea47544ee6dd53fa0c2358a
     home: https://minio.io/
@@ -2859,7 +2859,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/minio-0.5.5.tgz
     version: 0.5.5
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.915925442Z"
+    created: "2022-02-14T12:03:24.243688178Z"
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: 8d9609addc8ce055ef5169b1f7ba0b882aeb8dba4b343f7be4f1e5220b51324d
     home: https://minio.io/
@@ -2875,7 +2875,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/minio-0.5.4.tgz
     version: 0.5.4
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.915342444Z"
+    created: "2022-02-14T12:03:24.242960077Z"
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: 5f34b3e2851caf00137c49b760eb656626af224fdd6a0aa3a8cd4a8fcf322881
     home: https://minio.io/
@@ -2891,7 +2891,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/minio-0.5.3.tgz
     version: 0.5.3
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.914546947Z"
+    created: "2022-02-14T12:03:24.242231976Z"
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: fe9b17973fd231f35254f69223725919957a56e8e72a532ddfed4b9f2ccebdc4
     home: https://minio.io/
@@ -2907,7 +2907,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/minio-0.5.2.tgz
     version: 0.5.2
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.914019949Z"
+    created: "2022-02-14T12:03:24.241519975Z"
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: 7bc587d12c4904efa93d35b607a9f74d445d7f0859688638aacb3c88ba8b5647
     home: https://minio.io/
@@ -2923,7 +2923,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/minio-0.5.1.tgz
     version: 0.5.1
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.913399051Z"
+    created: "2022-02-14T12:03:24.240799074Z"
     description: Minio is a object storage server, designed for private cloud infrastructure.
     digest: 9a37a90ed8bc416372f0811c32df61dc4941352ab897500dabc87f158e6f8175
     home: https://minio.io/
@@ -2940,9 +2940,9 @@ entries:
     version: 0.5.0
   paraview:
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.929425995Z"
+    created: "2022-02-14T12:03:24.259402501Z"
     description: ParaviewWeb Visualizer
-    digest: 57bdf9b4c3aa6cac9020c8bc77ca883f285fb45526a31fc21c9bd3f49c36ff84
+    digest: c936164c50f94f19828ee2cf1c0c0446f524d47074bd587d00abf56bcd6ef618
     home: https://github.com/Uninett/helm-charts/tree/master/repos/testing/paraview
     icon: https://upload.wikimedia.org/wikipedia/commons/c/c9/Antu_paraview.svg
     keywords:
@@ -2956,7 +2956,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/paraview-0.0.4.tgz
     version: 0.0.4
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.928853497Z"
+    created: "2022-02-14T12:03:24.2587086Z"
     description: ParaviewWeb Visualizer
     digest: 5303072834da4faaa003206384342e1f81c705a5a0d944d28dbce32222a62a97
     home: https://github.com/Uninett/helm-charts/tree/master/repos/testing/paraview
@@ -2972,7 +2972,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/paraview-0.0.3.tgz
     version: 0.0.3
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.928235199Z"
+    created: "2022-02-14T12:03:24.257957199Z"
     description: ParaviewWeb Visualizer
     digest: 6f1fb6ecb8287873f85eaae513658d5e1274bead4d801654a43f2796f35a53d6
     home: https://github.com/Uninett/helm-charts/tree/master/repos/testing/paraview
@@ -2988,7 +2988,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/paraview-0.0.2.tgz
     version: 0.0.2
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.927567902Z"
+    created: "2022-02-14T12:03:24.257335798Z"
     description: ParaviewWeb Visualizer
     digest: 4636d81f8cce24a6b8e0dca470a49fe30f927b2d4edb979bd97a7e59a667e00e
     home: https://github.com/Uninett/helm-charts/tree/master/paraview
@@ -3005,7 +3005,22 @@ entries:
     version: 0.0.1
   rstudio:
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.969639055Z"
+    created: "2022-02-14T12:03:24.313619477Z"
+    description: RStudio is an integrated development environment (IDE) for R
+    digest: fd589e5fb3f5187604e9900e256993d3316c1ccdde3458c2a01e770691b460b1
+    home: https://www.rstudio.com/products/RStudio/
+    icon: https://rstudio.com/wp-content/uploads/2018/10/RStudio-Logo.svg
+    keywords:
+    - R web IDE
+    maintainers:
+    - email: system@uninett.no
+      name: Uninett AS
+    name: rstudio
+    urls:
+    - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.55.tgz
+    version: 0.2.55
+  - apiVersion: v1
+    created: "2022-02-14T12:03:24.312752176Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 045e30a409db4bb87fbc19ae0489502b19777e867e68ba94712d83b3ba3dd395
     home: https://www.rstudio.com/products/RStudio/
@@ -3020,7 +3035,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.54.tgz
     version: 0.2.54
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.968931157Z"
+    created: "2022-02-14T12:03:24.311822175Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 6a90150f3c4c407f72826e1e2a9fcca90f31bcf6418183b8c0ce71de9f231b31
     home: https://www.rstudio.com/products/RStudio/
@@ -3035,7 +3050,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.53.tgz
     version: 0.2.53
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.96819866Z"
+    created: "2022-02-14T12:03:24.310987273Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 50633eb126c1eaac462170b4491f27700d35598f80c59c1fd7e853391e7f61ac
     home: https://www.rstudio.com/products/RStudio/
@@ -3050,7 +3065,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.52.tgz
     version: 0.2.52
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.967405263Z"
+    created: "2022-02-14T12:03:24.309843172Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 1c160c2f1a356d9c2cfbe76bdaede5a93459679706f260da6e5af18aa983ef09
     home: https://www.rstudio.com/products/RStudio/
@@ -3065,7 +3080,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.51.tgz
     version: 0.2.51
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.966621565Z"
+    created: "2022-02-14T12:03:24.30880427Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 075b8349d85133e09a559675946a51692270b0fc862ef22e47e4ccd92b524b9b
     home: https://www.rstudio.com/products/RStudio/
@@ -3080,7 +3095,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.50.tgz
     version: 0.2.50
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.964198074Z"
+    created: "2022-02-14T12:03:24.306325467Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: a69c6da5fd495ab6c003934a8985b4d2c82eb5c1802bfc17e7bca860e42ab6a9
     home: https://www.rstudio.com/products/RStudio/
@@ -3095,7 +3110,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.49.tgz
     version: 0.2.49
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.963023378Z"
+    created: "2022-02-14T12:03:24.305448766Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 5bfdb9f4f6105d20650af1d8edb74c09973fc6c27ff7414d43ae54cfd1e4d521
     home: https://www.rstudio.com/products/RStudio/
@@ -3110,7 +3125,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.48.tgz
     version: 0.2.48
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.962096981Z"
+    created: "2022-02-14T12:03:24.304601064Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 8bdb6b5f352e73953de65e852659a3f59d923583212c0b302320d8eecd241cbf
     home: https://www.rstudio.com/products/RStudio/
@@ -3125,7 +3140,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.46.tgz
     version: 0.2.46
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.961264984Z"
+    created: "2022-02-14T12:03:24.303593563Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 64f5fac82081f007a69643aeab47cef210c9c65cc9d57c9307b4d2df6cd99e88
     home: https://www.rstudio.com/products/RStudio/
@@ -3140,7 +3155,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.45.tgz
     version: 0.2.45
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.960468887Z"
+    created: "2022-02-14T12:03:24.302792362Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 625f16853611ef69f6caf78830640f48d27fc9eea7357943cbca29bd3a534e82
     home: https://www.rstudio.com/products/RStudio/
@@ -3155,7 +3170,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.44.tgz
     version: 0.2.44
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.95965419Z"
+    created: "2022-02-14T12:03:24.301893661Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: c9354c7b6c89bfc5d7eadc1a2315d6657fe073032c5a55ab580dae5c27044e14
     home: https://www.rstudio.com/products/RStudio/
@@ -3170,7 +3185,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.43.tgz
     version: 0.2.43
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.958819993Z"
+    created: "2022-02-14T12:03:24.301076759Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: d3557b817defa1a04d801e919b614dc354da51699cbc39a7b45eca680516a584
     home: https://www.rstudio.com/products/RStudio/
@@ -3185,7 +3200,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.42.tgz
     version: 0.2.42
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.958122895Z"
+    created: "2022-02-14T12:03:24.300233358Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 096167b9c99ba94b19dc641821feda05942b9ad571f673374f4a94637cec691d
     home: https://www.rstudio.com/products/RStudio/
@@ -3200,7 +3215,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.41.tgz
     version: 0.2.41
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.957305198Z"
+    created: "2022-02-14T12:03:24.299386857Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 668902246dac18e3264d1ffa53120493c53974b2d93a8f12bdae9f1e362b9228
     home: https://www.rstudio.com/products/RStudio/
@@ -3215,7 +3230,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.40.tgz
     version: 0.2.40
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.955446004Z"
+    created: "2022-02-14T12:03:24.297613554Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 978f1a39c671dba140b78240f3754f1ddf9d3852e6a896013cc91b8a302b3e7e
     home: https://www.rstudio.com/products/RStudio/
@@ -3230,7 +3245,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.39.tgz
     version: 0.2.39
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.954664507Z"
+    created: "2022-02-14T12:03:24.296717253Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 56478e54c74ea0e95547bd25d74c0361b4cbfb4aba9e0c01d668b8cffc831ac0
     home: https://www.rstudio.com/products/RStudio/
@@ -3245,7 +3260,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.38.tgz
     version: 0.2.38
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.95393901Z"
+    created: "2022-02-14T12:03:24.295813552Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 0ba8145ac8e40eed6e98f39d6f30d998588b0369ad3d7917f5ebd4b901ee05ae
     home: https://www.rstudio.com/products/RStudio/
@@ -3260,7 +3275,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.37.tgz
     version: 0.2.37
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.953171912Z"
+    created: "2022-02-14T12:03:24.294960351Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 9943e2e5fe7b868381e47652f68fb62c391d2022c8731954e85c63a8262d4a71
     home: https://www.rstudio.com/products/RStudio/
@@ -3275,7 +3290,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.36.tgz
     version: 0.2.36
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.952425415Z"
+    created: "2022-02-14T12:03:24.29418215Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: ec7387f71585ecb883726600489f78a297411ca57970e9217d59f965687c5bfc
     home: https://www.rstudio.com/products/RStudio/
@@ -3290,7 +3305,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.35.tgz
     version: 0.2.35
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.951651018Z"
+    created: "2022-02-14T12:03:24.293258848Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: fcb17c565f0e97936497f395f859daa0b9bd3d6712e8af44cd280aef10f988de
     home: https://www.rstudio.com/products/RStudio/
@@ -3305,7 +3320,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.34.tgz
     version: 0.2.34
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.950592421Z"
+    created: "2022-02-14T12:03:24.291716146Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: c1c6e1bdcaf80dce95f3a6a0ff8e99e647695b12b77c4ca373d48725d0e26775
     home: https://www.rstudio.com/products/RStudio/
@@ -3320,7 +3335,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.33.tgz
     version: 0.2.33
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.949427525Z"
+    created: "2022-02-14T12:03:24.289902644Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: edd66ea33e55831c7789c5bfcb2a0db97b6e2316eb24c082b94233be516a644e
     home: https://www.rstudio.com/products/RStudio/
@@ -3335,7 +3350,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.32.tgz
     version: 0.2.32
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.948293029Z"
+    created: "2022-02-14T12:03:24.288491442Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 982d8e9fb65cc3488a0c31ba2dca43e0800a6e0c7da6669294cfe5e707ded75b
     home: https://www.rstudio.com/products/RStudio/
@@ -3350,7 +3365,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.31.tgz
     version: 0.2.31
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.947504232Z"
+    created: "2022-02-14T12:03:24.28707234Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: b6f62f53ce4f8a0901f465388116f37b56e25e742ee447f23835c3ace0ca896e
     home: https://www.rstudio.com/products/RStudio/
@@ -3365,7 +3380,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.30.tgz
     version: 0.2.30
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.946153737Z"
+    created: "2022-02-14T12:03:24.283542435Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 4a92b3d7123f31f6007bd8f82de47977d0b1bb5d98e128bcd0ee2034d3fb4c4d
     home: https://www.rstudio.com/products/RStudio/
@@ -3380,7 +3395,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.29.tgz
     version: 0.2.29
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.945375639Z"
+    created: "2022-02-14T12:03:24.278541628Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: ba0f34e8623baba19264ad9ffb67a59c6958426f83cb0068c9ead176ae9f1647
     home: https://www.rstudio.com/products/RStudio/
@@ -3395,7 +3410,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.28.tgz
     version: 0.2.28
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.944556842Z"
+    created: "2022-02-14T12:03:24.277555026Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: dcfc0925136bc7e1396014ba3b66ac16221d0c4260a9efe0ad20a189251a9b33
     home: https://www.rstudio.com/products/RStudio/
@@ -3410,7 +3425,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.27.tgz
     version: 0.2.27
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.943898545Z"
+    created: "2022-02-14T12:03:24.276786125Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 2805ebaa2f437e12ccf86b6d6555baf87e430d8ce56909774b89ed4e36b68050
     home: https://www.rstudio.com/products/RStudio/
@@ -3425,7 +3440,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.26.tgz
     version: 0.2.26
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.943117847Z"
+    created: "2022-02-14T12:03:24.275934824Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: a79c48bab1f69c549bee2d90c65333612381090a736326cc22ba17d707b210f4
     home: https://www.rstudio.com/products/RStudio/
@@ -3440,7 +3455,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.25.tgz
     version: 0.2.25
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.94235305Z"
+    created: "2022-02-14T12:03:24.275168423Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: d100f02b23b8b8bbae99f316ab738bb2632821ff6a8e23c0af970baacf7191ec
     home: https://www.rstudio.com/products/RStudio/
@@ -3455,7 +3470,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.24.tgz
     version: 0.2.24
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.941536153Z"
+    created: "2022-02-14T12:03:24.274394522Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 2f06c74de8e7be9b502ccd5b4c12feee1da926259369ed9201d8d4f705f52f27
     home: https://www.rstudio.com/products/RStudio/
@@ -3470,7 +3485,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.23.tgz
     version: 0.2.23
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.940891255Z"
+    created: "2022-02-14T12:03:24.27351032Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 85c9369fc7d9139d8bfbf3348c475befcdbf0bcd175c134065fef3d25a25f219
     home: https://www.rstudio.com/products/RStudio/
@@ -3485,7 +3500,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.22.tgz
     version: 0.2.22
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.940252657Z"
+    created: "2022-02-14T12:03:24.272379719Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 1ba1d9076df32792c34a27adb3730cb5fb5a5232fb556d759b3b6315ae3b27bb
     home: https://www.rstudio.com/products/RStudio/
@@ -3500,7 +3515,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.21.tgz
     version: 0.2.21
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.93949446Z"
+    created: "2022-02-14T12:03:24.271610118Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 736699e30a355d5b965d719f579837efa2969ef8341786120bcdd401ab591213
     home: https://www.rstudio.com/products/RStudio/
@@ -3515,7 +3530,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.20.tgz
     version: 0.2.20
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.937997365Z"
+    created: "2022-02-14T12:03:24.270101816Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: ffe7bf5fcd11e5bf4dd1de4f85cfb08d74753a95eb0cdb72f2fe4a2e067c97df
     home: https://www.rstudio.com/products/RStudio/
@@ -3530,7 +3545,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.19.tgz
     version: 0.2.19
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.93660947Z"
+    created: "2022-02-14T12:03:24.269328815Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 931343576ca1390211709684fd07012460506e0545600dbc1b9a0189748460a1
     home: https://www.rstudio.com/products/RStudio/
@@ -3545,7 +3560,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.18.tgz
     version: 0.2.18
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.935626273Z"
+    created: "2022-02-14T12:03:24.268514613Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 6b560f7550e0ab8352a474db94240bc21fe7e63e60e4b811484cfd0cb22bcaf9
     home: https://www.rstudio.com/products/RStudio/
@@ -3560,7 +3575,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.17.tgz
     version: 0.2.17
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.934483577Z"
+    created: "2022-02-14T12:03:24.264857308Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 58ef8d33402b06e3ee25a9eef394d48dd48f5d96fd219527d3b82ce8b1a33399
     home: https://www.rstudio.com/products/RStudio/
@@ -3575,7 +3590,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.10.tgz
     version: 0.2.10
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.971802847Z"
+    created: "2022-02-14T12:03:24.316447881Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 1640e08ce07f5c2e4e1815a65c67fb0f5633a749d060aa1a402c8cc91c8943bc
     home: https://www.rstudio.com/products/RStudio/
@@ -3590,7 +3605,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.9.tgz
     version: 0.2.9
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.97107795Z"
+    created: "2022-02-14T12:03:24.31554528Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 9a75a8e07e82c28f45f7bd5078250a47ad6b4c1ebf40302c368da5bbc3f1592c
     home: https://www.rstudio.com/products/RStudio/
@@ -3605,7 +3620,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.8.tgz
     version: 0.2.8
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.970336652Z"
+    created: "2022-02-14T12:03:24.314668879Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: e9c598b451581cd0ff05ba12ffa7fac9fd14331399dcc4790f68e009761eaf2b
     home: https://www.rstudio.com/products/RStudio/
@@ -3620,7 +3635,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.7.tgz
     version: 0.2.7
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.96520607Z"
+    created: "2022-02-14T12:03:24.307733369Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 85f779b65f7dbe5787f0f7a283a6647f418d3b8df62dc0b8ba372dc4aac3c1ae
     home: https://www.rstudio.com/products/RStudio/
@@ -3635,7 +3650,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.5.tgz
     version: 0.2.5
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.956460201Z"
+    created: "2022-02-14T12:03:24.298518256Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: ce0205eeed3751768692391febbcf7b464264c3fdbc4753f856aa33191356677
     home: https://www.rstudio.com/products/RStudio/
@@ -3650,7 +3665,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.4.tgz
     version: 0.2.4
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.946768735Z"
+    created: "2022-02-14T12:03:24.285422937Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: b1ecd66b8fb977b17460c53c621cc28279187c87cd6c5d727917c06eab071d08
     home: https://www.rstudio.com/products/RStudio/
@@ -3665,7 +3680,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.3.tgz
     version: 0.2.3
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.938659763Z"
+    created: "2022-02-14T12:03:24.270811317Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 48631475081034543f2c6f8f01a56d6b8c5e2b52c89f5505f15e088e3c2b1c12
     home: https://www.rstudio.com/products/RStudio/
@@ -3680,7 +3695,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.2.tgz
     version: 0.2.2
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.933477381Z"
+    created: "2022-02-14T12:03:24.264064007Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 68c0d0a09dca5b24f222d556599dc3e182f0076890dd0b1ccfa6442fd5f41c9f
     home: https://www.rstudio.com/products/RStudio/
@@ -3695,7 +3710,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.1.tgz
     version: 0.2.1
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.932829183Z"
+    created: "2022-02-14T12:03:24.263229906Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: d4243911b09b84316d660720c3b57250280ed1d86bea877e6841a2de954c042d
     home: https://www.rstudio.com/products/RStudio/
@@ -3710,7 +3725,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.2.0.tgz
     version: 0.2.0
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.932117886Z"
+    created: "2022-02-14T12:03:24.262465805Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: ad969bcd1c5853811c918648144ae73c5a4dd8fc3cc32d81eb8fa77c6c70317e
     home: https://www.rstudio.com/products/RStudio/
@@ -3725,7 +3740,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.1.21.tgz
     version: 0.1.21
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.931490888Z"
+    created: "2022-02-14T12:03:24.261644304Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 6f48f18b03c3407ff2cbe5e7892427d1fa0a6d0e0a029e66f40022385f5ef62f
     home: https://www.rstudio.com/products/RStudio/
@@ -3740,7 +3755,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.1.20.tgz
     version: 0.1.20
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.93077369Z"
+    created: "2022-02-14T12:03:24.260895503Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: 9b4453ee79ae3530a7f737ddcf5333613eafeb793c1097f05708f6aa65790ab6
     home: https://www.rstudio.com/products/RStudio/
@@ -3755,7 +3770,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/rstudio-0.1.19.tgz
     version: 0.1.19
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.930172092Z"
+    created: "2022-02-14T12:03:24.260154802Z"
     description: RStudio is an integrated development environment (IDE) for R
     digest: bacc6449199af114a9e28920fa1fde9c5a62f20c720fa650a2908be61ee28719
     home: https://www.rstudio.com/products/RStudio/
@@ -3771,9 +3786,9 @@ entries:
     version: 0.1.18
   spark:
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.980725616Z"
+    created: "2022-02-14T12:03:24.326890296Z"
     description: Apache Spark is a fast and general engine for big data processing.
-    digest: 498c4939bad06019670234b696ea614bb01f16aa47e72672129acfdb5ce95f08
+    digest: 7e5deb43ca61a27918155484f1f3c9c944b3e07c24df2ed2f1965ff7154eec59
     home: https://github.com/Uninett/helm-charts/tree/master/repos/testing/spark
     icon: https://spark.apache.org/images/spark-logo-trademark.png
     keywords:
@@ -3786,7 +3801,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/spark-0.10.17.tgz
     version: 0.10.17
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.97961662Z"
+    created: "2022-02-14T12:03:24.325090193Z"
     description: Apache Spark is a fast and general engine for big data processing.
     digest: 8f33ff5ca6a75dfc02a80e23dae5a8a4c3632c48bc5c969f3a423cb4a2c9145b
     home: https://github.com/Uninett/helm-charts/tree/master/repos/testing/spark
@@ -3801,7 +3816,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/spark-0.10.16.tgz
     version: 0.10.16
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.978653123Z"
+    created: "2022-02-14T12:03:24.323812891Z"
     description: Apache Spark is a fast and general engine for big data processing.
     digest: 094b64c35f11cc62423632ec44e5571c50ffeb0865fd474e74a1c362daddd01d
     home: https://github.com/Uninett/helm-charts/tree/master/repos/testing/spark
@@ -3816,7 +3831,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/spark-0.10.15.tgz
     version: 0.10.15
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.977314528Z"
+    created: "2022-02-14T12:03:24.32243899Z"
     description: Apache Spark is a fast and general engine for big data processing.
     digest: 3bad21f37438fbcc8c4d68813c49312c8fc7548e13faf06db663cec97a17ed90
     home: https://github.com/Uninett/helm-charts/tree/master/spark
@@ -3831,7 +3846,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/spark-0.10.14.tgz
     version: 0.10.14
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.976588631Z"
+    created: "2022-02-14T12:03:24.321501288Z"
     description: Apache Spark is a fast and general engine for big data processing.
     digest: 1ddc40d57ebed760431f05a26f3c545f8ede6906186182d250f781f33049ee36
     home: https://github.com/Uninett/helm-charts/tree/master/spark
@@ -3846,7 +3861,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/spark-0.10.13.tgz
     version: 0.10.13
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.975860333Z"
+    created: "2022-02-14T12:03:24.320704287Z"
     description: Apache Spark is a fast and general engine for big data processing.
     digest: 107b1df8145ab4961e2a02e91df3d61d38dcad9f8b4ede091f45fc48e612db4a
     home: https://github.com/Uninett/helm-charts/tree/master/spark
@@ -3861,7 +3876,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/spark-0.10.12.tgz
     version: 0.10.12
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.975018536Z"
+    created: "2022-02-14T12:03:24.319795486Z"
     description: Apache Spark is a fast and general engine for big data processing.
     digest: 627282b1ba3f0d251139a4c16895a36ffdbe909b6e1eb5d2439f353cafca5d32
     home: https://github.com/Uninett/helm-charts/tree/master/spark
@@ -3876,7 +3891,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/spark-0.10.11.tgz
     version: 0.10.11
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.974257039Z"
+    created: "2022-02-14T12:03:24.318972885Z"
     description: Apache Spark is a fast and general engine for big data processing.
     digest: da823b8265df5f2e4f853be042c76c40bca6bf1b85035732250556ef553f6e37
     home: https://github.com/Uninett/helm-charts/tree/master/spark
@@ -3891,7 +3906,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/spark-0.10.10.tgz
     version: 0.10.10
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.985541899Z"
+    created: "2022-02-14T12:03:24.332852204Z"
     description: Apache Spark is a fast and general engine for big data processing.
     digest: e65e02fd1d8f3c089efcb5c44bd38e1dc73509f155eb5ffc74224c3f2bd4579e
     home: https://github.com/Uninett/helm-charts/tree/master/spark
@@ -3906,7 +3921,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/spark-0.10.9.tgz
     version: 0.10.9
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.984927501Z"
+    created: "2022-02-14T12:03:24.332065403Z"
     description: Apache Spark is a fast and general engine for big data processing.
     digest: 0d025c2535355eed80efe20afd9b058473cfeb59cd04bdaa7e412e3e0e8f18fb
     home: https://github.com/Uninett/helm-charts/tree/master/spark
@@ -3921,7 +3936,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/spark-0.10.8.tgz
     version: 0.10.8
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.984264404Z"
+    created: "2022-02-14T12:03:24.331305302Z"
     description: Apache Spark is a fast and general engine for big data processing.
     digest: f8bf4e1e4005c34d7e23d38bb94abeb83bf7d96eccf2b181eaa459993e7f2eee
     home: https://github.com/Uninett/helm-charts/tree/master/spark
@@ -3936,7 +3951,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/spark-0.10.7.tgz
     version: 0.10.7
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.983639206Z"
+    created: "2022-02-14T12:03:24.330541101Z"
     description: Apache Spark is a fast and general engine for big data processing.
     digest: fce1c2e282ca6aa3f3ebd7e30876414b5f03d6b3227d5c9539d795439f19b417
     home: https://github.com/Uninett/helm-charts/tree/master/spark
@@ -3951,7 +3966,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/spark-0.10.6.tgz
     version: 0.10.6
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.983006208Z"
+    created: "2022-02-14T12:03:24.3296448Z"
     description: Apache Spark is a fast and general engine for big data processing.
     digest: acc06235e16f4955626315e0ddd7820bef9bfce508e0f9624137380ac0df11d4
     home: https://github.com/Uninett/helm-charts/tree/master/spark
@@ -3966,7 +3981,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/spark-0.10.5.tgz
     version: 0.10.5
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.982152411Z"
+    created: "2022-02-14T12:03:24.328738098Z"
     description: Apache Spark is a fast and general engine for big data processing.
     digest: e3841bc045f84daa8c6e5a140b1df6433f166b1a902c7a5046caaf92ab202a93
     home: https://github.com/Uninett/helm-charts/tree/master/spark
@@ -3981,7 +3996,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/spark-0.10.3.tgz
     version: 0.10.3
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.981364214Z"
+    created: "2022-02-14T12:03:24.327895497Z"
     description: Apache Spark is a fast and general engine for big data processing.
     digest: 8806d77da41ed8e30e7af67199940196dd3de8582706be4cd132f00454e70407
     home: https://github.com/Uninett/helm-charts/tree/master/spark
@@ -3996,7 +4011,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/spark-0.10.2.tgz
     version: 0.10.2
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.973415542Z"
+    created: "2022-02-14T12:03:24.318138683Z"
     description: Apache Spark is a fast and general engine for big data processing.
     digest: 5e0822a5741760d11881e5de6cb4b93764a4d85b8c2d124ba77152605f643ff4
     home: https://github.com/Uninett/helm-charts/tree/master/spark
@@ -4011,7 +4026,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/spark-0.10.1.tgz
     version: 0.10.1
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.972751944Z"
+    created: "2022-02-14T12:03:24.317305082Z"
     description: Apache Spark is a fast and general engine for big data processing.
     digest: d5335946b9472103d85087ee29a75b67930dfa5f90b84bde9a014ae203bf182c
     home: https://github.com/Uninett/helm-charts/tree/master/spark
@@ -4026,7 +4041,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/spark-0.10.0.tgz
     version: 0.10.0
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.986498196Z"
+    created: "2022-02-14T12:03:24.333549405Z"
     description: Apache Spark is a fast and general engine for big data processing.
     digest: 5f25d0e647bf6414e92edac5487b386fc77a9d84def21b835d72431fa93ff38f
     home: https://github.com/Uninett/helm-charts/tree/master/spark
@@ -4042,9 +4057,9 @@ entries:
     version: 0.7.8
   wordpress:
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.987991491Z"
+    created: "2022-02-14T12:03:24.335180108Z"
     description: Dataporten + Wordpress
-    digest: a4b352de1753f3c9cb22cc00414089dbc93a59ba451cb9e1762abcff9bbaba02
+    digest: 536c72c8afd7574fab2114d554382a4a25cef419840b5bfccb8327cedb805a41
     home: https://github.com/Uninett/appstore-app-wordpress
     icon: https://bitnami.com/assets/stacks/wordpress/img/wordpress-stack-220x234.png
     maintainers:
@@ -4055,7 +4070,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/wordpress-1.2.1.tgz
     version: 1.2.1
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.987516292Z"
+    created: "2022-02-14T12:03:24.334698807Z"
     description: Dataporten + Wordpress
     digest: f163b514ad251f889a08d75c9ca3a978a308405e72c688d7b7ea275764cf334e
     home: https://github.com/Uninett/appstore-app-wordpress
@@ -4068,7 +4083,7 @@ entries:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/wordpress-1.2.0.tgz
     version: 1.2.0
   - apiVersion: v1
-    created: "2022-02-14T11:52:39.987057394Z"
+    created: "2022-02-14T12:03:24.334078406Z"
     description: Dataporten + Wordpress
     digest: a69dbc4a9aa7e7722f5a0db135cdc727b98d56765fcd99f06a781eb2c9cd1929
     home: https://github.com/Uninett/appstore-app-wordpress
@@ -4080,4 +4095,4 @@ entries:
     urls:
     - https://uninettsigma2.github.io/helm-charts/repos/testing/wordpress-1.1.2.tgz
     version: 1.1.2
-generated: "2022-02-14T11:52:39.755370602Z"
+generated: "2022-02-14T12:03:24.058060316Z"
