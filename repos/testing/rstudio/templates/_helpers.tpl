@@ -106,7 +106,7 @@ server {
     return 301 https://{{ .Values.ingress.host }}/oauth2/logout;
     break;
   }
-  location /favicon.ico {
+  location /images/favicon.ico {
     proxy_set_header X-Forwarded-Host {{ .Values.ingress.host }};
     proxy_set_header X-Forwarded-Proto https;
     proxy_pass   http://backend$request_uri;
