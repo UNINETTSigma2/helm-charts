@@ -81,34 +81,28 @@ server {
   }
 
   location /js/encrypt.min.js {
-    proxy_set_header X-Forwarded-Host {{ .Values.ingress.host }};
-    proxy_set_header X-Forwarded-Proto https;
+    proxy_set_header X-RStudio-Request https://{{ .Values.ingress.host }}:$server_port$request_uri;
     proxy_pass   http://backend$request_uri;
     break;
   }
   location /auth-public-key {
-    proxy_set_header X-Forwarded-Host {{ .Values.ingress.host }};
-    proxy_set_header X-Forwarded-Proto https;
+    proxy_set_header X-RStudio-Request https://{{ .Values.ingress.host }}:$server_port$request_uri;
     proxy_pass   http://backend$request_uri;
     break;
   }
   location /auth-do-sign-in {
-    proxy_set_header X-Forwarded-Host {{ .Values.ingress.host }};
-    proxy_set_header X-Forwarded-Proto https;
+    proxy_set_header X-RStudio-Request https://{{ .Values.ingress.host }}:$server_port$request_uri;
     proxy_pass   http://backend$request_uri;
     proxy_redirect http://backend/ https://{{ .Values.ingress.host }}/;
     proxy_redirect https://backend/ https://{{ .Values.ingress.host }}/;
     break;
   }
   location /auth-sign-in {
-    proxy_set_header X-Forwarded-Host {{ .Values.ingress.host }};
-    proxy_set_header X-Forwarded-Proto https;
     return 301 https://{{ .Values.ingress.host }}/oauth2/logout;
     break;
   }
   location /images/favicon.ico {
-    proxy_set_header X-Forwarded-Host {{ .Values.ingress.host }};
-    proxy_set_header X-Forwarded-Proto https;
+    proxy_set_header X-RStudio-Request https://{{ .Values.ingress.host }}:$server_port$request_uri;
     proxy_pass   http://backend$request_uri;
     break;
   }
@@ -120,6 +114,7 @@ server {
     }
 
     if ($state = U) {
+      proxy_set_header X-RStudio-Request https://{{ .Values.ingress.host }}:$server_port$request_uri;
 	    add_header Set-Cookie "hostid={{ $hostid }}";
 	    proxy_pass   http://backend$request_uri;
 	    break;
@@ -129,12 +124,11 @@ server {
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "Upgrade";
+    proxy_set_header X-RStudio-Request https://{{ .Values.ingress.host }}:$server_port$request_uri;
     proxy_redirect http://backend/ https://{{ .Values.ingress.host }}/;
     proxy_redirect https://backend/ https://{{ .Values.ingress.host }}/;
     root /usr/share/nginx/html;
     proxy_read_timeout 20d;
-    proxy_set_header X-Forwarded-Host {{ .Values.ingress.host }};
-    proxy_set_header X-Forwarded-Proto https;
   }
 
   error_page   500 502 503 504  /50x.html;
