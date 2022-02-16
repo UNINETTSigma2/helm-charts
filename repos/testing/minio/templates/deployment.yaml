@@ -95,7 +95,7 @@ spec:
           value: Europe/Oslo
         image: {{ .Values.advanced.dockerImage }}
         {{ if ne (first .Values.persistentStorage).existingClaim "" }}
-        args: [ 'server', '--quiet', '--config-dir', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }}', '/mnt' ]
+        args: [ 'server', '--quiet', '-v', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}:/persistentStorage', '--config-dir', '/persistentStorage/.tools/{{ template "fullname" . }}', '/persistentStorage' ]
         {{ else }}
         args: [ 'server', '--quiet', '--config-dir', '/tmp/.minio', '/tmp' ]
         {{ end }}
