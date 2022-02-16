@@ -1,11 +1,11 @@
 apiVersion: v1
 description: Jupyter notebook with Dataporten integration
 name: jupyter
-version: 0.10.16
+version: 0.10.17
 maintainers:
-- name: Uninett AS
-  email: system@uninett.no
-home: https://github.com/Uninett/helm-charts/tree/master/repos/testing/jupyter
+- name: Sigma2 AS
+  email: contact@sigma2.no
+home: https://github.com/UninettSigma2/helm-charts/tree/master/repos/testing/jupyter
 icon: https://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
 keywords:
   - Apache Spark

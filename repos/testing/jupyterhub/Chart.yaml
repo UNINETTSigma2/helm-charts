@@ -2,9 +2,9 @@ apiVersion: v1
 description: Multi-user Jupyter installation with Dataporten integration
 name: jupyterhub
 icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
-version: 0.16.13
+version: 0.16.14
 maintainers:
-- name: Uninett AS
-  email: system@uninett.no
+- name: Sigma2 AS
+  email: contact@sigma2.no
 keywords:
   - Jupyter notebook server

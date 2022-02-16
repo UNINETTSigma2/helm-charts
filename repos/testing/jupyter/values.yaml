@@ -34,8 +34,8 @@ supplementalGroups:
 advanced:
   env:
     sparkMasterUrl: "local[*]"
-    jupyterLab: false
-  dockerImage: quay.io/uninett/jupyter-spark:20210514-6405497
+    jupyterLab: true
+  dockerImage: quay.io/nird-toolkit/jupyter-spark:20220216-fbbf65f
 
   githubToken: ""
 authGroupProviders:
