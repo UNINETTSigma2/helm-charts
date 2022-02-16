@@ -58,7 +58,7 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }} && chmod -R 777 /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/"
+          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }} && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}"
         volumeMounts:
         - name: {{ (first .Values.persistentStorage).existingClaimName }}
           mountPath: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
