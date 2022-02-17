@@ -11,11 +11,11 @@ metadata:
     heritage: "{{ .Release.Service }}"
 spec:
   ports:
-  - name: {{ template "fullname" . }}-API-service
+  - name: {{ template "fullname" . }}-api-service
     port: 9000
     targetPort: 9000
     protocol: TCP
-  - name: {{ template "fullname" . }}-Console-service
+  - name: {{ template "fullname" . }}-console-service
     port: 9001
     targetPort: 9001
     protocol: TCP
