@@ -81,10 +81,8 @@ spec:
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         ports:
-        - name: APIPort
-          containerPort: 9000
-        - name: ConsolePort
-          containerPort: 9001
+        - containerPort: 9000
+        - containerPort: 9001
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
