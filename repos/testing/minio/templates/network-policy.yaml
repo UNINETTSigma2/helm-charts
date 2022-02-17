@@ -20,4 +20,6 @@ spec:
             name: kube-ingress
       ports:
         - protocol: TCP
+          port: 9000
+        - protocol: TCP
           port: 9001
