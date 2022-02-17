@@ -28,4 +28,4 @@ spec:
               service:
                 name: {{ template "fullname" . }}
                 port:
-                  number: 9000
+                  number: 9001
