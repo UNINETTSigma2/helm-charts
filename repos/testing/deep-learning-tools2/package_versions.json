@@ -1,20 +1,20 @@
 {
   "packageVersions": {
     "pkg-hadoop-version": "${hadoop-version}",
-    "pkg-tensorflow-version": "2.0.4",
-    "pkg-cuda-version": "10.0",
+    "pkg-tensorflow-version": "2.7.0",
+    "pkg-cuda-version": "11.5",
     "pkg-vs-code-version": "2.1692-vsc1.39.2",
-    "pkg-r-version": "4.0.3",
+    "pkg-r-version": "4.1.2",
     "pkg-toree-version": "0.3.0-incubating",
-    "pkg-tensorflow-probability-version": "0.9.0",
-    "pkg-pytorch-version": "1.7.1",
-    "pkg-catboost-version": "0.24.4",
-    "pkg-cudnn-version": "7.6.2.24-1",
+    "pkg-tensorflow-probability-version": "0.15.0",
+    "pkg-pytorch-version": "1.10.2",
+    "pkg-catboost-version": "1.0.4",
+    "pkg-cudnn-version": "8.3.2.44-1+cuda11.5",
     "pkg-spark-version": "${apache-spark-version}",
-    "pkg-keras-version": "2.3.1",
-    "pkg-fastai-version": "1.0.60",
-    "pkg-jupyter-notebook-version": "6.2.x",
-    "pkg-lightgbm-version": "3.1.1",
-    "pkg-xgboost-version": "1.3.3"
+    "pkg-keras-version": "2.7.0",
+    "pkg-fastai-version": "2.5.3",
+    "pkg-jupyter-notebook-version": "6.4.x",
+    "pkg-lightgbm-version": "3.3.2",
+    "pkg-xgboost-version": "1.5.2"
   }
 }
