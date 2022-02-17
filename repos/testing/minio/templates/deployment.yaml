@@ -74,9 +74,9 @@ spec:
           value: Europe/Oslo
         image: {{ .Values.advanced.dockerImage }}
         {{ if ne (first .Values.persistentStorage).existingClaim "" }}
-        args: [ 'server', '--quiet', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}' ]
+        args: [ 'server', '--quiet', '--console-address', '9000', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}' ]
         {{ else }}
-        args: [ 'server', '--quiet', '/tmp' ]
+        args: [ 'server', '--quiet', '--console-address', '9000', '/tmp' ]
         {{ end }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
