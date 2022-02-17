@@ -47,27 +47,6 @@ spec:
             claimName: {{ .existingClaim }}
       {{- end }}
       {{ end }}
-      {{- if ne (first .Values.persistentStorage).existingClaim "" }}
-      initContainers:
-      - name: busybox
-        image: registry.uninett.no/public/busybox:1.33.1-glibc
-        securityContext:
-          runAsUser: {{ .Values.uid }}
-          runAsGroup: {{ .Values.gid }}
-        args:
-          - /bin/sh
-          - -c
-          - -x
-          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }} && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools"
-        volumeMounts:
-        - name: {{ (first .Values.persistentStorage).existingClaimName }}
-          mountPath: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
-          readOnly: {{ .readOnly }}
-          {{ if ne (first .Values.persistentStorage).subPath "/" }}
-          subPath: {{ (first .Values.persistentStorage).subPath }}
-          mountPropagation: HostToContainer
-          {{ end }}
-      {{- end }}
       securityContext:
         runAsNonRoot: true
         fsGroup: {{ .Values.gid }}
@@ -95,9 +74,9 @@ spec:
           value: Europe/Oslo
         image: {{ .Values.advanced.dockerImage }}
         {{ if ne (first .Values.persistentStorage).existingClaim "" }}
-        args: [ 'server', '--quiet', '--config-dir', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }}', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}' ]
+        args: [ 'server', '--quiet', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}' ]
         {{ else }}
-        args: [ 'server', '--quiet', '--config-dir', '/tmp/.minio', '/tmp' ]
+        args: [ 'server', '--quiet', '/tmp' ]
         {{ end }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
@@ -181,7 +160,7 @@ spec:
         args:
           - -c
           - -x
-          - "rm -rf /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }} /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.minio.sys /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.minio"
+          - "rm -rf /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.minio.sys /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.minio"
         volumeMounts:
         - name: {{ (first .Values.persistentStorage).existingClaimName }}
           mountPath: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
