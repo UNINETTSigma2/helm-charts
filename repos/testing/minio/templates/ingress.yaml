@@ -29,3 +29,13 @@ spec:
                 name: {{ template "fullname" . }}
                 port:
                   number: 9000
+    - host: console.{{ .Values.ingress.host }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ template "fullname" . }}
+                port:
+                  number: 9001
