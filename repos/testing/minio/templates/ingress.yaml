@@ -22,17 +22,14 @@ spec:
     - host: {{ .Values.ingress.host }}
       http:
         paths:
-          - path: /
+          - path: /api
             pathType: Prefix
             backend:
               service:
                 name: {{ template "fullname" . }}
                 port:
                   number: 9000
-    - host: {{ .Values.ingress.host }}
-      http:
-        paths:
-          - path: /console
+          - path: /
             pathType: Prefix
             backend:
               service:
