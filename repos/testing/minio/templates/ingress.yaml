@@ -29,7 +29,7 @@ spec:
                 name: {{ template "fullname" . }}
                 port:
                   number: 9000
-          - path: /
+          - path: /console
             pathType: Prefix
             backend:
               service:
