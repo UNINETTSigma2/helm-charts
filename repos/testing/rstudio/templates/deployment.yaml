@@ -60,12 +60,6 @@ spec:
           emptyDir:
             medium: Memory
             sizeLimit: 256M
-        - name: indexhtml
-          configMap:
-            name: {{ template "fullname" . }}
-            items:
-            - key: index.html
-              path: index.html
         - name: shinyserver
           configMap:
             name: {{ template "fullname" . }}
