@@ -11,8 +11,8 @@ metadata:
     heritage: "{{ .Release.Service }}"
 spec:
   ports:
-  - port: 8080
-    targetPort: 8080
+  - port: 8787
+    targetPort: 8787
     protocol: TCP
     name: {{ template "fullname" . }}-service
   - port: 3838
