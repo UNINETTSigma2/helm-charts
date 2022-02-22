@@ -75,7 +75,6 @@ server {
   location / {
     proxy_set_header X-Real-IP \$remote_addr;
     proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-    proxy_set_header Host {{ .Values.ingress.host }};
     proxy_pass http://localhost:8787;
     proxy_redirect off;
     port_in_redirect off;
@@ -83,8 +82,6 @@ server {
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "Upgrade";
     proxy_read_timeout 20d;
-    proxy_set_header X-Forwarded-Host {{ .Values.ingress.host }};
-    proxy_set_header X-Forwarded-Proto https;
   }
 
   error_page   500 502 503 504  /50x.html;
