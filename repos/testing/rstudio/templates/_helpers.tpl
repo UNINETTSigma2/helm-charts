@@ -77,7 +77,8 @@ server {
     proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
     proxy_set_header Host {{ .Values.ingress.host }};
     proxy_pass http://localhost:8787;
-    proxy_redirect http://localhost:8787/ https://{{ .Values.ingress.host }}/;
+    proxy_redirect off;
+    port_in_redirect off;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "Upgrade";
