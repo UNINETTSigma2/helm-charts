@@ -72,36 +72,9 @@ server {
   listen       8888;
   server_name  localhost;
 
-  if ($http_cookie !~ "hostid={{ $hostid }}" ) {
-    set $state I;
-  }
-
-  if ($cookie_user-id) {
-    set $state "${state}U";
-  }
-
-  location /auth-public-key {
-    proxy_set_header X-RStudio-Request https://{{ .Values.ingress.host }}:$server_port$request_uri;
-    proxy_pass   http://backend$request_uri;
-    break;
-  }
-
   location / {
-    if ($state = IU) {
-	    add_header Set-Cookie "hostid={{ $hostid }}";
-	    add_header Set-Cookie "user-id=deleted; Expires=Thu, 01-Jan-1970 00:00:01 GMT";
-    }
-
-    if ($state = U) {
-	    add_header Set-Cookie "hostid={{ $hostid }}";
-	    proxy_pass   http://backend$request_uri;
-	    break;
-    }
-
-    add_header Set-Cookie "hostid={{ $hostid }}";
-    proxy_pass http://backend$request_uri;
-    proxy_redirect http://backend/ https://{{ .Values.ingress.host }}/;
-    proxy_redirect https://backend/ https://{{ .Values.ingress.host }}/;
+    proxy_pass http://localhost:8787;
+    proxy_redirect http://localhost:8787/ https://{{ .Values.ingress.host }}/;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "Upgrade";
