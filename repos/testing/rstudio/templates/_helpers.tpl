@@ -80,7 +80,7 @@ server {
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "Upgrade";
     proxy_read_timeout 20d;
-    proxy_set_header X-RStudio-Request https://{{ .Values.ingress.host }}:$server_port$request_uri;
+    proxy_set_header X-RStudio-Request $scheme://$host:$server_port$request_uri;
   }
 
   error_page   500 502 503 504  /50x.html;
