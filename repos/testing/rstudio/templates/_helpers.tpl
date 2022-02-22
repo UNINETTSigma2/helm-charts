@@ -108,7 +108,19 @@ server {
   }
 
   location / {
-    proxy_pass http://backend/;
+    if ($state = IU) {
+	    add_header Set-Cookie "hostid={{ $hostid }}";
+	    add_header Set-Cookie "user-id=deleted; Expires=Thu, 01-Jan-1970 00:00:01 GMT";
+    }
+
+    if ($state = U) {
+	    add_header Set-Cookie "hostid={{ $hostid }}";
+	    proxy_pass   http://backend$request_uri;
+	    break;
+    }
+
+    add_header Set-Cookie "hostid={{ $hostid }}";
+    proxy_pass http://backend$request_uri;
     proxy_redirect http://backend/ https://{{ .Values.ingress.host }}/;
     proxy_redirect https://backend/ https://{{ .Values.ingress.host }}/;
     proxy_http_version 1.1;
