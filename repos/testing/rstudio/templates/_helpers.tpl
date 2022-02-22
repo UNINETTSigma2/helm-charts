@@ -108,24 +108,12 @@ server {
   }
 
   location / {
-    if ($state = IU) {
-	    add_header Set-Cookie "hostid={{ $hostid }}";
-	    add_header Set-Cookie "user-id=deleted; Expires=Thu, 01-Jan-1970 00:00:01 GMT";
-    }
-
-    if ($state = U) {
-	    add_header Set-Cookie "hostid={{ $hostid }}";
-	    proxy_pass   http://backend$request_uri;
-	    break;
-    }
-
-    add_header Set-Cookie "hostid={{ $hostid }}";
+    proxy_pass http://backend/;
+    proxy_redirect http://backend/ https://{{ .Values.ingress.host }}/;
+    proxy_redirect https://backend/ https://{{ .Values.ingress.host }}/;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "Upgrade";
-    proxy_redirect http://backend/ https://{{ .Values.ingress.host }}/;
-    proxy_redirect https://backend/ https://{{ .Values.ingress.host }}/;
-    root /usr/share/nginx/html;
     proxy_read_timeout 20d;
     proxy_set_header X-RStudio-Request https://{{ .Values.ingress.host }}:$server_port$request_uri;
   }
