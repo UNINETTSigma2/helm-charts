@@ -73,18 +73,14 @@ server {
   server_name  localhost;
 
   location / {
-    proxy_set_header X-Real-IP \$remote_addr;
-    proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-    proxy_set_header X-Auth-Username {{ .Values.username }};
-    proxy_set_header Host {{ .Values.ingress.host }};
-    proxy_pass http://localhost:8787;
-    proxy_redirect http://localhost:8787/ https://{{ .Values.ingress.host }}/;
+    proxy_pass http://backend;
+    proxy_redirect http://backend/ https://{{ .Values.ingress.host }}/;
+    proxy_redirect https://backend/ https://{{ .Values.ingress.host }}/;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "Upgrade";
     proxy_read_timeout 20d;
-    proxy_set_header X-Forwarded-Host {{ .Values.ingress.host }};
-    proxy_set_header X-Forwarded-Proto https;
+    proxy_set_header X-RStudio-Request https://{{ .Values.ingress.host }}:$server_port$request_uri;
   }
 
   error_page   500 502 503 504  /50x.html;
