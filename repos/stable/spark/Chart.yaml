@@ -1,11 +1,11 @@
 apiVersion: v1
 description: Apache Spark is a fast and general engine for big data processing.
 name: spark
-version: 0.10.20
+version: 0.10.21
 maintainers:
-- name: Uninett AS
-  email: system@uninett.no
-home: https://github.com/Uninett/helm-charts/tree/master/repos/stable/spark
+- name: Sigma2 AS
+  email: contact@sigma2.no
+home: https://github.com/UninettSigma2/helm-charts/tree/master/repos/stable/spark
 icon: https://spark.apache.org/images/spark-logo-trademark.png
 keywords:
   - Distributed computing
