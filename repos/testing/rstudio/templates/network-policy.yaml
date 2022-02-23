@@ -20,6 +20,6 @@ spec:
             name: kube-ingress
       ports:
         - protocol: TCP
-          port: 8787
+          port: 8888
         - protocol: TCP
           port: 3838
