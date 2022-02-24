@@ -234,3 +234,29 @@ _apt:*:17647:0:99999:7:::
 rstudio-server:!:17652::::::
 {{ .Values.username }}:$6$OLWwdiLp$uLstyoh.dp5yAWgZqoHUj707hxKlca17PrGFoDKvOlX.QHJVdLBm3eBfG9JF0NKjgxCL8QKTl3xMR/LZJSmgR1:17652:0:99999:7:::
 {{- end -}}
+
+# Create rserver.conf
+{{- define "rserver.conf" -}}
+auth-required-user-group=rstudio
+auth-minimum-user-id=100
+rsession-which-r=/usr/local/bin/R
+auth-none=1
+server-user={{ .Values.username }}
+{{- end -}}
+
+# Create rsession.conf
+{{- define "rsession.conf" -}}
+session-timeout-minutes=0
+{{ if ne .Values.persistentStorage.existingClaim "" }}
+session-default-working-dir=/home/{{ .Values.username }}
+{{ else }}
+session-default-working-dir=/home/rstudio
+{{- end -}}
+{{- end -}}
+
+# Create .Renviron
+{{- define ".Renviron" -}}
+HOME=/home/rstudio
+TZ=Europe/Oslo
+USER={{ .Values.username }}
+{{- end -}}

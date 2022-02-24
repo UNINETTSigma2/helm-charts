@@ -15,3 +15,6 @@ data:
   group: {{ include "group" . | quote }}
   shadow: {{ include "shadow" . | quote }}
   shiny-server.conf: {{ include "shiny-server.conf" . | quote }}
+  rserver.conf: {{ include "rserver.conf" . | quote }}
+  rsession.conf: {{ include "rsession.conf" . | quote }}
+  .Renviron: {{ include ".Renviron" . | quote }}

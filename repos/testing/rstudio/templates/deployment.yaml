@@ -66,6 +66,24 @@ spec:
             items:
             - key: shiny-server.conf
               path: shiny-server.conf
+        - name: rserverconf
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: rserver.conf
+              path: rserver.conf
+        - name: rsessionconf
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: rsession.conf
+              path: rsession.conf
+        - name: renviron
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: .Renviron
+              path: .Renviron
         {{ if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           persistentVolumeClaim:
@@ -181,6 +199,15 @@ spec:
         - name: shinyserver
           mountPath: /etc/shiny-server/shiny-server.conf
           subPath: shiny-server.conf
+        - name: rserverconf
+          mountPath: /etc/rstudio/rserver.conf
+          subPath: rserver.conf
+        - name: rsessionconf
+          mountPath: /etc/rstudio/rsession.conf
+          subPath: rsession.conf
+        - name: renviron
+          mountPath: /home/rstudio/.Renviron
+          subPath: .Renviron
         {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
@@ -194,6 +221,9 @@ spec:
           mountPropagation: HostToContainer
           readOnly: {{ .Values.persistentStorage.readOnly }}
           subPath: home/{{ .Values.username }}
+        - name: renviron
+          mountPath: /home/{{ .Values.username }}/.Renviron
+          subPath: .Renviron
         {{- end -}}
 
 
