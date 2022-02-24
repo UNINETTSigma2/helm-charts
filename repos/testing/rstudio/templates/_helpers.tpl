@@ -249,7 +249,7 @@ session-timeout-minutes=0
 session-default-working-dir=/home/{{ .Values.username }}
 {{- else }}
 session-default-working-dir=/home/rstudio
-{{- end -}}
+{{- end }}
 {{ end }}
 
 # Create .Renviron
