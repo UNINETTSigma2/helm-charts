@@ -81,7 +81,6 @@ server {
     proxy_set_header Connection "Upgrade";
     proxy_read_timeout 20d;
     proxy_set_header X-RStudio-Request $scheme://$host:$server_port$request_uri;
-    index index.htm;
   }
 
   error_page   500 502 503 504  /50x.html;
