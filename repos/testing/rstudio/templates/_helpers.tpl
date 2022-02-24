@@ -237,8 +237,6 @@ rstudio-server:!:17652::::::
 
 # Create rserver.conf
 {{- define "rserver.conf" -}}
-auth-required-user-group=rstudio
-auth-minimum-user-id=100
 rsession-which-r=/usr/local/bin/R
 auth-none=1
 server-user={{ .Values.username }}
