@@ -240,8 +240,7 @@ rstudio-server:!:17652::::::
 rsession-which-r=/usr/local/bin/R
 auth-none=1
 server-user={{ .Values.username }}
-
-{{- end -}}
+{{ end }}
 
 # Create rsession.conf
 {{- define "rsession.conf" -}}
@@ -250,14 +249,12 @@ session-timeout-minutes=0
 session-default-working-dir=/home/{{ .Values.username }}
 {{- else }}
 session-default-working-dir=/home/rstudio
-{{- end }}
-
 {{- end -}}
+{{ end }}
 
 # Create .Renviron
 {{- define ".Renviron" -}}
 HOME=/home/rstudio
 TZ=Europe/Oslo
 USER={{ .Values.username }}
-
-{{- end -}}
+{{ end }}
