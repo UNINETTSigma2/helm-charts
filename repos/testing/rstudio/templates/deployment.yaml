@@ -176,8 +176,10 @@ spec:
           value: {{ .Values.appstore_generated_data.dataporten.owner }}
         {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: HOME
-          value: /home/{{ .Values.username }}
+          value: /home/rstudio
         - name: USERNAME
+          value: {{ .Values.username }}
+        - name: USER
           value: {{ .Values.username }}
         - name: SHINY_APPS_PATH
           value: /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}/shiny-server
