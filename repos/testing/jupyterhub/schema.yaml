@@ -163,7 +163,7 @@ properties:
             type: string
             description: "Which docker image to use when creating the VNC server."
             examples:
-            - quay.io/uninett/desktop-vnc:20210215-73add71
+            - quay.io/nird-toolkit/desktop-vnc:20220225-dd67aab
           resources:
             type: object
             properties:

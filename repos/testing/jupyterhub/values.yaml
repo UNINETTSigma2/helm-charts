@@ -94,8 +94,8 @@ advanced:
     readOnly: true
   minio:
     enabled: false
-    minioAccessKey: "accesskeyexample"
-    minioSecretKey: "secretkeyexample"
+    minioRootUser: "rootuserexample"
+    minioRootPassword: "rootpasswordexample"
   userImage: quay.io/nird-toolkit/jupyterhub-singleuser:20220216-fbbf65f
 appstore_generated_data:
   appstore_meta_data:
