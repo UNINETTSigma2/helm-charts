@@ -24,6 +24,8 @@ spec:
         {{- if .Values.advanced.sharedData.enabled }}
         - protocol: TCP
           port: 9000
+        - protocol: TCP
+          port: 8999
         {{- end }}
 
 ---
@@ -65,6 +67,8 @@ spec:
         {{- if .Values.advanced.sharedData.enabled }}
         - protocol: TCP
           port: 9000
+        - protocol: TCP
+          port: 8999
         {{- end }}
 
 ---

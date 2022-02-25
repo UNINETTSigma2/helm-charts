@@ -36,6 +36,10 @@ spec:
     targetPort: 9000
     protocol: TCP
     name: {{ template "fullname" . }}-minio-service
+  - port: 8999
+    targetPort: 8999
+    protocol: TCP
+    name: {{ template "fullname" . }}-minio-console-service
   selector:
     app: {{ template "fullname" . }}-minio
 {{ end }}

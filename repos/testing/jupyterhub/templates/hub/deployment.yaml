@@ -351,11 +351,11 @@ spec:
               key: MINIO_SECRET_KEY
         - name: TZ
           value: Europe/Oslo
-        image: quay.io/uninett/minio:20210326-f69fa09
+        image: quay.io/nird-toolkit/minio:20220216-9500986
         {{- if ne (first .Values.persistentStorage).existingClaim "" }}
-        args: [ 'server', '--quiet', '--config-dir', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }}', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}' ]
+        args: [ 'server', '--quiet', '--console-address', ':8999', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}' ]
         {{ else }}
-        args: [ 'server', '--quiet', '--config-dir', '/tmp/.minio', '/tmp' ]
+        args: [ 'server', '--quiet', '--console-address', ':8999', '/tmp' ]
         {{ end }}
         resources:
           requests:
@@ -366,6 +366,7 @@ spec:
             memory: 400M
         ports:
         - containerPort: 9000
+        - containerPort: 8999
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
