@@ -80,7 +80,7 @@ advanced:
         gpu: 0
   vnc:
     enabled: false
-    image: "quay.io/uninett/desktop-vnc:20210215-73add71"
+    image: "quay.io/nird-toolkit/desktop-vnc:20220225-dd67aab"
     resources:
       requests:
         cpu: "1"
