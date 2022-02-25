@@ -97,6 +97,8 @@ irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
 gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
 nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
 _apt:x:100:65534::/nonexistent:/usr/sbin/nologin
+vncdesktop:x:1000:100::/home/vncdesktop:/bin/bash
+vncuser:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/vncuser:/bin/bash
 jovyan:x:1000:100::/home/jovyan:/bin/bash
 hub:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/notebook:/bin/bash
 notebook:x:999:999::/home/notebook:/bin/bash
@@ -167,10 +169,12 @@ sasl:x:45:
 plugdev:x:46:
 staff:x:50:
 games:x:60:
+users:x:100:vncuser
 users:x:100:notebook
 nogroup:x:65534:
 wheel:x:11:
 ssh:x:101:
+vncuser:x:{{ .Values.gid }}:
 {{ .Values.username }}:x:{{ .Values.gid }}:
 {{- $firstGroup := .Values.supplementalGroups | first }}
 {{- if $firstGroup.gid }}
