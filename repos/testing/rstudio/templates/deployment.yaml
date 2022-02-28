@@ -176,6 +176,8 @@ spec:
           value: {{ .Values.appstore_generated_data.dataporten.owner }}
         - name: USER
           value: {{ .Values.username }}
+        - name: USERNAME
+          value: {{ .Values.username }}
         - name: HOME
           value: /home/rstudio
         {{- if ne .Values.persistentStorage.existingClaim "" }}
