@@ -176,16 +176,13 @@ spec:
           value: {{ .Values.appstore_generated_data.dataporten.owner }}
         - name: USER
           value: {{ .Values.username }}
-        {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: HOME
-          value: /home/{{ .Values.username }}
+          value: /home/rstudio
+        {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: SHINY_APPS_PATH
           value: /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}/shiny-server
         - name: PVC_MOUNT_PATH
           value: /mnt/{{ .Values.persistentStorage.existingClaimName }}
-        {{- else }}
-        - name: HOME
-          value: /home/rstudio
         {{- end }}
         volumeMounts:
         - name: passwd
@@ -208,6 +205,9 @@ spec:
         - name: rsessionconf
           mountPath: /etc/rstudio/rsession.conf
           subPath: rsession.conf
+        - name: renviron
+          mountPath: /home/rstudio/.Renviron
+          subPath: .Renviron
         {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
@@ -221,14 +221,6 @@ spec:
           mountPropagation: HostToContainer
           readOnly: {{ .Values.persistentStorage.readOnly }}
           subPath: home/{{ .Values.username }}
-        - name: renviron
-          mountPath: /home/{{ .Values.username }}/.Renviron
-          subPath: .Renviron
-        {{- else }}
-        - name: renviron
-          mountPath: /home/rstudio/.Renviron
-          subPath: .Renviron
-        {{- end }}
         {{- end }}
 
 
