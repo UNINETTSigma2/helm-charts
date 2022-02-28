@@ -256,7 +256,11 @@ session-default-working-dir=/home/rstudio
 
 # Create .Renviron
 {{- define ".Renviron" -}}
+{{- if ne .Values.persistentStorage.existingClaim "" }}
+HOME=/home/{{ .Values.username }}
+{{- else }}
 HOME=/home/rstudio
+{{- end }}
 TZ=Europe/Oslo
 USER={{ .Values.username }}
 {{ end }}
