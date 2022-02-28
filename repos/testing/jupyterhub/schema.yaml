@@ -104,16 +104,16 @@ properties:
             type: boolean
             examples:
             - false
-          minioAccessKey:
+          minioRootUser:
             description: "The username to use when accessing minio."
             type: string
             examples:
-            - accesskeyexample
-          minioSecretKey:
+            - rootuserexample
+          minioRootPassword:
             description: "The password to use when accessing minio."
             type: string
             examples:
-            - secretkeyexample
+            - rootpasswordexample
       sharedData:
         description: "Make the selected storage available to all users"
         type: object
