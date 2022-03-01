@@ -354,9 +354,9 @@ spec:
         image: quay.io/nird-toolkit/minio:20220216-9500986
         {{- if ne (first .Values.persistentStorage).existingClaim "" }}
         args: [ 'server', '--quiet', '--console-address', ':8999', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}' ]
-        {{ else }}
+        {{- else }}
         args: [ 'server', '--quiet', '--console-address', ':8999', '/tmp' ]
-        {{ end }}
+        {{- end }}
         resources:
           requests:
             cpu: 200m
