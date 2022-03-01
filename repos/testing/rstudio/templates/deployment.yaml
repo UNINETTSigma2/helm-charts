@@ -223,7 +223,7 @@ spec:
           mountPropagation: HostToContainer
           readOnly: {{ .Values.persistentStorage.readOnly }}
           subPath: home/{{ .Values.username }}
-        {{- end }}
+        {{- end -}}
 
 
 {{ if ne .Values.persistentStorage.existingClaim "" }}

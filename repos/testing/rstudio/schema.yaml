@@ -11,7 +11,7 @@ properties:
       dockerImage:
         type: string
         examples:
-        - quay.io/nird-toolkit/rstudio-server:20220224-aebf6bb
+        - quay.io/nird-toolkit/rstudio-server:20220301-2676427
   appstore_generated_data:
     type: object
     properties:
