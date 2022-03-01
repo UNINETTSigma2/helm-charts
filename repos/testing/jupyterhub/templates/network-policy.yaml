@@ -21,7 +21,7 @@ spec:
       ports:
         - protocol: TCP
           port: 8000
-        {{- if .Values.advanced.sharedData.enabled }}
+        {{- if .Values.advanced.minio.enabled }}
         - protocol: TCP
           port: 9000
         - protocol: TCP

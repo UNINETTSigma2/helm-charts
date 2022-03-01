@@ -76,6 +76,5 @@ spec:
   tls:
     - secretName: wildcard-tls
       hosts:
-         - {{ .Values.ingress.host }}
          - minio-{{ .Values.ingress.host }}
 {{- end }}
