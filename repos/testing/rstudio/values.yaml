@@ -32,7 +32,7 @@ appstore_generated_data:
 advanced:
   debug: false
   dockerImage: quay.io/nird-toolkit/rstudio-server:20220301-bdfbd66
-  proxyImage: quay.io/nird-toolkit/rstudio-proxy:20220216-9500986
+  proxyImage: quay.io/nird-toolkit/rstudio-proxy:20220301-61f06ae
 authGroupProviders:
   - url: "https://groups-api.dataporten.no/groups/me/groups"
     scope: groups
