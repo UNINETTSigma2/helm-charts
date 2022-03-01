@@ -14,5 +14,7 @@ data:
   passwd: {{ include "passwd" . | quote }}
   group: {{ include "group" . | quote }}
   shadow: {{ include "shadow" . | quote }}
-  index.html: {{ include "indexhtml" . | quote }}
   shiny-server.conf: {{ include "shiny-server.conf" . | quote }}
+  rserver.conf: {{ include "rserver.conf" . | quote }}
+  rsession.conf: {{ include "rsession.conf" . | quote }}
+  .Renviron: {{ include ".Renviron" . | quote }}

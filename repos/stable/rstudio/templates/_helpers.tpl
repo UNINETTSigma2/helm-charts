@@ -72,51 +72,16 @@ server {
   listen       8888;
   server_name  localhost;
 
-  if ($http_cookie !~ "hostid={{ $hostid }}" ) {
-    set $state I;
-  }
-
-  if ($cookie_user-id) {
-    set $state "${state}U";
-  }
-
-  location /js/encrypt.min.js {
-    proxy_pass   http://backend$request_uri;
-    break;
-  }
-  location /auth-public-key {
-    proxy_pass   http://backend$request_uri;
-    break;
-  }
-  location /auth-do-sign-in {
-    proxy_pass   http://backend$request_uri;
-    proxy_redirect https://backend/ https://{{ .Values.ingress.host }}/;
-    break;
-  }
-  location /auth-sign-in {
-    return 301 https://{{ .Values.ingress.host }}/oauth2/logout;
-    break;
-  }
-
   location / {
-    if ($state = IU) {
-	add_header Set-Cookie "hostid={{ $hostid }}";
-	add_header Set-Cookie "user-id=deleted; Expires=Thu, 01-Jan-1970 00:00:01 GMT";
-    }
 
-    if ($state = U) {
-	add_header Set-Cookie "hostid={{ $hostid }}";
-	proxy_pass   http://backend$request_uri;
-	break;
-    }
-
-    add_header Set-Cookie "hostid={{ $hostid }}";
+    proxy_pass http://backend;
+    proxy_redirect http://backend/ https://{{ .Values.ingress.host }}/;
+    proxy_redirect https://backend/ https://{{ .Values.ingress.host }}/;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "Upgrade";
-    proxy_redirect https://backend/ https://{{ .Values.ingress.host }}/;
-    root /usr/share/nginx/html;
     proxy_read_timeout 20d;
+    proxy_set_header X-RStudio-Request $scheme://$host:$server_port$request_uri;
   }
 
   error_page   500 502 503 504  /50x.html;
@@ -271,79 +236,28 @@ rstudio-server:!:17652::::::
 {{ .Values.username }}:$6$OLWwdiLp$uLstyoh.dp5yAWgZqoHUj707hxKlca17PrGFoDKvOlX.QHJVdLBm3eBfG9JF0NKjgxCL8QKTl3xMR/LZJSmgR1:17652:0:99999:7:::
 {{- end -}}
 
-# Create index.html file to specific user to be authenticated as
-{{- define "indexhtml" -}}
-<!DOCTYPE html>
-<html>
-<head>
+# Create rserver.conf
+{{- define "rserver.conf" -}}
+auth-required-user-group=rstudio
+auth-minimum-user-id=100
+rsession-which-r=/usr/local/bin/R
+auth-none=1
+server-user={{ .Values.username }}
+{{ end }}
 
-<title>RStudio Sign In</title>
-<script type="text/javascript" src="js/encrypt.min.js"></script>
-<script type="text/javascript">
-  function prepare() {
-     try {
-        var payload = "{{ .Values.username }}\nrstudio";
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "auth-public-key", true);
-        xhr.onreadystatechange = function() {
-           try {
-              if (xhr.readyState == 4) {
-                 if (xhr.status != 200) {
-                    var errorMessage;
-                    if (xhr.status == 0)
-                       errorMessage = "Error: Could not reach server--check your internet connection";
-                    else
-                       errorMessage = "Error: " + xhr.statusText;
+# Create rsession.conf
+{{- define "rsession.conf" -}}
+session-timeout-minutes=0
+{{- if ne .Values.persistentStorage.existingClaim "" }}
+session-default-working-dir=/home/{{ .Values.username }}
+{{- else }}
+session-default-working-dir=/home/rstudio
+{{- end }}
+{{ end }}
 
-                    var errorDiv = document.getElementById('errorpanel');
-                    errorDiv.innerHTML = '';
-                    var errorp = document.createElement('p');
-                    errorDiv.appendChild(errorp);
-                    if (typeof(errorp.innerText) == 'undefined')
-                       errorp.textContent = errorMessage;
-                    else
-                       errorp.innerText = errorMessage;
-                    errorDiv.style.display = 'block';
-                 }
-                 else {
-                    var response = xhr.responseText;
-                    var chunks = response.split(':', 2);
-                    var exp = chunks[0];
-                    var mod = chunks[1];
-                    var encrypted = encrypt(payload, exp, mod);
-                    document.getElementById('persist').value = "1";
-                    document.getElementById('package').value = encrypted;
-                    document.getElementById('clientPath').value = window.location.pathname;
-                    document.realform.submit();
-                 }
-              }
-           } catch (exception) {
-              alert("Error: " + exception);
-           }
-        };
-        xhr.send(null);
-     } catch (exception) {
-        alert("Error: " + exception);
-     }
-  }
-  window.onload =  function() {
-     if (prepare())
-        document.realform.submit();
-  }
-</script>
-</head>
-
-<div id="errorpanel">
-<p>Starting up RStudio</p>
-</div>
-
-<form action="auth-do-sign-in" name="realform" method="POST">
-   <input type="hidden" name="persist" id="persist" value=""/>
-   <input type="hidden" name="appUri" value=""/>
-   <input type="hidden" name="clientPath" id="clientPath" value=""/>
-   <input id="package" type="hidden" name="v" value=""/>
-</form>
-
-</body>
-</html>
-{{- end -}}
+# Create .Renviron
+{{- define ".Renviron" -}}
+HOME=/home/rstudio
+TZ=Europe/Oslo
+USER={{ .Values.username }}
+{{ end }}

@@ -60,18 +60,30 @@ spec:
           emptyDir:
             medium: Memory
             sizeLimit: 256M
-        - name: indexhtml
-          configMap:
-            name: {{ template "fullname" . }}
-            items:
-            - key: index.html
-              path: index.html
         - name: shinyserver
           configMap:
             name: {{ template "fullname" . }}
             items:
             - key: shiny-server.conf
               path: shiny-server.conf
+        - name: rserverconf
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: rserver.conf
+              path: rserver.conf
+        - name: rsessionconf
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: rsession.conf
+              path: rsession.conf
+        - name: renviron
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: .Renviron
+              path: .Renviron
         {{ if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           persistentVolumeClaim:
@@ -106,7 +118,7 @@ spec:
         {{- end }}
       containers:
       - name: auth-proxy
-        image: quay.io/uninett/goidc-proxy:v1.1.3
+        image: registry.uninett.no/public/goidc-proxy:v1.1.5
         imagePullPolicy: IfNotPresent
         env:
           - name: DATAPORTEN_CLIENTID
@@ -140,9 +152,6 @@ spec:
         volumeMounts:
           - name: proxy-config
             mountPath: /etc/nginx/conf.d
-          - name: indexhtml
-            mountPath: /usr/share/nginx/html/index.html
-            subPath: index.html
         securityContext:
           runAsUser: 65534
       - name: rstudio-server
@@ -166,11 +175,13 @@ spec:
           value: Europe/Oslo
         - name: OWNER_ID
           value: {{ .Values.appstore_generated_data.dataporten.owner }}
-        {{- if ne .Values.persistentStorage.existingClaim "" }}
-        - name: HOME
-          value: /home/{{ .Values.username }}
+        - name: USER
+          value: {{ .Values.username }}
         - name: USERNAME
           value: {{ .Values.username }}
+        - name: HOME
+          value: /home/rstudio
+        {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: SHINY_APPS_PATH
           value: /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}/shiny-server
         - name: PVC_MOUNT_PATH
@@ -191,6 +202,15 @@ spec:
         - name: shinyserver
           mountPath: /etc/shiny-server/shiny-server.conf
           subPath: shiny-server.conf
+        - name: rserverconf
+          mountPath: /etc/rstudio/rserver.conf
+          subPath: rserver.conf
+        - name: rsessionconf
+          mountPath: /etc/rstudio/rsession.conf
+          subPath: rsession.conf
+        - name: renviron
+          mountPath: /home/rstudio/.Renviron
+          subPath: .Renviron
         {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: {{ .Values.persistentStorage.existingClaimName }}
           mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
@@ -204,7 +224,7 @@ spec:
           mountPropagation: HostToContainer
           readOnly: {{ .Values.persistentStorage.readOnly }}
           subPath: home/{{ .Values.username }}
-        {{- end -}}
+        {{- end }}
 
 
 {{ if ne .Values.persistentStorage.existingClaim "" }}
