@@ -100,6 +100,7 @@ _apt:x:100:65534::/nonexistent:/usr/sbin/nologin
 jovyan:x:1000:100::/home/jovyan:/bin/bash
 hub:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/notebook:/bin/bash
 notebook:x:999:999::/home/notebook:/bin/bash
+vncuser:x:998:998::/home/vncuser:/bin/bash
 {{- end -}}
 
 {{- define "minio-passwd" -}}
@@ -181,6 +182,7 @@ ssh:x:101:
 {{- end }}
 {{- end }}
 notebook:x:999:
+vncuser:x:998:
 
 {{- end -}}
 
