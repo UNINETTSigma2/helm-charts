@@ -168,7 +168,7 @@ sasl:x:45:
 plugdev:x:46:
 staff:x:50:
 games:x:60:
-users:x:100:notebook
+users:x:100:notebook,vncuser
 nogroup:x:65534:
 wheel:x:11:
 ssh:x:101:
