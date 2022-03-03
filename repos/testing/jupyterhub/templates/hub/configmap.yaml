@@ -45,6 +45,8 @@ data:
       scheduler-strategy: pack
       uid: 999
       fsGid: {{ .Values.gid }}
+      cloudMetadata:
+        blockWithIptables: false
     {{- if .Values.advanced.jupyterLab }}
       defaultUrl: "/lab"
     {{- end }}
