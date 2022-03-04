@@ -112,7 +112,7 @@ spec:
       {{- end }}
       containers:
       - name: hub-container
-        image: quay.io/nird-toolkit/jupyterhub-server:20220304-6f93992
+        image: quay.io/nird-toolkit/jupyterhub-server:20220304-e16bac0
         command:
           - jupyterhub
           - --config
