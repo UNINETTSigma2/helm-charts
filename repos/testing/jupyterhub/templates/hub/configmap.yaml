@@ -46,6 +46,7 @@ data:
       uid: 999
       fsGid: {{ .Values.gid }}
       cloudMetadata:
+        enabled: false
         blockWithIptables: false
     {{- if .Values.advanced.jupyterLab }}
       defaultUrl: "/lab"
