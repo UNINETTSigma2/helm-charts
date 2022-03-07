@@ -35,7 +35,7 @@ properties:
             type: string
             description: "Which image to use when spawning the ipyparallel workers."
             examples:
-            - quay.io/nird-toolkit/jupyterhub-singleuser:20220307-99931fd
+            - quay.io/nird-toolkit/jupyterhub-singleuser:20220307-7f1437c
           resources:
             type: object
             properties:
@@ -150,7 +150,7 @@ properties:
         description: "Which docker image to use when spawning user notebooks."
         type: string
         examples:
-        - quay.io/nird-toolkit/jupyterhub-singleuser:20220307-99931fd
+        - quay.io/nird-toolkit/jupyterhub-singleuser:20220307-7f1437c
       vnc:
         description: "Make a VNC server available to each user"
         type: object
