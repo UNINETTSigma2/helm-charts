@@ -11,21 +11,6 @@ metadata:
     heritage: "{{ .Release.Service }}"
 data:
   values.yaml: |
-    {{- /* Auth */}}
-    auth:
-      type: "dataporten"
-      state:
-        enabled: false
-      admin:
-        access: true
-        users:
-          - {{ .Values.appstore_generated_data.dataporten.owner }}
-          {{- if ne (first .Values.advanced.additionalAdmin) "" }}
-          {{- range .Values.advanced.additionalAdmin }}
-          - {{ . }}
-          {{- end }}
-          {{- end }}
-
     {{- /* Cull */}}
     {{- if .Values.advanced.killIdlePods.enabled }}
     cull:
