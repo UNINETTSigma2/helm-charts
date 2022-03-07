@@ -11,6 +11,29 @@ metadata:
     heritage: "{{ .Release.Service }}"
 data:
   values.yaml: |
+    {{- /* Auth */}}
+    auth:
+      type: custom
+      custom:
+        className: oauthenticator.dataporten.DataportenAuth
+        config:
+          login_service: "Dataporten"
+          client_id: "{{ .Values.appstore_generated_data.dataporten.id }}"
+          client_secret: "{{ .Values.appstore_generated_data.dataporten.client_secret }}"
+          token_url: https://auth.dataporten.no/oauth/token
+          userdata_method: GET
+          userdata_params: {'state', 'state'}
+          username_key: sub
+        admin:
+          access: true
+          users:
+            - {{ .Values.appstore_generated_data.dataporten.owner }}
+            {{- if ne (first .Values.advanced.additionalAdmin) "" }}
+            {{- range .Values.advanced.additionalAdmin }}
+            - {{ . }}
+            {{- end }}
+            {{- end }}
+
     {{- /* Cull */}}
     {{- if .Values.advanced.killIdlePods.enabled }}
     cull:
@@ -196,6 +219,10 @@ data:
         myConfig: |
           c.Spawner.http_timeout = {{ .Values.advanced.startTimeout }}
           c.Spawner.start_timeout = {{ .Values.advanced.startTimeout }}
+      extraenv:
+        OAUTH2_AUTHORIZE_URL: https://auth.dataporten.no/oauth/authorization
+        OAUTH2_TOKEN_URL: https://auth.dataporten.no/oauth/token
+        OAUTH2_CALLBACK_URL: https://{{ .Values.ingress.host }}/hub/oauth_callback
     debug:
       enabled: {{ .Values.advanced.debug | quote }}
 
