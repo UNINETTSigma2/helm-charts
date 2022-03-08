@@ -165,6 +165,8 @@ spec:
           value: $({{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE_PORT)
         - name: HUB_SERVICE_NAME
           value: {{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE
+        - name: HUB_SERVICE_PORT
+          value: $({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT)
         - name: OAUTH_CLIENT_ID
           value: "{{ .Values.appstore_generated_data.dataporten.id }}"
         - name: OAUTH_CLIENT_SECRET
