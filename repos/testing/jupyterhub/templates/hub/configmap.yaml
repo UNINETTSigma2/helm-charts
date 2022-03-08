@@ -240,7 +240,7 @@ data:
           import escapism
           c.KubeSpawner.pod_name_template = get_config('singleuser.pod-name-template', 'jupyter-{username}{servername}')
           safe_chars = set(string.ascii_lowercase + string.digits)
-c.KubeSpawner.environment["HOME"] = lambda spawner: "/home/{}".format(escapism.escape(str(spawner.user.name), safe=safe_chars, escape_char='-').lower())
+          c.KubeSpawner.environment["HOME"] = lambda spawner: "/home/{}".format(escapism.escape(str(spawner.user.name), safe=safe_chars, escape_char='-').lower())
 
       extraenv:
         OAUTH2_AUTHORIZE_URL: https://auth.dataporten.no/oauth/authorization
