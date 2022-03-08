@@ -225,16 +225,14 @@ data:
           c.JupyterHub.port = int(os.environ['{{ .Release.Name | upper | replace "-" "_" }}_PROXY_HTTP_SERVICE_PORT'])
           c.JupyterHub.hub_connect_ip = os.environ['{{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST']
           c.JupyterHub.hub_connect_port = int(os.environ['{{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT'])
-          c.JupyterHub.hub_connect_url = f"http://hub:{os.environ['{{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT']}"
-          c.JupyterHub.hub_connect_url = ''
+          c.JupyterHub.hub_connect_url = f"http://{os.environ['{{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST']}:{os.environ['{{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT']}"
           c.KubeSpawner.uid = get_config('singleuser.run_as_gid', 999)
           c.KubeSpawner.gid = get_config('singleuser.run_as_gid', 999)
           c.KubeSpawner.supplemental_gids = get_config('singleuser.supplemental-gids', [])
           # Gives spawned containers access to the API of the hub
           c.KubeSpawner.hub_connect_ip = os.environ['{{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST']
           c.KubeSpawner.hub_connect_port = int(os.environ['{{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT'])
-          c.KubeSpawner.hub_connect_url = f"http://hub:{os.environ['{{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT']}"
-          c.KubeSpawner.hub_connect_url = ''
+          c.KubeSpawner.hub_connect_url = f"http://{os.environ['{{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST']}:{os.environ['{{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT']}"
           extra_containers = get_config('singleuser.extra-containers', None)
           if extra_containers:
             c.KubeSpawner.extra_containers  = extra_containers
