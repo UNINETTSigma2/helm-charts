@@ -243,9 +243,9 @@ data:
           c.KubeSpawner.pod_name_template = get_config('singleuser.pod-name-template', 'jupyter-{username}{servername}')
           safe_chars = set(string.ascii_lowercase + string.digits)
           c.KubeSpawner.environment["HOME"] = lambda spawner: "/home/{}".format(escapism.escape(str(spawner.user.name), safe=safe_chars, escape_char='-').lower())
-          c.KubeSpawner.volumes = []
-          if (get_config('singleuser.storage.type') == 'static'):
-              c.KubeSpawner.volume_mounts[0]['name'] = get_config('singleuser.storage.static.pvcName', 'shared')
+          #c.KubeSpawner.volumes = []
+          #if (get_config('singleuser.storage.type') == 'static'):
+          #    c.KubeSpawner.volume_mounts[0]['name'] = get_config('singleuser.storage.static.pvcName', 'shared')
 
       extraenv:
         OAUTH2_AUTHORIZE_URL: https://auth.dataporten.no/oauth/authorization
