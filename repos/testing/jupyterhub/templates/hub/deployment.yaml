@@ -112,7 +112,7 @@ spec:
       {{- end }}
       containers:
       - name: hub-container
-        image: quay.io/nird-toolkit/jupyterhub-server:20220307-4ee8c4b
+        image: quay.io/nird-toolkit/jupyterhub-server:20220308-0448a2d
         command:
           - jupyterhub
           - --config
@@ -161,10 +161,6 @@ spec:
           value: {{ .Release.Name | upper | replace "-" "_" }}_PROXY_HTTP_SERVICE
         - name: PROXY_API_SERVICE_NAME
           value: {{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE
-        - name: PROXY_API_SERVICE_HOST
-          value: $({{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE_HOST)
-        - name: PROXY_API_SERVICE_PORT
-          value: $({{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE_PORT)
         - name: HUB_SERVICE_NAME
           value: {{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE
         - name: OAUTH_CLIENT_ID
