@@ -53,16 +53,16 @@ data:
       scheduler-strategy: pack
       uid: 999
       fsGid: {{ .Values.gid }}
-    {{- if .Values.advanced.jupyterLab }}
+      {{- if .Values.advanced.jupyterLab }}
       defaultUrl: "/lab"
-    {{- end }}
+      {{- end }}
       extraEnv:
         RELEASE_NAME: "{{ .Release.Name }}"
         JUPYTER_HUB: "1"
         PVC_MOUNT_PATH: /mnt/data
-    {{- if .Values.advanced.jupyterLab }}
+        {{- if .Values.advanced.jupyterLab }}
         JUPYTER_ENABLE_LAB: "1"
-    {{- end }}
+        {{- end }}
       {{ $firstGroup := .Values.supplementalGroups | first }}
       {{- if $firstGroup.gid }}
       supplemental-gids:
@@ -91,18 +91,18 @@ data:
             emptyDir:
               medium: "Memory"
               sizeLimit: "256M"
-        {{- if .Values.advanced.ipyparallel.enabled }}
+          {{- if .Values.advanced.ipyparallel.enabled }}
           - name: ipyparallel-config
             secret:
               secretName: {{ .Release.Name }}-ipyparallel-config
-        {{- end }}
-        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
-        {{- range .Values.persistentStorage }}
+          {{- end }}
+          {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+          {{- range .Values.persistentStorage }}
           - name: {{ .existingClaimName }}
             persistentVolumeClaim:
               claimName: {{ .existingClaim }}
-        {{- end }}
-        {{- end }}
+          {{- end }}
+          {{- end }}
         extraVolumeMounts:
           - name: "passwd"
             mountPath: "/etc/passwd"
@@ -132,7 +132,7 @@ data:
           {{- end }}
           {{- end }}
           {{- end }}
-    {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
         type: "static"
         static:
           pvcName: "{{ (first .Values.persistentStorage).existingClaimName }}"
@@ -141,32 +141,38 @@ data:
           {{- else }}
           subPath: "{{ .Values.advanced.userHomeSubPath }}/{username}"
           {{- end }}
-    {{- else }}
+        {{- else }}
         type: "none"
-    {{- end }}
+        {{- end }}
         homeMountPath: "/home/{username}"
-      {{- if .Values.userNotebookType.resources.limits.memory }}
+      {{- if or .Values.userNotebookType.resources.requests.memory .Values.userNotebookType.resources.limits.memory }}
       memory:
-        limit: {{ .Values.userNotebookType.resources.limits.memory | quote }}
-      {{- end }}
-      {{- if .Values.userNotebookType.resources.requests.memory }}
+        {{- if .Values.userNotebookType.resources.requests.memory }}
         guarantee: {{ .Values.userNotebookType.resources.requests.memory | quote}}
+        {{- end }}
+        {{- if .Values.userNotebookType.resources.limits.memory }}
+        limit: {{ .Values.userNotebookType.resources.limits.memory | quote }}
+        {{- end }}
       {{- end }}
-      {{- if .Values.userNotebookType.resources.limits.cpu }}
+      {{- if or .Values.userNotebookType.resources.requests.cpu .Values.userNotebookType.resources.limits.cpu }}
       cpu:
-        limit: {{ .Values.userNotebookType.resources.limits.cpu }}
-      {{- end }}
-      {{- if .Values.userNotebookType.resources.requests.cpu }}
+        {{- if .Values.userNotebookType.resources.requests.cpu }}
         guarantee: {{ .Values.userNotebookType.resources.requests.cpu }}
+        {{- end }}
+        {{- if .Values.userNotebookType.resources.limits.cpu }}
+        limit: {{ .Values.userNotebookType.resources.limits.cpu }}
+        {{- end }}
       {{- end }}
-      {{- if .Values.userNotebookType.resources.requests.gpu }}
+      {{- if or .Values.userNotebookType.resources.requests.gpu .Values.userNotebookType.resources.limits.gpu }}
       extraResource:
+        {{- if .Values.userNotebookType.resources.requests.gpu }}
         guarantees:
           nvidia.com/gpu: {{ .Values.userNotebookType.resources.requests.gpu }}
-      {{- end }}
-      {{- if .Values.userNotebookType.resources.limits.gpu }}
+        {{- end }}
+        {{- if .Values.userNotebookType.resources.limits.gpu }}
         limits:
           nvidia.com/gpu: {{ .Values.userNotebookType.resources.requests.gpu }}
+        {{- end }}
       {{- end }}
       extraLabels:
         hub.jupyter.org/network-access-hub: "true"
@@ -190,12 +196,12 @@ data:
               subPath: "group"
             - name: "shm"
               mountPath: "/dev/shm"
-              {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+            {{- if ne (first .Values.persistentStorage).existingClaim "" }}
             - name: {{ (first .Values.persistentStorage).existingClaimName }}
               mountPath: "/home/notebook"
               mountPropagation: "HostToContainer"
               subPath: "{{ template "subPath" (first .Values.persistentStorage) }}{{ .Values.advanced.userHomeSubPath }}/{username}"
-              {{- end }}
+            {{- end }}
           resources:
             requests:
               cpu: "{{ .Values.advanced.vnc.resources.requests.cpu }}"
