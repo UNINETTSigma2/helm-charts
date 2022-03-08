@@ -68,7 +68,7 @@ advanced:
   ipyparallel:
     enabled: false
     workers: 2
-    image: "quay.io/nird-toolkit/jupyterhub-singleuser:20220307-7f1437c"
+    image: "quay.io/nird-toolkit/jupyterhub-singleuser:20220307-b97eda7"
     resources:
       requests:
         cpu: "1"
@@ -96,7 +96,7 @@ advanced:
     enabled: false
     minioRootUser: "rootuserexample"
     minioRootPassword: "rootpasswordexample"
-  userImage: quay.io/nird-toolkit/jupyterhub-singleuser:20220307-7f1437c
+  userImage: quay.io/nird-toolkit/jupyterhub-singleuser:20220307-b97eda7
 appstore_generated_data:
   appstore_meta_data:
     contact_email: "example@uninett.no"
