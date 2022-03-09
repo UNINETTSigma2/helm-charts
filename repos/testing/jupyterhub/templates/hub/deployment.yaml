@@ -68,18 +68,6 @@ spec:
           items:
           - key: values.yaml
             path: values.yaml
-      - name: proxy-api
-        configMap:
-          name: {{ .Release.Name }}-hub-config
-          items:
-          - key: proxy-api
-            path: proxy-api
-      - name: hub
-        configMap:
-          name: {{ .Release.Name }}-hub-config
-          items:
-          - key: hub
-            path: hub
       - name: secret
         secret:
           secretName: {{ .Release.Name }}-hub-secret
@@ -99,7 +87,21 @@ spec:
       - name: {{ (first .Values.persistentStorage).existingClaimName }}
         persistentVolumeClaim:
           claimName: {{ (first .Values.persistentStorage).existingClaim }}
+      {{- end }}
       initContainers:
+      - name: busybox-config
+        image: registry.uninett.no/public/busybox:1.33.1-glibc
+        securityContext:
+          runAsUser: {{ .Values.uid }}
+          runAsGroup: {{ .Values.gid }}
+        args:
+          - /bin/sh
+          - -c
+          - -x
+          - "mkdir -p /usr/local/etc/jupyterhub/config && \
+            echo $({{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE_HOST) > /usr/local/etc/jupyterhub/config/proxy-api && \
+            echo $({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST) > /usr/local/etc/jupyterhub/config/hub"
+      {{- if ne (first .Values.persistentStorage).existingClaim "" }}
       - name: busybox
         image: registry.uninett.no/public/busybox:1.33.1-glibc
         securityContext:
@@ -146,12 +148,6 @@ spec:
           - name: group
             mountPath: /etc/group
             subPath: group
-          - name: proxy-api
-            mountPath: /usr/local/etc/jupyterhub/config/proxy-api
-            subPath: proxy-api
-          - name: hub
-            mountPath: /usr/local/etc/jupyterhub/config/hub
-            subPath: hub
           {{- if ne (first .Values.persistentStorage).existingClaim "" }}
           - name: {{ (first .Values.persistentStorage).existingClaimName }}
             mountPath: /srv/jupyterhub
