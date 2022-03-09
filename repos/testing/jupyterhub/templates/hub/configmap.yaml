@@ -10,8 +10,8 @@ metadata:
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 data:
-  proxy-api: os.environ['{{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE_HOST']
-  hub: os.environ['{{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST']
+  proxy-api: f"{os.environ['{{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE_HOST']}"
+  hub: f"{os.environ['{{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST']}"
   values.yaml: |
     {{- /* Cull */}}
     {{- if .Values.advanced.killIdlePods.enabled }}
