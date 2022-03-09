@@ -199,7 +199,7 @@ data:
       db_url: "sqlite:///jupyterhub.sqlite" # Use in memory
       concurrent-spawn-limit: {{ .Values.advanced.notebook.spawnLimit | quote }}
       config:
-        Authenticator:
+        DataportenAuth:
           login_service: "Dataporten"
           client_id: "{{ .Values.appstore_generated_data.dataporten.id }}"
           client_secret: "{{ .Values.appstore_generated_data.dataporten.client_secret }}"
