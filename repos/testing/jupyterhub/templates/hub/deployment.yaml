@@ -68,6 +68,18 @@ spec:
           items:
           - key: values.yaml
             path: values.yaml
+      - name: proxy-api
+        configMap:
+          name: {{ .Release.Name }}-hub-config
+          items:
+          - key: proxy-api
+            path: proxy-api
+      - name: hub
+        configMap:
+          name: {{ .Release.Name }}-hub-config
+          items:
+          - key: hub
+            path: hub
       - name: secret
         secret:
           secretName: {{ .Release.Name }}-hub-secret
@@ -134,6 +146,12 @@ spec:
           - name: group
             mountPath: /etc/group
             subPath: group
+          - name: proxy-api
+            mountPath: /usr/local/etc/jupyterhub/config/proxy-api
+            subPath: proxy-api
+          - name: hub
+            mountPath: /usr/local/etc/jupyterhub/config/hub
+            subPath: hub
           {{- if ne (first .Values.persistentStorage).existingClaim "" }}
           - name: {{ (first .Values.persistentStorage).existingClaimName }}
             mountPath: /srv/jupyterhub
