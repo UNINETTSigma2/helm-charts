@@ -11,29 +11,6 @@ metadata:
     heritage: "{{ .Release.Service }}"
 data:
   values.yaml: |
-    {{- /* Auth */}}
-    auth:
-      type: custom
-      custom:
-        className: oauthenticator.dataporten.DataportenAuth
-        config:
-          login_service: "Dataporten"
-          client_id: "{{ .Values.appstore_generated_data.dataporten.id }}"
-          client_secret: "{{ .Values.appstore_generated_data.dataporten.client_secret }}"
-          token_url: https://auth.dataporten.no/oauth/token
-          userdata_method: GET
-          userdata_params: {'state', 'state'}
-          username_key: sub
-        admin:
-          access: true
-          users:
-            - {{ .Values.appstore_generated_data.dataporten.owner }}
-            {{- if ne (first .Values.advanced.additionalAdmin) "" }}
-            {{- range .Values.advanced.additionalAdmin }}
-            - {{ . }}
-            {{- end }}
-            {{- end }}
-
     {{- /* Cull */}}
     {{- if .Values.advanced.killIdlePods.enabled }}
     cull:
@@ -221,6 +198,24 @@ data:
       base_url: "/"
       db_url: "sqlite:///jupyterhub.sqlite" # Use in memory
       concurrent-spawn-limit: {{ .Values.advanced.notebook.spawnLimit | quote }}
+      config:
+        Authenticator:
+          login_service: "Dataporten"
+          client_id: "{{ .Values.appstore_generated_data.dataporten.id }}"
+          client_secret: "{{ .Values.appstore_generated_data.dataporten.client_secret }}"
+          token_url: https://auth.dataporten.no/oauth/token
+          userdata_method: GET
+          userdata_params: {'state', 'state'}
+          username_key: sub
+          admin-users:
+            - {{ .Values.appstore_generated_data.dataporten.owner }}
+            {{- if ne (first .Values.advanced.additionalAdmin) "" }}
+            {{- range .Values.advanced.additionalAdmin }}
+            - {{ . }}
+            {{- end }}
+            {{- end }}
+        JupyterHub:
+          authenticator_class: oauthenticator.dataporten.DataportenAuth
       extraConfig:
         myConfig: |
           c.Spawner.http_timeout = {{ .Values.advanced.startTimeout }}
