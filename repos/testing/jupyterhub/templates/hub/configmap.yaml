@@ -233,20 +233,22 @@ data:
           c.KubeSpawner.uid = get_config('singleuser.run_as_gid', 999)
           c.KubeSpawner.gid = get_config('singleuser.run_as_gid', 999)
           c.KubeSpawner.supplemental_gids = get_config('singleuser.supplemental-gids', [])
+          c.KubeSpawner.pod_name_template = get_config('singleuser.pod-name-template', 'jupyter-{username}{servername}')
+          c.KubeSpawner.common_labels.update(get_config('custom.common-labels', {}))
           # Gives spawned containers access to the API of the hub
           c.KubeSpawner.hub_connect_url = f"http://{os.environ['{{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST']}:{os.environ['{{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT']}"
+          # Extra containers
           extra_containers = get_config('singleuser.extra-containers', None)
           if extra_containers:
               c.KubeSpawner.extra_containers = extra_containers
-          import string
-          import escapism
-          c.KubeSpawner.pod_name_template = get_config('singleuser.pod-name-template', 'jupyter-{username}{servername}')
-          safe_chars = set(string.ascii_lowercase + string.digits)
-          c.KubeSpawner.environment["HOME"] = lambda spawner: "/home/{}".format(escapism.escape(str(spawner.user.name), safe=safe_chars, escape_char='-').lower())
+          # Persistent volume
           if (get_config('singleuser.storage.type') == 'static'):
               c.KubeSpawner.volumes.pop(0)
               c.KubeSpawner.volume_mounts[0]['name'] = get_config('singleuser.storage.static.pvcName', 'shared')
-
+          import string
+          import escapism
+          safe_chars = set(string.ascii_lowercase + string.digits)
+          c.KubeSpawner.environment["HOME"] = lambda spawner: "/home/{}".format(escapism.escape(str(spawner.user.name), safe=safe_chars, escape_char='-').lower())
       extraenv:
         OAUTH2_AUTHORIZE_URL: https://auth.dataporten.no/oauth/authorization
         OAUTH2_TOKEN_URL: https://auth.dataporten.no/oauth/token
