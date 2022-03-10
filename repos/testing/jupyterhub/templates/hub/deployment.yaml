@@ -90,6 +90,7 @@ spec:
       initContainers:
       - name: busybox
         image: registry.uninett.no/public/busybox:1.33.1-glibc
+        imagePullPolicy: IfNotPresent
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
@@ -113,7 +114,7 @@ spec:
       containers:
       - name: hub-container
         image: quay.io/nird-toolkit/jupyterhub-server:20220310-3f73601
-        args:
+        command:
           - /bin/sh
           - -c
           - -x
