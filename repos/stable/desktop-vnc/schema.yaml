@@ -6,7 +6,7 @@ properties:
       dockerImage:
         type: string
         examples:
-        - quay.io/uninett/desktop-vnc:20210421-3ae3b31
+        - quay.io/nird-toolkit/desktop-vnc:20220225-dd67aab
   appstore_generated_data:
     type: object
     properties:

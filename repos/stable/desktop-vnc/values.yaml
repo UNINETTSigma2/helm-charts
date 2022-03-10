@@ -35,4 +35,4 @@ authGroupProviders:
   - url: "https://groups-api.dataporten.no/groups/me/groups"
     scope: groups
 advanced:
-  dockerImage: quay.io/uninett/desktop-vnc:20210421-3ae3b31
+  dockerImage: quay.io/nird-toolkit/desktop-vnc:20220225-dd67aab
