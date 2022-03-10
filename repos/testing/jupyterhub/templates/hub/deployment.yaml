@@ -113,12 +113,12 @@ spec:
       - name: hub-container
         image: quay.io/nird-toolkit/jupyterhub-server:20220310-3f73601
         args:
-          - /bin/sh
-          - -c
-          - -x
-          - "echo ${{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE_HOST > /usr/local/etc/jupyterhub/config/proxy-api && \
-            echo ${{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST > /usr/local/etc/jupyterhub/config/hub && \
-            jupyterhub --config /srv/jupyterhub_config.py --upgrade-db"
+        - /bin/sh
+        - -c
+        - -x
+        - "echo ${{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE_HOST > /usr/local/etc/jupyterhub/config/proxy-api && \
+          echo ${{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST > /usr/local/etc/jupyterhub/config/hub && \
+          jupyterhub --config /srv/jupyterhub_config.py --upgrade-db"
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
