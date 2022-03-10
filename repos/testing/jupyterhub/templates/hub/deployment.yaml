@@ -118,8 +118,8 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "printf {{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE_HOST > /usr/local/etc/jupyterhub/config/proxy-api && \
-            printf {{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST > /usr/local/etc/jupyterhub/config/hub && \
+          - "printf ${{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE_HOST > /usr/local/etc/jupyterhub/config/proxy-api && \
+            printf ${{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST > /usr/local/etc/jupyterhub/config/hub && \
             jupyterhub --config /srv/jupyterhub_config.py --upgrade-db"
         securityContext:
           runAsUser: {{ .Values.uid }}
