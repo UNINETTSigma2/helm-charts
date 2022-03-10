@@ -6,7 +6,7 @@ properties:
       dockerImage:
         type: string
         examples:
-        - quay.io/nird-toolkit/deep-learning-tools2:20220216-33afba7
+        - quay.io/nird-toolkit/deep-learning-tools2:20220303-cbd3b76
       env:
         type: object
         properties:
