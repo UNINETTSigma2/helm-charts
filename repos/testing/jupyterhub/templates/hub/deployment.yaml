@@ -120,8 +120,7 @@ spec:
           - -x
           - "printf {{ .Release.Name | upper | replace "-" "_" }}_PROXY_API > /usr/local/etc/jupyterhub/config/proxy-api && \
             printf {{ .Release.Name | upper | replace "-" "_" }}_HUB > /usr/local/etc/jupyterhub/config/hub && \
-            printf {{ randAlphaNum 32 | b64enc | quote }} > /usr/local/etc/jupyterhub/secret/hub.config.JupyterHub.cookie_secret && \
-            printf {{ randAlphaNum 32 | b64enc | quote }} > /usr/local/etc/jupyterhub/secret/hub.config.CryptKeeper.keys && \
+            printf "hub.config.JupyterHub.cookie_secret: {{ randAlphaNum 32 | b64enc | quote }}\nhub.config.CryptKeeper.keys: {{ randAlphaNum 32 | b64enc | quote }}\n" > /usr/local/etc/jupyterhub/secret/values.yaml && \
             jupyterhub --config /srv/jupyterhub_config.py --upgrade-db"
         securityContext:
           runAsUser: {{ .Values.uid }}
