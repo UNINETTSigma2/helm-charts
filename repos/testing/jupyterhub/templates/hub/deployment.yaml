@@ -113,13 +113,15 @@ spec:
       {{- end }}
       containers:
       - name: hub-container
-        image: quay.io/nird-toolkit/jupyterhub-server:20220310-3f73601
+        image: quay.io/nird-toolkit/jupyterhub-server:20220310-797183a
         command:
           - /bin/sh
           - -c
           - -x
           - "printf {{ .Release.Name | upper | replace "-" "_" }}_PROXY_API > /usr/local/etc/jupyterhub/config/proxy-api && \
             printf {{ .Release.Name | upper | replace "-" "_" }}_HUB > /usr/local/etc/jupyterhub/config/hub && \
+            printf {{ randAlphaNum 32 | b64enc | quote }} > /usr/local/etc/jupyterhub/secret/hub.config.JupyterHub.cookie_secret && \
+            printf {{ randAlphaNum 32 | b64enc | quote }} > /usr/local/etc/jupyterhub/secret/hub.config.CryptKeeper.keys && \
             jupyterhub --config /srv/jupyterhub_config.py --upgrade-db"
         securityContext:
           runAsUser: {{ .Values.uid }}
