@@ -66,8 +66,8 @@ spec:
             - "--ip="
             - "--api-ip="
             - "--api-port=8001"
-            - "--default-target=http://$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST):$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT)"
-            - "--error-target=http://$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST):$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT)"
+            - "--default-target=http://$({{ .Release.Name | upper | replace "-" "_" }}_HUB):$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT)"
+            - "--error-target=http://$({{ .Release.Name | upper | replace "-" "_" }}_HUB):$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT)"
             - "--port=8000"
           resources:
             requests:

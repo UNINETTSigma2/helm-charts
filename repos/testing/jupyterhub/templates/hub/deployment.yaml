@@ -118,8 +118,8 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "printf ${{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE_HOST > /usr/local/etc/jupyterhub/config/proxy-api && \
-            printf ${{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST > /usr/local/etc/jupyterhub/config/hub && \
+          - "printf {{ .Release.Name | upper | replace "-" "_" }}_PROXY_API > /usr/local/etc/jupyterhub/config/proxy-api && \
+            printf {{ .Release.Name | upper | replace "-" "_" }}_HUB > /usr/local/etc/jupyterhub/config/hub && \
             jupyterhub --config /srv/jupyterhub_config.py --upgrade-db"
         securityContext:
           runAsUser: {{ .Values.uid }}
@@ -160,6 +160,10 @@ spec:
         {{- end }}
         - name: OWNER_ID
           value: {{ .Values.appstore_generated_data.dataporten.owner }}
+        - name: {{ .Release.Name | upper | replace "-" "_" }}_PROXY_API
+          value: $({{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE_HOST)
+        - name: {{ .Release.Name | upper | replace "-" "_" }}_HUB
+          value: $({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST)
         - name: PROXY_PUBLIC_SERVICE_NAME
           value: {{ .Release.Name | upper | replace "-" "_" }}_PROXY_HTTP_SERVICE
         - name: PROXY_API_SERVICE_NAME
