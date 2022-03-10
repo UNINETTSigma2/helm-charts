@@ -216,6 +216,9 @@ data:
             {{- end }}
         JupyterHub:
           authenticator_class: oauthenticator.dataporten.DataportenAuth
+          cookie_secret: {{ randAlphaNum 32 | b64enc | quote }}
+        CryptKeeper:
+          keys: {{ randAlphaNum 32 | b64enc | quote }}
       extraConfig:
         myConfig: |
           c.Spawner.http_timeout = {{ .Values.advanced.startTimeout }}
