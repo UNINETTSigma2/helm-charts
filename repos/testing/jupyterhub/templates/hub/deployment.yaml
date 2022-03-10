@@ -125,10 +125,10 @@ spec:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
         volumeMounts:
-          - mountPath: /etc/jupyterhub/config/values.yaml
+          - mountPath: /usr/local/etc/jupyterhub/config/values.yaml
             subPath: values.yaml
             name: config
-          - mountPath: /etc/jupyterhub/secret/values.yaml
+          - mountPath: /usr/local/etc/jupyterhub/secret/values.yaml
             subPath: values.yaml
             name: secret
           - name: passwd
