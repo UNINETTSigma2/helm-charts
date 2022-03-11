@@ -71,6 +71,9 @@ spec:
       - name: secret
         secret:
           secretName: {{ .Release.Name }}-hub-secret
+          items:
+          - key: values.yaml
+            path: values.yaml
           - key: cookie-secret
             path: hub.config.JupyterHub.cookie_secret
           - key: cryptkeeper
