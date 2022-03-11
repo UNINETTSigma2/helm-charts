@@ -71,10 +71,8 @@ spec:
       - name: secret
         secret:
           secretName: {{ .Release.Name }}-hub-secret
-      - name: config-secret
-        secret:
-          secretName: {{ .Release.Name }}-hub-config-secret
-          items:
+          - key: values.yaml
+            path: values.yaml
           - key: cookie-secret
             path: hub.config.JupyterHub.cookie_secret
           - key: cryptkeeper
@@ -136,7 +134,7 @@ spec:
           - name: config
             mountPath: /usr/local/etc/jupyterhub/config/values.yaml
             subPath: values.yaml
-          - name: config-secret
+          - name: secret
             mountPath: /usr/local/etc/jupyterhub/secret
             readOnly: true
           - name: passwd
