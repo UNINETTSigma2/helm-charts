@@ -75,8 +75,6 @@ spec:
             path: hub.config.JupyterHub.cookie_secret
           - key: cryptkeeper
             path: hub.config.CryptKeeper.keys
-          - key: values.yaml
-            path: values.yaml
       - name: passwd
         configMap:
           name: {{ template "fullname" . }}
