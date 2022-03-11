@@ -136,9 +136,6 @@ spec:
           - name: config
             mountPath: /usr/local/etc/jupyterhub/config/values.yaml
             subPath: values.yaml
-          - name: secret
-            mountPath: /usr/local/etc/jupyterhub/secret/values.yaml
-            subPath: values.yaml
           - name: config-secret
             mountPath: /usr/local/etc/jupyterhub/secret
             readOnly: true
