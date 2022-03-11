@@ -71,6 +71,14 @@ spec:
       - name: secret
         secret:
           secretName: {{ .Release.Name }}-hub-secret
+      - name: config-secret
+        secret:
+          secretName: {{ .Release.Name }}-hub-config-secret
+          items:
+          - key: cookie-secret
+            path: hub.config.JupyterHub.cookie_secret
+          - key: cryptkeeper
+            path: hub.config.CryptKeeper.keys
       - name: passwd
         configMap:
           name: {{ template "fullname" . }}
@@ -125,12 +133,15 @@ spec:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
         volumeMounts:
-          - mountPath: /usr/local/etc/jupyterhub/config/values.yaml
+          - name: config
+            mountPath: /usr/local/etc/jupyterhub/config/values.yaml
             subPath: values.yaml
-            name: config
-          - mountPath: /usr/local/etc/jupyterhub/secret/values.yaml
+          - name: secret
+            mountPath: /usr/local/etc/jupyterhub/secret/values.yaml
             subPath: values.yaml
-            name: secret
+          - name: config-secret
+            mountPath: /usr/local/etc/jupyterhub/secret
+            readOnly: true
           - name: passwd
             mountPath: /etc/passwd
             subPath: passwd
