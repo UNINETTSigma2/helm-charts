@@ -125,9 +125,7 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "printf ${{ .Release.Name | upper | replace "-" "_" }}_PROXY_API > /usr/local/etc/jupyterhub/config/proxy-api && \
-            printf ${{ .Release.Name | upper | replace "-" "_" }}_HUB > /usr/local/etc/jupyterhub/config/hub && \
-            jupyterhub --config /srv/jupyterhub_config.py --upgrade-db --debug"
+          - "jupyterhub --config /srv/jupyterhub_config.py --upgrade-db --debug"
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
