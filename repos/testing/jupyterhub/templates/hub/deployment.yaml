@@ -125,18 +125,18 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "printf {{ .Release.Name | upper | replace "-" "_" }}_PROXY_API > /usr/local/etc/jupyterhub/config/proxy-api && \
-            printf {{ .Release.Name | upper | replace "-" "_" }}_HUB > /usr/local/etc/jupyterhub/config/hub && \
+          - "printf ${{ .Release.Name | upper | replace "-" "_" }}_PROXY_API > /usr/local/etc/jupyterhub/config/proxy-api && \
+            printf ${{ .Release.Name | upper | replace "-" "_" }}_HUB > /usr/local/etc/jupyterhub/config/hub && \
             jupyterhub --config /srv/jupyterhub_config.py --upgrade-db --debug"
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
         volumeMounts:
           - name: config
-            mountPath: /usr/local/etc/jupyterhub/config/values.yaml
-            subPath: values.yaml
+            mountPath: /usr/local/etc/jupyterhub/config/
+            readOnly: true
           - name: secret
-            mountPath: /usr/local/etc/jupyterhub/secret
+            mountPath: /usr/local/etc/jupyterhub/secret/
             readOnly: true
           - name: passwd
             mountPath: /etc/passwd
