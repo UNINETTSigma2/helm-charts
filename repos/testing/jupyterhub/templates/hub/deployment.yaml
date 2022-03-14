@@ -124,7 +124,7 @@ spec:
       {{- end }}
       containers:
       - name: hub-container
-        image: quay.io/nird-toolkit/jupyterhub-server:20220310-797183a
+        image: quay.io/nird-toolkit/jupyterhub-server:20220314-6d6848b
         command:
           - /bin/sh
           - -c
