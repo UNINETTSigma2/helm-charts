@@ -10,8 +10,6 @@ metadata:
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 data:
-  proxy-api: ${{ .Release.Name | upper | replace "-" "_" }}_PROXY_API
-  hub: ${{ .Release.Name | upper | replace "-" "_" }}_HUB
   values.yaml: |
     {{- /* Cull */}}
     {{- if .Values.advanced.killIdlePods.enabled }}
@@ -252,6 +250,8 @@ data:
         OAUTH2_CALLBACK_URL: https://{{ .Values.ingress.host }}/hub/oauth_callback
     debug:
       enabled: {{ .Values.advanced.debug | quote }}
+  proxy-api: ${{ .Release.Name | upper | replace "-" "_" }}_PROXY_API
+  hub: ${{ .Release.Name | upper | replace "-" "_" }}_HUB
 
 {{- if ne (first .Values.persistentStorage).existingClaim "" }}
 ---

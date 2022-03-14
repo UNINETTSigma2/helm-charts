@@ -68,6 +68,10 @@ spec:
           items:
           - key: values.yaml
             path: values.yaml
+          - key: proxy-api
+            path: proxy-api
+          - key: hub
+            path: hub
       - name: secret
         secret:
           secretName: {{ .Release.Name }}-hub-secret
