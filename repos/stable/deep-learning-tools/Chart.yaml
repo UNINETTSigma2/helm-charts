@@ -1,11 +1,11 @@
 apiVersion: v1
 description: A collection of various deep learning tools
 name: deep-learning-tools
-version: 0.8.6
+version: 0.8.7
 maintainers:
-- name: Uninett AS
-  email: system@uninett.no
-home: https://github.com/Uninett/helm-charts-dockerfiles/tree/master/deep-learning-tools
+- name: Sigma2 AS
+  email: contact@sigma2.no
+home: https://github.com/UninettSigma2/helm-charts-dockerfiles/tree/master/deep-learning-tools2
 icon: https://upload.wikimedia.org/wikipedia/commons/8/81/Deep_learning.png
 keywords:
   - GPU enabled
