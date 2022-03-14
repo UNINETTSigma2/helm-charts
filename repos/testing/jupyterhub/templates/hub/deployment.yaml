@@ -169,24 +169,6 @@ spec:
         {{- end }}
         - name: OWNER_ID
           value: {{ .Values.appstore_generated_data.dataporten.owner }}
-        - name: {{ .Release.Name | upper | replace "-" "_" }}_PROXY_API
-          value: $({{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE_HOST)
-        - name: {{ .Release.Name | upper | replace "-" "_" }}_HUB
-          value: $({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST)
-        - name: PROXY_PUBLIC_SERVICE_NAME
-          value: {{ .Release.Name | upper | replace "-" "_" }}_PROXY_HTTP_SERVICE
-        - name: PROXY_API_SERVICE_NAME
-          value: {{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE
-        - name: PROXY_API_SERVICE_PORT
-          value: $({{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE_PORT)
-        - name: {{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_TEST
-          value: $({{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE_HOST)
-        - name: {{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_TEST_SERVICE_PORT
-          value: $({{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE_PORT)
-        - name: HUB_SERVICE_NAME
-          value: {{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE
-        - name: HUB_SERVICE_PORT
-          value: $({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT)
         - name: OAUTH_CLIENT_ID
           value: "{{ .Values.appstore_generated_data.dataporten.id }}"
         - name: OAUTH_CLIENT_SECRET
