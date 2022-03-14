@@ -126,19 +126,16 @@ spec:
       - name: hub-container
         image: quay.io/nird-toolkit/jupyterhub-server:20220314-6d6848b
         command:
-          - /bin/sh
-          - -c
-          - -x
-          - "jupyterhub --config /srv/jupyterhub_config.py --upgrade-db --debug"
+          - jupyterhub
+          - --config
+          - /srv/jupyterhub_config.py
+          - --upgrade-db
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
         volumeMounts:
           - name: config
             mountPath: /usr/local/etc/jupyterhub/config/
-            readOnly: true
-          - name: config
-            mountPath: /etc/jupyterhub/config/
             readOnly: true
           - name: secret
             mountPath: /usr/local/etc/jupyterhub/secret/
