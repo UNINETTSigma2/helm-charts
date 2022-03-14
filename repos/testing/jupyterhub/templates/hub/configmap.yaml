@@ -250,8 +250,8 @@ data:
         OAUTH2_CALLBACK_URL: https://{{ .Values.ingress.host }}/hub/oauth_callback
     debug:
       enabled: {{ .Values.advanced.debug | quote }}
-  proxy-api: ${{ .Release.Name | upper | replace "-" "_" }}_PROXY_API
-  hub: ${{ .Release.Name | upper | replace "-" "_" }}_HUB
+  proxy-api: {{ .Release.Name | upper | replace "-" "_" }}_PROXY_API
+  hub: {{ .Release.Name | upper | replace "-" "_" }}_HUB
 
 {{- if ne (first .Values.persistentStorage).existingClaim "" }}
 ---
