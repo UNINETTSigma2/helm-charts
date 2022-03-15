@@ -484,9 +484,13 @@ ssh:x:101:
         hub.jupyter.org/network-access-hub: "true"
 
       {{- if .Values.advanced.vnc.enabled }}
-      extra-containers:
+      extraContainers:
         - name: "viz"
           image: "{{ .Values.advanced.vnc.image }}"
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            runAsUser: {{ .Values.uid }}
+            runAsGroup: {{ .Values.gid }}
           args: ["-w"]
           env:
             - name: "VNC_PW"
