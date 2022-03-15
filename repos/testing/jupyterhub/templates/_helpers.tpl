@@ -462,18 +462,15 @@ ssh:x:101:
         myConfig.py: |
           c.Spawner.http_timeout = {{ .Values.advanced.startTimeout }}
           c.Spawner.start_timeout = {{ .Values.advanced.startTimeout }}
-          c.ConfigurableHTTPProxy.api_url = f"http://{os.environ['{{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE_HOST']}:{os.environ['{{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE_PORT']}"
           c.JupyterHub.cookie_secret_file = "/srv/jupyterhub/jupyterhub_cookie_secret"
           c.JupyterHub.ip = os.environ['{{ .Release.Name | upper | replace "-" "_" }}_PROXY_HTTP_SERVICE_HOST']
           c.JupyterHub.port = int(os.environ['{{ .Release.Name | upper | replace "-" "_" }}_PROXY_HTTP_SERVICE_PORT'])
-          #c.JupyterHub.hub_connect_url = f"http://{os.environ['{{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST']}:{os.environ['{{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT']}"
           c.KubeSpawner.uid = get_config('singleuser.run_as_gid', 999)
           c.KubeSpawner.gid = get_config('singleuser.run_as_gid', 999)
           c.KubeSpawner.supplemental_gids = get_config('singleuser.supplemental-gids', [])
           c.KubeSpawner.pod_name_template = get_config('singleuser.pod-name-template', 'jupyter-{username}{servername}')
           c.KubeSpawner.common_labels.update(get_config('custom.common-labels', {}))
           # Gives spawned containers access to the API of the hub
-          #c.KubeSpawner.hub_connect_url = f"http://{os.environ['{{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_HOST']}:{os.environ['{{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT']}"
           c.KubeSpawner.hub_connect_url = f'http://{get_name("hub")}:{get_name_env("hub", "_SERVICE_PORT")}'
           # Extra containers
           extra_containers = get_config('singleuser.extra-containers', None)
