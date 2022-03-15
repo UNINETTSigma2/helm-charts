@@ -343,6 +343,13 @@ ssh:x:101:
       image:
         name: "{{ .Values.advanced.userImage }}"
         pullPolicy: IfNotPresent
+        volumeMounts:
+          - name: "passwd"
+            mountPath: "/etc/passwd"
+            subPath: "passwd"
+          - name: "group"
+            mountPath: "/etc/group"
+            subPath: "group"
       startTimeout: {{ .Values.advanced.startTimeout }}
       scheduler-strategy: pack
       uid: 999
@@ -410,12 +417,6 @@ ssh:x:101:
           {{- end }}
           {{- end }}
         extraVolumeMounts:
-          - name: "passwd"
-            mountPath: "/etc/passwd"
-            subPath: "passwd"
-          - name: "group"
-            mountPath: "/etc/group"
-            subPath: "group"
           - name: "shm"
             mountPath: "/dev/shm"
           {{- if .Values.advanced.ipyparallel.enabled }}
