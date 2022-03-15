@@ -40,6 +40,6 @@ metadata:
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 data:
-  vnc-passwd: {{ include "vnc-passwd" . | quote }}
+  passwd: {{ include "vnc-passwd" . | quote }}
   group: {{ include "vnc-group" . | quote }}
 {{- end }}
