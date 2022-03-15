@@ -460,8 +460,6 @@ ssh:x:101:
           authenticator_class: oauthenticator.dataporten.DataportenAuth
       extraConfig:
         myConfig.py: |
-          # try error
-          1/0
           c.Spawner.http_timeout = {{ .Values.advanced.startTimeout }}
           c.Spawner.start_timeout = {{ .Values.advanced.startTimeout }}
           c.ConfigurableHTTPProxy.api_url = f"http://{os.environ['{{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE_HOST']}:{os.environ['{{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE_PORT']}"
