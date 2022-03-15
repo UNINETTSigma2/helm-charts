@@ -463,8 +463,8 @@ ssh:x:101:
           c.Spawner.http_timeout = {{ .Values.advanced.startTimeout }}
           c.Spawner.start_timeout = {{ .Values.advanced.startTimeout }}
           c.JupyterHub.cookie_secret_file = "/srv/jupyterhub/jupyterhub_cookie_secret"
-          c.JupyterHub.ip = os.environ['{{ .Release.Name | upper | replace "-" "_" }}_PROXY_HTTP_SERVICE_HOST']
-          c.JupyterHub.port = int(os.environ['{{ .Release.Name | upper | replace "-" "_" }}_PROXY_HTTP_SERVICE_PORT'])
+          c.JupyterHub.ip = f'{get_name_env("proxy-http", "_SERVICE_HOST")}'
+          c.JupyterHub.port = f'{get_name_env("proxy-http", "_SERVICE_PORT")}'
           c.KubeSpawner.uid = get_config('singleuser.run_as_gid', 999)
           c.KubeSpawner.gid = get_config('singleuser.run_as_gid', 999)
           c.KubeSpawner.supplemental_gids = get_config('singleuser.supplemental-gids', [])

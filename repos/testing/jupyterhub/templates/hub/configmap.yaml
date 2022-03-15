@@ -11,6 +11,7 @@ metadata:
     heritage: "{{ .Release.Service }}"
 data:
   proxy-api: {{ .Release.Name }}-proxy-api
+  proxy-http: {{ .Release.Name }}-proxy-http
   hub: {{ .Release.Name }}-hub
 
 {{- if ne (first .Values.persistentStorage).existingClaim "" }}
