@@ -10,7 +10,8 @@ metadata:
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 data:
-    values.yaml: test
+  proxy-api: {{ .Release.Name }}-proxy-api
+  hub: {{ .Release.Name }}-hub
 
 {{- if ne (first .Values.persistentStorage).existingClaim "" }}
 ---

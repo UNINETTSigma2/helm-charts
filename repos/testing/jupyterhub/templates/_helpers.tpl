@@ -253,8 +253,6 @@ ssh:x:101:
 
 
 {{- define "values.yaml" -}}
-    proxy-api: {{ .Release.Name }}-proxy-api
-    hub: {{ .Release.Name }}-hub
     {{- /* Cull */}}
     {{- if .Values.advanced.killIdlePods.enabled }}
     cull:
