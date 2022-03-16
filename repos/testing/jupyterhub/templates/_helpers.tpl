@@ -513,8 +513,6 @@ ssh:x:101:
               mountPropagation: "HostToContainer"
               subPath: "{{ template "subPath" (first .Values.persistentStorage) }}{{ .Values.advanced.userHomeSubPath }}/{username}"
             {{- end }}
-          ports:
-            containerPort: 6901
           resources:
             requests:
               cpu: "{{ .Values.advanced.vnc.resources.requests.cpu }}"
