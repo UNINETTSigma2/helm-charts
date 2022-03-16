@@ -578,16 +578,6 @@ ssh:x:101:
           import escapism
           safe_chars = set(string.ascii_lowercase + string.digits)
           c.KubeSpawner.environment["HOME"] = lambda spawner: "/home/{}".format(escapism.escape(str(spawner.user.name), safe=safe_chars, escape_char='-').lower())
-          c.ServerProxy.servers = {
-            "vnc": {
-              "command": ["/dockerstartup/vnc_startup.sh", "-w"],
-              "port": 6901,
-              "launcher_entry": {
-                "enabled": True,
-                "title": "VNC",
-              },
-            },
-          }
       extraenv:
         OAUTH2_AUTHORIZE_URL: https://auth.dataporten.no/oauth/authorization
         OAUTH2_TOKEN_URL: https://auth.dataporten.no/oauth/token

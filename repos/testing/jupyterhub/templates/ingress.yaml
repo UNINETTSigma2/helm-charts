@@ -26,6 +26,18 @@ spec:
                 name: {{ .Release.Name }}-proxy-http
                 port:
                   number: 8000
+    {{- if .Values.advanced.vnc.enabled }}
+    - host: vnc-{{ .Values.ingress.host }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Release.Name }}-vnc
+                port:
+                  number: 6901
+    {{- end }}
     {{- if .Values.advanced.minio.enabled }}
     - host: minio-{{ .Values.ingress.host }}
       http:
