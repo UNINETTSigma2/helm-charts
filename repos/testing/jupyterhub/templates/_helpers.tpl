@@ -493,6 +493,8 @@ ssh:x:101:
             runAsUser: {{ .Values.uid }}
             runAsGroup: {{ .Values.gid }}
           args: ["-w"]
+          ports:
+            - containerPort: 6901
           env:
             - name: "VNC_PW"
               value: "test"
@@ -578,9 +580,8 @@ ssh:x:101:
           c.KubeSpawner.environment["HOME"] = lambda spawner: "/home/{}".format(escapism.escape(str(spawner.user.name), safe=safe_chars, escape_char='-').lower())
           c.ServerProxy.servers = {
             "vnc": {
-              "command": ["python3", "-m", "SimpleHTTPServer", "{port}"],
-              "timeout": 120,
-              "absolute_url": True,
+              "command": ["/dockerstartup/vnc_startup.sh", "-w"],
+              "port": 6901,
               "launcher_entry": {
                 "enabled": True,
                 "title": "VNC",
