@@ -13,14 +13,29 @@ spec:
   selector:
     name: {{ .Release.Name }}-hub
   ports:
-    - name: {{ template "fullname" . }}-hub
-      protocol: TCP
+    - protocol: TCP
       port: 8081
       targetPort: 8081
-    - name: {{ template "fullname" . }}-vnc
-      protocol: TCP
+
+{{ if .Values.advanced.minio.enabled }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-vnc
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+spec:
+  ports:
+    - protocol: TCP
       port: 6901
       targetPort: 6901
+{{ end }}
 
 {{ if .Values.advanced.minio.enabled }}
 ---
