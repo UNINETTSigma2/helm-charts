@@ -31,6 +31,8 @@ metadata:
   annotations:
     appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
 spec:
+  selector:
+    name: {{ .Release.Name }}-vnc
   ports:
     - protocol: TCP
       port: 6901

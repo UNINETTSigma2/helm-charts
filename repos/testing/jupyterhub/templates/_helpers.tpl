@@ -483,7 +483,6 @@ ssh:x:101:
       {{- end }}
       extraLabels:
         hub.jupyter.org/network-access-hub: "true"
-
       {{- if .Values.advanced.vnc.enabled }}
       extraContainers:
         - name: "viz"
