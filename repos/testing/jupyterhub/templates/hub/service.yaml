@@ -13,10 +13,12 @@ spec:
   selector:
     name: {{ .Release.Name }}-hub
   ports:
-    - protocol: TCP
+    - name: {{ template "fullname" . }}-hub
+      protocol: TCP
       port: 8081
       targetPort: 8081
-    - protocol: TCP
+    - name: {{ template "fullname" . }}-vnc
+      protocol: TCP
       port: 6901
       targetPort: 6901
 
