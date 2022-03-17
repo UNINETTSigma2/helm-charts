@@ -17,7 +17,7 @@ spec:
       port: 8081
       targetPort: 8081
 
-{{ if .Values.advanced.minio.enabled }}
+{{ if .Values.advanced.vnc.enabled }}
 ---
 apiVersion: v1
 kind: Service

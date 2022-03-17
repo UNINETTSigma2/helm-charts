@@ -93,7 +93,7 @@ spec:
           - name: shm
             mountPath: /dev/shm
           {{- if ne (first .Values.persistentStorage).existingClaim "" }}
-            {{- range .Values.persistentStorage }}
+          {{- range .Values.persistentStorage }}
           - name: {{ .existingClaimName }}
             mountPath: /mnt/{{ .existingClaimName }}
             mountPropagation: HostToContainer
@@ -101,7 +101,7 @@ spec:
             {{ if ne .subPath "/" }}
             subPath: {{ .subPath }}
             {{ end }}
-            {{- end }}
+          {{- end }}
           {{- end }}
       volumes:
       - name: passwd
