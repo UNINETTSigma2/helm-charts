@@ -532,7 +532,7 @@ ssh:x:101:
     hub:
       base_url: "/"
       db_url: "sqlite:///jupyterhub.sqlite" # Use in memory
-      concurrentSpawnLimit: {{ .Values.advanced.notebook.spawnLimit | quote }}
+      concurrentSpawnLimit: {{ .Values.advanced.notebook.spawnLimit }}
       config:
         DataportenAuth:
           login_service: "Dataporten"
