@@ -54,6 +54,7 @@ spec:
     - secretName: wildcard-tls
       hosts:
          - {{ .Values.ingress.host }}
+         - vnc-{{ .Values.ingress.host }}
          - minio-{{ .Values.ingress.host }}
 {{- if .Values.advanced.minio.enabled }}
 ---
