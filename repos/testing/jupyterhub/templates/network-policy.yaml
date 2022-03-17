@@ -21,6 +21,10 @@ spec:
       ports:
         - protocol: TCP
           port: 8000
+        {{- if .Values.advanced.vnc.enabled }}
+        - protocol: TCP
+          port: 6901
+        {{- end }}
         {{- if .Values.advanced.minio.enabled }}
         - protocol: TCP
           port: 9000
@@ -55,8 +59,6 @@ spec:
         - protocol: TCP
           port: 443
         - protocol: TCP
-          port: 6901
-        - protocol: TCP
           port: 8080
         - protocol: TCP
           port: 8081
@@ -66,7 +68,11 @@ spec:
           port: 8001
         - protocol: TCP
           port: 8888
-        {{- if .Values.advanced.sharedData.enabled }}
+        {{- if .Values.advanced.vnc.enabled }}
+        - protocol: TCP
+          port: 6901
+        {{- end }}
+        {{- if .Values.advanced.minio.enabled }}
         - protocol: TCP
           port: 9000
         - protocol: TCP

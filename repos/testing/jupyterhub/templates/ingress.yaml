@@ -34,7 +34,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ .Release.Name }}-vnc
+                name: {{ .Release.Name }}-hub
                 port:
                   number: 6901
     {{- end }}
