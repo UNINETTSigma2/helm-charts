@@ -34,7 +34,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ .Release.Name }}-hub
+                name: {{ .Release.Name }}-jupyter
                 port:
                   number: 6901
     {{- end }}

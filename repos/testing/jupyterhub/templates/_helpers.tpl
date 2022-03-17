@@ -372,7 +372,7 @@ ssh:x:101:
         {{- end }}
       {{- end }}
       serviceAccountName: "default"
-      pod-name-template: "{{.Release.Name}}-jupyter-{username}"
+      podNameTemplate: "{{.Release.Name}}-jupyter-{username}"
       nodeSelector: {}
       storage:
         extraVolumes:
@@ -524,7 +524,7 @@ ssh:x:101:
       {{- end }}
 
     custom:
-      common-labels:
+      commonLabels:
         group: {{ .Release.Name }}-jupyterhub
         release: {{ .Release.Name }}
         heritage: {{ .Release.Service }}
@@ -532,7 +532,7 @@ ssh:x:101:
     hub:
       base_url: "/"
       db_url: "sqlite:///jupyterhub.sqlite" # Use in memory
-      concurrent-spawn-limit: {{ .Values.advanced.notebook.spawnLimit | quote }}
+      concurrentSpawnLimit: {{ .Values.advanced.notebook.spawnLimit | quote }}
       config:
         DataportenAuth:
           login_service: "Dataporten"
@@ -562,7 +562,7 @@ ssh:x:101:
           c.KubeSpawner.gid = get_config('singleuser.run_as_gid', 999)
           c.KubeSpawner.supplemental_gids = get_config('singleuser.supplemental-gids', [])
           c.KubeSpawner.pod_name_template = get_config('singleuser.pod-name-template', 'jupyter-{username}{servername}')
-          c.KubeSpawner.common_labels.update(get_config('custom.common-labels', {}))
+          c.KubeSpawner.common_labels.update(get_config('custom.commonLabels', {}))
           # Gives spawned containers access to the API of the hub
           c.KubeSpawner.hub_connect_url = f'http://{get_name("hub")}:{get_name_env("hub", "_SERVICE_PORT")}'
           # Extra containers
