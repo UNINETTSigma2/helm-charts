@@ -485,47 +485,30 @@ ssh:x:101:
         hub.jupyter.org/network-access-hub: "true"
       {{- if .Values.advanced.vnc.enabled }}
       extraContainers:
-        - name: viz
-          image: {{ .Values.advanced.vnc.image }}
+        - name: "viz"
+          image: "{{ .Values.advanced.vnc.image }}"
           imagePullPolicy: IfNotPresent
           securityContext:
             runAsUser: {{ .Values.uid }}
             runAsGroup: {{ .Values.gid }}
-          args:
-          - -w
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 6901
-              scheme: HTTP
-            initialDelaySeconds: 1
-            timeoutSeconds: 1
+          args: ["-w"]
           ports:
             - containerPort: 6901
           env:
-            - name: VNC_PW
-              value: test
-            - name: VNC_COL_DEPTH
-              value: "24"
+            - name: "VNC_PW"
+              value: "test"
+            - name: "HOME"
+              value: "/home/vncuser"
           volumeMounts:
-            - name: vnc-passwd
-              mountPath: /etc/passwd
-              subPath: passwd
-            - name: vnc-group
-              mountPath: /etc/group"
-              subPath: group
-            - name: shm
-              mountPath: /dev/shm
+            - name: "vnc-passwd"
+              mountPath: "/etc/passwd"
+              subPath: "passwd"
+            - name: "vnc-group"
+              mountPath: "/etc/group"
+              subPath: "group"
+            - name: "shm"
+              mountPath: "/dev/shm"
             {{- if ne (first .Values.persistentStorage).existingClaim "" }}
-            {{- range .Values.persistentStorage }}
-            - name: {{ .existingClaimName }}
-              mountPath: /mnt/{{ .existingClaimName }}
-              mountPropagation: HostToContainer
-              readOnly: {{ .readOnly }}
-              {{ if ne .subPath "/" }}
-              subPath: {{ .subPath }}
-              {{ end }}
-            {{- end }}
             - name: {{ (first .Values.persistentStorage).existingClaimName }}
               mountPath: "/home/notebook"
               mountPropagation: "HostToContainer"
