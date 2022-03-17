@@ -351,7 +351,7 @@ ssh:x:101:
             mountPath: "/etc/group"
             subPath: "group"
       startTimeout: {{ .Values.advanced.startTimeout }}
-      scheduler-strategy: pack
+      schedulerStrategy: pack
       uid: 999
       fsGid: {{ .Values.gid }}
       {{- if .Values.advanced.jupyterLab }}
@@ -366,7 +366,7 @@ ssh:x:101:
         {{- end }}
       {{ $firstGroup := .Values.supplementalGroups | first }}
       {{- if $firstGroup.gid }}
-      supplemental-gids:
+      supplementalGids:
         {{- range .Values.supplementalGroups }}
         - {{ .gid }}
         {{- end }}
