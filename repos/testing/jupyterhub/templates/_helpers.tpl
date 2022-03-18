@@ -372,7 +372,7 @@ ssh:x:101:
         {{- end }}
       {{- end }}
       serviceAccountName: "default"
-      podNameTemplate: "{{.Release.Name}}-jupyter-{username}"
+      podNameTemplate: "{{ .Release.Name }}-jupyter-{{ .Values.username }}"
       nodeSelector: {}
       storage:
         extraVolumes:
@@ -560,8 +560,8 @@ ssh:x:101:
           c.JupyterHub.port = int(f'{get_name_env("proxy-http", "_SERVICE_PORT")}')
           c.KubeSpawner.uid = get_config('singleuser.run_as_gid', 999)
           c.KubeSpawner.gid = get_config('singleuser.run_as_gid', 999)
-          c.KubeSpawner.supplemental_gids = get_config('singleuser.supplemental-gids', [])
-          c.KubeSpawner.pod_name_template = get_config('singleuser.pod-name-template', 'jupyter-{username}{servername}')
+          c.KubeSpawner.supplemental_gids = get_config('singleuser.supplementalGids', [])
+          #c.KubeSpawner.pod_name_template = get_config('singleuser.podNameTemplate', 'jupyter-{username}{servername}')
           c.KubeSpawner.common_labels.update(get_config('custom.commonLabels', {}))
           # Gives spawned containers access to the API of the hub
           c.KubeSpawner.hub_connect_url = f'http://{get_name("hub")}:{get_name_env("hub", "_SERVICE_PORT")}'

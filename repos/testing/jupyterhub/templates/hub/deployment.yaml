@@ -189,11 +189,11 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "{{.Release.Name}}-cleaner"
+  name: "{{ .Release.Name }}-cleaner"
   labels:
-    heritage: {{.Release.Service | quote }}
-    release: {{.Release.Name | quote }}
-    chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    heritage: {{ .Release.Service | quote }}
+    release: {{ .Release.Name | quote }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     app: {{ template "fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
   annotations:
@@ -204,11 +204,11 @@ metadata:
 spec:
   template:
     metadata:
-      name: "{{.Release.Name}}-cleaner"
+      name: "{{ .Release.Name }}-cleaner"
       labels:
-        heritage: {{.Release.Service | quote }}
-        release: {{.Release.Name | quote }}
-        chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+        heritage: {{ .Release.Service | quote }}
+        release: {{ .Release.Name | quote }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
         app: {{ template "fullname" . }}
     spec:
       volumes:
