@@ -14,7 +14,7 @@ access minio's web interface through a web browser.
 ### Advanced
 This application uses the following Dockerfile:
 
-- [minio](https://github.com/minio/minio/tree/d5aa2f9/Dockerfile)
+- [minio](https://github.com/minio/minio/tree/c433572/Dockerfile)
 
 #### Values
 | Value name    | Description |
