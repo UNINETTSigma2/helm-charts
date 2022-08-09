@@ -35,7 +35,7 @@ advanced:
   env:
     sparkMasterUrl: "local[*]"
     jupyterLab: true
-  dockerImage: quay.io/nird-toolkit/deep-learning-tools2:20220314-641af6f
+  dockerImage: quay.io/nird-toolkit/deep-learning-tools2:20220809-05c6827
   githubToken: ""
 authGroupProviders:
   - url: "https://groups-api.dataporten.no/groups/me/groups"
