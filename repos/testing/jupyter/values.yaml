@@ -35,7 +35,7 @@ advanced:
   env:
     sparkMasterUrl: "local[*]"
     jupyterLab: true
-  dockerImage: quay.io/nird-toolkit/jupyter-spark:20220216-fbbf65f
+  dockerImage: quay.io/nird-toolkit/jupyter-spark:20220826-8ed372f
 
   githubToken: ""
 authGroupProviders:
