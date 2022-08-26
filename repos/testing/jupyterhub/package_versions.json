@@ -1,9 +1,9 @@
 {
   "packageVersions": {
+    "pkg-jupyterhub-version": "1.1.*",
+    "pkg-minio": "latest",
     "pkg-cuda-version": "11.4",
     "pkg-cudnn-version": "8.2.4.15-1+cuda11.4",
-    "pkg-jupyter-notebook-version": "6.3.x",
-    "pkg-jupyterhub-version": "1.1.*",
-    "pkg-minio": "latest"
+    "pkg-jupyter-notebook-version": "6.3.x"
   }
 }
