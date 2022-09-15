@@ -1,7 +1,7 @@
 apiVersion: v1
 description: Jupyter notebook with Dataporten integration
 name: jupyter
-version: 0.10.19
+version: 0.10.20
 maintainers:
   - name: Sigma2 AS
     email: contact@sigma2.no
@@ -11,4 +11,4 @@ keywords:
   - Apache Spark
   - Scala
   - R
-  - VS code
+  - VS Code

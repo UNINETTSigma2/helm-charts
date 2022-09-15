@@ -6,7 +6,7 @@ properties:
       dockerImage:
         type: string
         examples:
-        - quay.io/nird-toolkit/jupyter-spark:20220216-fbbf65f
+        - quay.io/nird-toolkit/jupyter-spark:20220826-8ed372f
       env:
         type: object
         properties:
