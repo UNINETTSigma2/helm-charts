@@ -62,7 +62,7 @@ goidc-proxy config
             "client_id": "{{ .Values.appstore_generated_data.aai.client_id }}",
             "client_secret": "{{ .Values.appstore_generated_data.aai.client_secret }}",
             "issuer_url": "{{ .Values.appstore_generated_data.aai.issuer_url }}",
-            "redirect_url": "https://{{ (index .Values.ingress.hosts 0).host }}/oauth2/callback",
+            "redirect_url": "https://{{ .Values.ingress.host }}/oauth2/callback",
             "scopes": "{{- join "," .Values.appstore_generated_data.aai.scopes -}}",
             "signkey": "",
             "token_type": "",
