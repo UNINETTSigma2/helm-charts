@@ -1,0 +1,26 @@
+{{- $fullName := include "auth-proxy-test.fullname" . -}}
+{{- $svcPort := .Values.service.port -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ $fullName }}
+  labels:
+    {{- include "auth-proxy-test.labels" . | nindent 4 }}
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+spec:
+  tls:
+    - hosts:
+      - {{ .Values.ingress.host }}
+      secretName: wildcard-tls
+  rules:
+    - host: {{ .Values.ingress.host }}
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: {{ $fullName }}
+              port: {{ $svcPort }}
