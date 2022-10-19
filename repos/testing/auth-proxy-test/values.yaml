@@ -43,6 +43,13 @@ appstore_generated_data:
       - email
     authorized_principals: []
 
+uid: 999
+gid: 999
+username: gitea
+supplementalGroups:
+  - name: ""
+    gid: ""
+
 podAnnotations: {}
 
 podSecurityContext: {}
@@ -65,17 +72,13 @@ ingress:
   host: "local-chart.example.com"
 
 
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+resources:
+  requests:
+    cpu: 100m
+    memory: 512M
+  limits:
+    cpu: 300m
+    memory: 1G
 
 autoscaling:
   enabled: false
