@@ -25,16 +25,17 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
     "target": "http://localhost:8888"
   },
   "engine": {
-    "client_id": "{{ .Values.appstore_generated_data.dataporten.id }}",
-    "client_secret": "{{ .Values.appstore_generated_data.dataporten.client_secret }}",
-    "issuer_url": "https://auth.dataporten.no",
+    "client_id": "{{ .Values.appstore_generated_data.aai.client_id }}",
+    "client_secret": "{{ .Values.appstore_generated_data.aai.client_secret }}",
+    "issuer_url": "{{ .Values.appstore_generated_data.aai.issuer_url }}",
     "redirect_url": "https://{{ .Values.ingress.host }}/oauth2/callback",
-    "scopes": "{{- join "," .Values.appstore_generated_data.dataporten.scopes -}}",
+    "scopes": "{{- join "," .Values.appstore_generated_data.aai.scopes -}}",
     "signkey": "{{ randAlphaNum 60 }}",
     "token_type": "",
     "jwt_token_issuer": "",
-    "groups_endpoint": "{{- include "all_endpoints" . }}",
-    "authorized_principals": "{{- join "," .Values.appstore_generated_data.dataporten.authorized_groups -}}",
+    "groups_endpoint": "",
+    "groups_claim": "principals",
+    "authorized_principals": "{{- join "," .Values.appstore_generated_data.aai.authorized_principals -}}",
     "xhr_endpoints": "",
     "twofactor": {
       "all": false,
