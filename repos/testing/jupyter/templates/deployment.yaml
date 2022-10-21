@@ -93,17 +93,6 @@ spec:
       - name: auth-proxy
         image: sigma2as/goidc-proxy:next
         imagePullPolicy: IfNotPresent
-        env:
-          - name: DATAPORTEN_CLIENTID
-            valueFrom:
-              secretKeyRef:
-                name: {{ template "fullname" . }}
-                key: dataporten_client_id
-          - name: DATAPORTEN_CLIENTSECRET
-            valueFrom:
-              secretKeyRef:
-                name: {{ template "fullname" . }}
-                key: dataporten_client_secret
         ports:
           - containerPort: 8080
         securityContext:
