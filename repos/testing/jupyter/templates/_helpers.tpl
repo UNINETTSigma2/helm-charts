@@ -30,7 +30,7 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
     "issuer_url": "{{ .Values.appstore_generated_data.aai.issuer_url }}",
     "redirect_url": "https://{{ .Values.ingress.host }}/oauth2/callback",
     "scopes": "{{- join "," .Values.appstore_generated_data.aai.scopes -}}",
-    "signkey": "{{ randAlphaNum 60 }}",
+    "signkey": "",
     "token_type": "",
     "jwt_token_issuer": "",
     "groups_endpoint": "",
