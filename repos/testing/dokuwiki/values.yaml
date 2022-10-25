@@ -15,3 +15,12 @@ appstore_generated_data:
     client_secret: "0000"
     authorized_groups:
       - ""
+  aai:
+    client_id: provided-by-toolkit
+    client_secret: provided-by-toolkit
+    issuer_url: https://apps-auth.sigma2.no/
+    scopes:
+      - openid
+      - profile
+      - email
+    authorized_principals: []
