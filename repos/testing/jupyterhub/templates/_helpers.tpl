@@ -536,9 +536,9 @@ ssh:x:101:
       config:
         DataportenAuth:
           login_service: "Dataporten"
-          client_id: "{{ .Values.appstore_generated_data.dataporten.id }}"
-          client_secret: "{{ .Values.appstore_generated_data.dataporten.client_secret }}"
-          token_url: https://auth.dataporten.no/oauth/token
+          client_id: "{{ .Values.appstore_generated_data.aai.client_id }}"
+          client_secret: "{{ .Values.appstore_generated_data.aai.client_secret }}"
+          token_url: https://apps-auth.sigma2.no/oauth2/token
           userdata_method: GET
           userdata_params: {'state', 'state'}
           username_key: sub
@@ -580,8 +580,8 @@ ssh:x:101:
           safe_chars = set(string.ascii_lowercase + string.digits)
           c.KubeSpawner.environment["HOME"] = lambda spawner: "/home/{}".format(escapism.escape(str(spawner.user.name), safe=safe_chars, escape_char='-').lower())
       extraenv:
-        OAUTH2_AUTHORIZE_URL: https://auth.dataporten.no/oauth/authorization
-        OAUTH2_TOKEN_URL: https://auth.dataporten.no/oauth/token
+        OAUTH2_AUTHORIZE_URL: https://apps-auth.sigma2.no/oauth2/auth
+        OAUTH2_TOKEN_URL: https://apps-auth.sigma2.no/oauth2/token
         OAUTH2_CALLBACK_URL: https://{{ .Values.ingress.host }}/hub/oauth_callback
     debug:
       enabled: {{ .Values.advanced.debug | quote }}
