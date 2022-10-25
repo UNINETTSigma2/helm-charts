@@ -93,7 +93,7 @@ spec:
       {{- end }}
       containers:
         - name: proxy-rewriter
-          image: registry.uninett.no/public/nginx:1.21.0-alpine
+          image: nginx:1.21.0-alpine
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9001
