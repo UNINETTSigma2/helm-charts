@@ -48,19 +48,8 @@ spec:
       containers:
       {{- if .Values.advanced.dataportenLoginProxy.enabled }}
       - name: auth-proxy
-        image: quay.io/uninett/goidc-proxy:v1.1.4
+        image: sigma2as/goidc-proxy:next
         imagePullPolicy: IfNotPresent
-        env:
-          - name: DATAPORTEN_CLIENTID
-            valueFrom:
-              secretKeyRef:
-                name: {{ template "fullname" . }}
-                key: dataporten_client_id
-          - name: DATAPORTEN_CLIENTSECRET
-            valueFrom:
-              secretKeyRef:
-                name: {{ template "fullname" . }}
-                key: dataporten_client_secret
         ports:
           - containerPort: 60123
         securityContext:
