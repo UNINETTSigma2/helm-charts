@@ -1,7 +1,7 @@
 apiVersion: v1
 description: A collection of various deep learning tools
 name: deep-learning-tools2
-version: 0.1.7
+version: 0.1.8
 maintainers:
 - name: Sigma2 AS
   email: contact@sigma2.no
