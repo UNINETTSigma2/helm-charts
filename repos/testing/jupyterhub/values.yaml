@@ -106,6 +106,15 @@ appstore_generated_data:
     client_secret: ""
     authorized_groups:
       - ""
+  aai:
+    client_id: provided-by-toolkit
+    client_secret: provided-by-toolkit
+    issuer_url: https://apps-auth.sigma2.no/
+    scopes:
+      - openid
+      - profile
+      - email
+    authorized_principals: []
 authGroupProviders:
   - url: "https://groups-api.dataporten.no/groups/me/groups"
     scope: groups
