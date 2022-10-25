@@ -31,4 +31,4 @@ appstore_generated_data:
 advanced:
   rootUser: "rootuserexample"
   rootPassword: "rootpasswordexample"
-  dockerImage: quay.io/nird-toolkit/minio:20220324-a644cdc
+  dockerImage: quay.io/nird-toolkit/minio:20221025-95a8cae
