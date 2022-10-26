@@ -29,6 +29,6 @@ appstore_generated_data:
     authorized_groups:
       - ""
 advanced:
-  accessKey: "accesskeyexample"
-  secretKey: "secretkeyexample"
+  rootUser: "rootuserexample"
+  rootPassword: "rootpasswordexample"
   dockerImage: quay.io/nird-toolkit/minio:20221025-95a8cae

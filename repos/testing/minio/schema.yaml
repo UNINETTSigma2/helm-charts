@@ -3,16 +3,16 @@ properties:
   advanced:
     type: object
     properties:
-      accessKey:
+      rootUser:
         type: string
-        description: "The username to use when accessing minio. Test."
+        description: "The username to use for accessing minio."
         examples:
-        - accesskeyexample
-      secretKey:
+        - rootuserexample
+      rootPassword:
         type: string
-        description: "The password to use when accessing minio."
+        description: "The password to use for accessing minio."
         examples:
-        - secretkeyexample
+        - rootpasswordexample
   appstore_generated_data:
     type: object
     properties:
