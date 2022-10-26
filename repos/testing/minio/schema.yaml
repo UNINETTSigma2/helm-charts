@@ -5,7 +5,7 @@ properties:
     properties:
       accessKey:
         type: string
-        description: "The username to use when accessing minio."
+        description: "The username to use when accessing minio. Test."
         examples:
         - accesskeyexample
       secretKey:
