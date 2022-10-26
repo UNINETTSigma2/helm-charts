@@ -7,7 +7,7 @@ dataporten:
     RedirectURI:
       - /oauth2/callback
       - https://mlflow-{{ .Values.ingress.host }}/oauth2/callback
-      - https://tensorboard-{{ .Values.ingress.host }}/oauth2/callback
+      - https://tensorboard.{{ .Values.ingress.host }}/oauth2/callback
 aai:
   Options:
     ScopesRequested:
@@ -16,7 +16,7 @@ aai:
     RedirectURI:
       - /oauth2/callback
       - https://mlflow-{{ .Values.ingress.host }}/oauth2/callback
-      - https://tensorboard-{{ .Values.ingress.host }}/oauth2/callback
+      - https://tensorboard.{{ .Values.ingress.host }}/oauth2/callback
 appstore:
   Options:
     Standards:

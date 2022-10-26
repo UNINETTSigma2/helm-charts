@@ -28,7 +28,7 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
     "client_id": "{{ .Values.appstore_generated_data.aai.client_id }}",
     "client_secret": "{{ .Values.appstore_generated_data.aai.client_secret }}",
     "issuer_url": "{{ .Values.appstore_generated_data.aai.issuer_url }}",
-    "redirect_url": "https://{{ .Values.ingress.host }}/oauth2/callback,https://tensorboard-{{ .Values.ingress.host }}/oauth2/callback,https://mlflow-{{ .Values.ingress.host }}/oauth2/callback",
+    "redirect_url": "https://{{ .Values.ingress.host }}/oauth2/callback,https://tensorboard.{{ .Values.ingress.host }}/oauth2/callback,https://mlflow-{{ .Values.ingress.host }}/oauth2/callback",
     "scopes": "{{- join "," .Values.appstore_generated_data.aai.scopes -}}",
     "signkey": "",
     "token_type": "",
@@ -92,7 +92,7 @@ c.NotebookApp.allow_remote_access = True
 c.NotebookApp.token = ''
 c.NotebookApp.password = ''
 {{ if .Values.advanced.env.jupyterLab }}
-c.JupyterLabIFrame.iframes = ["https://tensorboard-{{ .Values.ingress.host }}"]
+c.JupyterLabIFrame.iframes = ["https://tensorboard.{{ .Values.ingress.host }}"]
 {{ end }}
 
 {{- end -}}
