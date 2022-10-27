@@ -70,10 +70,8 @@ spec:
             secretKeyRef:
               name: {{ template "fullname" . }}
               key: MINIO_ROOT_PASSWORD
-        - name: MINIO_SERVER_URL
-          value: "https://{{ .Values.ingress.host }}/:9000"
         - name: MINIO_BROWSER_REDIRECT_URL
-          value: "https://{{ .Values.ingress.host }}/:9001"
+          value: "https://{{ .Values.ingress.host }}:9001"
         - name: TZ
           value: Europe/Oslo
         image: {{ .Values.advanced.dockerImage }}
