@@ -15,9 +15,5 @@ spec:
     targetPort: 9000
     protocol: TCP
     name: {{ template "fullname" . }}-service
-  - port: 9001
-    targetPort: 9001
-    protocol: TCP
-    name: {{ template "fullname" . }}-console-service
   selector:
     app: {{ template "fullname" . }}

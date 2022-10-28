@@ -80,33 +80,28 @@ spec:
       containers:
       - name: minio
         env:
-        - name: MINIO_ROOT_USER
+        - name: MINIO_ACCESS_KEY
           valueFrom:
             secretKeyRef:
               name: {{ template "fullname" . }}
-              key: MINIO_ROOT_USER
-        - name: MINIO_ROOT_PASSWORD
+              key: MINIO_ACCESS_KEY
+        - name: MINIO_SECRET_KEY
           valueFrom:
             secretKeyRef:
               name: {{ template "fullname" . }}
-              key: MINIO_ROOT_PASSWORD
-        - name: MINIO_BROWSER_REDIRECT_URL
-          value: "https://{{ .Values.ingress.host }}:9001"
-        - name: MINIO_SERVER_URL
-          value: "https://{{ .Values.ingress.host }}:9000"
+              key: MINIO_SECRET_KEY
         - name: TZ
           value: Europe/Oslo
         image: {{ .Values.advanced.dockerImage }}
-        {{ if ne (first .Values.persistentStorage).existingClaim "" }}
-        args: [ 'server', '--quiet', '--console-address', ':9001', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}' ]
+        {{ if ne .Values.persistentStorage.existingClaim "" }}
+        args: [ 'server', '--quiet', '--config-dir', '/mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}', '/mnt/{{ .Values.persistentStorage.existingClaimName }}' ]
         {{ else }}
-        args: [ 'server', '--quiet', '--console-address', ':9001', '/tmp' ]
+        args: [ 'server', '--quiet', '--config-dir', '/tmp/.minio', '/tmp' ]
         {{ end }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         ports:
         - containerPort: 9000
-        - containerPort: 9001
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
