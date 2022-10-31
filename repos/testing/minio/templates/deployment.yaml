@@ -72,15 +72,13 @@ spec:
               key: MINIO_ROOT_PASSWORD
         - name: MINIO_BROWSER_REDIRECT_URL
           value: "https://{{ .Values.ingress.host }}:9001"
-        - name: HOSTNAME
-          value: "https://{{ .Values.ingress.host }}"
         - name: TZ
           value: Europe/Oslo
         image: {{ .Values.advanced.dockerImage }}
         {{ if ne (first .Values.persistentStorage).existingClaim "" }}
-        args: [ 'server', '--quiet', '--console-address', ':9001', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}' ]
+        args: [ 'server', '--quiet', '--console-address', ':9001', 'https://{{ .Values.ingress.host }}', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}' ]
         {{ else }}
-        args: [ 'server', '--quiet', '--console-address', ':9001', '/tmp' ]
+        args: [ 'server', '--quiet', '--console-address', ':9001', 'https://{{ .Values.ingress.host }}', '/tmp' ]
         {{ end }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
