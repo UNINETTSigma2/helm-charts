@@ -70,6 +70,8 @@ spec:
             secretKeyRef:
               name: {{ template "fullname" . }}
               key: MINIO_ROOT_PASSWORD
+        - name: MINIO_ADDRESS
+          value: ":9000"
         - name: MINIO_CONSOLE_ADDRESS
           value: ":9001"
         - name: MINIO_BROWSER_REDIRECT_URL
