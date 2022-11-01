@@ -553,22 +553,16 @@ ssh:x:101:
           authenticator_class: oauthenticator.dataporten.DataportenAuth
       extraConfig:
         myConfig.py: |
-          c.Spawner.http_timeout = {{ .Values.advanced.startTimeout }}
-          c.Spawner.start_timeout = {{ .Values.advanced.startTimeout }}
+          # Config set after jupyterhub_config.py in server image
           c.JupyterHub.cookie_secret_file = "/srv/jupyterhub/jupyterhub_cookie_secret"
           c.JupyterHub.ip = f'{get_name_env("proxy-http", "_SERVICE_HOST")}'
           c.JupyterHub.port = int(f'{get_name_env("proxy-http", "_SERVICE_PORT")}')
-          c.KubeSpawner.uid = get_config('singleuser.run_as_gid', 999)
-          c.KubeSpawner.gid = get_config('singleuser.run_as_gid', 999)
+          c.KubeSpawner.service_account = get_config('singleuser.serviceAccountName')
           c.KubeSpawner.supplemental_gids = get_config('singleuser.supplementalGids', [])
-          c.KubeSpawner.pod_name_template = get_config('singleuser.podNameTemplate', 'jupyter-{username}--{servername}')
+          c.KubeSpawner.http_timeout = get_config('singleuser.startTimeout')
           c.KubeSpawner.common_labels.update(get_config('custom.commonLabels', {}))
           # Gives spawned containers access to the API of the hub
           c.KubeSpawner.hub_connect_url = f'http://{get_name("hub")}:{get_name_env("hub", "_SERVICE_PORT")}'
-          # Extra containers
-          extra_containers = get_config('singleuser.extra-containers', None)
-          if extra_containers:
-              c.KubeSpawner.extra_containers = extra_containers
           # Persistent volume
           if (get_config('singleuser.storage.type') == 'static'):
               c.KubeSpawner.volumes.pop(0)
