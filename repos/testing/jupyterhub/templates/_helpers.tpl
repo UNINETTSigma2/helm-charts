@@ -545,7 +545,7 @@ ssh:x:101:
           userdata_params: {'state', 'state'}
           username_key: sub
           admin_users:
-            - {{ .Values.appstore_generated_data.dataporten.owner }}
+            - {{ .Values.appstore_generated_data.aai.owner }}
             {{- if ne (first .Values.advanced.additionalAdmin) "" }}
             {{- range .Values.advanced.additionalAdmin }}
             - {{ . }}
