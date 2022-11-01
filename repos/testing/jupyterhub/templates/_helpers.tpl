@@ -356,6 +356,8 @@ ssh:x:101:
       fsGid: {{ .Values.gid }}
       {{- if .Values.advanced.jupyterLab }}
       defaultUrl: "/lab"
+      {{- else }}
+      defaultUrl: "/tree"
       {{- end }}
       extraEnv:
         RELEASE_NAME: "{{ .Release.Name }}"
