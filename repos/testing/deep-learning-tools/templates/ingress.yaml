@@ -20,6 +20,7 @@ spec:
       hosts:
          - {{ .Values.ingress.host }}
          - tensorboard-{{ .Values.ingress.host }}
+         - mlflow-{{ .Values.ingress.host }}
   rules:
     - host: {{ .Values.ingress.host }}
       http:
