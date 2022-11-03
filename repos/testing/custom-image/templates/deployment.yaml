@@ -79,7 +79,7 @@ spec:
         {{- end }}
         env:
           - name: OWNER_ID
-            value: {{ .Values.appstore_generated_data.dataporten.owner }}
+            value: {{ .Values.appstore_generated_data.aai.owner }}
           - name: MEM_LIMIT
             value: {{ .Values.resources.limits.memory }}
           {{- range .Values.advanced.customEnv }}

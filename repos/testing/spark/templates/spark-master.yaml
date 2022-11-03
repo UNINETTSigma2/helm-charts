@@ -154,7 +154,7 @@ spec:
             - name: SPARK_DAEMON_CORES
               value: {{ .Values.advanced.master.resources.requests.cpu | quote }}
             - name: OWNER_ID
-              value: {{ .Values.appstore_generated_data.dataporten.owner }}
+              value: {{ .Values.appstore_generated_data.aai.owner }}
           {{- if ne (first .Values.persistentStorage).existingClaim "" }}
             - name: SPARK_RECOVERY_DIR
               value: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}

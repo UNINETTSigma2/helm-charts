@@ -115,7 +115,7 @@ spec:
             value: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
           {{- end }}
           - name: OWNER_ID
-            value: {{ .Values.appstore_generated_data.dataporten.owner }}
+            value: {{ .Values.appstore_generated_data.aai.owner }}
         resources:
           requests:
             cpu: {{ .Values.resources.requests.cpu }}
