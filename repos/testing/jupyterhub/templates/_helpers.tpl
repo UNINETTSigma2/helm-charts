@@ -537,7 +537,7 @@ ssh:x:101:
       concurrentSpawnLimit: {{ .Values.advanced.notebook.spawnLimit }}
       config:
         DataportenAuth:
-          login_service: "Dataporten"
+          login_service: "NIRD Toolkit AAI"
           client_id: "{{ .Values.appstore_generated_data.aai.client_id }}"
           client_secret: "{{ .Values.appstore_generated_data.aai.client_secret }}"
           token_url: "{{ .Values.appstore_generated_data.aai.token_url }}"
