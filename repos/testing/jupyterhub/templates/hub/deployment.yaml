@@ -169,11 +169,11 @@ spec:
               name: {{ .Release.Name }}-hub-secret
               key: proxy.token
         - name: OAUTH2_USERDATA_URL
-          value: "https://apps-auth.sigma2.no/userinfo"
+          value: "{{ .Values.appstore_generated_data.aai.userinfo_url }}"
         - name: OAUTH2_TOKEN_URL
-          value: "https://apps-auth.sigma2.no/oauth2/token"
+          value: "{{ .Values.appstore_generated_data.aai.token_url }}"
         - name: OAUTH2_AUTHORIZE_URL
-          value: "https://apps-auth.sigma2.no/oauth2/auth"
+          value: "{{ .Values.appstore_generated_data.aai.auth_url }}"
         ports:
           - containerPort: 8081
       serviceAccountName: {{ .Release.Name }}-hub
