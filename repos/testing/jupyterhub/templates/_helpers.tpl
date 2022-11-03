@@ -540,7 +540,7 @@ ssh:x:101:
           login_service: "Dataporten"
           client_id: "{{ .Values.appstore_generated_data.aai.client_id }}"
           client_secret: "{{ .Values.appstore_generated_data.aai.client_secret }}"
-          token_url: https://apps-auth.sigma2.no/oauth2/token
+          token_url: "{{ .Values.appstore_generated_data.aai.token_url }}"
           userdata_method: GET
           userdata_params: {'state', 'state'}
           username_key: sub
@@ -574,8 +574,8 @@ ssh:x:101:
           safe_chars = set(string.ascii_lowercase + string.digits)
           c.KubeSpawner.environment["HOME"] = lambda spawner: "/home/{}".format(escapism.escape(str(spawner.user.name), safe=safe_chars, escape_char='-').lower())
       extraenv:
-        OAUTH2_AUTHORIZE_URL: https://apps-auth.sigma2.no/oauth2/auth
-        OAUTH2_TOKEN_URL: https://apps-auth.sigma2.no/oauth2/token
+        OAUTH2_AUTHORIZE_URL: "{{ .Values.appstore_generated_data.aai.auth_url }}"
+        OAUTH2_TOKEN_URL: "{{ .Values.appstore_generated_data.aai.token_url }}"
         OAUTH2_CALLBACK_URL: https://{{ .Values.ingress.host }}/hub/oauth_callback
     debug:
       enabled: {{ .Values.advanced.debug | quote }}
