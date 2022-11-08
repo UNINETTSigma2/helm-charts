@@ -60,7 +60,7 @@ spec:
         runAsNonRoot: true
       containers:
         - name: chp
-          image: jupyterhub/configurable-http-proxy:4.5.0
+          image: jupyterhub/configurable-http-proxy:4.5.3
           command:
             - "configurable-http-proxy"
             - "--ip=0.0.0.0"
