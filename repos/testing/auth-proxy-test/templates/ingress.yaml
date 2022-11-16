@@ -13,7 +13,6 @@ spec:
   tls:
     - hosts:
       - {{ .Values.ingress.host }}
-      secretName: wildcard-tls
   rules:
     - host: {{ .Values.ingress.host }}
       http:
