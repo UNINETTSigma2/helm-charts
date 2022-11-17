@@ -74,7 +74,7 @@ spec:
       {{- end }}
       initContainers:
       - name: busybox
-        image: registry.uninett.no/public/busybox:1.33.1-glibc
+        image: sigma2as/busybox:1.35-glibc
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
