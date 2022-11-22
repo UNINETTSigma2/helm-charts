@@ -64,13 +64,13 @@ spec:
       - name: busybox
         image: busybox:1.33.1-glibc
         securityContext:
-          runAsUser: {{ .Values.uid }}
-          runAsGroup: {{ .Values.gid }}
+          runAsUser: 0
+          runAsGroup: 0
         args:
           - /bin/sh
           - -c
           - -x
-          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home/{{ .Values.username }}/.jupyter && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home"
+          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home/{{ .Values.username }}/.jupyter && chown +{{ .Values.uid }}:+{{ .Values.gid }} /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home/{{ .Values.username }} /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home/{{ .Values.username }}/.jupyter"
         volumeMounts:
         {{- range .Values.persistentStorage }}
         - name: {{ .existingClaimName }}
