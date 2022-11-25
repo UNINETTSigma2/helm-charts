@@ -92,19 +92,8 @@ spec:
         {{- end }}
       containers:
       - name: auth-proxy
-        image: quay.io/uninett/goidc-proxy:v1.1.4
+        image: sigma2as/goidc-proxy:next
         imagePullPolicy: Always
-        env:
-          - name: DATAPORTEN_CLIENTID
-            valueFrom:
-              secretKeyRef:
-                name: {{ template "fullname" . }}
-                key: dataporten_client_id
-          - name: DATAPORTEN_CLIENTSECRET
-            valueFrom:
-              secretKeyRef:
-                name: {{ template "fullname" . }}
-                key: dataporten_client_secret
         ports:
           - containerPort: 8080
         securityContext:
@@ -154,7 +143,7 @@ spec:
           - name: MEM_LIMIT
             value: {{ .Values.resources.limits.memory }}
           - name: OWNER_ID
-            value: {{ .Values.appstore_generated_data.dataporten.owner }}
+            value: {{ .Values.appstore_generated_data.aai.owner }}
         resources:
           requests:
             cpu: {{ .Values.resources.requests.cpu }}

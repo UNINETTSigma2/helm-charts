@@ -6,6 +6,13 @@ dataporten:
       - groups
     RedirectURI:
       - /hub/oauth_callback
+aai:
+  Options:
+    ScopesRequested:
+      - profile
+      - openid
+    RedirectURI:
+      - /oauth2/callback
 appstore:
   Options:
     Standards:

@@ -157,7 +157,7 @@ spec:
           value: /srv/jupyterhub/jupyterhub_cookie_secret
         {{- end }}
         - name: OWNER_ID
-          value: {{ .Values.appstore_generated_data.dataporten.owner }}
+          value: {{ .Values.appstore_generated_data.aai.owner }}
         - name: PROXY_PUBLIC_SERVICE_NAME
           value: {{ .Release.Name | upper | replace "-" "_" }}_PROXY_HTTP_SERVICE
         - name: PROXY_API_SERVICE_NAME
@@ -165,28 +165,24 @@ spec:
         - name: HUB_SERVICE_NAME
           value: {{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE
         - name: OAUTH_CLIENT_ID
-          value: "{{ .Values.appstore_generated_data.dataporten.id }}"
+          value: "{{ .Values.appstore_generated_data.aai.client_id }}"
         - name: OAUTH_CLIENT_SECRET
-          value: "{{ .Values.appstore_generated_data.dataporten.client_secret }}"
+          value: "{{ .Values.appstore_generated_data.aai.client_secret }}"
         - name: OAUTH_CALLBACK_URL
           value: "https://{{ .Values.ingress.host }}/hub/oauth_callback"
-        - name: GROUP_URLS
-          value: "{{ include "all_endpoints" . }}"
         - name: AUTHORIZED_GROUPS
-          value: "{{- join "," .Values.appstore_generated_data.dataporten.authorized_groups -}}"
+          value: "{{- join "," .Values.appstore_generated_data.aai.authorized_principals -}}"
         - name: OAUTH2_USERDATA_URL
-          value: {{ .Values.userInfoURL }}
+          value: "{{ .Values.appstore_generated_data.aai.userinfo_url }}"
         - name: CONFIGPROXY_AUTH_TOKEN
           valueFrom:
             secretKeyRef:
               name: {{ .Release.Name }}-hub-secret
               key: proxy.token
         - name: OAUTH2_TOKEN_URL
-          value: "https://auth.dataporten.no/oauth/token"
+          value: "{{ .Values.appstore_generated_data.aai.token_url }}"
         - name: OAUTH2_AUTHORIZE_URL
-          value: "https://auth.dataporten.no/oauth/authorization"
-        - name: GROUP_URLS
-          value: "https://apps-mas-sigma.dataporten-api.no/groups/me/groups,https://groups-api.dataporten.no/groups/me/groups"
+          value: "{{ .Values.appstore_generated_data.aai.auth_url }}"
         ports:
           - containerPort: 8081
       serviceAccountName: {{ .Release.Name }}-hub
