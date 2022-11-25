@@ -37,6 +37,10 @@ appstore_generated_data:
       - profile
       - email
     authorized_principals: []
+    owner: provided-by-toolkit
+    userinfo_url: provided-by-tookit
+    token_url: provided-by-toolkit
+    auth_url: provided-by-toolkit
 advanced:
   accessKey: "accesskeyexample"
   secretKey: "secretkeyexample"
