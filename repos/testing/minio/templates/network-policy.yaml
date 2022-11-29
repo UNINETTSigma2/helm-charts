@@ -18,6 +18,9 @@ spec:
       - namespaceSelector:
           matchLabels:
             name: kube-ingress
+      - namespaceSelector:
+          matchLabels:
+            name: ingress-nginx
       ports:
         - protocol: TCP
           port: 9000
