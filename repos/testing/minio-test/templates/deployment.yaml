@@ -1,0 +1,180 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+        app: {{ template "fullname" . }}
+        release: {{ .Release.Name }}
+  template:
+    metadata:
+      annotations:
+        appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+      labels:
+        app: {{ template "fullname" . }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
+    spec:
+      volumes:
+        - name: passwd
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: passwd
+              path: passwd
+        - name: group
+          configMap:
+            name: {{ template "fullname" . }}
+            items:
+            - key: group
+              path: group
+      {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+      {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
+          persistentVolumeClaim:
+            claimName: {{ .existingClaim }}
+      {{- end }}
+      {{ end }}
+      securityContext:
+        runAsNonRoot: true
+        fsGroup: {{ .Values.gid }}
+        {{ $firstGroup := .Values.supplementalGroups | first }}
+        {{- if $firstGroup.gid }}
+        supplementalGroups:
+          {{- range .Values.supplementalGroups }}
+          - {{ .gid }}
+          {{- end }}
+        {{- end }}
+      containers:
+      - name: minio
+        env:
+        - name: MINIO_ROOT_USER
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "fullname" . }}
+              key: MINIO_ROOT_USER
+        - name: MINIO_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "fullname" . }}
+              key: MINIO_ROOT_PASSWORD
+        - name: MINIO_ADDRESS
+          value: ":9000"
+        - name: MINIO_CONSOLE_ADDRESS
+          value: ":9001"
+        - name: MINIO_BROWSER_REDIRECT_URL
+          value: "https://{{ .Values.ingress.host }}:9001"
+        - name: MINIO_VOLUMES
+          {{ if ne (first .Values.persistentStorage).existingClaim "" }}
+          value: "/mnt/{{ (first .Values.persistentStorage).existingClaimName }}"
+          {{ else }}
+          value: "/tmp"
+          {{ end }}
+        - name: TZ
+          value: Europe/Oslo
+        image: {{ .Values.advanced.dockerImage }}
+        args: [ 'server', '--quiet' ]
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+        ports:
+        - containerPort: 9000
+        - containerPort: 9001
+        securityContext:
+          runAsUser: {{ .Values.uid }}
+          runAsGroup: {{ .Values.gid }}
+        livenessProbe:
+          httpGet:
+            path: /minio/health/live
+            port: 9000
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+        volumeMounts:
+        - name: passwd
+          mountPath: /etc/passwd
+          subPath: passwd
+        - name: group
+          mountPath: /etc/group
+          subPath: group
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
+          mountPath: /mnt/{{ .existingClaimName }}
+          mountPropagation: HostToContainer
+          readOnly: {{ .readOnly }}
+          {{ if ne .subPath "/" }}
+          subPath: {{ .subPath }}
+          {{ end }}
+          {{- end }}
+        {{- end }}
+
+{{- if ne (first .Values.persistentStorage).existingClaim "" }}
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{.Release.Name}}-cleaner"
+  labels:
+    heritage: {{.Release.Service | quote }}
+    release: {{.Release.Name | quote }}
+    chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+    "helm.sh/hook": post-delete
+    "helm.sh/hook-weight": "2"
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  template:
+    metadata:
+      name: "{{.Release.Name}}-cleaner"
+      labels:
+        heritage: {{.Release.Service | quote }}
+        release: {{.Release.Name | quote }}
+        chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    spec:
+      volumes:
+      - name: {{ (first .Values.persistentStorage).existingClaimName }}
+        persistentVolumeClaim:
+          claimName: {{ (first .Values.persistentStorage).existingClaim }}
+      restartPolicy: Never
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: {{ .Values.uid }}
+        runAsGroup: {{ .Values.gid }}
+        fsGroup: {{ .Values.gid }}
+        {{ $firstGroup := .Values.supplementalGroups | first }}
+        {{- if $firstGroup.gid }}
+        supplementalGroups:
+          {{- range .Values.supplementalGroups }}
+          - {{ .gid }}
+          {{- end }}
+        {{- end }}
+      containers:
+      - name: cleaner-job
+        image: "alpine:3.13.5"
+        imagePullPolicy: IfNotPresent
+        command:
+          - /bin/sh
+        args:
+          - -c
+          - -x
+          - "rm -rf /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.minio.sys /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.minio"
+        volumeMounts:
+        - name: {{ (first .Values.persistentStorage).existingClaimName }}
+          mountPath: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
+          mountPropagation: HostToContainer
+          {{ if ne (first .Values.persistentStorage).subPath "/" }}
+          subPath: {{ (first .Values.persistentStorage).subPath }}
+          {{ end }}
+{{ end }}
