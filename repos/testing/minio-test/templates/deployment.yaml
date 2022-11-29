@@ -75,7 +75,9 @@ spec:
         - name: MINIO_CONSOLE_ADDRESS
           value: ":9001"
         - name: MINIO_BROWSER_REDIRECT_URL
-          value: "https://{{ .Values.ingress.host }}:9001"
+          value: "https://{{ .Values.ingress.host }}"
+        - name: MINIO_SERVER_URL
+          value: "https://server-{{ .Values.ingress.host }}"
         - name: MINIO_VOLUMES
           {{ if ne (first .Values.persistentStorage).existingClaim "" }}
           value: "/mnt/{{ (first .Values.persistentStorage).existingClaimName }}"
