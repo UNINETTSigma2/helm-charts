@@ -15,5 +15,5 @@ name: nginx
 sources:
   - https://github.com/bitnami/containers/tree/main/bitnami/nginx
   - https://www.nginx.org
-version: 13.2.14
+version: 1.0.0
 icon: http://nginx.org/nginx.png
