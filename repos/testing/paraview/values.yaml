@@ -40,7 +40,7 @@ supplementalGroups:
   - name: ""
     gid: ""
 advanced:
-  dockerImage: nvcr.io/nvidia-hpcvis/paraview:egl-py3-5.9.0
+  dockerImage: nvcr.io/nvidia-hpcvis/paraview-index:5.7.0-egl-pvw
   githubToken: ""
 authGroupProviders:
   - url: "https://groups-api.dataporten.no/groups/me/groups"
