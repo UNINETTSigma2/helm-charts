@@ -25,6 +25,19 @@ appstore_generated_data:
     client_secret: "0000-abcd"
     authorized_groups:
       - ""
+  aai:
+    client_id: provided-by-toolkit
+    client_secret: provided-by-toolkit
+    issuer_url: https://apps-auth.sigma2.no/
+    scopes:
+      - openid
+      - profile
+      - email
+    authorized_principals: []
+    owner: provided-by-toolkit
+    userinfo_url: provided-by-tookit
+    token_url: provided-by-toolkit
+    auth_url: provided-by-toolkit
 uid: 999
 gid: 999
 username: notebook

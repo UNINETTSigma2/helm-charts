@@ -120,17 +120,6 @@ spec:
       - name: auth-proxy
         image: registry.uninett.no/public/goidc-proxy:v1.1.5
         imagePullPolicy: IfNotPresent
-        env:
-          - name: DATAPORTEN_CLIENTID
-            valueFrom:
-              secretKeyRef:
-                name: {{ template "fullname" . }}
-                key: dataporten_client_id
-          - name: DATAPORTEN_CLIENTSECRET
-            valueFrom:
-              secretKeyRef:
-                name: {{ template "fullname" . }}
-                key: dataporten_client_secret
         ports:
           - containerPort: 8080
         securityContext:
@@ -174,7 +163,7 @@ spec:
         - name: TZ
           value: Europe/Oslo
         - name: OWNER_ID
-          value: {{ .Values.appstore_generated_data.dataporten.owner }}
+          value: {{ .Values.appstore_generated_data.aai.owner }}
         - name: USER
           value: {{ .Values.username }}
         - name: USERNAME

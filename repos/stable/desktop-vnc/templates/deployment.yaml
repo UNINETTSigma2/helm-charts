@@ -30,7 +30,7 @@ spec:
     spec:
       terminationGracePeriodSeconds: 5
       containers:
-      - image: quay.io/uninett/goidc-proxy:v1.1.4
+      - image: sigma2as/goidc-proxy:next
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3

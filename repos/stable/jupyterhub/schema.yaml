@@ -278,10 +278,6 @@ properties:
     type: integer
     examples:
     - 999
-  userInfoURL:
-    type: string
-    examples:
-    - https://auth.dataporten.no/openid/userinfo
   userNotebookType:
     type: object
     properties:
