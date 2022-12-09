@@ -65,9 +65,6 @@ spec:
       - name: config
         configMap:
           name: {{ .Release.Name }}-hub-config
-          items:
-          - key: values.yaml
-            path: values.yaml
       - name: secret
         secret:
           secretName: {{ .Release.Name }}-hub-secret
@@ -89,7 +86,7 @@ spec:
           claimName: {{ (first .Values.persistentStorage).existingClaim }}
       initContainers:
       - name: busybox
-        image: registry.uninett.no/public/busybox:1.33.1-glibc
+        image: busybox:1.35.0-glibc
         imagePullPolicy: IfNotPresent
         securityContext:
           runAsUser: {{ .Values.uid }}
@@ -113,7 +110,7 @@ spec:
       {{- end }}
       containers:
       - name: hub-container
-        image: quay.io/uninett/jupyterhub-server:20210211-4a4b359
+        image: quay.io/nird-toolkit/jupyterhub-server:20221107-1e1eafc
         command:
           - jupyterhub
           - --config
@@ -123,12 +120,12 @@ spec:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
         volumeMounts:
-          - mountPath: /etc/jupyterhub/config/values.yaml
-            subPath: values.yaml
-            name: config
-          - mountPath: /etc/jupyterhub/secret/values.yaml
-            subPath: values.yaml
-            name: secret
+          - name: config
+            mountPath: /usr/local/etc/jupyterhub/config/
+            readOnly: true
+          - name: secret
+            mountPath: /usr/local/etc/jupyterhub/secret/
+            readOnly: true
           - name: passwd
             mountPath: /etc/passwd
             subPath: passwd
@@ -158,12 +155,6 @@ spec:
         {{- end }}
         - name: OWNER_ID
           value: {{ .Values.appstore_generated_data.aai.owner }}
-        - name: PROXY_PUBLIC_SERVICE_NAME
-          value: {{ .Release.Name | upper | replace "-" "_" }}_PROXY_HTTP_SERVICE
-        - name: PROXY_API_SERVICE_NAME
-          value: {{ .Release.Name | upper | replace "-" "_" }}_PROXY_API_SERVICE
-        - name: HUB_SERVICE_NAME
-          value: {{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE
         - name: OAUTH_CLIENT_ID
           value: "{{ .Values.appstore_generated_data.aai.client_id }}"
         - name: OAUTH_CLIENT_SECRET
@@ -172,13 +163,13 @@ spec:
           value: "https://{{ .Values.ingress.host }}/hub/oauth_callback"
         - name: AUTHORIZED_GROUPS
           value: "{{- join "," .Values.appstore_generated_data.aai.authorized_principals -}}"
-        - name: OAUTH2_USERDATA_URL
-          value: "{{ .Values.appstore_generated_data.aai.userinfo_url }}"
         - name: CONFIGPROXY_AUTH_TOKEN
           valueFrom:
             secretKeyRef:
               name: {{ .Release.Name }}-hub-secret
               key: proxy.token
+        - name: OAUTH2_USERDATA_URL
+          value: "{{ .Values.appstore_generated_data.aai.userinfo_url }}"
         - name: OAUTH2_TOKEN_URL
           value: "{{ .Values.appstore_generated_data.aai.token_url }}"
         - name: OAUTH2_AUTHORIZE_URL
@@ -194,11 +185,11 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "{{.Release.Name}}-cleaner"
+  name: "{{ .Release.Name }}-cleaner"
   labels:
-    heritage: {{.Release.Service | quote }}
-    release: {{.Release.Name | quote }}
-    chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    heritage: {{ .Release.Service | quote }}
+    release: {{ .Release.Name | quote }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     app: {{ template "fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
   annotations:
@@ -209,11 +200,11 @@ metadata:
 spec:
   template:
     metadata:
-      name: "{{.Release.Name}}-cleaner"
+      name: "{{ .Release.Name }}-cleaner"
       labels:
-        heritage: {{.Release.Service | quote }}
-        release: {{.Release.Name | quote }}
-        chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+        heritage: {{ .Release.Service | quote }}
+        release: {{ .Release.Name | quote }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
         app: {{ template "fullname" . }}
     spec:
       volumes:
@@ -235,7 +226,7 @@ spec:
         {{- end }}
       containers:
       - name: cleaner-job
-        image: "registry.uninett.no/public/alpine:3.13.5"
+        image: alpine:3.16.2
         imagePullPolicy: Always
         command:
           - /bin/sh
@@ -303,8 +294,7 @@ spec:
         {{- end }}
       initContainers:
       - name: busybox
-        image: registry.uninett.no/public/busybox:1.33.1-glibc
-        imagePullPolicy: IfNotPresent
+        image: busybox:1.35.0-glibc
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
@@ -337,24 +327,24 @@ spec:
       containers:
       - name: minio
         env:
-        - name: MINIO_ACCESS_KEY
+        - name: MINIO_ROOT_USER
           valueFrom:
             secretKeyRef:
               name: {{ template "fullname" . }}-minio
-              key: MINIO_ACCESS_KEY
-        - name: MINIO_SECRET_KEY
+              key: MINIO_ROOT_USER
+        - name: MINIO_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
               name: {{ template "fullname" . }}-minio
-              key: MINIO_SECRET_KEY
+              key: MINIO_ROOT_PASSWORD
         - name: TZ
           value: Europe/Oslo
-        image: quay.io/uninett/minio:20210326-f69fa09
+        image: quay.io/nird-toolkit/minio:20220216-9500986
         {{- if ne (first .Values.persistentStorage).existingClaim "" }}
-        args: [ 'server', '--quiet', '--config-dir', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }}', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}' ]
-        {{ else }}
-        args: [ 'server', '--quiet', '--config-dir', '/tmp/.minio', '/tmp' ]
-        {{ end }}
+        args: [ 'server', '--quiet', '--console-address', ':8999', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}' ]
+        {{- else }}
+        args: [ 'server', '--quiet', '--console-address', ':8999', '/tmp' ]
+        {{- end }}
         resources:
           requests:
             cpu: 200m
@@ -364,6 +354,7 @@ spec:
             memory: 400M
         ports:
         - containerPort: 9000
+        - containerPort: 8999
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}

@@ -12,7 +12,7 @@ aai:
       - profile
       - openid
     RedirectURI:
-      - /oauth2/callback
+      - /hub/oauth_callback
 appstore:
   Options:
     Standards:

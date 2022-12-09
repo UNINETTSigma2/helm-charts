@@ -35,7 +35,7 @@ properties:
             type: string
             description: "Which image to use when spawning the ipyparallel workers."
             examples:
-            - quay.io/nird-toolkit/jupyterhub-singleuser:20220216-fbbf65f
+            - quay.io/nird-toolkit/jupyterhub-singleuser:20221107-1ada53a
           resources:
             type: object
             properties:
@@ -104,16 +104,16 @@ properties:
             type: boolean
             examples:
             - false
-          minioAccessKey:
+          minioRootUser:
             description: "The username to use when accessing minio."
             type: string
             examples:
-            - accesskeyexample
-          minioSecretKey:
+            - rootuserexample
+          minioRootPassword:
             description: "The password to use when accessing minio."
             type: string
             examples:
-            - secretkeyexample
+            - rootpasswordexample
       sharedData:
         description: "Make the selected storage available to all users"
         type: object
@@ -150,7 +150,7 @@ properties:
         description: "Which docker image to use when spawning user notebooks."
         type: string
         examples:
-        - quay.io/nird-toolkit/jupyterhub-singleuser:20220216-fbbf65f
+        - quay.io/nird-toolkit/jupyterhub-singleuser:20221107-1ada53a
       vnc:
         description: "Make a VNC server available to each user"
         type: object
@@ -163,7 +163,7 @@ properties:
             type: string
             description: "Which docker image to use when creating the VNC server."
             examples:
-            - quay.io/uninett/desktop-vnc:20210215-73add71
+            - quay.io/nird-toolkit/desktop-vnc:20220225-dd67aab
           resources:
             type: object
             properties:
