@@ -24,20 +24,8 @@ spec:
             backend:
               service:
                 name: {{ .Release.Name }}-proxy-http
-                port:
+                port: 
                   number: 8000
-    {{- if .Values.advanced.vnc.enabled }}
-    - host: vnc-{{ .Values.ingress.host }}
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: {{ .Release.Name }}-jupyter
-                port:
-                  number: 6901
-    {{- end }}
     {{- if .Values.advanced.minio.enabled }}
     - host: minio-{{ .Values.ingress.host }}
       http:
@@ -47,48 +35,11 @@ spec:
             backend:
               service:
                 name: {{ .Release.Name }}-minio
-                port:
+                port: 
                   number: 9000
     {{- end }}
   tls:
     - secretName: wildcard-tls
       hosts:
          - {{ .Values.ingress.host }}
-         - vnc-{{ .Values.ingress.host }}
          - minio-{{ .Values.ingress.host }}
-
-{{- if .Values.advanced.minio.enabled }}
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: {{ .Release.Name }}-minio-console
-  labels:
-    group: {{ .Release.Name }}-jupyterhub
-    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
-    app: {{ template "fullname" . }}
-  annotations:
-    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/proxy-body-size: "0"
-    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
-spec:
-  rules:
-    - host: minio-{{ .Values.ingress.host }}
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: {{ .Release.Name }}-minio
-                port:
-                  number: 8999
-  tls:
-    - secretName: wildcard-tls
-      hosts:
-         - minio-{{ .Values.ingress.host }}
-{{- end }}
