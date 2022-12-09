@@ -68,7 +68,7 @@ advanced:
   ipyparallel:
     enabled: false
     workers: 2
-    image: "quay.io/nird-toolkit/jupyterhub-singleuser:20220216-fbbf65f"
+    image: "quay.io/nird-toolkit/jupyterhub-singleuser:20221107-1ada53a"
     resources:
       requests:
         cpu: "1"
@@ -80,7 +80,7 @@ advanced:
         gpu: 0
   vnc:
     enabled: false
-    image: "quay.io/uninett/desktop-vnc:20210215-73add71"
+    image: "quay.io/nird-toolkit/desktop-vnc:20220225-dd67aab"
     resources:
       requests:
         cpu: "1"
@@ -94,9 +94,9 @@ advanced:
     readOnly: true
   minio:
     enabled: false
-    minioAccessKey: "accesskeyexample"
-    minioSecretKey: "secretkeyexample"
-  userImage: quay.io/nird-toolkit/jupyterhub-singleuser:20220216-fbbf65f
+    minioRootUser: "rootuserexample"
+    minioRootPassword: "rootpasswordexample"
+  userImage: quay.io/nird-toolkit/jupyterhub-singleuser:20221107-1ada53a
 appstore_generated_data:
   appstore_meta_data:
     contact_email: "example@uninett.no"
@@ -115,10 +115,6 @@ appstore_generated_data:
       - profile
       - email
     authorized_principals: []
-    owner: provided-by-toolkit
-    userinfo_url: provided-by-tookit
-    token_url: provided-by-toolkit
-    auth_url: provided-by-toolkit
 authGroupProviders:
   - url: "https://groups-api.dataporten.no/groups/me/groups"
     scope: groups

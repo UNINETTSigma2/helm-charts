@@ -17,7 +17,29 @@ spec:
       port: 8081
       targetPort: 8081
 
-{{ if .Values.advanced.sharedData.enabled }}
+{{ if .Values.advanced.vnc.enabled }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-jupyter
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+spec:
+  selector:
+    app: {{ .Release.Name }}-jupyter-{{ .Values.username }}
+  ports:
+    - protocol: TCP
+      port: 6901
+      targetPort: 6901
+{{ end }}
+
+{{ if .Values.advanced.minio.enabled }}
 ---
 apiVersion: v1
 kind: Service
@@ -36,6 +58,10 @@ spec:
     targetPort: 9000
     protocol: TCP
     name: {{ template "fullname" . }}-minio-service
+  - port: 8999
+    targetPort: 8999
+    protocol: TCP
+    name: {{ template "fullname" . }}-minio-console-service
   selector:
     app: {{ template "fullname" . }}-minio
 {{ end }}
