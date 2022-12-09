@@ -114,6 +114,10 @@ appstore_generated_data:
       - openid
       - profile
       - email
+    owner: provided-by-toolkit
+    userinfo_url: provided-by-tookit
+    token_url: provided-by-toolkit
+    auth_url: provided-by-toolkit
     authorized_principals: []
 authGroupProviders:
   - url: "https://groups-api.dataporten.no/groups/me/groups"
