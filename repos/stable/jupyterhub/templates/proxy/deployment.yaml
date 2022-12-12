@@ -63,9 +63,9 @@ spec:
           image: jupyterhub/configurable-http-proxy:4.5.3
           command:
             - "configurable-http-proxy"
-            - "--ip="
+            - "--ip=0.0.0.0"
             - "--port=8000"
-            - "--api-ip="
+            - "--api-ip=0.0.0.0"
             - "--api-port=8001"
             - "--default-target=http://$({{ .Release.Name | upper | replace "-" "_" }}_HUB):$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT)"
             - "--error-target=http://$({{ .Release.Name | upper | replace "-" "_" }}_HUB):$({{ .Release.Name | upper | replace "-" "_" }}_HUB_SERVICE_PORT)"
