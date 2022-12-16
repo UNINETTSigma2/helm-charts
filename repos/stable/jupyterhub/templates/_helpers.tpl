@@ -367,7 +367,7 @@ ssh:x:101:
         {{- end }}
       {{- end }}
       serviceAccountName: "default"
-      podNameTemplate: "{{ .Release.Name }}-jupyter-{{ .Values.username }}"
+      podNameTemplate: "{{ .Release.Name }}-jupyter-{userid}--{servername}"
       nodeSelector: {}
       storage:
         extraVolumes:
