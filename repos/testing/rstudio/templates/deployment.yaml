@@ -149,12 +149,6 @@ spec:
         ports:
         - containerPort: 8787
         - containerPort: 3838
-        livenessProbe:
-          httpGet:
-            path: /unsupported_browser.htm
-            port: 8787
-          initialDelaySeconds: 30
-          timeoutSeconds: 30
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
