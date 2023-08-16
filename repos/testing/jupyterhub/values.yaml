@@ -68,7 +68,7 @@ advanced:
   ipyparallel:
     enabled: false
     workers: 2
-    image: "quay.io/nird-toolkit/jupyterhub-singleuser:20221107-1ada53a"
+    image: "quay.io/nird-toolkit/jupyterhub-singleuser:20230815-859ea15"
     resources:
       requests:
         cpu: "1"
@@ -96,10 +96,10 @@ advanced:
     enabled: false
     minioRootUser: "rootuserexample"
     minioRootPassword: "rootpasswordexample"
-  userImage: quay.io/nird-toolkit/jupyterhub-singleuser:20221107-1ada53a
+  userImage: quay.io/nird-toolkit/jupyterhub-singleuser:20230815-859ea15
 appstore_generated_data:
   appstore_meta_data:
-    contact_email: "example@uninett.no"
+    contact_email: "example@sigma2.no"
   dataporten:
     id: ""
     owner: "0000-1234"
