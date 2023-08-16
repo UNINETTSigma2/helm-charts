@@ -17,7 +17,7 @@ advanced:
       limits:
           cpu: "4"
           memory: 2G
-  dockerImage: quay.io/nird-toolkit/jupyter-spark:20220216-fbbf65f
+  dockerImage: quay.io/nird-toolkit/jupyter-spark:20230816-d208ba8
 
 uid: 999
 gid: 999
@@ -36,7 +36,7 @@ persistentStorage:
 
 appstore_generated_data:
   appstore_meta_data:
-    contact_email: "example@uninett.no"
+    contact_email: "example@sigma2.no"
   dataporten:
     scopes:
       - ""
