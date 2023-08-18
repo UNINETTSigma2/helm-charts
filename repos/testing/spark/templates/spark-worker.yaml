@@ -72,6 +72,8 @@ spec:
           imagePullPolicy: IfNotPresent
           args: ["/usr/local/bin/start-worker.sh"]
           env:
+            - name: SPARK_PUBLIC_DNS
+              value: {{ .Values.ingress.host }}
             - name: SPARK_WORKER_MEMORY
               value: {{ .Values.advanced.workers.resources.requests.memory }}
             - name: SPARK_WORKER_CORES
