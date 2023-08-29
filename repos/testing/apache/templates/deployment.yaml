@@ -94,11 +94,9 @@ spec:
           requests:
             cpu: {{ .Values.resources.requests.cpu }}
             memory: {{ .Values.resources.requests.memory }}
-            nvidia.com/gpu: {{ .Values.resources.requests.gpu }}
           limits:
             cpu: {{ .Values.resources.limits.cpu }}
             memory: {{ .Values.resources.limits.memory }}
-            nvidia.com/gpu: {{ .Values.resources.limits.gpu }}
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
@@ -126,7 +124,7 @@ spec:
             port: 8080
           initialDelaySeconds: 30
           timeoutSeconds: 30
-        ReadynessProbe:
+        readinessProbe:
           httpGet:
             path: /healthz
             port: 8080

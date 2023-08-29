@@ -6,11 +6,9 @@ resources:
   requests:
     cpu: "1"
     memory: 2G
-    gpu: 0
   limits:
     cpu: "2"
     memory: 4G
-    gpu: 0
 
 persistentStorage:
   - existingClaim: ""
