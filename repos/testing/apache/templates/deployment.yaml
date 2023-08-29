@@ -33,18 +33,14 @@ spec:
         - name: oidcconfig
           secret:
             secretName: {{ template "fullname" . }}
-        {{- end }}
+       {{- end }}
         - name: shm
           emptyDir:
             medium: Memory
             sizeLimit: 256M
-        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
-        {{- range .Values.persistentStorage }}
-        - name: {{ .existingClaimName }}
+        - name: data
           persistentVolumeClaim:
-            claimName: {{ .existingClaim }}
-        {{- end }}
-      {{- end }}
+            claimName: {{ .Values.persistentStorage.existingClaim }}
       containers:
       {{- if .Values.advanced.dataportenLoginProxy.enabled }}
       - name: auth-proxy
@@ -78,17 +74,11 @@ spec:
           {{- end }}
         {{- end }}
         env:
-          - name: OWNER_ID
-            value: {{ .Values.appstore_generated_data.aai.owner }}
-          - name: MEM_LIMIT
-            value: {{ .Values.resources.limits.memory }}
+          - name: TLS
+            value: "TRUE"
           {{- range .Values.advanced.customEnv }}
           - name: {{ .name }}
             value: {{ .value }}
-          {{- end }}
-          {{- if ne (first .Values.persistentStorage).existingClaim "" }}
-          - name: PVC_MOUNT_PATH
-            value: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
           {{- end }}
         resources:
           requests:
@@ -103,21 +93,13 @@ spec:
         volumeMounts:
         - name: shm
           mountPath: /dev/shm
-        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
-        {{- range .Values.persistentStorage }}
-        - name: {{ .existingClaimName }}
-          mountPath: /mnt/{{ .existingClaimName }}
+        - name: data
+          mountPath: /data
+         {{- if ne .Values.persistentStorage.subPath "/" }}
+          subPath: {{ .Values.persistentStorage.subPath }}
+         {{- end }}
           mountPropagation: HostToContainer
-          readOnly: {{ .readOnly }}
-          {{ if ne .subPath "/" }}
-          subPath: {{ .subPath }}
-          {{ end }}
-        {{- end }}
-        - name: {{ (first .Values.persistentStorage).existingClaimName }}
-          mountPath: /home/{{ .Values.username }}
-          subPath: home/{{ .Values.username }}
-          mountPropagation: HostToContainer
-        {{- end -}}
+          readOnly: true 
         livenessProbe:
           httpGet:
             path: /healthz
