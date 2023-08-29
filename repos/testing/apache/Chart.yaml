@@ -1,12 +1,12 @@
 apiVersion: v1
-description: Apache chart
+description: Apache is a http web server.
 name: apache
-version: 1.0
+version: 1.0.1
 maintainers:
 - name: NRIS
   email: nris@sigma2.no
-home: https://github.com/UninettSigma2/helm-charts/tree/master/repos/testing/apache
-icon: https://apache.org/logos/images/svg.png
+home: https://httpd.apache.org
+icon: https://svn.apache.org/repos/asf/comdev/project-logos/originals/httpd.svg
 keywords:
   - Apache
   - Webserver
