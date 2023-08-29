@@ -1,0 +1,12 @@
+apiVersion: v1
+description: Apache chart
+name: apache
+version: 1.0
+maintainers:
+- name: NRIS
+  email: nris@sigma2.no
+home: https://github.com/UninettSigma2/helm-charts/tree/master/repos/testing/apache
+icon: https://apache.org/logos/images/svg.png
+keywords:
+  - Apache
+  - Webserver
