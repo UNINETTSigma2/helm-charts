@@ -114,11 +114,11 @@ properties:
       existingClaimName:
         type: string
         examples:
-        - shortname-nsxxxxk
+        - example-name
       subPath:
         type: string
         examples:
-        - /www
+        - /
   resources:
     type: object
     properties:

@@ -38,9 +38,11 @@ spec:
           emptyDir:
             medium: Memory
             sizeLimit: 256M
+       {{- if ne .Values.persistentStorage.existingClaim "" }}
         - name: data
           persistentVolumeClaim:
             claimName: {{ .Values.persistentStorage.existingClaim }}
+       {{- end }}
       containers:
       {{- if .Values.advanced.dataportenLoginProxy.enabled }}
       - name: auth-proxy
