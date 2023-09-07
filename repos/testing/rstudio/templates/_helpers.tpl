@@ -76,7 +76,6 @@ server {
 
   location / {
     proxy_pass http://backend;
-    proxy_redirect http://backend/ https://{{ .Values.ingress.host }}/;
     proxy_redirect https://backend/ https://{{ .Values.ingress.host }}/;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
