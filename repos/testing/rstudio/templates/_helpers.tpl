@@ -83,7 +83,7 @@ server {
     proxy_set_header Connection "Upgrade";
     proxy_set_header X-Forwarded-Proto https;
     proxy_read_timeout 20d;
-    proxy_set_header X-RStudio-Request $scheme://$host:$server_port$request_uri;
+    proxy_set_header X-RStudio-Request https://$host:$server_port$request_uri;
   }
 
   error_page   500 502 503 504  /50x.html;
