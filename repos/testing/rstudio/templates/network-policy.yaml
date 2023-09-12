@@ -23,3 +23,5 @@ spec:
           port: 8080
         - protocol: TCP
           port: 3838
+        - protocol: TCP
+          port: 8787

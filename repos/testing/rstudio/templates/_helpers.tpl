@@ -34,7 +34,6 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
     "signkey": "",
     "token_type": "",
     "jwt_token_issuer": "",
-    "logout_redirect_url": "https://{{ .Values.ingress.host }}",
     "groups_endpoint": "",
     "groups_claim": "principals",
     "username_claim": "sub",
