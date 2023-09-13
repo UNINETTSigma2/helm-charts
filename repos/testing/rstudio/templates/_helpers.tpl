@@ -80,7 +80,7 @@ server {
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "Upgrade";
     proxy_set_header X-Forwarded-Proto https;
-    proxy_set_header Host https://{{ .Values.ingress.host }};
+    proxy_set_header X-Forwarded-Host {{ .Values.ingress.host }};
     proxy_read_timeout 20d;
   }
 
