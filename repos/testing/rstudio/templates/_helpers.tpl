@@ -23,7 +23,7 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- define "oidcconfig" -}}
 {
   "proxy": {
-    "target": "http://localhost:8787"
+    "target": "http://localhost:8888"
   },
   "engine": {
     "client_id": "{{ .Values.appstore_generated_data.aai.client_id }}",
@@ -80,6 +80,7 @@ server {
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "Upgrade";
     proxy_set_header X-Forwarded-Proto https;
+    proxy_set_header Host https://{{ .Values.ingress.host }}
     proxy_read_timeout 20d;
   }
 

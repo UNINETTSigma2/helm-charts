@@ -15,10 +15,6 @@ spec:
     targetPort: 8080
     protocol: TCP
     name: {{ template "fullname" . }}-service
-  - port: 8787
-    targetPort: 8787
-    protocol: TCP
-    name: {{ template "fullname" . }}-server
   - port: 3838
     targetPort: 3838
     protocol: TCP
