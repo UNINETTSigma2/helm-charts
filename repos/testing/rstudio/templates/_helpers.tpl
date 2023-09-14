@@ -82,7 +82,6 @@ server {
 
     proxy_read_timeout 20d;
 
-    proxy_set_header Host $host:$server_port;
     proxy_set_header X-Forwarded-Host {{ .Values.ingress.host }};
     proxy_set_header X-Forwarded-Proto https;
 
