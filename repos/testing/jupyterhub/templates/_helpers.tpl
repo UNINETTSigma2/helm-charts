@@ -560,7 +560,7 @@ ssh:x:101:
           c.JupyterHub.port = int(f'{get_name_env("proxy-http", "_SERVICE_PORT")}')
           c.KubeSpawner.service_account = get_config('singleuser.serviceAccountName')
           c.KubeSpawner.supplemental_gids = get_config('singleuser.supplementalGids', [])
-          c.KubeSpawner.pod_name_template = get_config('singleuser.podNameTemplate', 'jupyter-{userid}--{servername}')
+          c.KubeSpawner.pod_name_template = get_config('singleuser.podNameTemplate', 'jupyter-{username}--{servername}')
           c.KubeSpawner.http_timeout = get_config('singleuser.startTimeout')
           c.KubeSpawner.common_labels.update(get_config('custom.commonLabels', {}))
           # Gives spawned containers access to the API of the hub
