@@ -6,7 +6,7 @@ properties:
       dockerImage:
         type: string
         examples:
-        - quay.io/nird-toolkit/deep-learning-tools2:20220809-05c6827
+        - sigma2as/deep-learning-tools2:20231017-ff96bce
       env:
         type: object
         properties:
@@ -34,7 +34,7 @@ properties:
           contact_email:
             type: string
             examples:
-            - example@uninett.no
+            - example@sigma2.no
       dataporten:
         type: object
         properties:
