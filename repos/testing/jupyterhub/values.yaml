@@ -68,7 +68,7 @@ advanced:
   ipyparallel:
     enabled: false
     workers: 2
-    image: "quay.io/nird-toolkit/jupyterhub-singleuser:20230815-859ea15"
+    image: "sigma2as/jupyterhub-singleuser:20231016-0497b46"
     resources:
       requests:
         cpu: "1"
@@ -96,7 +96,7 @@ advanced:
     enabled: false
     minioRootUser: "rootuserexample"
     minioRootPassword: "rootpasswordexample"
-  userImage: quay.io/nird-toolkit/jupyterhub-singleuser:20230815-859ea15
+  userImage: sigma2as/jupyterhub-singleuser:20231016-0497b46
 appstore_generated_data:
   appstore_meta_data:
     contact_email: "example@sigma2.no"
@@ -114,6 +114,10 @@ appstore_generated_data:
       - openid
       - profile
       - email
+    owner: provided-by-toolkit
+    userinfo_url: provided-by-toolkit
+    token_url: provided-by-toolkit
+    auth_url: provided-by-toolkit
     authorized_principals: []
 authGroupProviders:
   - url: "https://groups-api.dataporten.no/groups/me/groups"
