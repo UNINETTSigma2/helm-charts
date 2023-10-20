@@ -17,7 +17,7 @@ advanced:
       limits:
           cpu: "4"
           memory: 2G
-  dockerImage: quay.io/nird-toolkit/jupyter-spark:20230816-d208ba8
+  dockerImage: sigma2as/jupyter-spark:20231016-e077f7c
 
 uid: 999
 gid: 999
@@ -54,6 +54,10 @@ appstore_generated_data:
       - profile
       - email
     authorized_principals: []
+    owner: provided-by-toolkit
+    userinfo_url: provided-by-toolkit
+    token_url: provided-by-toolkit
+    auth_url: provided-by-toolkit
 authGroupProviders:
   - url: "https://groups-api.dataporten.no/groups/me/groups"
     scope: groups
