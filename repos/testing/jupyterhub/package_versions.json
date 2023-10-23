@@ -1,6 +1,5 @@
 {
   "packageVersions": {
-    "pkg-jupyterhub-version": "3.0.0",
     "pkg-minio": "latest",
     "pkg-cuda-version": "11.4",
     "pkg-cudnn-version": "8.2.4.15-1+cuda11.4",
