@@ -75,6 +75,7 @@ spec:
       initContainers:
       - name: busybox
         image: busybox:1.33.1-glibc
+        imagePullPolicy: IfNotPresent
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
@@ -221,6 +222,7 @@ spec:
         - name: {{ .existingClaimName }}
           mountPath: /mnt/{{ .existingClaimName }}
           mountPropagation: HostToContainer
+          readOnly: {{ .readOnly }}
           {{ if ne .subPath "/" }}
           subPath: {{ .subPath }}
           mountPropagation: HostToContainer
