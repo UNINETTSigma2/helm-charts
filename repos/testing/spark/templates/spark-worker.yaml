@@ -82,6 +82,8 @@ spec:
               value: {{ .Values.appstore_generated_data.aai.owner }}
             - name: SPARK_MASTER_SERVICE_HOST
               value: {{ template "fullname" . }}-master
+            - name: RELEASE_NAMESPACE
+              value: {{ .Release.Namespace }}
           ports:
             - containerPort: 8081
           livenessProbe:
