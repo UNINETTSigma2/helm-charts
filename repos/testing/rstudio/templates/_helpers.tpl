@@ -87,7 +87,7 @@ server {
     proxy_set_header X-Forwarded-Host {{ .Values.ingress.host }};
     proxy_set_header X-Forwarded-Proto https;
 
-    proxy_redirect http://localhost:8787/ https://{{ .Values.ingress.host }}/;
+    proxy_redirect https://localhost:8787/ https://{{ .Values.ingress.host }}/;
   }
 
   error_page   500 502 503 504  /50x.html;
