@@ -76,7 +76,7 @@ server {
   server_name  localhost;
 
   location / {
-    proxy_pass http://127.0.0.1:8787;
+    proxy_pass http://localhost:8787;
 
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
@@ -85,9 +85,9 @@ server {
     proxy_read_timeout 20d;
 
     proxy_set_header X-Forwarded-Host {{ .Values.ingress.host }};
-    proxy_set_header X-Forwarded-Proto http;
+    proxy_set_header X-Forwarded-Proto https;
 
-    proxy_redirect http://127.0.0.1:8787/ https://{{ .Values.ingress.host }}/;
+    proxy_redirect http://localhost:8787/ https://{{ .Values.ingress.host }}/;
   }
 
   error_page   500 502 503 504  /50x.html;
