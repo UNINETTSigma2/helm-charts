@@ -34,7 +34,6 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
     "signkey": "",
     "token_type": "",
     "jwt_token_issuer": "",
-    "logout_redirect_url": "https://{{ .Values.ingress.host }}",
     "groups_endpoint": "",
     "groups_claim": "principals",
     "username_claim": "sub",
@@ -66,8 +65,10 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 
 {{- define "default.conf" -}}
 {{ $hostid := randAlphaNum 8 }}
-upstream backend {
-  server  localhost:8787;
+
+map $http_upgrade $connection_upgrade {
+  default upgrade;
+  ''      close;
 }
 
 server {
@@ -75,15 +76,18 @@ server {
   server_name  localhost;
 
   location / {
+    proxy_pass http://localhost:8787;
 
-    proxy_pass http://backend;
-    proxy_redirect http://backend/ https://{{ .Values.ingress.host }}/;
-    proxy_redirect https://backend/ https://{{ .Values.ingress.host }}/;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection "Upgrade";
+    proxy_set_header Connection $connection_upgrade;
+
     proxy_read_timeout 20d;
-    proxy_set_header X-RStudio-Request $scheme://$host:$server_port$request_uri;
+
+    proxy_set_header X-Forwarded-Host {{ .Values.ingress.host }};
+    proxy_set_header X-Forwarded-Proto https;
+
+    proxy_redirect https://localhost:8787/ https://{{ .Values.ingress.host }}/;
   }
 
   error_page   500 502 503 504  /50x.html;
