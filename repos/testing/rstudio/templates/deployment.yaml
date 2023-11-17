@@ -91,6 +91,7 @@ spec:
       initContainers:
       - name: busybox
         image: busybox:1.33.1-glibc
+        imagePullPolicy: IfNotPresent
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
@@ -149,14 +150,18 @@ spec:
         ports:
         - containerPort: 8787
         - containerPort: 3838
+        livenessProbe:
+          httpGet:
+            path: /unsupported_browser.htm
+            port: 8787
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
         env:
         - name: TZ
           value: Europe/Oslo
-        - name: OWNER_ID
-          value: {{ .Values.appstore_generated_data.aai.owner }}
         - name: USER
           value: {{ .Values.username }}
         - name: USERNAME
