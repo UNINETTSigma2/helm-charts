@@ -162,8 +162,6 @@ spec:
         env:
         - name: TZ
           value: Europe/Oslo
-        - name: OWNER_ID
-          value: {{ .Values.appstore_generated_data.aai.owner }}
         - name: USER
           value: {{ .Values.username }}
         - name: USERNAME
@@ -213,7 +211,7 @@ spec:
           mountPropagation: HostToContainer
           readOnly: {{ .Values.persistentStorage.readOnly }}
           subPath: home/{{ .Values.username }}
-        {{- end }}
+        {{- end -}}
 
 
 {{ if ne .Values.persistentStorage.existingClaim "" }}

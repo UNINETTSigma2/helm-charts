@@ -38,14 +38,10 @@ appstore_generated_data:
       - profile
       - email
     authorized_principals: []
-    owner: provided-by-toolkit
-    userinfo_url: provided-by-tookit
-    token_url: provided-by-toolkit
-    auth_url: provided-by-toolkit
 advanced:
   debug: false
-  dockerImage: quay.io/nird-toolkit/rstudio-server:20220705-ab3ec78
-  proxyImage: quay.io/nird-toolkit/rstudio-proxy:20220301-61f06ae
+  dockerImage: sigma2as/rstudio-server:20231117-34add32
+  proxyImage: sigma2as/rstudio-proxy:20231117-eca0b21
 authGroupProviders:
   - url: "https://groups-api.dataporten.no/groups/me/groups"
     scope: groups
