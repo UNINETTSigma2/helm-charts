@@ -128,7 +128,7 @@ properties:
             - true
           subPath:
             type: string
-            description: "Which subpath within the storage to share"
+            description: "Which subpath within the storage to share. If the subpath does not already exist, it will be created. If this field is empty, the whole storage is shared."
             examples:
             - data
       startTimeout:
