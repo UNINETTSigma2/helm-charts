@@ -35,7 +35,7 @@ properties:
             type: string
             description: "Which image to use when spawning the ipyparallel workers."
             examples:
-            - sigma2as/jupyterhub-singleuser:20231016-0497b46
+            - sigma2as/jupyterhub-singleuser:20240221-2a3f7e1
           resources:
             type: object
             properties:
@@ -150,7 +150,7 @@ properties:
         description: "Which docker image to use when spawning user notebooks."
         type: string
         examples:
-        - sigma2as/jupyterhub-singleuser:20231016-0497b46
+        - sigma2as/jupyterhub-singleuser:20240221-2a3f7e1
       vnc:
         description: "Make a VNC server available to each user"
         type: object

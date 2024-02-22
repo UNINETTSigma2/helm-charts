@@ -68,7 +68,7 @@ advanced:
   ipyparallel:
     enabled: false
     workers: 2
-    image: "sigma2as/jupyterhub-singleuser:20231016-0497b46"
+    image: "sigma2as/jupyterhub-singleuser:20240221-2a3f7e1"
     resources:
       requests:
         cpu: "1"
@@ -96,7 +96,7 @@ advanced:
     enabled: false
     minioRootUser: "rootuserexample"
     minioRootPassword: "rootpasswordexample"
-  userImage: sigma2as/jupyterhub-singleuser:20231016-0497b46
+  userImage: sigma2as/jupyterhub-singleuser:20240221-2a3f7e1
 appstore_generated_data:
   appstore_meta_data:
     contact_email: "example@sigma2.no"
