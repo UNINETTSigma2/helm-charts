@@ -523,7 +523,7 @@ ssh:x:101:
               cpu: "{{ .Values.advanced.vnc.resources.limits.cpu }}"
               memory: "{{ .Values.advanced.vnc.resources.limits.memory }}"
       cloudMetadata:
-        blockWithIpTables: false
+        blockWithIptables: false
       {{- end }}
 
     custom:
