@@ -87,11 +87,7 @@ spec:
         - name: TZ
           value: Europe/Oslo
         image: {{ .Values.advanced.dockerImage }}
-        args:
-          - /bin/sh
-          - -c
-          - -x
-          - "server"
+        args: [ 'server' ]
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         ports:
