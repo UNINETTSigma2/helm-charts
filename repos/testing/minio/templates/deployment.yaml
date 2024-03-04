@@ -87,7 +87,12 @@ spec:
         - name: TZ
           value: Europe/Oslo
         image: {{ .Values.advanced.dockerImage }}
-        args: [ 'server' ]
+        args:
+          - /bin/sh
+          - -c
+          - -x
+          - "printf '{"version":"1","format":"fs","id":"avoid-going-into-snsd-mode-legacy-is-fine-with-me","fs":{"version":"2"}}' | cat > /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.minio.sys/format.json"
+          - "server"
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         ports:
