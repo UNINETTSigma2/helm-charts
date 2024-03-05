@@ -44,4 +44,4 @@ appstore_generated_data:
 advanced:
   rootUser: "rootuserexample"
   rootPassword: "rootpasswordexample"
-  dockerImage: sigma2as/minio:20240305-c6b5ed5
+  dockerImage: sigma2as/minio:20240305-556775d
