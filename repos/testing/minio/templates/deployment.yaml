@@ -96,12 +96,6 @@ spec:
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
-        livenessProbe:
-          httpGet:
-            path: /minio/health/live
-            port: 9000
-          initialDelaySeconds: 30
-          timeoutSeconds: 30
         volumeMounts:
         - name: passwd
           mountPath: /etc/passwd
