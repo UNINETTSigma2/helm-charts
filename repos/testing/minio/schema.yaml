@@ -5,12 +5,12 @@ properties:
     properties:
       rootUser:
         type: string
-        description: "The username to use for accessing minio."
+        description: "The username to use when accessing minio."
         examples:
         - rootuserexample
       rootPassword:
         type: string
-        description: "The password to use for accessing minio."
+        description: "The password to use when accessing minio."
         examples:
         - rootpasswordexample
   appstore_generated_data:
@@ -58,26 +58,20 @@ properties:
         examples:
         - local-chart.example.com
   persistentStorage:
-    type: array
-    items:
-      type: object
-      properties:
-        existingClaim:
-          type: string
-          examples:
-          - ""
-        existingClaimName:
-          type: string
-          examples:
-          - example-name
-        subPath:
-          type: string
-          examples:
-          - /
-        readOnly:
-          type: boolean
-          examples:
-          - false
+    type: object
+    properties:
+      existingClaim:
+        type: string
+        examples:
+        - ""
+      existingClaimName:
+        type: string
+        examples:
+        - example-name
+      subPath:
+        type: string
+        examples:
+        - /
   resources:
     type: object
     properties:
