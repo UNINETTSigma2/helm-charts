@@ -5,12 +5,12 @@ properties:
     properties:
       rootUser:
         type: string
-        description: "The username to use when accessing minio."
+        description: "The username to use for accessing minio."
         examples:
         - rootuserexample
       rootPassword:
         type: string
-        description: "The password to use when accessing minio."
+        description: "The password to use for accessing minio."
         examples:
         - rootpasswordexample
   appstore_generated_data:
