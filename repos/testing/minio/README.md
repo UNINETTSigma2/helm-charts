@@ -14,7 +14,7 @@ access minio's web interface through a web browser.
 ### Advanced
 This application uses the following Dockerfile:
 
-- [minio](https://github.com/minio/minio/tree/c433572/Dockerfile)
+- [minio](https://github.com/UNINETTSigma2/helm-charts-dockerfiles/blob/3a2e4f52837e4abdc772a3bc62cb7987acaac40a/minio/Dockerfile)
 
 #### Values
 | Value name    | Description |
