@@ -20,7 +20,7 @@ supplementalGroups:
     gid: ""
 appstore_generated_data:
   appstore_meta_data:
-    contact_email: "example@uninett.no"
+    contact_email: "example@sigma2.no"
   dataporten:
     scopes:
       - ""
@@ -42,6 +42,6 @@ appstore_generated_data:
     token_url: provided-by-toolkit
     auth_url: provided-by-toolkit
 advanced:
-  accessKey: "accesskeyexample"
-  secretKey: "secretkeyexample"
-  dockerImage: quay.io/uninett/minio:20210215-96996ea
+  rootUser: "rootuserexample"
+  rootPassword: "rootpasswordexample"
+  dockerImage: sigma2as/minio:20240306-3a2e4f5

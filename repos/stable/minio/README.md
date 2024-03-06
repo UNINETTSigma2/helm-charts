@@ -14,10 +14,10 @@ access minio's web interface through a web browser.
 ### Advanced
 This application uses the following Dockerfile:
 
-- [minio](https://github.com/minio/minio/tree/d5aa2f9/Dockerfile)
+- [minio](https://github.com/UNINETTSigma2/helm-charts-dockerfiles/blob/3a2e4f52837e4abdc772a3bc62cb7987acaac40a/minio/Dockerfile)
 
 #### Values
 | Value name    | Description |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| advanced.accessKey | The key / username to use when logging in. |
-| advanced.secretKey | The token / password to use when logging in. |
+| advanced.rootUser | The username to use for logging in. |
+| advanced.rootPassword | The password to use for logging in. |
