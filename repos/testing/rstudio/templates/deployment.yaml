@@ -119,7 +119,7 @@ spec:
       containers:
       - name: auth-proxy
         image: sigma2as/goidc-proxy:next
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 8080
         securityContext:
