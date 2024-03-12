@@ -6,6 +6,6 @@ maintainers:
   email: system@uninett.no
 home: https://www.rstudio.com/products/RStudio/
 icon: https://rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-flat.svg
-version: 0.3.4
+version: 0.4.0
 keywords:
   - R web IDE
