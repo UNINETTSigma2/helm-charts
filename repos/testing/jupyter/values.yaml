@@ -48,7 +48,7 @@ advanced:
   env:
     sparkMasterUrl: "local[*]"
     jupyterLab: true
-  dockerImage:  sigma2as/jupyter-spark:20240201-964601f
+  dockerImage:  sigma2as/jupyter-spark:20240411-ee73753
   githubToken: ""
 authGroupProviders:
   - url: "https://groups-api.dataporten.no/groups/me/groups"
