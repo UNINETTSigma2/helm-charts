@@ -6,7 +6,7 @@ properties:
       dockerImage:
         type: string
         examples:
-        - sigma2as/jupyter-spark:20231016-e077f7c
+        - sigma2as/jupyter-spark:20240201-964601f
       master:
         type: object
         properties:

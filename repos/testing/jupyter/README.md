@@ -13,7 +13,7 @@ A [Jupyter Notebook](http://jupyter.org/) is an open-source web application that
 
 ### Advanced
 This application creates a [Jupyter Notebook](https://github.com/UninettSigma2/helm-charts/tree/master/repos/testing/jupyter) instance using the following Dockerfiles:
-  - [uninettSigma2/jupyter-spark](https://github.com/UninettSigma2/helm-charts-dockerfiles/tree/e077f7c/jupyter-spark/Dockerfile)
+  - [uninettSigma2/jupyter-spark](https://github.com/UninettSigma2/helm-charts-dockerfiles/tree/964601f/jupyter-spark/Dockerfile)
 
 #### Values
 | Value name    | Description |
