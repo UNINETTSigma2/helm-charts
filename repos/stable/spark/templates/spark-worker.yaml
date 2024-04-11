@@ -72,6 +72,8 @@ spec:
           imagePullPolicy: IfNotPresent
           args: ["/usr/local/bin/start-worker.sh"]
           env:
+            - name: SPARK_PUBLIC_DNS
+              value: {{ .Values.ingress.host }}
             - name: SPARK_WORKER_MEMORY
               value: {{ .Values.advanced.workers.resources.requests.memory }}
             - name: SPARK_WORKER_CORES
@@ -80,6 +82,8 @@ spec:
               value: {{ .Values.appstore_generated_data.aai.owner }}
             - name: SPARK_MASTER_SERVICE_HOST
               value: {{ template "fullname" . }}-master
+            - name: RELEASE_NAMESPACE
+              value: {{ .Release.Namespace }}
           ports:
             - containerPort: 8081
           livenessProbe:

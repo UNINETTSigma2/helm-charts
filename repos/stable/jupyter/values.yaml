@@ -16,7 +16,7 @@ persistentStorage:
     readOnly: false
 appstore_generated_data:
   appstore_meta_data:
-    contact_email: "example@uninett.no"
+    contact_email: "example@sigma2.no"
   dataporten:
     scopes:
       - ""
@@ -35,7 +35,7 @@ appstore_generated_data:
       - email
     authorized_principals: []
     owner: provided-by-toolkit
-    userinfo_url: provided-by-tookit
+    userinfo_url: provided-by-toolkit
     token_url: provided-by-toolkit
     auth_url: provided-by-toolkit
 uid: 999
@@ -48,7 +48,7 @@ advanced:
   env:
     sparkMasterUrl: "local[*]"
     jupyterLab: true
-  dockerImage: quay.io/nird-toolkit/jupyter-spark:20220826-8ed372f
+  dockerImage: sigma2as/jupyter-spark:20240411-ee73753
   githubToken: ""
 authGroupProviders:
   - url: "https://groups-api.dataporten.no/groups/me/groups"

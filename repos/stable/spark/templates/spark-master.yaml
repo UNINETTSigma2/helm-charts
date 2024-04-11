@@ -150,6 +150,8 @@ spec:
           env:
             - name: SPARK_PUBLIC_DNS
               value: {{ .Values.ingress.host }}
+            - name: RELEASE_NAMESPACE
+              value: {{ .Release.Namespace }}
             - name: SPARK_DAEMON_MEMORY
               value: {{ .Values.advanced.master.resources.requests.memory }}
             - name: SPARK_DAEMON_CORES
