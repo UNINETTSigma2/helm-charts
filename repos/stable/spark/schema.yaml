@@ -6,7 +6,7 @@ properties:
       dockerImage:
         type: string
         examples:
-        - quay.io/nird-toolkit/jupyter-spark:20220216-fbbf65f
+        - sigma2as/jupyter-spark:20240411-ee73753
       master:
         type: object
         properties:
@@ -76,7 +76,7 @@ properties:
           contact_email:
             type: string
             examples:
-            - example@uninett.no
+            - example@sigma2.no
       dataporten:
         type: object
         properties:
