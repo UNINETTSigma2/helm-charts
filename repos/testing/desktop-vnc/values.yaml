@@ -16,7 +16,7 @@ persistentStorage:
     readOnly: false
 appstore_generated_data:
   appstore_meta_data:
-    contact_email: "example@uninett.no"
+    contact_email: "example@sigma2.no"
   dataporten:
     scopes:
       - ""
@@ -34,6 +34,10 @@ appstore_generated_data:
       - profile
       - email
     authorized_principals: []
+    owner: provided-by-toolkit
+    userinfo_url: provided-by-toolkit
+    token_url: provided-by-toolkit
+    auth_url: provided-by-toolkit
 uid: 999
 gid: 999
 username: vncuser
@@ -44,4 +48,4 @@ authGroupProviders:
   - url: "https://groups-api.dataporten.no/groups/me/groups"
     scope: groups
 advanced:
-  dockerImage: quay.io/nird-toolkit/desktop-vnc:20220225-dd67aab
+  dockerImage: sigma2as/desktop-vnc:20240826-c51c6eb
