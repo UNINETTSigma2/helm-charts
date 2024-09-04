@@ -212,6 +212,3 @@ spec:
           readOnly: {{ .Values.persistentStorage.readOnly }}
           subPath: home/{{ .Values.username }}
         {{- end -}}
-
-
-{{ if ne .Values.persistentStorage.existingClaim "" }}
