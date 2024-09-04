@@ -6,7 +6,7 @@ properties:
       dockerImage:
         type: string
         examples:
-        - quay.io/nird-toolkit/desktop-vnc:20220225-dd67aab
+        - sigma2as/desktop-vnc:20240826-c51c6eb
   appstore_generated_data:
     type: object
     properties:
@@ -16,7 +16,7 @@ properties:
           contact_email:
             type: string
             examples:
-            - example@uninett.no
+            - example@sigma2.no
       dataporten:
         type: object
         properties:
