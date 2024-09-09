@@ -71,7 +71,7 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home/{{ .Values.username }}/.jupyter && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home"
+          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/{{ .Values.advanced.userHome }}/{{ .Values.username }}/.jupyter && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/{{ .Values.advanced.userHome }}"
         volumeMounts:
         {{- range .Values.persistentStorage }}
         - name: {{ .existingClaimName }}
@@ -113,7 +113,7 @@ spec:
         image: {{ .Values.advanced.dockerImage }}
         args: ["/usr/local/bin/start-notebook.sh"]
         {{- if ne (first .Values.persistentStorage).existingClaim "" }}
-        workingDir: /home/{{ .Values.username }}
+        workingDir: /{{ .Values.advanced.userHome }}/{{ .Values.username }}
         {{ end }}
         env:
           {{ if .Values.advanced.env.jupyterLab }}
@@ -132,9 +132,9 @@ spec:
             value: '1'
           {{- if ne (first .Values.persistentStorage).existingClaim "" }}
           - name: XDG_CACHE_HOME
-            value: /home/{{ .Values.username }}/.cache
+            value: /{{ .Values.advanced.userHome }}/{{ .Values.username }}/.cache
           - name: HOME
-            value: /home/{{ .Values.username }}
+            value: /{{ .Values.advanced.userHome }}/{{ .Values.username }}
           - name: USER
             value: {{ .Values.username }}
           - name: PVC_MOUNT_PATH
@@ -161,12 +161,12 @@ spec:
         volumeMounts:
         {{- if ne (first .Values.persistentStorage).existingClaim "" }}
         - name: notebook-config
-          mountPath: /home/{{ .Values.username }}/.jupyter/notebook_config.py
+          mountPath: /{{ .Values.advanced.userHome }}/{{ .Values.username }}/.jupyter/notebook_config.py
           subPath: notebook_config.py
           mountPropagation: HostToContainer
         {{- else }}
         - name: notebook-config
-          mountPath: /home/notebook/.jupyter/notebook_config.py
+          mountPath: /{{ .Values.advanced.userHome }}/notebook/.jupyter/notebook_config.py
           subPath: notebook_config.py
         {{ end }}
         - name: passwd
@@ -188,7 +188,7 @@ spec:
           {{ end }}
         {{- end }}
         - name: {{ (first .Values.persistentStorage).existingClaimName }}
-          mountPath: /home/{{ .Values.username }}
-          subPath: home/{{ .Values.username }}
+          mountPath: /{{ .Values.advanced.userHome }}/{{ .Values.username }}
+          subPath: {{ .Values.advanced.userHome }}/{{ .Values.username }}
           mountPropagation: HostToContainer
         {{- end -}}

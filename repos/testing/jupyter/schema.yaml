@@ -25,6 +25,16 @@ properties:
         description: "The oauth token to pass to the Jupyter GitHub integration."
         examples:
         - ""
+      userHomeAddStorageSubPath:
+        description: "Whether or not to use the selected storage subfolder as a prefix in users home directory."
+        type: boolean
+        examples:
+        - true
+      userHome:
+        description: "The subfolder to use when storing the users home directory."
+        type: string
+        examples:
+        - home
   appstore_generated_data:
     type: object
     properties:
