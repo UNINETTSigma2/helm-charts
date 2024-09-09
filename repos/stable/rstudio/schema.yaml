@@ -11,7 +11,7 @@ properties:
       dockerImage:
         type: string
         examples:
-        - sigma2as/rstudio-server:20240312-ecce41f
+        - sigma2as/rstudio-server:20240830-c3436d5
   appstore_generated_data:
     type: object
     properties:
@@ -21,7 +21,7 @@ properties:
           contact_email:
             type: string
             examples:
-            - example@uninett.no
+            - example@sigma2.no
       dataporten:
         type: object
         properties:
