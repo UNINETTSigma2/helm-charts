@@ -79,7 +79,7 @@ c.NotebookApp.base_url = '/'
 c.NotebookApp.trust_xheaders = True
 c.NotebookApp.tornado_settings = {'static_url_prefix': '/static/'}
 {{ if ne (first .Values.persistentStorage).existingClaim "" }}
-c.NotebookApp.notebook_dir = '/home/{{ .Values.username }}'
+c.NotebookApp.notebook_dir = '/{{ .Values.advanced.userHome }}/{{ .Values.username }}'
 {{ else }}
 c.NotebookApp.notebook_dir = '/home/notebook'
 {{ end }}
@@ -130,7 +130,7 @@ gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologi
 nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
 _apt:x:100:65534::/nonexistent:/usr/sbin/nologin
 jovyan:x:1000:100::/home/jovyan:/bin/bash
-{{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/{{ .Values.username }}:/bin/bash
+{{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/{{ .Values.advanced.userHome }}/{{ .Values.username }}:/bin/bash
 notebook:x:999:999::/home/notebook:/bin/bash
 
 {{- end -}}

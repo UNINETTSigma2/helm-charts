@@ -45,6 +45,7 @@ supplementalGroups:
   - name: ""
     gid: ""
 advanced:
+  userHome: home
   env:
     sparkMasterUrl: "local[*]"
     jupyterLab: true

@@ -25,6 +25,11 @@ properties:
         description: "The oauth token to pass to the Jupyter GitHub integration."
         examples:
         - ""
+      userHome:
+        description: "The subfolder to use when storing the users home directory."
+        type: string
+        examples:
+        - home
   appstore_generated_data:
     type: object
     properties:
