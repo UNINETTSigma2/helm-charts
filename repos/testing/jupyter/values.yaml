@@ -45,7 +45,6 @@ supplementalGroups:
   - name: ""
     gid: ""
 advanced:
-  userHomeAddStorageSubPath: true
   userHome: home
   env:
     sparkMasterUrl: "local[*]"
