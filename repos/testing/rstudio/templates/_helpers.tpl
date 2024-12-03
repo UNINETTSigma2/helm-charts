@@ -150,7 +150,7 @@ nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
 _apt:x:100:65534::/nonexistent:/bin/false
 rstudio-server:x:988:988::/home/rstudio-server:
 shiny:x:998:998::/home/shiny:
-{{ if ne .Values.persistentStorage.existingClaim "" }}
+{{ if ne (first .Values.persistentStorage).existingClaim "" }}
 {{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/{{ .Values.username }}:/bin/bash
 {{ else }}
 {{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/rstudio:/bin/bash
@@ -254,7 +254,7 @@ server-user={{ .Values.username }}
 # Create rsession.conf
 {{- define "rsession.conf" -}}
 session-timeout-minutes=0
-{{- if ne .Values.persistentStorage.existingClaim "" }}
+{{- if ne (first .Values.persistentStorage).existingClaim "" }}
 session-default-working-dir=/home/{{ .Values.username }}
 {{- else }}
 session-default-working-dir=/home/rstudio

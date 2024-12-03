@@ -84,10 +84,12 @@ spec:
             items:
             - key: .Renviron
               path: .Renviron
-        {{ if ne .Values.persistentStorage.existingClaim "" }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}
+        {{ if ne (first .Values.persistentStorage).existingClaim "" }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
           persistentVolumeClaim:
-            claimName: {{ .Values.persistentStorage.existingClaim }}
+            claimName: {{ .existingClaim }}
+        {{- end }}
       initContainers:
       - name: busybox
         image: busybox:1.33.1-glibc
@@ -99,12 +101,14 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }} /mnt/{{ .Values.persistentStorage.existingClaimName }}/home/{{ .Values.username }} && chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools /mnt/{{ .Values.persistentStorage.existingClaimName }}/home"
+          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }} /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home/{{ .Values.username }} && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/home"
         volumeMounts:
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+        {{- range .Values.persistentStorage }}
+        - name: {{ .existingClaimName }}
+          mountPath: /mnt/{{ .existingClaimName }}
           mountPropagation: HostToContainer
-        {{ end }}
+        {{- end }}
+      {{ end }}
       hostname: {{ template "fullname" . }}
       securityContext:
         runAsNonRoot: true
@@ -168,11 +172,11 @@ spec:
           value: {{ .Values.username }}
         - name: HOME
           value: /home/rstudio
-        {{- if ne .Values.persistentStorage.existingClaim "" }}
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
         - name: SHINY_APPS_PATH
-          value: /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}/shiny-server
+          value: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }}/shiny-server
         - name: PVC_MOUNT_PATH
-          value: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+          value: /mnt/{{ (first .Values.persistentStorage).existingClaimName }}
         {{- end }}
         volumeMounts:
         - name: passwd
@@ -198,17 +202,19 @@ spec:
         - name: renviron
           mountPath: /home/rstudio/.Renviron
           subPath: .Renviron
-        {{- if ne .Values.persistentStorage.existingClaim "" }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}
-          mountPath: /mnt/{{ .Values.persistentStorage.existingClaimName }}
+        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
+        {{- range .Values.persistentStorage}}
+        - name: {{ .existingClaimName }}
+          mountPath: /mnt/{{ .existingClaimName }}
           mountPropagation: HostToContainer
-          readOnly: {{ .Values.persistentStorage.readOnly }}
-          {{ if ne .Values.persistentStorage.subPath "/" }}
-          subPath: {{ .Values.persistentStorage.subPath }}
+          readOnly: {{ .readOnly }}
+          {{ if ne .subPath "/" }}
+          subPath: {{ .subPath }}
           {{ end }}
-        - name: {{ .Values.persistentStorage.existingClaimName }}
+        {{- end }}
+        - name: {{ (first .Values.persistentStorage).existingClaimName }}
           mountPath: /home/{{ .Values.username }}
           mountPropagation: HostToContainer
-          readOnly: {{ .Values.persistentStorage.readOnly }}
+          readOnly: {{ (first .Values.persistentStorage).readOnly }}
           subPath: home/{{ .Values.username }}
         {{- end -}}
