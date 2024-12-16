@@ -11,7 +11,7 @@ properties:
       dockerImage:
         type: string
         examples:
-        - sigma2as/rstudio-server:20240830-c3436d5
+        - sigma2as/rstudio-server:20241204-fa0de80
   appstore_generated_data:
     type: object
     properties:
@@ -65,7 +65,7 @@ properties:
   gid:
     type: integer
     examples:
-    - 999
+    - 977
   ingress:
     type: object
     properties:
@@ -131,7 +131,7 @@ properties:
   uid:
     type: integer
     examples:
-    - 999
+    - 977
   username:
     type: string
     examples:
