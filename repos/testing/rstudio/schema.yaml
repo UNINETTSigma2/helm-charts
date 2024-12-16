@@ -65,7 +65,7 @@ properties:
   gid:
     type: integer
     examples:
-    - 999
+    - 977
   ingress:
     type: object
     properties:
@@ -131,7 +131,7 @@ properties:
   uid:
     type: integer
     examples:
-    - 999
+    - 977
   username:
     type: string
     examples:
