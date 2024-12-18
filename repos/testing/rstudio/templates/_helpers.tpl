@@ -156,6 +156,7 @@ shiny:x:998:998::/home/shiny:
 {{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/rstudio:/bin/bash
 {{ end }}
 rstudio:x:977:977::/home/rstudio:/bin/bash
+notebook:x:999:999::/home/notebook:/bin/bash
 
 {{- end -}}
 
@@ -214,6 +215,7 @@ nogroup:x:65534:
 {{- end }}
 {{- end }}
 rstudio:x:977:rstudio
+notebook:x:999:
 
 {{- end -}}
 

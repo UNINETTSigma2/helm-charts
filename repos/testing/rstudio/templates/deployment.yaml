@@ -119,6 +119,7 @@ spec:
           {{- range .Values.supplementalGroups }}
           - {{ .gid }}
           {{- end }}
+          - 977
         {{- end }}
       containers:
       - name: auth-proxy
