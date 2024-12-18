@@ -7,17 +7,17 @@ resources:
   limits:
     cpu: "4"
     memory: 2G
-uid: 999
-gid: 999
+uid: 977
+gid: 977
 username: rstudio
 supplementalGroups:
   - name: ""
     gid: ""
 persistentStorage:
-  existingClaim: ""
-  existingClaimName: "example-name"
-  subPath: "/"
-  readOnly: false
+  - existingClaim: ""
+    existingClaimName: "example-name"
+    subPath: "/"
+    readOnly: false
 appstore_generated_data:
   appstore_meta_data:
     contact_email: "example@sigma2.no"
@@ -40,8 +40,8 @@ appstore_generated_data:
     authorized_principals: []
 advanced:
   debug: false
-  dockerImage: sigma2as/rstudio-server:20240830-c3436d5
-  proxyImage: sigma2as/rstudio-proxy:20240903-f399a71
+  dockerImage: sigma2as/rstudio-server:20241204-fa0de80
+  proxyImage: sigma2as/rstudio-proxy:20241204-fa0de80
 authGroupProviders:
   - url: "https://groups-api.dataporten.no/groups/me/groups"
     scope: groups
