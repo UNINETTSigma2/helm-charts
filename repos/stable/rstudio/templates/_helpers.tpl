@@ -150,12 +150,13 @@ nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
 _apt:x:100:65534::/nonexistent:/bin/false
 rstudio-server:x:988:988::/home/rstudio-server:
 shiny:x:998:998::/home/shiny:
-{{ if ne .Values.persistentStorage.existingClaim "" }}
+{{ if ne (first .Values.persistentStorage).existingClaim "" }}
 {{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/{{ .Values.username }}:/bin/bash
 {{ else }}
 {{ .Values.username }}:x:{{ .Values.uid }}:{{ .Values.gid }}::/home/rstudio:/bin/bash
 {{ end }}
-rstudio:x:999:999::/home/rstudio:/bin/bash
+rstudio:x:977:977::/home/rstudio:/bin/bash
+notebook:x:999:999::/home/notebook:/bin/bash
 
 {{- end -}}
 
@@ -201,7 +202,7 @@ games:x:60:
 users:x:100:
 nogroup:x:65534:
 rstudio-server:x:988:
-rstudio:x:999:
+rstudio:x:977:
 ssh:x:101:
 shiny:x:998:
 nogroup:x:65534:
@@ -213,7 +214,8 @@ nogroup:x:65534:
 {{- end }}
 {{- end }}
 {{- end }}
-rstudio:x:999:rstudio
+rstudio:x:977:rstudio
+notebook:x:999:
 
 {{- end -}}
 
@@ -254,7 +256,7 @@ server-user={{ .Values.username }}
 # Create rsession.conf
 {{- define "rsession.conf" -}}
 session-timeout-minutes=0
-{{- if ne .Values.persistentStorage.existingClaim "" }}
+{{- if ne (first .Values.persistentStorage).existingClaim "" }}
 session-default-working-dir=/home/{{ .Values.username }}
 {{- else }}
 session-default-working-dir=/home/rstudio

@@ -6,6 +6,6 @@ maintainers:
   email: contact@sigma2.no
 home: https://www.rstudio.com/products/RStudio/
 icon: https://rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-flat.svg
-version: 1.3.1
+version: 1.3.2
 keywords:
   - R web IDE
