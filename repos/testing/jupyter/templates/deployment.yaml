@@ -71,7 +71,7 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/{{ .Values.advanced.userHome }}/{{ .Values.username }}/.jupyter && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/{{ .Values.advanced.userHome }}"
+          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/{{ .Values.advanced.userHome }}/{{ .Values.username }}/.jupyter && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/{{ .Values.advanced.userHome }}  && chmod g+w /home/notebook"
         volumeMounts:
         {{- range .Values.persistentStorage }}
         - name: {{ .existingClaimName }}
