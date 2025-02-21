@@ -90,7 +90,6 @@ c.ServerApp.allow_origin = 'https://{{ .Values.ingress.host }}'
 c.ServerApp.allow_remote_access = True
 c.ServerApp.token = ''
 c.ServerApp.password = ''
-c.ServerApp.log_level = 'DEBUG'
 
 c.ServerProxy.servers = {
   'code-server': {
@@ -99,7 +98,7 @@ c.ServerProxy.servers = {
         '--auth=none',
         '--disable-telemetry',
         '--port={port}'
-    ], 
+    ],
     'timeout': 20,
     'launcher_entry': {
       'title': 'VS Code IDE'

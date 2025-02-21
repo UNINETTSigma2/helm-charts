@@ -93,7 +93,7 @@ spec:
       containers:
       - name: auth-proxy
         image: sigma2as/goidc-proxy:next
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
           - containerPort: 8080
         securityContext:
@@ -166,7 +166,7 @@ spec:
           mountPropagation: HostToContainer
         {{- else }}
         - name: notebook-config
-          mountPath: /{{ .Values.advanced.userHome }}/notebook/.jupyter/notebook_config.py
+          mountPath: /home/notebook/.jupyter/notebook_config.py
           subPath: notebook_config.py
         {{ end }}
         - name: passwd

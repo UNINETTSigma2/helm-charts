@@ -45,10 +45,11 @@ supplementalGroups:
   - name: ""
     gid: ""
 advanced:
+  userHome: home
   env:
     sparkMasterUrl: "local[*]"
     jupyterLab: true
-  dockerImage: sigma2as/jupyter-spark:20240411-ee73753
+  dockerImage: sigma2as/jupyter-spark:20250217-3edb4dc
   githubToken: ""
 authGroupProviders:
   - url: "https://groups-api.dataporten.no/groups/me/groups"
