@@ -6,7 +6,7 @@ maintainers:
 - name: Sigma2 AS
   email: contact@sigma2.no
 home: https://github.com/UninettSigma2/helm-charts-dockerfiles/tree/master/deep-learning-tools2
-icon: https://upload.wikimedia.org/wikipedia/commons/8/81/Deep_learning.png
+icon: https://upload.wikimedia.org/wikipedia/commons/6/64/Dall-e_3_%28jan_%2724%29_artificial_intelligence_icon.png
 keywords:
   - GPU enabled
   - Jupyter notebook

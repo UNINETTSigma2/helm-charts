@@ -4,7 +4,7 @@ After installing, you will be able to access this notebook using your web browse
 
 This package includes a collection of several commonly used deep learning tools, such as Tensorflow,
 Pytorch, Keras, Theano and CNTK made available through a jupyter notebook.
-In addition there is [Tensorboard](https://www.tensorflow.org/programmers_guide/summaries_and_tensorboard) and [Visdom](https://github.com/facebookresearch/visdom) are available for visualization during training.
+In addition there is [Tensorboard](https://www.tensorflow.org/tensorboard) and [Visdom](https://github.com/facebookresearch/visdom) are available for visualization during training.
 
 
 ## Features
@@ -20,7 +20,7 @@ In addition there is [Tensorboard](https://www.tensorflow.org/programmers_guide/
 
 This application creates a Jupyter Notebook instance using the following Dockerfiles:
 
-- [quay.io/Uninett/deep-learning-tools](https://github.com/Uninett/helm-charts-dockerfiles/tree/4881294/deep-learning-tools/Dockerfile)
+- [uninettSigma2/deep-learning-tools2](https://github.com/UninettSigma2/helm-charts-dockerfiles/tree/ff96bce/deep-learning-tools2/Dockerfile)
 
 ### Values
 
