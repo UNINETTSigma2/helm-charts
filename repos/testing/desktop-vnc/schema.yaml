@@ -6,7 +6,7 @@ properties:
       dockerImage:
         type: string
         examples:
-        - sigma2as/desktop-vnc:20240826-c51c6eb
+        - sigma2as/desktop-vnc:20250814-f4ab7b9
   appstore_generated_data:
     type: object
     properties:
