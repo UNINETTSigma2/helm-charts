@@ -5,7 +5,7 @@ maintainers:
 - name: Sigma2 AS
   email: contact@sigma2.no
 home: https://www.rstudio.com/products/RStudio/
-icon: https://rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-flat.svg
-version: 0.4.5
+icon: https://upload.wikimedia.org/wikipedia/commons/d/d0/RStudio_logo_flat.svg
+version: 0.4.6
 keywords:
   - R web IDE
