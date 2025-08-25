@@ -11,7 +11,7 @@ properties:
       dockerImage:
         type: string
         examples:
-        - sigma2as/rstudio-server:20241204-fa0de80
+        - sigma2as/rstudio-server:20250814-b5debaa
   appstore_generated_data:
     type: object
     properties:

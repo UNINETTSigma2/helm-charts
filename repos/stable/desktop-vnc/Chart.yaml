@@ -1,12 +1,12 @@
 apiVersion: v1
 description: Desktop VNC with Ubuntu
 name: desktop-vnc
-version: 2.0.1
+version: 2.0.2
 maintainers:
 - name: Sigma2 AS
   email: contact@sigma2.no
 home: https://github.com/UninettSigma2/helm-charts/tree/master/repos/stable/desktop-vnc
-icon: https://raw.githubusercontent.com/novnc/noVNC/master/app/images/icons/novnc-120x120.png
+icon: https://upload.wikimedia.org/wikipedia/commons/0/0f/NoVNC_logo.png
 keywords:
   - VNC
   - Ubuntu
