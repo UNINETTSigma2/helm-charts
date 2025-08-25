@@ -110,7 +110,7 @@ spec:
       {{- end }}
       containers:
       - name: hub-container
-        image: sigma2as/jupyterhub-server:20240222-ce1cc38
+        image: sigma2as/jupyterhub-server:20250825-a455d96
         command:
           - jupyterhub
           - --config
