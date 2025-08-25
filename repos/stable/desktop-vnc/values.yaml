@@ -48,4 +48,4 @@ authGroupProviders:
   - url: "https://groups-api.dataporten.no/groups/me/groups"
     scope: groups
 advanced:
-  dockerImage: sigma2as/desktop-vnc:20240826-c51c6eb
+  dockerImage: sigma2as/desktop-vnc:20250814-f4ab7b9
