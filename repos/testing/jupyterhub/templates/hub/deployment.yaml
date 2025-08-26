@@ -86,7 +86,7 @@ spec:
           claimName: {{ (first .Values.persistentStorage).existingClaim }}
       initContainers:
       - name: busybox
-        image: busybox:1.35.0-glibc
+        image: busybox:1.37.0-glibc
         imagePullPolicy: IfNotPresent
         securityContext:
           runAsUser: {{ .Values.uid }}
@@ -110,7 +110,7 @@ spec:
       {{- end }}
       containers:
       - name: hub-container
-        image: sigma2as/jupyterhub-server:20250825-a455d96
+        image: sigma2as/jupyterhub-server:20250826-75866b9
         command:
           - jupyterhub
           - --config
@@ -226,7 +226,7 @@ spec:
         {{- end }}
       containers:
       - name: cleaner-job
-        image: alpine:3.16.2
+        image: alpine:3.22.1
         imagePullPolicy: Always
         command:
           - /bin/sh
@@ -294,7 +294,7 @@ spec:
         {{- end }}
       initContainers:
       - name: busybox
-        image: busybox:1.35.0-glibc
+        image: busybox:1.37.0-glibc
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
