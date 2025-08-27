@@ -11,12 +11,12 @@ jobs:
     # Generate matrix for linting (essentially locating all Dockerfile directories)
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: build
       run: |
         export HELM_VERSION="v3.9.0"
         export KUBEVAL_VERSION="v0.16.1"
-        export CONFTEST_VERSION="0.28.1"
+        export CONFTEST_VERSION="0.56.0"
         pip install yq jsonschema pyyaml
         wget -q "https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz"
         tar zxf helm-${HELM_VERSION}-linux-amd64.tar.gz
