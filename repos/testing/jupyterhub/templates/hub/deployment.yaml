@@ -110,7 +110,7 @@ spec:
       {{- end }}
       containers:
       - name: hub-container
-        image: sigma2as/jupyterhub-server:20250826-75866b9
+        image: quay.io/nird-toolkit/jupyterhub-server:20221215-e6aa80e
         command:
           - jupyterhub
           - --config
@@ -189,7 +189,6 @@ metadata:
   labels:
     heritage: {{ .Release.Service | quote }}
     release: {{ .Release.Name | quote }}
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     app: {{ template "fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
   annotations:
@@ -226,7 +225,7 @@ spec:
         {{- end }}
       containers:
       - name: cleaner-job
-        image: alpine:3.22.1
+        image: alpine:3.22.2
         imagePullPolicy: Always
         command:
           - /bin/sh
@@ -302,7 +301,7 @@ spec:
           - /bin/sh
           - -c
           - -x
-          - "mkdir -p /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools/{{ template "fullname" . }} && chmod g+w /mnt/{{ (first .Values.persistentStorage).existingClaimName }}/.tools"
+          - "mkdir -p /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }} /mnt/{{ .Values.persistentStorage.existingClaimName }}/.minio.sys && chmod g+w /mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools /mnt/{{ .Values.persistentStorage.existingClaimName }}/.minio.sys && printf '{\"version\":\"1\",\"format\":\"fs\",\"id\":\"avoid-going-into-snsd-mode-legacy-is-fine-with-me\",\"fs\":{\"version\":\"2\"}}' | cat > /mnt/{{ .Values.persistentStorage.existingClaimName }}/.minio.sys/format.json"
         volumeMounts:
         {{- range .Values.persistentStorage }}
         - name: {{ .existingClaimName }}
@@ -337,14 +336,22 @@ spec:
             secretKeyRef:
               name: {{ template "fullname" . }}-minio
               key: MINIO_ROOT_PASSWORD
+        - name: MINIO_ADDRESS
+          value: "0.0.0.0:9000"
+        - name: MINIO_CONSOLE_ADDRESS
+          value: "0.0.0.0:8999"
+        - name: MINIO_BROWSER_REDIRECT_URL
+          value: "https://minio-{{ .Values.ingress.host }}"
+        - name: MINIO_SERVER_URL
+          value: "https://server-{{ .Values.ingress.host }}"
         - name: TZ
           value: Europe/Oslo
-        image: quay.io/nird-toolkit/minio:20220216-9500986
-        {{- if ne (first .Values.persistentStorage).existingClaim "" }}
-        args: [ 'server', '--quiet', '--console-address', ':8999', '/mnt/{{ (first .Values.persistentStorage).existingClaimName }}' ]
-        {{- else }}
-        args: [ 'server', '--quiet', '--console-address', ':8999', '/tmp' ]
-        {{- end }}
+        image: sigma2as/minio:20240306-3a2e4f5
+        {{ if ne .Values.persistentStorage.existingClaim "" }}
+        args: [ 'server', '--quiet', '--config-dir', '/mnt/{{ .Values.persistentStorage.existingClaimName }}/.tools/{{ template "fullname" . }}', '/mnt/{{ .Values.persistentStorage.existingClaimName }}' ]
+        {{ else }}
+        args: [ 'server', '--quiet', '--config-dir', '/tmp/.minio', '/tmp' ]
+        {{ end }}
         resources:
           requests:
             cpu: 200m

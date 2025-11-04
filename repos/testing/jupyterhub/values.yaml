@@ -68,7 +68,7 @@ advanced:
   ipyparallel:
     enabled: false
     workers: 2
-    image: "sigma2as/jupyterhub-singleuser:20240221-2a3f7e1"
+    image: "sigma2as/jupyterhub-singleuser:20251031-35301e4"
     resources:
       requests:
         cpu: "1"
@@ -80,7 +80,7 @@ advanced:
         gpu: 0
   vnc:
     enabled: false
-    image: "quay.io/nird-toolkit/desktop-vnc:20220225-dd67aab"
+    image: "sigma2as/desktop-vnc:20250814-f4ab7b9"
     resources:
       requests:
         cpu: "1"
@@ -96,7 +96,7 @@ advanced:
     enabled: false
     minioRootUser: "rootuserexample"
     minioRootPassword: "rootpasswordexample"
-  userImage: sigma2as/jupyterhub-singleuser:20240221-2a3f7e1
+  userImage: sigma2as/jupyterhub-singleuser:20251031-35301e4
 appstore_generated_data:
   appstore_meta_data:
     contact_email: "example@sigma2.no"

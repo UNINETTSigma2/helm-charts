@@ -23,56 +23,6 @@ properties:
             type: integer
             examples:
             - 100
-      ipyparallel:
-        type: object
-        description: "ipyparallel allows the user to distribute the execution of notebook cells to remote workers. Useful for sharing GPUs among users"
-        properties:
-          enabled:
-            type: boolean
-            examples:
-            - false
-          image:
-            type: string
-            description: "Which image to use when spawning the ipyparallel workers."
-            examples:
-            - sigma2as/jupyterhub-singleuser:20240221-2a3f7e1
-          resources:
-            type: object
-            properties:
-              limits:
-                type: object
-                properties:
-                  cpu:
-                    type: string
-                    examples:
-                    - "2"
-                  gpu:
-                    type: integer
-                    examples:
-                    - 0
-                  memory:
-                    type: string
-                    examples:
-                    - 1G
-              requests:
-                type: object
-                properties:
-                  cpu:
-                    type: string
-                    examples:
-                    - "1"
-                  gpu:
-                    type: integer
-                    examples:
-                    - 0
-                  memory:
-                    type: string
-                    examples:
-                    - 1G
-          workers:
-            type: integer
-            examples:
-            - 2
       jupyterLab:
         type: boolean
         description: "Whether or not to enable the JupyterLab frontend in Jupyter notebooks."
@@ -150,7 +100,7 @@ properties:
         description: "Which docker image to use when spawning user notebooks."
         type: string
         examples:
-        - sigma2as/jupyterhub-singleuser:20240221-2a3f7e1
+          - sigma2as/jupyterhub-singleuser:20251031-35301e4
       vnc:
         description: "Make a VNC server available to each user"
         type: object
@@ -163,7 +113,7 @@ properties:
             type: string
             description: "Which docker image to use when creating the VNC server."
             examples:
-            - quay.io/nird-toolkit/desktop-vnc:20220225-dd67aab
+            - sigma2as/desktop-vnc:20250814-f4ab7b9
           resources:
             type: object
             properties:

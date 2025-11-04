@@ -1,8 +1,8 @@
 apiVersion: v1
-description: Multi-user Jupyter installation with Dataporten integration
+description: Multi-user Jupyter installation with Feide integration
 name: jupyterhub
 icon: https://jupyterhub.readthedocs.io/en/stable/_static/logo.png
-version: 0.16.212
+version: 0.17.0
 maintainers:
 - name: Sigma2 AS
   email: contact@sigma2.no
