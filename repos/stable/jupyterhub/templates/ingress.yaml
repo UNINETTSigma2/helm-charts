@@ -39,7 +39,7 @@ spec:
                   number: 6901
     {{- end }}
     {{- if .Values.advanced.minio.enabled }}
-    - host: minio-{{ .Values.ingress.host }}
+    - host: server-{{ .Values.ingress.host }}
       http:
         paths:
           - path: /
@@ -56,7 +56,7 @@ spec:
          - {{ .Values.ingress.host }}
          - vnc-{{ .Values.ingress.host }}
          - minio-{{ .Values.ingress.host }}
-
+         - server-{{ .Values.ingress.host }}
 {{- if .Values.advanced.minio.enabled }}
 ---
 apiVersion: networking.k8s.io/v1
@@ -76,6 +76,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
 spec:
+  ingressClassName: nginx
   rules:
     - host: minio-{{ .Values.ingress.host }}
       http:
