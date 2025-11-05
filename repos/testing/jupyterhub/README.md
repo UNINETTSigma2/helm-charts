@@ -17,7 +17,7 @@ group, or a scientific research group.
 ### Advanced
 This application uses the following Dockerfile:
   - [Jupyter Hub Server](https://github.com/UninettSigma2/helm-charts-dockerfiles/tree/e6aa80e/jupyterhub/server/Dockerfile)
-  - [User Notebook Server](https://github.com/UninettSigma2/helm-charts-dockerfiles/tree/0497b46/jupyterhub/singleuser/Dockerfile)
+  - [User Notebook Server](https://github.com/UninettSigma2/helm-charts-dockerfiles/tree/35301e4/jupyterhub/singleuser/Dockerfile)
 
 
 #### Values
