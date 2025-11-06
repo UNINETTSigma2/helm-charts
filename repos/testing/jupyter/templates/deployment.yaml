@@ -62,7 +62,7 @@ spec:
         {{- end }}
       initContainers:
       - name: busybox
-        image: busybox:1.33.1-glibc
+        image: busybox:1.37.0-glibc
         imagePullPolicy: IfNotPresent
         securityContext:
           runAsUser: {{ .Values.uid }}
@@ -92,7 +92,7 @@ spec:
         {{- end }}
       containers:
       - name: auth-proxy
-        image: sigma2as/goidc-proxy:next
+        image: sigma2as/goidc-proxy:1.24
         imagePullPolicy: Always
         ports:
           - containerPort: 8080
