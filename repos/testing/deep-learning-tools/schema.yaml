@@ -6,7 +6,7 @@ properties:
       dockerImage:
         type: string
         examples:
-        - sigma2as/deep-learning-tools:20250205-7de094b
+        - sigma2as/deep-learning-tools:20251107-5d272df
       env:
         type: object
         properties:
