@@ -48,7 +48,7 @@ advanced:
   env:
     sparkMasterUrl: "local[*]"
     jupyterLab: true
-  dockerImage: sigma2as/deep-learning-tools:20251107-5d272df
+  dockerImage: sigma2as/deep-learning-tools:20251111-79f3422
   githubToken: ""
 authGroupProviders:
   - url: "https://groups-api.dataporten.no/groups/me/groups"

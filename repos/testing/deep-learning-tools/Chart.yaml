@@ -1,7 +1,7 @@
 apiVersion: v1
 description: A collection of various deep learning tools
 name: deep-learning-tools
-version: 0.9.8
+version: 0.9.9
 maintainers:
 - name: Sigma2 AS
   email: contact@sigma2.no
@@ -10,3 +10,4 @@ icon: https://upload.wikimedia.org/wikipedia/commons/6/64/Dall-e_3_%28jan_%2724%
 keywords:
   - GPU enabled
   - Jupyter lab
+  - MLflow

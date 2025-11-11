@@ -179,8 +179,6 @@ spec:
           {{- end }}
           - name: MLFLOW_TRACKING_URI
             value: http://localhost:5000
-          - name: MLFLOW_SERVER_ALLOWED_HOSTS
-            value: "*.sigma2.no,*.dataporten.no,localhost"
           - name: MEM_LIMIT
             value: {{ .Values.resources.limits.memory }}
           - name: OWNER_ID

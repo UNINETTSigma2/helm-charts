@@ -20,7 +20,7 @@ In addition, there is [Tensorboard](https://www.tensorflow.org/tensorboard) and 
 
 This application creates a Jupyter Notebook instance using the following Dockerfiles:
 
-- [uninettSigma2/deep-learning-tools](https://github.com/UninettSigma2/helm-charts-dockerfiles/tree/5d272df/deep-learning-tools/Dockerfile)
+- [uninettSigma2/deep-learning-tools](https://github.com/UninettSigma2/helm-charts-dockerfiles/tree/79f3422/deep-learning-tools/Dockerfile)
 
 ### Values
 
