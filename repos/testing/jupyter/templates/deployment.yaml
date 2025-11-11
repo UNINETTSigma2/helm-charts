@@ -92,7 +92,7 @@ spec:
         {{- end }}
       containers:
       - name: auth-proxy
-        image: sigma2as/goidc-proxy:1.24
+        image: sigma2as/goidc-proxy:next
         imagePullPolicy: Always
         ports:
           - containerPort: 8080
