@@ -2,11 +2,11 @@ apiVersion: v1
 description: Minio is a object storage server, designed for private cloud infrastructure.
 name: minio
 maintainers:
-  - name: Metacenter
-    email: spteam@metacenter.no
+  - name: NRIS
+    email: spteam@nris.no
 home: https://minio.io/
 icon: https://secure.gravatar.com/avatar/2a5ff6e3cc19dfd93b2e9e5c790449d3.jpg
-version: 1.0.22
+version: 1.0.23
 keywords:
   - File sharing
   - Cloud storage

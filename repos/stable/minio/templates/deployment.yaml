@@ -48,7 +48,7 @@ spec:
       {{- if ne .Values.persistentStorage.existingClaim "" }}
       initContainers:
       - name: busybox
-        image: busybox:1.33.1-glibc
+        image: busybox:1.37.0-glibc
         imagePullPolicy: IfNotPresent
         securityContext:
           runAsUser: {{ .Values.uid }}
@@ -181,7 +181,7 @@ spec:
         {{- end }}
       containers:
       - name: cleaner-job
-        image: "alpine:3.13.5"
+        image: "alpine:3.22.2"
         imagePullPolicy: IfNotPresent
         command:
           - /bin/sh

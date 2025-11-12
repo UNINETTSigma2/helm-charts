@@ -62,7 +62,7 @@ spec:
         {{- end }}
       initContainers:
       - name: busybox
-        image: busybox:1.33.1-glibc
+        image: busybox:1.37.0-glibc
         imagePullPolicy: IfNotPresent
         securityContext:
           runAsUser: {{ .Values.uid }}

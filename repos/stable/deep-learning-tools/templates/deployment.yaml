@@ -74,7 +74,7 @@ spec:
       {{- end }}
       initContainers:
       - name: busybox
-        image: busybox:1.33.1-glibc
+        image: busybox:1.37.0-glibc
         imagePullPolicy: IfNotPresent
         securityContext:
           runAsUser: {{ .Values.uid }}
@@ -109,7 +109,7 @@ spec:
         {{- end }}
       containers:
       - name: proxy-rewriter
-        image: nginx:1.21.0-alpine
+        image: nginx:1.29.3-alpine
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 9001
@@ -279,7 +279,7 @@ spec:
         {{- end }}
       containers:
       - name: cleaner-job
-        image: "alpine:3.13.5"
+        image: "alpine:3.22.2"
         imagePullPolicy: IfNotPresent
         command:
           - /bin/sh

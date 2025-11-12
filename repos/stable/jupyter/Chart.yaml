@@ -1,5 +1,5 @@
 apiVersion: v1
-description: Jupyter notebook with Dataporten integration
+description: Jupyter notebook with Feide integration
 name: jupyter
 version: 1.1.2
 maintainers:
@@ -9,6 +9,6 @@ home: https://github.com/UninettSigma2/helm-charts/tree/master/repos/stable/jupy
 icon: https://bollwyvl.github.io/jupyter.github.io/images/jupyter-sq-text.svg
 keywords:
   - Apache Spark
-  - Scala
   - R
+  - Julia
   - VS Code
