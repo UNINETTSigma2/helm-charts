@@ -181,7 +181,7 @@ spec:
         {{- end }}
       containers:
       - name: cleaner-job
-        image: "alpine:3.22.2"
+        image: "alpine:3.24.1"
         imagePullPolicy: IfNotPresent
         command:
           - /bin/sh

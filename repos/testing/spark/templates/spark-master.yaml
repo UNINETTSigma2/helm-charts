@@ -94,7 +94,7 @@ spec:
       {{- end }}
       containers:
         - name: proxy-rewriter
-          image: nginx:1.29.3-alpine
+          image: nginx:1.31.3-alpine
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9001
@@ -230,7 +230,7 @@ spec:
         {{- end }}
       containers:
       - name: cleaner-job
-        image: "alpine:3.22.2"
+        image: "alpine:3.24.1"
         imagePullPolicy: IfNotPresent
         command:
           - /bin/sh
