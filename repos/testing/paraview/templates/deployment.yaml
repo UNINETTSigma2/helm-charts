@@ -50,7 +50,7 @@ spec:
         {{- end }}
       initContainers:
       - name: busybox
-        image: busybox:1.37.0-glibc
+        image: busybox:1.38.0-glibc
         securityContext:
           runAsUser: {{ .Values.uid }}
           runAsGroup: {{ .Values.gid }}
