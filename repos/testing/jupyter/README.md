@@ -13,7 +13,7 @@ A [JupyterLab](http://jupyter.org/) is an open-source web application that allow
 
 ### Advanced
 This application creates a [JupyterLab](https://github.com/UninettSigma2/helm-charts/tree/master/repos/testing/jupyter) instance using the following Dockerfiles:
-  - [uninettSigma2/jupyter-spark](https://github.com/UninettSigma2/helm-charts-dockerfiles/tree/84a4300/jupyter-spark/Dockerfile)
+  - [uninettSigma2/jupyter-spark](https://github.com/UninettSigma2/helm-charts-dockerfiles/tree/c641e55/jupyter-spark/Dockerfile)
 
 #### Values
 | Value name    | Description                                                                                   |
