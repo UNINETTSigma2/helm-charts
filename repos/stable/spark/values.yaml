@@ -17,7 +17,7 @@ advanced:
       limits:
           cpu: "4"
           memory: 2G
-  dockerImage: sigma2as/jupyter-spark:20251111-84a4300
+  dockerImage: sigma2as/jupyter-spark:20260804-c641e55
 
 uid: 999
 gid: 999

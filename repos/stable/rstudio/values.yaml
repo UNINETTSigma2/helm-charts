@@ -40,8 +40,8 @@ appstore_generated_data:
     authorized_principals: []
 advanced:
   debug: false
-  dockerImage: sigma2as/rstudio-server:20260611-10a4268
-  proxyImage: sigma2as/rstudio-proxy:20260528-76bfe3c
+  dockerImage: sigma2as/rstudio-server:20260818-fcb4187
+  proxyImage: sigma2as/rstudio-proxy:20260818-1df6a44
 authGroupProviders:
   - url: "https://groups-api.dataporten.no/groups/me/groups"
     scope: groups
