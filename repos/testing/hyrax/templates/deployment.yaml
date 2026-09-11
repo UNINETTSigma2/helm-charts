@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  annotations:
+    appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+        app: {{ template "fullname" . }}
+        release: {{ .Release.Name }}
+  template:
+    metadata:
+      annotations:
+        appstore.uninett.no/contact_email: {{ .Values.appstore_generated_data.appstore_meta_data.contact_email }}
+      labels:
+        app: {{ template "fullname" . }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
+    spec:
+      volumes:
+       {{ if ne .Values.persistentStorage.existingClaim "" }}
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistentStorage.existingClaim }}
+       {{- end }}
+      containers:
+      - name: hyrax
+        image: {{ .Values.dockerImage }}
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        {{ if ne .Values.persistentStorage.existingClaim "" }}
+        - name: {{ .Values.persistentStorage.existingClaimName }}
+          mountPath: /usr/share/hyrax
+          mountPropagation: HostToContainer
+          readOnly: {{ .readOnly }}
+          {{ if ne .Values.persistentStorage.subPath "/" }}
+          subPath: {{ .Values.persistentStorage.subPath }}
+          {{ end }}
+        {{ end }}
+

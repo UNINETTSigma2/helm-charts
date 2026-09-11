@@ -1,0 +1,19 @@
+dockerImage: docker.io/opendap/hyrax_ncwms:1.17.1
+ingress:
+  host: "local-chart.example.com"
+resources:
+  requests:
+    cpu: "2"
+    memory: 2G
+  limits:
+    cpu: "4"
+    memory: 2G
+persistentStorage:
+  existingClaim: ""
+  existingClaimName: "example-name"
+  subPath: "/"
+  readOnly: true
+appstore_generated_data:
+  appstore_meta_data:
+    contact_email: "example@sigma2.no"
+
