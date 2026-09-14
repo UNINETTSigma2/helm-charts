@@ -1,4 +1,4 @@
-dockerImage: docker.io/opendap/hyrax_ncwms:1.17.1
+dockerImage: docker.io/opendap/hyrax:1.17.1
 ingress:
   host: "local-chart.example.com"
 resources:
