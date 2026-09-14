@@ -35,7 +35,12 @@ spec:
       - name: hyrax
         image: {{ .Values.dockerImage }}
         resources:
-{{ toYaml .Values.resources | indent 10 }}
+          requests:
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}
+          limits:
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: {{ .Values.resources.limits.memory }}
         ports:
         - containerPort: 8080
         volumeMounts:

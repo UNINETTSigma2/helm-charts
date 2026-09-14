@@ -1,0 +1,4 @@
+appstore:
+  Options:
+    Standards:
+      - defaultMount
